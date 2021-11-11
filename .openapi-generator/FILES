@@ -5,12 +5,15 @@ docs/Api/BuildInfoApi.md
 docs/Api/ProductReferencesApi.md
 docs/Api/ProductSpecificationsApi.md
 docs/Api/ProjectsApi.md
+docs/Api/StorefrontUsersApi.md
 docs/Api/StorefrontsApi.md
 docs/Api/TenantInfoApi.md
 docs/Model/BuildInfoModel.md
 docs/Model/CreateProductReferenceDto.md
 docs/Model/CreateProjectDto.md
+docs/Model/CreateStorefrontUserDto.md
 docs/Model/DatePeriod.md
+docs/Model/MergeAnonymousUserDataInput.md
 docs/Model/MicrosoftAspNetCoreMvcProblemDetails.md
 docs/Model/PagedOfProductReferenceDto.md
 docs/Model/PagedOfProductSpecificationDto.md
@@ -18,6 +21,7 @@ docs/Model/PagedOfProjectDto.md
 docs/Model/PagedOfProjectStatusDto.md
 docs/Model/PagedOfProjectTransitionDto.md
 docs/Model/PagedOfStorefrontDto.md
+docs/Model/PagedOfStorefrontUserDto.md
 docs/Model/ProductAttributeDto.md
 docs/Model/ProductReferenceDto.md
 docs/Model/ProductSpecificationDto.md
@@ -29,13 +33,16 @@ docs/Model/ProjectTransitionConflictDto.md
 docs/Model/ProjectTransitionDto.md
 docs/Model/StorefrontDto.md
 docs/Model/StorefrontType.md
+docs/Model/StorefrontUserDto.md
 docs/Model/TenantApplicationsInfoDto.md
+docs/Model/TenantInfoDto.md
 git_push.sh
 lib/ApiException.php
 lib/Api/BuildInfoApi.php
 lib/Api/ProductReferencesApi.php
 lib/Api/ProductSpecificationsApi.php
 lib/Api/ProjectsApi.php
+lib/Api/StorefrontUsersApi.php
 lib/Api/StorefrontsApi.php
 lib/Api/TenantInfoApi.php
 lib/Configuration.php
@@ -43,7 +50,9 @@ lib/HeaderSelector.php
 lib/Model/BuildInfoModel.php
 lib/Model/CreateProductReferenceDto.php
 lib/Model/CreateProjectDto.php
+lib/Model/CreateStorefrontUserDto.php
 lib/Model/DatePeriod.php
+lib/Model/MergeAnonymousUserDataInput.php
 lib/Model/MicrosoftAspNetCoreMvcProblemDetails.php
 lib/Model/ModelInterface.php
 lib/Model/PagedOfProductReferenceDto.php
@@ -52,6 +61,7 @@ lib/Model/PagedOfProjectDto.php
 lib/Model/PagedOfProjectStatusDto.php
 lib/Model/PagedOfProjectTransitionDto.php
 lib/Model/PagedOfStorefrontDto.php
+lib/Model/PagedOfStorefrontUserDto.php
 lib/Model/ProductAttributeDto.php
 lib/Model/ProductReferenceDto.php
 lib/Model/ProductSpecificationDto.php
@@ -63,6 +73,8 @@ lib/Model/ProjectTransitionConflictDto.php
 lib/Model/ProjectTransitionDto.php
 lib/Model/StorefrontDto.php
 lib/Model/StorefrontType.php
+lib/Model/StorefrontUserDto.php
 lib/Model/TenantApplicationsInfoDto.php
+lib/Model/TenantInfoDto.php
 lib/ObjectSerializer.php
 phpunit.xml.dist

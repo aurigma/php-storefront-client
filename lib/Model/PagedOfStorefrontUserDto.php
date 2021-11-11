@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectItemDto
+ * PagedOfStorefrontUserDto
  *
  * PHP version 7.2
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * ProjectItemDto Class Doc Comment
+ * PagedOfStorefrontUserDto Class Doc Comment
  *
  * @category Class
- * @description Project item dto class
+ * @description Paged list of items
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +43,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class PagedOfStorefrontUserDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProjectItemDto';
+    protected static $openAPIModelName = 'PagedOfStorefrontUserDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,12 +60,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'quantity' => 'int',
-        'fields' => 'array<string,mixed>',
-        'hidden' => 'mixed',
-        'design_ids' => 'string[]',
-        'sku' => 'string'
+        'total' => 'int',
+        'items' => '\Aurigma\Storefront\Model\StorefrontUserDto[]'
     ];
 
     /**
@@ -76,12 +72,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'quantity' => 'int32',
-        'fields' => null,
-        'hidden' => null,
-        'design_ids' => null,
-        'sku' => null
+        'total' => 'int64',
+        'items' => null
     ];
 
     /**
@@ -111,12 +103,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'quantity' => 'quantity',
-        'fields' => 'fields',
-        'hidden' => 'hidden',
-        'design_ids' => 'designIds',
-        'sku' => 'sku'
+        'total' => 'total',
+        'items' => 'items'
     ];
 
     /**
@@ -125,12 +113,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'quantity' => 'setQuantity',
-        'fields' => 'setFields',
-        'hidden' => 'setHidden',
-        'design_ids' => 'setDesignIds',
-        'sku' => 'setSku'
+        'total' => 'setTotal',
+        'items' => 'setItems'
     ];
 
     /**
@@ -139,12 +123,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'quantity' => 'getQuantity',
-        'fields' => 'getFields',
-        'hidden' => 'getHidden',
-        'design_ids' => 'getDesignIds',
-        'sku' => 'getSku'
+        'total' => 'getTotal',
+        'items' => 'getItems'
     ];
 
     /**
@@ -204,12 +184,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['quantity'] = $data['quantity'] ?? null;
-        $this->container['fields'] = $data['fields'] ?? null;
-        $this->container['hidden'] = $data['hidden'] ?? null;
-        $this->container['design_ids'] = $data['design_ids'] ?? null;
-        $this->container['sku'] = $data['sku'] ?? null;
+        $this->container['total'] = $data['total'] ?? null;
+        $this->container['items'] = $data['items'] ?? null;
     }
 
     /**
@@ -237,145 +213,49 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Item name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets quantity
+     * Gets total
      *
      * @return int|null
      */
-    public function getQuantity()
+    public function getTotal()
     {
-        return $this->container['quantity'];
+        return $this->container['total'];
     }
 
     /**
-     * Sets quantity
+     * Sets total
      *
-     * @param int|null $quantity Item quantity information
+     * @param int|null $total Items count
      *
      * @return self
      */
-    public function setQuantity($quantity)
+    public function setTotal($total)
     {
-        $this->container['quantity'] = $quantity;
+        $this->container['total'] = $total;
 
         return $this;
     }
 
     /**
-     * Gets fields
+     * Gets items
      *
-     * @return array<string,mixed>|null
+     * @return \Aurigma\Storefront\Model\StorefrontUserDto[]|null
      */
-    public function getFields()
+    public function getItems()
     {
-        return $this->container['fields'];
+        return $this->container['items'];
     }
 
     /**
-     * Sets fields
+     * Sets items
      *
-     * @param array<string,mixed>|null $fields Item information
+     * @param \Aurigma\Storefront\Model\StorefrontUserDto[]|null $items Items list
      *
      * @return self
      */
-    public function setFields($fields)
+    public function setItems($items)
     {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-
-    /**
-     * Gets hidden
-     *
-     * @return mixed|null
-     */
-    public function getHidden()
-    {
-        return $this->container['hidden'];
-    }
-
-    /**
-     * Sets hidden
-     *
-     * @param mixed|null $hidden Additional item information
-     *
-     * @return self
-     */
-    public function setHidden($hidden)
-    {
-        $this->container['hidden'] = $hidden;
-
-        return $this;
-    }
-
-    /**
-     * Gets design_ids
-     *
-     * @return string[]|null
-     */
-    public function getDesignIds()
-    {
-        return $this->container['design_ids'];
-    }
-
-    /**
-     * Sets design_ids
-     *
-     * @param string[]|null $design_ids List of item associated design identifiers
-     *
-     * @return self
-     */
-    public function setDesignIds($design_ids)
-    {
-        $this->container['design_ids'] = $design_ids;
-
-        return $this;
-    }
-
-    /**
-     * Gets sku
-     *
-     * @return string|null
-     */
-    public function getSku()
-    {
-        return $this->container['sku'];
-    }
-
-    /**
-     * Sets sku
-     *
-     * @param string|null $sku SKU
-     *
-     * @return self
-     */
-    public function setSku($sku)
-    {
-        $this->container['sku'] = $sku;
+        $this->container['items'] = $items;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectItemDto
+ * TenantInfoDto
  *
  * PHP version 7.2
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * ProjectItemDto Class Doc Comment
+ * TenantInfoDto Class Doc Comment
  *
  * @category Class
- * @description Project item dto class
+ * @description Dto class, containing information about tenant
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +43,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProjectItemDto';
+    protected static $openAPIModelName = 'TenantInfoDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,12 +60,9 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'quantity' => 'int',
-        'fields' => 'array<string,mixed>',
-        'hidden' => 'mixed',
-        'design_ids' => 'string[]',
-        'sku' => 'string'
+        'tenant_id' => 'int',
+        'tenancy_name' => 'string',
+        'tenant_creation_time' => '\DateTime'
     ];
 
     /**
@@ -76,12 +73,9 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'quantity' => 'int32',
-        'fields' => null,
-        'hidden' => null,
-        'design_ids' => null,
-        'sku' => null
+        'tenant_id' => 'int32',
+        'tenancy_name' => null,
+        'tenant_creation_time' => 'date-time'
     ];
 
     /**
@@ -111,12 +105,9 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'quantity' => 'quantity',
-        'fields' => 'fields',
-        'hidden' => 'hidden',
-        'design_ids' => 'designIds',
-        'sku' => 'sku'
+        'tenant_id' => 'tenantId',
+        'tenancy_name' => 'tenancyName',
+        'tenant_creation_time' => 'tenantCreationTime'
     ];
 
     /**
@@ -125,12 +116,9 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'quantity' => 'setQuantity',
-        'fields' => 'setFields',
-        'hidden' => 'setHidden',
-        'design_ids' => 'setDesignIds',
-        'sku' => 'setSku'
+        'tenant_id' => 'setTenantId',
+        'tenancy_name' => 'setTenancyName',
+        'tenant_creation_time' => 'setTenantCreationTime'
     ];
 
     /**
@@ -139,12 +127,9 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'quantity' => 'getQuantity',
-        'fields' => 'getFields',
-        'hidden' => 'getHidden',
-        'design_ids' => 'getDesignIds',
-        'sku' => 'getSku'
+        'tenant_id' => 'getTenantId',
+        'tenancy_name' => 'getTenancyName',
+        'tenant_creation_time' => 'getTenantCreationTime'
     ];
 
     /**
@@ -204,12 +189,9 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['quantity'] = $data['quantity'] ?? null;
-        $this->container['fields'] = $data['fields'] ?? null;
-        $this->container['hidden'] = $data['hidden'] ?? null;
-        $this->container['design_ids'] = $data['design_ids'] ?? null;
-        $this->container['sku'] = $data['sku'] ?? null;
+        $this->container['tenant_id'] = $data['tenant_id'] ?? null;
+        $this->container['tenancy_name'] = $data['tenancy_name'] ?? null;
+        $this->container['tenant_creation_time'] = $data['tenant_creation_time'] ?? null;
     }
 
     /**
@@ -237,145 +219,73 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Item name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets quantity
+     * Gets tenant_id
      *
      * @return int|null
      */
-    public function getQuantity()
+    public function getTenantId()
     {
-        return $this->container['quantity'];
+        return $this->container['tenant_id'];
     }
 
     /**
-     * Sets quantity
+     * Sets tenant_id
      *
-     * @param int|null $quantity Item quantity information
+     * @param int|null $tenant_id Tenant identifier
      *
      * @return self
      */
-    public function setQuantity($quantity)
+    public function setTenantId($tenant_id)
     {
-        $this->container['quantity'] = $quantity;
+        $this->container['tenant_id'] = $tenant_id;
 
         return $this;
     }
 
     /**
-     * Gets fields
-     *
-     * @return array<string,mixed>|null
-     */
-    public function getFields()
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param array<string,mixed>|null $fields Item information
-     *
-     * @return self
-     */
-    public function setFields($fields)
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-
-    /**
-     * Gets hidden
-     *
-     * @return mixed|null
-     */
-    public function getHidden()
-    {
-        return $this->container['hidden'];
-    }
-
-    /**
-     * Sets hidden
-     *
-     * @param mixed|null $hidden Additional item information
-     *
-     * @return self
-     */
-    public function setHidden($hidden)
-    {
-        $this->container['hidden'] = $hidden;
-
-        return $this;
-    }
-
-    /**
-     * Gets design_ids
-     *
-     * @return string[]|null
-     */
-    public function getDesignIds()
-    {
-        return $this->container['design_ids'];
-    }
-
-    /**
-     * Sets design_ids
-     *
-     * @param string[]|null $design_ids List of item associated design identifiers
-     *
-     * @return self
-     */
-    public function setDesignIds($design_ids)
-    {
-        $this->container['design_ids'] = $design_ids;
-
-        return $this;
-    }
-
-    /**
-     * Gets sku
+     * Gets tenancy_name
      *
      * @return string|null
      */
-    public function getSku()
+    public function getTenancyName()
     {
-        return $this->container['sku'];
+        return $this->container['tenancy_name'];
     }
 
     /**
-     * Sets sku
+     * Sets tenancy_name
      *
-     * @param string|null $sku SKU
+     * @param string|null $tenancy_name Tenancy name
      *
      * @return self
      */
-    public function setSku($sku)
+    public function setTenancyName($tenancy_name)
     {
-        $this->container['sku'] = $sku;
+        $this->container['tenancy_name'] = $tenancy_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets tenant_creation_time
+     *
+     * @return \DateTime|null
+     */
+    public function getTenantCreationTime()
+    {
+        return $this->container['tenant_creation_time'];
+    }
+
+    /**
+     * Sets tenant_creation_time
+     *
+     * @param \DateTime|null $tenant_creation_time Tenant creation time
+     *
+     * @return self
+     */
+    public function setTenantCreationTime($tenant_creation_time)
+    {
+        $this->container['tenant_creation_time'] = $tenant_creation_time;
 
         return $this;
     }

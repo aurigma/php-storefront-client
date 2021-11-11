@@ -63,10 +63,11 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'int',
         'storefront_id' => 'int',
         'tenant_id' => 'int',
-        'product_specification_id' => 'string',
         'order_id' => 'string',
         'order_url' => 'string',
         'order_number' => 'int',
+        'order_line_item_id' => 'string',
+        'order_line_item_index' => 'int',
         'customer_id' => 'string',
         'customer_name' => 'string',
         'name' => 'string',
@@ -74,7 +75,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'items' => '\Aurigma\Storefront\Model\ProjectItemDto[]',
         'status' => 'int',
         'created' => '\DateTime',
-        'last_modified' => '\DateTime'
+        'last_modified' => '\DateTime',
+        'description' => 'string'
     ];
 
     /**
@@ -88,10 +90,11 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'int32',
         'storefront_id' => 'int32',
         'tenant_id' => 'int32',
-        'product_specification_id' => null,
         'order_id' => null,
         'order_url' => null,
         'order_number' => 'int32',
+        'order_line_item_id' => null,
+        'order_line_item_index' => 'int32',
         'customer_id' => null,
         'customer_name' => null,
         'name' => null,
@@ -99,7 +102,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'items' => null,
         'status' => 'int32',
         'created' => 'date-time',
-        'last_modified' => 'date-time'
+        'last_modified' => 'date-time',
+        'description' => null
     ];
 
     /**
@@ -132,10 +136,11 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'id',
         'storefront_id' => 'storefrontId',
         'tenant_id' => 'tenantId',
-        'product_specification_id' => 'productSpecificationId',
         'order_id' => 'orderId',
         'order_url' => 'orderUrl',
         'order_number' => 'orderNumber',
+        'order_line_item_id' => 'orderLineItemId',
+        'order_line_item_index' => 'orderLineItemIndex',
         'customer_id' => 'customerId',
         'customer_name' => 'customerName',
         'name' => 'name',
@@ -143,7 +148,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'items' => 'items',
         'status' => 'status',
         'created' => 'created',
-        'last_modified' => 'lastModified'
+        'last_modified' => 'lastModified',
+        'description' => 'description'
     ];
 
     /**
@@ -155,10 +161,11 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'setId',
         'storefront_id' => 'setStorefrontId',
         'tenant_id' => 'setTenantId',
-        'product_specification_id' => 'setProductSpecificationId',
         'order_id' => 'setOrderId',
         'order_url' => 'setOrderUrl',
         'order_number' => 'setOrderNumber',
+        'order_line_item_id' => 'setOrderLineItemId',
+        'order_line_item_index' => 'setOrderLineItemIndex',
         'customer_id' => 'setCustomerId',
         'customer_name' => 'setCustomerName',
         'name' => 'setName',
@@ -166,7 +173,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'items' => 'setItems',
         'status' => 'setStatus',
         'created' => 'setCreated',
-        'last_modified' => 'setLastModified'
+        'last_modified' => 'setLastModified',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -178,10 +186,11 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'storefront_id' => 'getStorefrontId',
         'tenant_id' => 'getTenantId',
-        'product_specification_id' => 'getProductSpecificationId',
         'order_id' => 'getOrderId',
         'order_url' => 'getOrderUrl',
         'order_number' => 'getOrderNumber',
+        'order_line_item_id' => 'getOrderLineItemId',
+        'order_line_item_index' => 'getOrderLineItemIndex',
         'customer_id' => 'getCustomerId',
         'customer_name' => 'getCustomerName',
         'name' => 'getName',
@@ -189,7 +198,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'items' => 'getItems',
         'status' => 'getStatus',
         'created' => 'getCreated',
-        'last_modified' => 'getLastModified'
+        'last_modified' => 'getLastModified',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -252,10 +262,11 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['id'] = $data['id'] ?? null;
         $this->container['storefront_id'] = $data['storefront_id'] ?? null;
         $this->container['tenant_id'] = $data['tenant_id'] ?? null;
-        $this->container['product_specification_id'] = $data['product_specification_id'] ?? null;
         $this->container['order_id'] = $data['order_id'] ?? null;
         $this->container['order_url'] = $data['order_url'] ?? null;
         $this->container['order_number'] = $data['order_number'] ?? null;
+        $this->container['order_line_item_id'] = $data['order_line_item_id'] ?? null;
+        $this->container['order_line_item_index'] = $data['order_line_item_index'] ?? null;
         $this->container['customer_id'] = $data['customer_id'] ?? null;
         $this->container['customer_name'] = $data['customer_name'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
@@ -264,6 +275,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['status'] = $data['status'] ?? null;
         $this->container['created'] = $data['created'] ?? null;
         $this->container['last_modified'] = $data['last_modified'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
     }
 
     /**
@@ -363,30 +375,6 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets product_specification_id
-     *
-     * @return string|null
-     */
-    public function getProductSpecificationId()
-    {
-        return $this->container['product_specification_id'];
-    }
-
-    /**
-     * Sets product_specification_id
-     *
-     * @param string|null $product_specification_id Product specification identifier (i.e identifier of Customer's Canvas product specification - main subject of this project)
-     *
-     * @return self
-     */
-    public function setProductSpecificationId($product_specification_id)
-    {
-        $this->container['product_specification_id'] = $product_specification_id;
-
-        return $this;
-    }
-
-    /**
      * Gets order_id
      *
      * @return string|null
@@ -454,6 +442,54 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOrderNumber($order_number)
     {
         $this->container['order_number'] = $order_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_id
+     *
+     * @return string|null
+     */
+    public function getOrderLineItemId()
+    {
+        return $this->container['order_line_item_id'];
+    }
+
+    /**
+     * Sets order_line_item_id
+     *
+     * @param string|null $order_line_item_id Line item ID from external ecommerce system order.
+     *
+     * @return self
+     */
+    public function setOrderLineItemId($order_line_item_id)
+    {
+        $this->container['order_line_item_id'] = $order_line_item_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_index
+     *
+     * @return int|null
+     */
+    public function getOrderLineItemIndex()
+    {
+        return $this->container['order_line_item_index'];
+    }
+
+    /**
+     * Sets order_line_item_index
+     *
+     * @param int|null $order_line_item_index Line item index from external ecommerce system order.
+     *
+     * @return self
+     */
+    public function setOrderLineItemIndex($order_line_item_index)
+    {
+        $this->container['order_line_item_index'] = $order_line_item_index;
 
         return $this;
     }
@@ -646,6 +682,30 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLastModified($last_modified)
     {
         $this->container['last_modified'] = $last_modified;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Description of the project
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectItemDto
+ * StorefrontUserDto
  *
  * PHP version 7.2
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * ProjectItemDto Class Doc Comment
+ * StorefrontUserDto Class Doc Comment
  *
  * @category Class
- * @description Project item dto class
+ * @description Storefront user dto class
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +43,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class StorefrontUserDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProjectItemDto';
+    protected static $openAPIModelName = 'StorefrontUserDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,12 +60,10 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'quantity' => 'int',
-        'fields' => 'array<string,mixed>',
-        'hidden' => 'mixed',
-        'design_ids' => 'string[]',
-        'sku' => 'string'
+        'user_id' => 'string',
+        'tenant_id' => 'int',
+        'storefront_id' => 'int',
+        'is_anonymous' => 'bool'
     ];
 
     /**
@@ -76,12 +74,10 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'quantity' => 'int32',
-        'fields' => null,
-        'hidden' => null,
-        'design_ids' => null,
-        'sku' => null
+        'user_id' => null,
+        'tenant_id' => 'int32',
+        'storefront_id' => 'int32',
+        'is_anonymous' => null
     ];
 
     /**
@@ -111,12 +107,10 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'quantity' => 'quantity',
-        'fields' => 'fields',
-        'hidden' => 'hidden',
-        'design_ids' => 'designIds',
-        'sku' => 'sku'
+        'user_id' => 'userId',
+        'tenant_id' => 'tenantId',
+        'storefront_id' => 'storefrontId',
+        'is_anonymous' => 'isAnonymous'
     ];
 
     /**
@@ -125,12 +119,10 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'quantity' => 'setQuantity',
-        'fields' => 'setFields',
-        'hidden' => 'setHidden',
-        'design_ids' => 'setDesignIds',
-        'sku' => 'setSku'
+        'user_id' => 'setUserId',
+        'tenant_id' => 'setTenantId',
+        'storefront_id' => 'setStorefrontId',
+        'is_anonymous' => 'setIsAnonymous'
     ];
 
     /**
@@ -139,12 +131,10 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'quantity' => 'getQuantity',
-        'fields' => 'getFields',
-        'hidden' => 'getHidden',
-        'design_ids' => 'getDesignIds',
-        'sku' => 'getSku'
+        'user_id' => 'getUserId',
+        'tenant_id' => 'getTenantId',
+        'storefront_id' => 'getStorefrontId',
+        'is_anonymous' => 'getIsAnonymous'
     ];
 
     /**
@@ -204,12 +194,10 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['quantity'] = $data['quantity'] ?? null;
-        $this->container['fields'] = $data['fields'] ?? null;
-        $this->container['hidden'] = $data['hidden'] ?? null;
-        $this->container['design_ids'] = $data['design_ids'] ?? null;
-        $this->container['sku'] = $data['sku'] ?? null;
+        $this->container['user_id'] = $data['user_id'] ?? null;
+        $this->container['tenant_id'] = $data['tenant_id'] ?? null;
+        $this->container['storefront_id'] = $data['storefront_id'] ?? null;
+        $this->container['is_anonymous'] = $data['is_anonymous'] ?? null;
     }
 
     /**
@@ -237,145 +225,97 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets name
+     * Gets user_id
      *
      * @return string|null
      */
-    public function getName()
+    public function getUserId()
     {
-        return $this->container['name'];
+        return $this->container['user_id'];
     }
 
     /**
-     * Sets name
+     * Sets user_id
      *
-     * @param string|null $name Item name
+     * @param string|null $user_id Storefront user identifier
      *
      * @return self
      */
-    public function setName($name)
+    public function setUserId($user_id)
     {
-        $this->container['name'] = $name;
+        $this->container['user_id'] = $user_id;
 
         return $this;
     }
 
     /**
-     * Gets quantity
+     * Gets tenant_id
      *
      * @return int|null
      */
-    public function getQuantity()
+    public function getTenantId()
     {
-        return $this->container['quantity'];
+        return $this->container['tenant_id'];
     }
 
     /**
-     * Sets quantity
+     * Sets tenant_id
      *
-     * @param int|null $quantity Item quantity information
+     * @param int|null $tenant_id Storefront tenant indentifier
      *
      * @return self
      */
-    public function setQuantity($quantity)
+    public function setTenantId($tenant_id)
     {
-        $this->container['quantity'] = $quantity;
+        $this->container['tenant_id'] = $tenant_id;
 
         return $this;
     }
 
     /**
-     * Gets fields
+     * Gets storefront_id
      *
-     * @return array<string,mixed>|null
+     * @return int|null
      */
-    public function getFields()
+    public function getStorefrontId()
     {
-        return $this->container['fields'];
+        return $this->container['storefront_id'];
     }
 
     /**
-     * Sets fields
+     * Sets storefront_id
      *
-     * @param array<string,mixed>|null $fields Item information
+     * @param int|null $storefront_id Storefront identifier
      *
      * @return self
      */
-    public function setFields($fields)
+    public function setStorefrontId($storefront_id)
     {
-        $this->container['fields'] = $fields;
+        $this->container['storefront_id'] = $storefront_id;
 
         return $this;
     }
 
     /**
-     * Gets hidden
+     * Gets is_anonymous
      *
-     * @return mixed|null
+     * @return bool|null
      */
-    public function getHidden()
+    public function getIsAnonymous()
     {
-        return $this->container['hidden'];
+        return $this->container['is_anonymous'];
     }
 
     /**
-     * Sets hidden
+     * Sets is_anonymous
      *
-     * @param mixed|null $hidden Additional item information
+     * @param bool|null $is_anonymous Indicates whether user is an anonymous
      *
      * @return self
      */
-    public function setHidden($hidden)
+    public function setIsAnonymous($is_anonymous)
     {
-        $this->container['hidden'] = $hidden;
-
-        return $this;
-    }
-
-    /**
-     * Gets design_ids
-     *
-     * @return string[]|null
-     */
-    public function getDesignIds()
-    {
-        return $this->container['design_ids'];
-    }
-
-    /**
-     * Sets design_ids
-     *
-     * @param string[]|null $design_ids List of item associated design identifiers
-     *
-     * @return self
-     */
-    public function setDesignIds($design_ids)
-    {
-        $this->container['design_ids'] = $design_ids;
-
-        return $this;
-    }
-
-    /**
-     * Gets sku
-     *
-     * @return string|null
-     */
-    public function getSku()
-    {
-        return $this->container['sku'];
-    }
-
-    /**
-     * Sets sku
-     *
-     * @param string|null $sku SKU
-     *
-     * @return self
-     */
-    public function setSku($sku)
-    {
-        $this->container['sku'] = $sku;
+        $this->container['is_anonymous'] = $is_anonymous;
 
         return $this;
     }

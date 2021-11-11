@@ -64,11 +64,14 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_id' => 'string',
         'order_url' => 'string',
         'order_number' => 'int',
+        'order_line_item_index' => 'int',
+        'order_line_item_id' => 'string',
         'customer_id' => 'string',
         'customer_name' => 'string',
         'name' => 'string',
         'owner_id' => 'string',
-        'items' => '\Aurigma\Storefront\Model\ProjectItemDto[]'
+        'items' => '\Aurigma\Storefront\Model\ProjectItemDto[]',
+        'description' => 'string'
     ];
 
     /**
@@ -83,11 +86,14 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_id' => null,
         'order_url' => null,
         'order_number' => 'int32',
+        'order_line_item_index' => 'int32',
+        'order_line_item_id' => null,
         'customer_id' => null,
         'customer_name' => null,
         'name' => null,
         'owner_id' => null,
-        'items' => null
+        'items' => null,
+        'description' => null
     ];
 
     /**
@@ -121,11 +127,14 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_id' => 'orderId',
         'order_url' => 'orderUrl',
         'order_number' => 'orderNumber',
+        'order_line_item_index' => 'orderLineItemIndex',
+        'order_line_item_id' => 'orderLineItemId',
         'customer_id' => 'customerId',
         'customer_name' => 'customerName',
         'name' => 'name',
         'owner_id' => 'ownerId',
-        'items' => 'items'
+        'items' => 'items',
+        'description' => 'description'
     ];
 
     /**
@@ -138,11 +147,14 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_id' => 'setOrderId',
         'order_url' => 'setOrderUrl',
         'order_number' => 'setOrderNumber',
+        'order_line_item_index' => 'setOrderLineItemIndex',
+        'order_line_item_id' => 'setOrderLineItemId',
         'customer_id' => 'setCustomerId',
         'customer_name' => 'setCustomerName',
         'name' => 'setName',
         'owner_id' => 'setOwnerId',
-        'items' => 'setItems'
+        'items' => 'setItems',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -155,11 +167,14 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'order_id' => 'getOrderId',
         'order_url' => 'getOrderUrl',
         'order_number' => 'getOrderNumber',
+        'order_line_item_index' => 'getOrderLineItemIndex',
+        'order_line_item_id' => 'getOrderLineItemId',
         'customer_id' => 'getCustomerId',
         'customer_name' => 'getCustomerName',
         'name' => 'getName',
         'owner_id' => 'getOwnerId',
-        'items' => 'getItems'
+        'items' => 'getItems',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -223,11 +238,14 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['order_id'] = $data['order_id'] ?? null;
         $this->container['order_url'] = $data['order_url'] ?? null;
         $this->container['order_number'] = $data['order_number'] ?? null;
+        $this->container['order_line_item_index'] = $data['order_line_item_index'] ?? null;
+        $this->container['order_line_item_id'] = $data['order_line_item_id'] ?? null;
         $this->container['customer_id'] = $data['customer_id'] ?? null;
         $this->container['customer_name'] = $data['customer_name'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['owner_id'] = $data['owner_id'] ?? null;
         $this->container['items'] = $data['items'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
     }
 
     /**
@@ -354,6 +372,54 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets order_line_item_index
+     *
+     * @return int|null
+     */
+    public function getOrderLineItemIndex()
+    {
+        return $this->container['order_line_item_index'];
+    }
+
+    /**
+     * Sets order_line_item_index
+     *
+     * @param int|null $order_line_item_index Line item index from ecommerce system order
+     *
+     * @return self
+     */
+    public function setOrderLineItemIndex($order_line_item_index)
+    {
+        $this->container['order_line_item_index'] = $order_line_item_index;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_id
+     *
+     * @return string|null
+     */
+    public function getOrderLineItemId()
+    {
+        return $this->container['order_line_item_id'];
+    }
+
+    /**
+     * Sets order_line_item_id
+     *
+     * @param string|null $order_line_item_id Line Item id from ecommerce system order
+     *
+     * @return self
+     */
+    public function setOrderLineItemId($order_line_item_id)
+    {
+        $this->container['order_line_item_id'] = $order_line_item_id;
+
+        return $this;
+    }
+
+    /**
      * Gets customer_id
      *
      * @return string|null
@@ -469,6 +535,30 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setItems($items)
     {
         $this->container['items'] = $items;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Description of the project
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
 
         return $this;
     }
