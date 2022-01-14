@@ -1,14 +1,13 @@
 # Aurigma Customer's Canvas SDK - Storefront API Client
 ======================================================
 
-This module is an Angular API client for Storefront API service which is a part of [**Customer's Canvas**](https://customerscanvas.com) web-to-print system. It is supposed that you are familiar with its services and understand how to use its APIs. To learn more about Customer's Canvas and its services, refer the [Getting Started section of its documentation](https://customerscanvas.com/dev/getting-started/intro.html).
+This module is a PHP API client for Storefront API service which is a part of [**Customer's Canvas**](https://customerscanvas.com) web-to-print system. It is supposed that you are familiar with its services and understand how to use its APIs. To learn more about Customer's Canvas and its services, refer the [Getting Started section of its documentation](https://customerscanvas.com/dev/getting-started/intro.html).
 
 ## Pre-requisites
 
 To be able to use this package, you need to meet the following requirements: 
 
 * You must have an account at Customer's Canvas.
-* You need to use it in Angular applications **only**. 
 
 For other platforms, see the [Backend services](https://customerscanvas.com/dev/getting-started/about-backend-services.html) article in Customer's Canvas documentation. 
 
