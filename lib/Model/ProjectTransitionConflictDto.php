@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProjectTransitionConflictDto Class Doc Comment
  *
  * @category Class
- * @description Information about project transition conflict
+ * @description Dto class, containing information about the project transition conflict.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -219,7 +219,7 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets available_transitions
      *
-     * @param \Aurigma\Storefront\Model\ProjectTransitionDto[]|null $available_transitions List of available project transitions
+     * @param \Aurigma\Storefront\Model\ProjectTransitionDto[]|null $available_transitions A list of all available status transitions for the project.
      *
      * @return self
      */

@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * TenantApplicationsInfoDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing information about tenant applications
+ * @description Dto class, containing information about tenant applications.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -62,9 +62,13 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPITypes = [
         'design_editor_url' => 'string',
         'ui_framework_url' => 'string',
+        'simple_editor_url' => 'string',
         'preflight_url' => 'string',
         'dynamic_image_url' => 'string',
-        'tenant_id' => 'int'
+        'tenant_id' => 'int',
+        'design_editor_api_key' => 'string',
+        'preflight_api_key' => 'string',
+        'dynamic_image_api_key' => 'string'
     ];
 
     /**
@@ -77,9 +81,13 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPIFormats = [
         'design_editor_url' => null,
         'ui_framework_url' => null,
+        'simple_editor_url' => null,
         'preflight_url' => null,
         'dynamic_image_url' => null,
-        'tenant_id' => 'int32'
+        'tenant_id' => 'int32',
+        'design_editor_api_key' => null,
+        'preflight_api_key' => null,
+        'dynamic_image_api_key' => null
     ];
 
     /**
@@ -111,9 +119,13 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     protected static $attributeMap = [
         'design_editor_url' => 'designEditorUrl',
         'ui_framework_url' => 'uiFrameworkUrl',
+        'simple_editor_url' => 'simpleEditorUrl',
         'preflight_url' => 'preflightUrl',
         'dynamic_image_url' => 'dynamicImageUrl',
-        'tenant_id' => 'tenantId'
+        'tenant_id' => 'tenantId',
+        'design_editor_api_key' => 'designEditorApiKey',
+        'preflight_api_key' => 'preflightApiKey',
+        'dynamic_image_api_key' => 'dynamicImageApiKey'
     ];
 
     /**
@@ -124,9 +136,13 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     protected static $setters = [
         'design_editor_url' => 'setDesignEditorUrl',
         'ui_framework_url' => 'setUiFrameworkUrl',
+        'simple_editor_url' => 'setSimpleEditorUrl',
         'preflight_url' => 'setPreflightUrl',
         'dynamic_image_url' => 'setDynamicImageUrl',
-        'tenant_id' => 'setTenantId'
+        'tenant_id' => 'setTenantId',
+        'design_editor_api_key' => 'setDesignEditorApiKey',
+        'preflight_api_key' => 'setPreflightApiKey',
+        'dynamic_image_api_key' => 'setDynamicImageApiKey'
     ];
 
     /**
@@ -137,9 +153,13 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     protected static $getters = [
         'design_editor_url' => 'getDesignEditorUrl',
         'ui_framework_url' => 'getUiFrameworkUrl',
+        'simple_editor_url' => 'getSimpleEditorUrl',
         'preflight_url' => 'getPreflightUrl',
         'dynamic_image_url' => 'getDynamicImageUrl',
-        'tenant_id' => 'getTenantId'
+        'tenant_id' => 'getTenantId',
+        'design_editor_api_key' => 'getDesignEditorApiKey',
+        'preflight_api_key' => 'getPreflightApiKey',
+        'dynamic_image_api_key' => 'getDynamicImageApiKey'
     ];
 
     /**
@@ -201,9 +221,13 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     {
         $this->container['design_editor_url'] = $data['design_editor_url'] ?? null;
         $this->container['ui_framework_url'] = $data['ui_framework_url'] ?? null;
+        $this->container['simple_editor_url'] = $data['simple_editor_url'] ?? null;
         $this->container['preflight_url'] = $data['preflight_url'] ?? null;
         $this->container['dynamic_image_url'] = $data['dynamic_image_url'] ?? null;
         $this->container['tenant_id'] = $data['tenant_id'] ?? null;
+        $this->container['design_editor_api_key'] = $data['design_editor_api_key'] ?? null;
+        $this->container['preflight_api_key'] = $data['preflight_api_key'] ?? null;
+        $this->container['dynamic_image_api_key'] = $data['dynamic_image_api_key'] ?? null;
     }
 
     /**
@@ -243,7 +267,7 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets design_editor_url
      *
-     * @param string|null $design_editor_url design_editor_url
+     * @param string|null $design_editor_url An url to the 'Design Editor' tenant application.
      *
      * @return self
      */
@@ -267,13 +291,37 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets ui_framework_url
      *
-     * @param string|null $ui_framework_url ui_framework_url
+     * @param string|null $ui_framework_url An url to the 'UI Framework'.
      *
      * @return self
      */
     public function setUiFrameworkUrl($ui_framework_url)
     {
         $this->container['ui_framework_url'] = $ui_framework_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets simple_editor_url
+     *
+     * @return string|null
+     */
+    public function getSimpleEditorUrl()
+    {
+        return $this->container['simple_editor_url'];
+    }
+
+    /**
+     * Sets simple_editor_url
+     *
+     * @param string|null $simple_editor_url An url to the 'Simple editor'.
+     *
+     * @return self
+     */
+    public function setSimpleEditorUrl($simple_editor_url)
+    {
+        $this->container['simple_editor_url'] = $simple_editor_url;
 
         return $this;
     }
@@ -291,7 +339,7 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets preflight_url
      *
-     * @param string|null $preflight_url preflight_url
+     * @param string|null $preflight_url An url to the 'Preflight' tenant application.
      *
      * @return self
      */
@@ -315,7 +363,7 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets dynamic_image_url
      *
-     * @param string|null $dynamic_image_url dynamic_image_url
+     * @param string|null $dynamic_image_url An url to the 'Dynamic Image' tenant application.
      *
      * @return self
      */
@@ -339,13 +387,85 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets tenant_id
      *
-     * @param int|null $tenant_id tenant_id
+     * @param int|null $tenant_id Tenant identifier
      *
      * @return self
      */
     public function setTenantId($tenant_id)
     {
         $this->container['tenant_id'] = $tenant_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets design_editor_api_key
+     *
+     * @return string|null
+     */
+    public function getDesignEditorApiKey()
+    {
+        return $this->container['design_editor_api_key'];
+    }
+
+    /**
+     * Sets design_editor_api_key
+     *
+     * @param string|null $design_editor_api_key An ApiKey for the 'Design Editor' tenant application.
+     *
+     * @return self
+     */
+    public function setDesignEditorApiKey($design_editor_api_key)
+    {
+        $this->container['design_editor_api_key'] = $design_editor_api_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets preflight_api_key
+     *
+     * @return string|null
+     */
+    public function getPreflightApiKey()
+    {
+        return $this->container['preflight_api_key'];
+    }
+
+    /**
+     * Sets preflight_api_key
+     *
+     * @param string|null $preflight_api_key An ApiKey for the 'Preflight' tenant application.
+     *
+     * @return self
+     */
+    public function setPreflightApiKey($preflight_api_key)
+    {
+        $this->container['preflight_api_key'] = $preflight_api_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets dynamic_image_api_key
+     *
+     * @return string|null
+     */
+    public function getDynamicImageApiKey()
+    {
+        return $this->container['dynamic_image_api_key'];
+    }
+
+    /**
+     * Sets dynamic_image_api_key
+     *
+     * @param string|null $dynamic_image_api_key An ApiKey for the 'Dynamic Image' tenant application.
+     *
+     * @return self
+     */
+    public function setDynamicImageApiKey($dynamic_image_api_key)
+    {
+        $this->container['dynamic_image_api_key'] = $dynamic_image_api_key;
 
         return $this;
     }

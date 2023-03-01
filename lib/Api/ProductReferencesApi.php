@@ -117,40 +117,38 @@ class ProductReferencesApi
     /**
      * Operation productReferencesCreate
      *
-     * Creates new storefront product reference
+     * Creates a new storefront product reference.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function productReferencesCreate($storefront_id, $tenant_id = null, $user_id = null, $create_product_reference_dto = null)
+    public function productReferencesCreate($storefront_id, $tenant_id = null, $create_product_reference_dto = null)
     {
-        list($response) = $this->productReferencesCreateWithHttpInfo($storefront_id, $tenant_id, $user_id, $create_product_reference_dto);
+        list($response) = $this->productReferencesCreateWithHttpInfo($storefront_id, $tenant_id, $create_product_reference_dto);
         return $response;
     }
 
     /**
      * Operation productReferencesCreateWithHttpInfo
      *
-     * Creates new storefront product reference
+     * Creates a new storefront product reference.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesCreateWithHttpInfo($storefront_id, $tenant_id = null, $user_id = null, $create_product_reference_dto = null)
+    public function productReferencesCreateWithHttpInfo($storefront_id, $tenant_id = null, $create_product_reference_dto = null)
     {
-        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $user_id, $create_product_reference_dto);
+        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $create_product_reference_dto);
 
         try {
             $options = $this->createHttpClientOption();
@@ -246,19 +244,18 @@ class ProductReferencesApi
     /**
      * Operation productReferencesCreateAsync
      *
-     * Creates new storefront product reference
+     * Creates a new storefront product reference.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesCreateAsync($storefront_id, $tenant_id = null, $user_id = null, $create_product_reference_dto = null)
+    public function productReferencesCreateAsync($storefront_id, $tenant_id = null, $create_product_reference_dto = null)
     {
-        return $this->productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $user_id, $create_product_reference_dto)
+        return $this->productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $create_product_reference_dto)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -269,20 +266,19 @@ class ProductReferencesApi
     /**
      * Operation productReferencesCreateAsyncWithHttpInfo
      *
-     * Creates new storefront product reference
+     * Creates a new storefront product reference.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $user_id = null, $create_product_reference_dto = null)
+    public function productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $create_product_reference_dto = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProductReferenceDto';
-        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $user_id, $create_product_reference_dto);
+        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $create_product_reference_dto);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -320,15 +316,14 @@ class ProductReferencesApi
     /**
      * Create request for operation 'productReferencesCreate'
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesCreateRequest($storefront_id, $tenant_id = null, $user_id = null, $create_product_reference_dto = null)
+    public function productReferencesCreateRequest($storefront_id, $tenant_id = null, $create_product_reference_dto = null)
     {
         // verify the required parameter 'storefront_id' is set
         if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
@@ -364,17 +359,6 @@ class ProductReferencesApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -436,6 +420,23 @@ class ProductReferencesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -466,40 +467,38 @@ class ProductReferencesApi
     /**
      * Operation productReferencesDelete
      *
-     * Deletes storefront product reference
+     * Deletes the storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function productReferencesDelete($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesDelete($reference, $storefront_id, $tenant_id = null)
     {
-        list($response) = $this->productReferencesDeleteWithHttpInfo($reference, $storefront_id, $tenant_id, $user_id);
+        list($response) = $this->productReferencesDeleteWithHttpInfo($reference, $storefront_id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation productReferencesDeleteWithHttpInfo
      *
-     * Deletes storefront product reference
+     * Deletes the storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesDeleteWithHttpInfo($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesDeleteWithHttpInfo($reference, $storefront_id, $tenant_id = null)
     {
-        $request = $this->productReferencesDeleteRequest($reference, $storefront_id, $tenant_id, $user_id);
+        $request = $this->productReferencesDeleteRequest($reference, $storefront_id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -595,19 +594,18 @@ class ProductReferencesApi
     /**
      * Operation productReferencesDeleteAsync
      *
-     * Deletes storefront product reference
+     * Deletes the storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesDeleteAsync($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesDeleteAsync($reference, $storefront_id, $tenant_id = null)
     {
-        return $this->productReferencesDeleteAsyncWithHttpInfo($reference, $storefront_id, $tenant_id, $user_id)
+        return $this->productReferencesDeleteAsyncWithHttpInfo($reference, $storefront_id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -618,20 +616,19 @@ class ProductReferencesApi
     /**
      * Operation productReferencesDeleteAsyncWithHttpInfo
      *
-     * Deletes storefront product reference
+     * Deletes the storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesDeleteAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesDeleteAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProductReferenceDto';
-        $request = $this->productReferencesDeleteRequest($reference, $storefront_id, $tenant_id, $user_id);
+        $request = $this->productReferencesDeleteRequest($reference, $storefront_id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -669,15 +666,14 @@ class ProductReferencesApi
     /**
      * Create request for operation 'productReferencesDelete'
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesDeleteRequest($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesDeleteRequest($reference, $storefront_id, $tenant_id = null)
     {
         // verify the required parameter 'reference' is set
         if ($reference === null || (is_array($reference) && count($reference) === 0)) {
@@ -719,17 +715,6 @@ class ProductReferencesApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -793,6 +778,23 @@ class ProductReferencesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -823,40 +825,38 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGet
      *
-     * Gets storefront product reference
+     * Returns a storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function productReferencesGet($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGet($reference, $storefront_id, $tenant_id = null)
     {
-        list($response) = $this->productReferencesGetWithHttpInfo($reference, $storefront_id, $tenant_id, $user_id);
+        list($response) = $this->productReferencesGetWithHttpInfo($reference, $storefront_id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation productReferencesGetWithHttpInfo
      *
-     * Gets storefront product reference
+     * Returns a storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesGetWithHttpInfo($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetWithHttpInfo($reference, $storefront_id, $tenant_id = null)
     {
-        $request = $this->productReferencesGetRequest($reference, $storefront_id, $tenant_id, $user_id);
+        $request = $this->productReferencesGetRequest($reference, $storefront_id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -952,19 +952,18 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetAsync
      *
-     * Gets storefront product reference
+     * Returns a storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAsync($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetAsync($reference, $storefront_id, $tenant_id = null)
     {
-        return $this->productReferencesGetAsyncWithHttpInfo($reference, $storefront_id, $tenant_id, $user_id)
+        return $this->productReferencesGetAsyncWithHttpInfo($reference, $storefront_id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -975,20 +974,19 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetAsyncWithHttpInfo
      *
-     * Gets storefront product reference
+     * Returns a storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProductReferenceDto';
-        $request = $this->productReferencesGetRequest($reference, $storefront_id, $tenant_id, $user_id);
+        $request = $this->productReferencesGetRequest($reference, $storefront_id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1026,15 +1024,14 @@ class ProductReferencesApi
     /**
      * Create request for operation 'productReferencesGet'
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesGetRequest($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetRequest($reference, $storefront_id, $tenant_id = null)
     {
         // verify the required parameter 'reference' is set
         if ($reference === null || (is_array($reference) && count($reference) === 0)) {
@@ -1076,17 +1073,6 @@ class ProductReferencesApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -1150,6 +1136,23 @@ class ProductReferencesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1180,50 +1183,48 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetAll
      *
-     * Gets all storefront product references relevant to specified query parameters
+     * Returns all storefront product references relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (optional)
-     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProductReferenceDto
      */
-    public function productReferencesGetAll($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productReferencesGetAll($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        list($response) = $this->productReferencesGetAllWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        list($response) = $this->productReferencesGetAllWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $skip, $take, $sorting, $search, $tenant_id);
         return $response;
     }
 
     /**
      * Operation productReferencesGetAllWithHttpInfo
      *
-     * Gets all storefront product references relevant to specified query parameters
+     * Returns all storefront product references relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (optional)
-     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProductReferenceDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesGetAllWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productReferencesGetAllWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        $request = $this->productReferencesGetAllRequest($storefront_id, $product_reference, $product_specification_id, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->productReferencesGetAllRequest($storefront_id, $product_reference, $product_specification_id, $skip, $take, $sorting, $search, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1299,24 +1300,23 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetAllAsync
      *
-     * Gets all storefront product references relevant to specified query parameters
+     * Returns all storefront product references relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (optional)
-     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllAsync($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productReferencesGetAllAsync($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        return $this->productReferencesGetAllAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $skip, $take, $sorting, $search, $tenant_id, $user_id)
+        return $this->productReferencesGetAllAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $skip, $take, $sorting, $search, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1327,25 +1327,24 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetAllAsyncWithHttpInfo
      *
-     * Gets all storefront product references relevant to specified query parameters
+     * Returns all storefront product references relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (optional)
-     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productReferencesGetAllAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProductReferenceDto';
-        $request = $this->productReferencesGetAllRequest($storefront_id, $product_reference, $product_specification_id, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->productReferencesGetAllRequest($storefront_id, $product_reference, $product_specification_id, $skip, $take, $sorting, $search, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1383,20 +1382,19 @@ class ProductReferencesApi
     /**
      * Create request for operation 'productReferencesGetAll'
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (optional)
-     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter. Product reference is an external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Cusomer&#39;s Canvas product specification filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesGetAllRequest($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productReferencesGetAllRequest($storefront_id, $product_reference = null, $product_specification_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
         // verify the required parameter 'storefront_id' is set
         if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
@@ -1500,17 +1498,6 @@ class ProductReferencesApi
                 $queryParams['tenantId'] = $tenant_id;
             }
         }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
-            }
-        }
 
 
 
@@ -1564,6 +1551,23 @@ class ProductReferencesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1594,40 +1598,38 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfig
      *
-     * Gets product configuration information by storefront product reference
+     * Returns a product personalization workflow configuration by storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function productReferencesGetProductConfig($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductConfig($reference, $storefront_id, $tenant_id = null)
     {
-        list($response) = $this->productReferencesGetProductConfigWithHttpInfo($reference, $storefront_id, $tenant_id, $user_id);
+        list($response) = $this->productReferencesGetProductConfigWithHttpInfo($reference, $storefront_id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation productReferencesGetProductConfigWithHttpInfo
      *
-     * Gets product configuration information by storefront product reference
+     * Returns a product personalization workflow configuration by storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesGetProductConfigWithHttpInfo($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductConfigWithHttpInfo($reference, $storefront_id, $tenant_id = null)
     {
-        $request = $this->productReferencesGetProductConfigRequest($reference, $storefront_id, $tenant_id, $user_id);
+        $request = $this->productReferencesGetProductConfigRequest($reference, $storefront_id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1659,14 +1661,14 @@ class ProductReferencesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Aurigma\Storefront\Model\ProductReferenceDto' === '\SplFileObject') {
+                    if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\ProductReferenceDto', []),
+                        ObjectSerializer::deserialize($content, 'string', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1684,7 +1686,7 @@ class ProductReferencesApi
                     ];
             }
 
-            $returnType = '\Aurigma\Storefront\Model\ProductReferenceDto';
+            $returnType = 'string';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1702,7 +1704,7 @@ class ProductReferencesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\ProductReferenceDto',
+                        'string',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1723,19 +1725,18 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfigAsync
      *
-     * Gets product configuration information by storefront product reference
+     * Returns a product personalization workflow configuration by storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetProductConfigAsync($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductConfigAsync($reference, $storefront_id, $tenant_id = null)
     {
-        return $this->productReferencesGetProductConfigAsyncWithHttpInfo($reference, $storefront_id, $tenant_id, $user_id)
+        return $this->productReferencesGetProductConfigAsyncWithHttpInfo($reference, $storefront_id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1746,20 +1747,19 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfigAsyncWithHttpInfo
      *
-     * Gets product configuration information by storefront product reference
+     * Returns a product personalization workflow configuration by storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetProductConfigAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductConfigAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null)
     {
-        $returnType = '\Aurigma\Storefront\Model\ProductReferenceDto';
-        $request = $this->productReferencesGetProductConfigRequest($reference, $storefront_id, $tenant_id, $user_id);
+        $returnType = 'string';
+        $request = $this->productReferencesGetProductConfigRequest($reference, $storefront_id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1797,15 +1797,14 @@ class ProductReferencesApi
     /**
      * Create request for operation 'productReferencesGetProductConfig'
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesGetProductConfigRequest($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductConfigRequest($reference, $storefront_id, $tenant_id = null)
     {
         // verify the required parameter 'reference' is set
         if ($reference === null || (is_array($reference) && count($reference) === 0)) {
@@ -1847,17 +1846,6 @@ class ProductReferencesApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -1921,6 +1909,451 @@ class ProductReferencesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation productReferencesGetProductCostDetails
+     *
+     * Returns a product cost details from ecommerce system.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product product specification, e.g online store product identifier. (required)
+     * @param  string $sku Product SKU. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  string $currency_code Product cost currency code. (optional)
+     * @param  int $quantity Product quantity. (optional, default to 1)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\Storefront\Model\ProductCostDetailsDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     */
+    public function productReferencesGetProductCostDetails($reference, $sku, $storefront_id, $storefront_user_id = null, $currency_code = null, $quantity = 1, $tenant_id = null)
+    {
+        list($response) = $this->productReferencesGetProductCostDetailsWithHttpInfo($reference, $sku, $storefront_id, $storefront_user_id, $currency_code, $quantity, $tenant_id);
+        return $response;
+    }
+
+    /**
+     * Operation productReferencesGetProductCostDetailsWithHttpInfo
+     *
+     * Returns a product cost details from ecommerce system.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product product specification, e.g online store product identifier. (required)
+     * @param  string $sku Product SKU. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  string $currency_code Product cost currency code. (optional)
+     * @param  int $quantity Product quantity. (optional, default to 1)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\Storefront\Model\ProductCostDetailsDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function productReferencesGetProductCostDetailsWithHttpInfo($reference, $sku, $storefront_id, $storefront_user_id = null, $currency_code = null, $quantity = 1, $tenant_id = null)
+    {
+        $request = $this->productReferencesGetProductCostDetailsRequest($reference, $sku, $storefront_id, $storefront_user_id, $currency_code, $quantity, $tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\Storefront\Model\ProductCostDetailsDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\ProductCostDetailsDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\Storefront\Model\ProductCostDetailsDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\ProductCostDetailsDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation productReferencesGetProductCostDetailsAsync
+     *
+     * Returns a product cost details from ecommerce system.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product product specification, e.g online store product identifier. (required)
+     * @param  string $sku Product SKU. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  string $currency_code Product cost currency code. (optional)
+     * @param  int $quantity Product quantity. (optional, default to 1)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function productReferencesGetProductCostDetailsAsync($reference, $sku, $storefront_id, $storefront_user_id = null, $currency_code = null, $quantity = 1, $tenant_id = null)
+    {
+        return $this->productReferencesGetProductCostDetailsAsyncWithHttpInfo($reference, $sku, $storefront_id, $storefront_user_id, $currency_code, $quantity, $tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation productReferencesGetProductCostDetailsAsyncWithHttpInfo
+     *
+     * Returns a product cost details from ecommerce system.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product product specification, e.g online store product identifier. (required)
+     * @param  string $sku Product SKU. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  string $currency_code Product cost currency code. (optional)
+     * @param  int $quantity Product quantity. (optional, default to 1)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function productReferencesGetProductCostDetailsAsyncWithHttpInfo($reference, $sku, $storefront_id, $storefront_user_id = null, $currency_code = null, $quantity = 1, $tenant_id = null)
+    {
+        $returnType = '\Aurigma\Storefront\Model\ProductCostDetailsDto';
+        $request = $this->productReferencesGetProductCostDetailsRequest($reference, $sku, $storefront_id, $storefront_user_id, $currency_code, $quantity, $tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'productReferencesGetProductCostDetails'
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product product specification, e.g online store product identifier. (required)
+     * @param  string $sku Product SKU. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  string $currency_code Product cost currency code. (optional)
+     * @param  int $quantity Product quantity. (optional, default to 1)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function productReferencesGetProductCostDetailsRequest($reference, $sku, $storefront_id, $storefront_user_id = null, $currency_code = null, $quantity = 1, $tenant_id = null)
+    {
+        // verify the required parameter 'reference' is set
+        if ($reference === null || (is_array($reference) && count($reference) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $reference when calling productReferencesGetProductCostDetails'
+            );
+        }
+        // verify the required parameter 'sku' is set
+        if ($sku === null || (is_array($sku) && count($sku) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $sku when calling productReferencesGetProductCostDetails'
+            );
+        }
+        // verify the required parameter 'storefront_id' is set
+        if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $storefront_id when calling productReferencesGetProductCostDetails'
+            );
+        }
+
+        $resourcePath = '/api/storefront/v1/product-references/{reference}/product-cost-details';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($sku !== null) {
+            if('form' === 'form' && is_array($sku)) {
+                foreach($sku as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['sku'] = $sku;
+            }
+        }
+        // query params
+        if ($storefront_id !== null) {
+            if('form' === 'form' && is_array($storefront_id)) {
+                foreach($storefront_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['storefrontId'] = $storefront_id;
+            }
+        }
+        // query params
+        if ($storefront_user_id !== null) {
+            if('form' === 'form' && is_array($storefront_user_id)) {
+                foreach($storefront_user_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['storefrontUserId'] = $storefront_user_id;
+            }
+        }
+        // query params
+        if ($currency_code !== null) {
+            if('form' === 'form' && is_array($currency_code)) {
+                foreach($currency_code as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['currencyCode'] = $currency_code;
+            }
+        }
+        // query params
+        if ($quantity !== null) {
+            if('form' === 'form' && is_array($quantity)) {
+                foreach($quantity as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['quantity'] = $quantity;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+        // path params
+        if ($reference !== null) {
+            $resourcePath = str_replace(
+                '{' . 'reference' . '}',
+                ObjectSerializer::toPathValue($reference),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['text/plain', 'application/json', 'text/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['text/plain', 'application/json', 'text/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1951,40 +2384,38 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductSpecification
      *
-     * Gets product specification by storefront product reference
+     * Returns a product specification by the storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProductSpecificationDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function productReferencesGetProductSpecification($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductSpecification($reference, $storefront_id, $tenant_id = null)
     {
-        list($response) = $this->productReferencesGetProductSpecificationWithHttpInfo($reference, $storefront_id, $tenant_id, $user_id);
+        list($response) = $this->productReferencesGetProductSpecificationWithHttpInfo($reference, $storefront_id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation productReferencesGetProductSpecificationWithHttpInfo
      *
-     * Gets product specification by storefront product reference
+     * Returns a product specification by the storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProductSpecificationDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesGetProductSpecificationWithHttpInfo($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductSpecificationWithHttpInfo($reference, $storefront_id, $tenant_id = null)
     {
-        $request = $this->productReferencesGetProductSpecificationRequest($reference, $storefront_id, $tenant_id, $user_id);
+        $request = $this->productReferencesGetProductSpecificationRequest($reference, $storefront_id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2080,19 +2511,18 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductSpecificationAsync
      *
-     * Gets product specification by storefront product reference
+     * Returns a product specification by the storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetProductSpecificationAsync($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductSpecificationAsync($reference, $storefront_id, $tenant_id = null)
     {
-        return $this->productReferencesGetProductSpecificationAsyncWithHttpInfo($reference, $storefront_id, $tenant_id, $user_id)
+        return $this->productReferencesGetProductSpecificationAsyncWithHttpInfo($reference, $storefront_id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2103,20 +2533,19 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductSpecificationAsyncWithHttpInfo
      *
-     * Gets product specification by storefront product reference
+     * Returns a product specification by the storefront product reference.
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetProductSpecificationAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductSpecificationAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProductSpecificationDto';
-        $request = $this->productReferencesGetProductSpecificationRequest($reference, $storefront_id, $tenant_id, $user_id);
+        $request = $this->productReferencesGetProductSpecificationRequest($reference, $storefront_id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2154,15 +2583,14 @@ class ProductReferencesApi
     /**
      * Create request for operation 'productReferencesGetProductSpecification'
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesGetProductSpecificationRequest($reference, $storefront_id, $tenant_id = null, $user_id = null)
+    public function productReferencesGetProductSpecificationRequest($reference, $storefront_id, $tenant_id = null)
     {
         // verify the required parameter 'reference' is set
         if ($reference === null || (is_array($reference) && count($reference) === 0)) {
@@ -2204,17 +2632,6 @@ class ProductReferencesApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -2277,6 +2694,23 @@ class ProductReferencesApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectStatusDto
+ * ProductCostDetailsDto
  *
  * PHP version 7.2
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * ProjectStatusDto Class Doc Comment
+ * ProductCostDetailsDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing the information about project status.
+ * @description Dto class, containing information about storefront product cost details.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +43,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProductCostDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProjectStatusDto';
+    protected static $openAPIModelName = 'ProductCostDetailsDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,14 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'int',
-        'display_name' => 'string'
+        'product_reference' => 'string',
+        'product_sku' => 'string',
+        'product_quantity' => 'int',
+        'product_price' => 'double',
+        'product_cost' => 'double',
+        'product_discount' => 'double',
+        'currency_code' => 'string',
+        'tenant_id' => 'int'
     ];
 
     /**
@@ -72,8 +78,14 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => 'int32',
-        'display_name' => null
+        'product_reference' => null,
+        'product_sku' => null,
+        'product_quantity' => 'int32',
+        'product_price' => 'double',
+        'product_cost' => 'double',
+        'product_discount' => 'double',
+        'currency_code' => null,
+        'tenant_id' => 'int32'
     ];
 
     /**
@@ -103,8 +115,14 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'display_name' => 'displayName'
+        'product_reference' => 'productReference',
+        'product_sku' => 'productSku',
+        'product_quantity' => 'productQuantity',
+        'product_price' => 'productPrice',
+        'product_cost' => 'productCost',
+        'product_discount' => 'productDiscount',
+        'currency_code' => 'currencyCode',
+        'tenant_id' => 'tenantId'
     ];
 
     /**
@@ -113,8 +131,14 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'display_name' => 'setDisplayName'
+        'product_reference' => 'setProductReference',
+        'product_sku' => 'setProductSku',
+        'product_quantity' => 'setProductQuantity',
+        'product_price' => 'setProductPrice',
+        'product_cost' => 'setProductCost',
+        'product_discount' => 'setProductDiscount',
+        'currency_code' => 'setCurrencyCode',
+        'tenant_id' => 'setTenantId'
     ];
 
     /**
@@ -123,8 +147,14 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'display_name' => 'getDisplayName'
+        'product_reference' => 'getProductReference',
+        'product_sku' => 'getProductSku',
+        'product_quantity' => 'getProductQuantity',
+        'product_price' => 'getProductPrice',
+        'product_cost' => 'getProductCost',
+        'product_discount' => 'getProductDiscount',
+        'currency_code' => 'getCurrencyCode',
+        'tenant_id' => 'getTenantId'
     ];
 
     /**
@@ -184,8 +214,14 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['code'] = $data['code'] ?? null;
-        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['product_reference'] = $data['product_reference'] ?? null;
+        $this->container['product_sku'] = $data['product_sku'] ?? null;
+        $this->container['product_quantity'] = $data['product_quantity'] ?? null;
+        $this->container['product_price'] = $data['product_price'] ?? null;
+        $this->container['product_cost'] = $data['product_cost'] ?? null;
+        $this->container['product_discount'] = $data['product_discount'] ?? null;
+        $this->container['currency_code'] = $data['currency_code'] ?? null;
+        $this->container['tenant_id'] = $data['tenant_id'] ?? null;
     }
 
     /**
@@ -213,49 +249,193 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets product_reference
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getCode()
+    public function getProductReference()
     {
-        return $this->container['code'];
+        return $this->container['product_reference'];
     }
 
     /**
-     * Sets code
+     * Sets product_reference
      *
-     * @param int|null $code Status code.
+     * @param string|null $product_reference Product reference is an external reference to Customer's Canvas product specification, e.g online store product identifier.
      *
      * @return self
      */
-    public function setCode($code)
+    public function setProductReference($product_reference)
     {
-        $this->container['code'] = $code;
+        $this->container['product_reference'] = $product_reference;
 
         return $this;
     }
 
     /**
-     * Gets display_name
+     * Gets product_sku
      *
      * @return string|null
      */
-    public function getDisplayName()
+    public function getProductSku()
     {
-        return $this->container['display_name'];
+        return $this->container['product_sku'];
     }
 
     /**
-     * Sets display_name
+     * Sets product_sku
      *
-     * @param string|null $display_name Status display name.
+     * @param string|null $product_sku Product SKU.
      *
      * @return self
      */
-    public function setDisplayName($display_name)
+    public function setProductSku($product_sku)
     {
-        $this->container['display_name'] = $display_name;
+        $this->container['product_sku'] = $product_sku;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_quantity
+     *
+     * @return int|null
+     */
+    public function getProductQuantity()
+    {
+        return $this->container['product_quantity'];
+    }
+
+    /**
+     * Sets product_quantity
+     *
+     * @param int|null $product_quantity Product quantity.
+     *
+     * @return self
+     */
+    public function setProductQuantity($product_quantity)
+    {
+        $this->container['product_quantity'] = $product_quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_price
+     *
+     * @return double|null
+     */
+    public function getProductPrice()
+    {
+        return $this->container['product_price'];
+    }
+
+    /**
+     * Sets product_price
+     *
+     * @param double|null $product_price Product price.
+     *
+     * @return self
+     */
+    public function setProductPrice($product_price)
+    {
+        $this->container['product_price'] = $product_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_cost
+     *
+     * @return double|null
+     */
+    public function getProductCost()
+    {
+        return $this->container['product_cost'];
+    }
+
+    /**
+     * Sets product_cost
+     *
+     * @param double|null $product_cost Product cost.
+     *
+     * @return self
+     */
+    public function setProductCost($product_cost)
+    {
+        $this->container['product_cost'] = $product_cost;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_discount
+     *
+     * @return double|null
+     */
+    public function getProductDiscount()
+    {
+        return $this->container['product_discount'];
+    }
+
+    /**
+     * Sets product_discount
+     *
+     * @param double|null $product_discount Product discount.
+     *
+     * @return self
+     */
+    public function setProductDiscount($product_discount)
+    {
+        $this->container['product_discount'] = $product_discount;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_code
+     *
+     * @return string|null
+     */
+    public function getCurrencyCode()
+    {
+        return $this->container['currency_code'];
+    }
+
+    /**
+     * Sets currency_code
+     *
+     * @param string|null $currency_code Currency code.
+     *
+     * @return self
+     */
+    public function setCurrencyCode($currency_code)
+    {
+        $this->container['currency_code'] = $currency_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets tenant_id
+     *
+     * @return int|null
+     */
+    public function getTenantId()
+    {
+        return $this->container['tenant_id'];
+    }
+
+    /**
+     * Sets tenant_id
+     *
+     * @param int|null $tenant_id Tenant identifier.
+     *
+     * @return self
+     */
+    public function setTenantId($tenant_id)
+    {
+        $this->container['tenant_id'] = $tenant_id;
 
         return $this;
     }

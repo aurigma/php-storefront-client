@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProjectTransitionDto Class Doc Comment
  *
  * @category Class
- * @description Project transition dto class
+ * @description Project transition dto class.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -237,7 +237,7 @@ class ProjectTransitionDto implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets name
      *
-     * @param string|null $name Transition identifying name
+     * @param string|null $name Transition identifying name.
      *
      * @return self
      */
@@ -261,7 +261,7 @@ class ProjectTransitionDto implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets display_name
      *
-     * @param string|null $display_name Transition display name
+     * @param string|null $display_name Transition display name.
      *
      * @return self
      */
@@ -285,7 +285,7 @@ class ProjectTransitionDto implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets start_status
      *
-     * @param int|null $start_status Project status code from which transition to the result status code can be done
+     * @param int|null $start_status Project status code from which transition to the result status code can be done.
      *
      * @return self
      */
@@ -309,7 +309,7 @@ class ProjectTransitionDto implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets result_status
      *
-     * @param int|null $result_status Transition result project status code
+     * @param int|null $result_status Transition result project status code.
      *
      * @return self
      */

@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * MergeAnonymousUserDataInput Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing parameters for merge anonymous user operation
+ * @description Dto class, containing parameters for merge anonymous user operation.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -225,7 +225,7 @@ class MergeAnonymousUserDataInput implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets anonymous_storefront_user_id
      *
-     * @param string|null $anonymous_storefront_user_id Anonymous storefront user identifier
+     * @param string|null $anonymous_storefront_user_id Anonymous storefront user identifier.
      *
      * @return self
      */
@@ -249,7 +249,7 @@ class MergeAnonymousUserDataInput implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets regular_storefront_user_id
      *
-     * @param string|null $regular_storefront_user_id Regular storefront user identifier
+     * @param string|null $regular_storefront_user_id Regular storefront user identifier.
      *
      * @return self
      */

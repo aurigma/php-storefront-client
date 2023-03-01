@@ -117,40 +117,38 @@ class ProjectsApi
     /**
      * Operation projectsChangeStatus
      *
-     * Changes project status
+     * Changes the project status.
      *
      * @param  int $id Project identifier (required)
-     * @param  string $transition Transition identifying name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $transition Transition identifying name. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProjectStatusDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\ProjectTransitionConflictDto
      */
-    public function projectsChangeStatus($id, $transition, $tenant_id = null, $user_id = null)
+    public function projectsChangeStatus($id, $transition, $tenant_id = null)
     {
-        list($response) = $this->projectsChangeStatusWithHttpInfo($id, $transition, $tenant_id, $user_id);
+        list($response) = $this->projectsChangeStatusWithHttpInfo($id, $transition, $tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsChangeStatusWithHttpInfo
      *
-     * Changes project status
+     * Changes the project status.
      *
      * @param  int $id Project identifier (required)
-     * @param  string $transition Transition identifying name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $transition Transition identifying name. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProjectStatusDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\ProjectTransitionConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsChangeStatusWithHttpInfo($id, $transition, $tenant_id = null, $user_id = null)
+    public function projectsChangeStatusWithHttpInfo($id, $transition, $tenant_id = null)
     {
-        $request = $this->projectsChangeStatusRequest($id, $transition, $tenant_id, $user_id);
+        $request = $this->projectsChangeStatusRequest($id, $transition, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -286,19 +284,18 @@ class ProjectsApi
     /**
      * Operation projectsChangeStatusAsync
      *
-     * Changes project status
+     * Changes the project status.
      *
      * @param  int $id Project identifier (required)
-     * @param  string $transition Transition identifying name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $transition Transition identifying name. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsChangeStatusAsync($id, $transition, $tenant_id = null, $user_id = null)
+    public function projectsChangeStatusAsync($id, $transition, $tenant_id = null)
     {
-        return $this->projectsChangeStatusAsyncWithHttpInfo($id, $transition, $tenant_id, $user_id)
+        return $this->projectsChangeStatusAsyncWithHttpInfo($id, $transition, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -309,20 +306,19 @@ class ProjectsApi
     /**
      * Operation projectsChangeStatusAsyncWithHttpInfo
      *
-     * Changes project status
+     * Changes the project status.
      *
      * @param  int $id Project identifier (required)
-     * @param  string $transition Transition identifying name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $transition Transition identifying name. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsChangeStatusAsyncWithHttpInfo($id, $transition, $tenant_id = null, $user_id = null)
+    public function projectsChangeStatusAsyncWithHttpInfo($id, $transition, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProjectStatusDto';
-        $request = $this->projectsChangeStatusRequest($id, $transition, $tenant_id, $user_id);
+        $request = $this->projectsChangeStatusRequest($id, $transition, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -361,14 +357,13 @@ class ProjectsApi
      * Create request for operation 'projectsChangeStatus'
      *
      * @param  int $id Project identifier (required)
-     * @param  string $transition Transition identifying name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $transition Transition identifying name. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsChangeStatusRequest($id, $transition, $tenant_id = null, $user_id = null)
+    public function projectsChangeStatusRequest($id, $transition, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -399,17 +394,6 @@ class ProjectsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -481,6 +465,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -511,40 +512,38 @@ class ProjectsApi
     /**
      * Operation projectsCreate
      *
-     * Creates new project
+     * Creates a new project.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function projectsCreate($storefront_id, $tenant_id = null, $user_id = null, $create_project_dto = null)
+    public function projectsCreate($storefront_id, $tenant_id = null, $create_project_dto = null)
     {
-        list($response) = $this->projectsCreateWithHttpInfo($storefront_id, $tenant_id, $user_id, $create_project_dto);
+        list($response) = $this->projectsCreateWithHttpInfo($storefront_id, $tenant_id, $create_project_dto);
         return $response;
     }
 
     /**
      * Operation projectsCreateWithHttpInfo
      *
-     * Creates new project
+     * Creates a new project.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsCreateWithHttpInfo($storefront_id, $tenant_id = null, $user_id = null, $create_project_dto = null)
+    public function projectsCreateWithHttpInfo($storefront_id, $tenant_id = null, $create_project_dto = null)
     {
-        $request = $this->projectsCreateRequest($storefront_id, $tenant_id, $user_id, $create_project_dto);
+        $request = $this->projectsCreateRequest($storefront_id, $tenant_id, $create_project_dto);
 
         try {
             $options = $this->createHttpClientOption();
@@ -640,19 +639,18 @@ class ProjectsApi
     /**
      * Operation projectsCreateAsync
      *
-     * Creates new project
+     * Creates a new project.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsCreateAsync($storefront_id, $tenant_id = null, $user_id = null, $create_project_dto = null)
+    public function projectsCreateAsync($storefront_id, $tenant_id = null, $create_project_dto = null)
     {
-        return $this->projectsCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $user_id, $create_project_dto)
+        return $this->projectsCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $create_project_dto)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -663,20 +661,19 @@ class ProjectsApi
     /**
      * Operation projectsCreateAsyncWithHttpInfo
      *
-     * Creates new project
+     * Creates a new project.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $user_id = null, $create_project_dto = null)
+    public function projectsCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $create_project_dto = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProjectDto';
-        $request = $this->projectsCreateRequest($storefront_id, $tenant_id, $user_id, $create_project_dto);
+        $request = $this->projectsCreateRequest($storefront_id, $tenant_id, $create_project_dto);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -714,15 +711,14 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsCreate'
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsCreateRequest($storefront_id, $tenant_id = null, $user_id = null, $create_project_dto = null)
+    public function projectsCreateRequest($storefront_id, $tenant_id = null, $create_project_dto = null)
     {
         // verify the required parameter 'storefront_id' is set
         if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
@@ -758,17 +754,6 @@ class ProjectsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -830,6 +815,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -858,42 +860,319 @@ class ProjectsApi
     }
 
     /**
+     * Operation projectsDelete
+     *
+     * Removes a project by identifier.
+     *
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function projectsDelete($id, $tenant_id = null)
+    {
+        $this->projectsDeleteWithHttpInfo($id, $tenant_id);
+    }
+
+    /**
+     * Operation projectsDeleteWithHttpInfo
+     *
+     * Removes a project by identifier.
+     *
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function projectsDeleteWithHttpInfo($id, $tenant_id = null)
+    {
+        $request = $this->projectsDeleteRequest($id, $tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation projectsDeleteAsync
+     *
+     * Removes a project by identifier.
+     *
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function projectsDeleteAsync($id, $tenant_id = null)
+    {
+        return $this->projectsDeleteAsyncWithHttpInfo($id, $tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation projectsDeleteAsyncWithHttpInfo
+     *
+     * Removes a project by identifier.
+     *
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function projectsDeleteAsyncWithHttpInfo($id, $tenant_id = null)
+    {
+        $returnType = '';
+        $request = $this->projectsDeleteRequest($id, $tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'projectsDelete'
+     *
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function projectsDeleteRequest($id, $tenant_id = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling projectsDelete'
+            );
+        }
+
+        $resourcePath = '/api/storefront/v1/projects/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['text/plain', 'application/json', 'text/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['text/plain', 'application/json', 'text/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation projectsForceStatus
      *
-     * Force changes project status
+     * Changes the project status forcibly without a proper transition.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $status Project status code (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $status Project status code. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProjectStatusDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function projectsForceStatus($id, $status, $tenant_id = null, $user_id = null)
+    public function projectsForceStatus($id, $status, $tenant_id = null)
     {
-        list($response) = $this->projectsForceStatusWithHttpInfo($id, $status, $tenant_id, $user_id);
+        list($response) = $this->projectsForceStatusWithHttpInfo($id, $status, $tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsForceStatusWithHttpInfo
      *
-     * Force changes project status
+     * Changes the project status forcibly without a proper transition.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $status Project status code (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $status Project status code. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProjectStatusDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsForceStatusWithHttpInfo($id, $status, $tenant_id = null, $user_id = null)
+    public function projectsForceStatusWithHttpInfo($id, $status, $tenant_id = null)
     {
-        $request = $this->projectsForceStatusRequest($id, $status, $tenant_id, $user_id);
+        $request = $this->projectsForceStatusRequest($id, $status, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1009,19 +1288,18 @@ class ProjectsApi
     /**
      * Operation projectsForceStatusAsync
      *
-     * Force changes project status
+     * Changes the project status forcibly without a proper transition.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $status Project status code (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $status Project status code. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsForceStatusAsync($id, $status, $tenant_id = null, $user_id = null)
+    public function projectsForceStatusAsync($id, $status, $tenant_id = null)
     {
-        return $this->projectsForceStatusAsyncWithHttpInfo($id, $status, $tenant_id, $user_id)
+        return $this->projectsForceStatusAsyncWithHttpInfo($id, $status, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1032,20 +1310,19 @@ class ProjectsApi
     /**
      * Operation projectsForceStatusAsyncWithHttpInfo
      *
-     * Force changes project status
+     * Changes the project status forcibly without a proper transition.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $status Project status code (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $status Project status code. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsForceStatusAsyncWithHttpInfo($id, $status, $tenant_id = null, $user_id = null)
+    public function projectsForceStatusAsyncWithHttpInfo($id, $status, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProjectStatusDto';
-        $request = $this->projectsForceStatusRequest($id, $status, $tenant_id, $user_id);
+        $request = $this->projectsForceStatusRequest($id, $status, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1083,15 +1360,14 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsForceStatus'
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $status Project status code (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $status Project status code. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsForceStatusRequest($id, $status, $tenant_id = null, $user_id = null)
+    public function projectsForceStatusRequest($id, $status, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -1122,17 +1398,6 @@ class ProjectsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -1204,6 +1469,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1234,38 +1516,36 @@ class ProjectsApi
     /**
      * Operation projectsGet
      *
-     * Gets project by id
+     * Returns a project by identifier.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function projectsGet($id, $tenant_id = null, $user_id = null)
+    public function projectsGet($id, $tenant_id = null)
     {
-        list($response) = $this->projectsGetWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->projectsGetWithHttpInfo($id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsGetWithHttpInfo
      *
-     * Gets project by id
+     * Returns a project by identifier.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function projectsGetWithHttpInfo($id, $tenant_id = null)
     {
-        $request = $this->projectsGetRequest($id, $tenant_id, $user_id);
+        $request = $this->projectsGetRequest($id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1361,18 +1641,17 @@ class ProjectsApi
     /**
      * Operation projectsGetAsync
      *
-     * Gets project by id
+     * Returns a project by identifier.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAsync($id, $tenant_id = null, $user_id = null)
+    public function projectsGetAsync($id, $tenant_id = null)
     {
-        return $this->projectsGetAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->projectsGetAsyncWithHttpInfo($id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1383,19 +1662,18 @@ class ProjectsApi
     /**
      * Operation projectsGetAsyncWithHttpInfo
      *
-     * Gets project by id
+     * Returns a project by identifier.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function projectsGetAsyncWithHttpInfo($id, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProjectDto';
-        $request = $this->projectsGetRequest($id, $tenant_id, $user_id);
+        $request = $this->projectsGetRequest($id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1433,14 +1711,13 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsGet'
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetRequest($id, $tenant_id = null, $user_id = null)
+    public function projectsGetRequest($id, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -1465,17 +1742,6 @@ class ProjectsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -1539,6 +1805,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1569,50 +1852,54 @@ class ProjectsApi
     /**
      * Operation projectsGetAll
      *
-     * Gets all projects relevant to specified query parameters
+     * Returns all projects, relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $status Project status filter (optional)
-     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $owner_id Project owner (storefront user id) filter. (optional)
+     * @param  string $product_reference Product reference filter. (optional)
+     * @param  int $status Project status filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProjectDto
      */
-    public function projectsGetAll($storefront_id, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function projectsGetAll($storefront_id, $owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $tenant_id = null)
     {
-        list($response) = $this->projectsGetAllWithHttpInfo($storefront_id, $status, $date_period, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        list($response) = $this->projectsGetAllWithHttpInfo($storefront_id, $owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsGetAllWithHttpInfo
      *
-     * Gets all projects relevant to specified query parameters
+     * Returns all projects, relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $status Project status filter (optional)
-     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $owner_id Project owner (storefront user id) filter. (optional)
+     * @param  string $product_reference Product reference filter. (optional)
+     * @param  int $status Project status filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProjectDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetAllWithHttpInfo($storefront_id, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function projectsGetAllWithHttpInfo($storefront_id, $owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $tenant_id = null)
     {
-        $request = $this->projectsGetAllRequest($storefront_id, $status, $date_period, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->projectsGetAllRequest($storefront_id, $owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1688,24 +1975,26 @@ class ProjectsApi
     /**
      * Operation projectsGetAllAsync
      *
-     * Gets all projects relevant to specified query parameters
+     * Returns all projects, relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $status Project status filter (optional)
-     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $owner_id Project owner (storefront user id) filter. (optional)
+     * @param  string $product_reference Product reference filter. (optional)
+     * @param  int $status Project status filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllAsync($storefront_id, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function projectsGetAllAsync($storefront_id, $owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $tenant_id = null)
     {
-        return $this->projectsGetAllAsyncWithHttpInfo($storefront_id, $status, $date_period, $skip, $take, $sorting, $search, $tenant_id, $user_id)
+        return $this->projectsGetAllAsyncWithHttpInfo($storefront_id, $owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1716,25 +2005,27 @@ class ProjectsApi
     /**
      * Operation projectsGetAllAsyncWithHttpInfo
      *
-     * Gets all projects relevant to specified query parameters
+     * Returns all projects, relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $status Project status filter (optional)
-     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $owner_id Project owner (storefront user id) filter. (optional)
+     * @param  string $product_reference Product reference filter. (optional)
+     * @param  int $status Project status filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllAsyncWithHttpInfo($storefront_id, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function projectsGetAllAsyncWithHttpInfo($storefront_id, $owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProjectDto';
-        $request = $this->projectsGetAllRequest($storefront_id, $status, $date_period, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->projectsGetAllRequest($storefront_id, $owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1772,20 +2063,22 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsGetAll'
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $status Project status filter (optional)
-     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $owner_id Project owner (storefront user id) filter. (optional)
+     * @param  string $product_reference Product reference filter. (optional)
+     * @param  int $status Project status filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetAllRequest($storefront_id, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function projectsGetAllRequest($storefront_id, $owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $tenant_id = null)
     {
         // verify the required parameter 'storefront_id' is set
         if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
@@ -1801,6 +2094,28 @@ class ProjectsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['ownerId'] = $owner_id;
+            }
+        }
+        // query params
+        if ($product_reference !== null) {
+            if('form' === 'form' && is_array($product_reference)) {
+                foreach($product_reference as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['productReference'] = $product_reference;
+            }
+        }
         // query params
         if ($status !== null) {
             if('form' === 'form' && is_array($status)) {
@@ -1868,6 +2183,17 @@ class ProjectsApi
             }
         }
         // query params
+        if ($order_id !== null) {
+            if('form' === 'form' && is_array($order_id)) {
+                foreach($order_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['orderId'] = $order_id;
+            }
+        }
+        // query params
         if ($storefront_id !== null) {
             if('form' === 'form' && is_array($storefront_id)) {
                 foreach($storefront_id as $key => $value) {
@@ -1887,17 +2213,6 @@ class ProjectsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -1953,6 +2268,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1983,36 +2315,34 @@ class ProjectsApi
     /**
      * Operation projectsGetAllStatuses
      *
-     * Gets all project statuses
+     * Returns a list of all existing project statuses.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProjectStatusDto
      */
-    public function projectsGetAllStatuses($tenant_id = null, $user_id = null)
+    public function projectsGetAllStatuses($tenant_id = null)
     {
-        list($response) = $this->projectsGetAllStatusesWithHttpInfo($tenant_id, $user_id);
+        list($response) = $this->projectsGetAllStatusesWithHttpInfo($tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsGetAllStatusesWithHttpInfo
      *
-     * Gets all project statuses
+     * Returns a list of all existing project statuses.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProjectStatusDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetAllStatusesWithHttpInfo($tenant_id = null, $user_id = null)
+    public function projectsGetAllStatusesWithHttpInfo($tenant_id = null)
     {
-        $request = $this->projectsGetAllStatusesRequest($tenant_id, $user_id);
+        $request = $this->projectsGetAllStatusesRequest($tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2088,17 +2418,16 @@ class ProjectsApi
     /**
      * Operation projectsGetAllStatusesAsync
      *
-     * Gets all project statuses
+     * Returns a list of all existing project statuses.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllStatusesAsync($tenant_id = null, $user_id = null)
+    public function projectsGetAllStatusesAsync($tenant_id = null)
     {
-        return $this->projectsGetAllStatusesAsyncWithHttpInfo($tenant_id, $user_id)
+        return $this->projectsGetAllStatusesAsyncWithHttpInfo($tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2109,18 +2438,17 @@ class ProjectsApi
     /**
      * Operation projectsGetAllStatusesAsyncWithHttpInfo
      *
-     * Gets all project statuses
+     * Returns a list of all existing project statuses.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllStatusesAsyncWithHttpInfo($tenant_id = null, $user_id = null)
+    public function projectsGetAllStatusesAsyncWithHttpInfo($tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProjectStatusDto';
-        $request = $this->projectsGetAllStatusesRequest($tenant_id, $user_id);
+        $request = $this->projectsGetAllStatusesRequest($tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2158,13 +2486,12 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsGetAllStatuses'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetAllStatusesRequest($tenant_id = null, $user_id = null)
+    public function projectsGetAllStatusesRequest($tenant_id = null)
     {
 
         $resourcePath = '/api/storefront/v1/projects/statuses';
@@ -2183,17 +2510,6 @@ class ProjectsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -2249,6 +2565,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2279,36 +2612,34 @@ class ProjectsApi
     /**
      * Operation projectsGetAllTransitions
      *
-     * Gets all project transitions
+     * Returns a list of all existing project status transitions.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProjectTransitionDto
      */
-    public function projectsGetAllTransitions($tenant_id = null, $user_id = null)
+    public function projectsGetAllTransitions($tenant_id = null)
     {
-        list($response) = $this->projectsGetAllTransitionsWithHttpInfo($tenant_id, $user_id);
+        list($response) = $this->projectsGetAllTransitionsWithHttpInfo($tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsGetAllTransitionsWithHttpInfo
      *
-     * Gets all project transitions
+     * Returns a list of all existing project status transitions.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProjectTransitionDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetAllTransitionsWithHttpInfo($tenant_id = null, $user_id = null)
+    public function projectsGetAllTransitionsWithHttpInfo($tenant_id = null)
     {
-        $request = $this->projectsGetAllTransitionsRequest($tenant_id, $user_id);
+        $request = $this->projectsGetAllTransitionsRequest($tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2384,17 +2715,16 @@ class ProjectsApi
     /**
      * Operation projectsGetAllTransitionsAsync
      *
-     * Gets all project transitions
+     * Returns a list of all existing project status transitions.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllTransitionsAsync($tenant_id = null, $user_id = null)
+    public function projectsGetAllTransitionsAsync($tenant_id = null)
     {
-        return $this->projectsGetAllTransitionsAsyncWithHttpInfo($tenant_id, $user_id)
+        return $this->projectsGetAllTransitionsAsyncWithHttpInfo($tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2405,18 +2735,17 @@ class ProjectsApi
     /**
      * Operation projectsGetAllTransitionsAsyncWithHttpInfo
      *
-     * Gets all project transitions
+     * Returns a list of all existing project status transitions.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllTransitionsAsyncWithHttpInfo($tenant_id = null, $user_id = null)
+    public function projectsGetAllTransitionsAsyncWithHttpInfo($tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProjectTransitionDto';
-        $request = $this->projectsGetAllTransitionsRequest($tenant_id, $user_id);
+        $request = $this->projectsGetAllTransitionsRequest($tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2454,13 +2783,12 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsGetAllTransitions'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetAllTransitionsRequest($tenant_id = null, $user_id = null)
+    public function projectsGetAllTransitionsRequest($tenant_id = null)
     {
 
         $resourcePath = '/api/storefront/v1/projects/transitions';
@@ -2479,17 +2807,6 @@ class ProjectsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -2545,6 +2862,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2575,38 +2909,36 @@ class ProjectsApi
     /**
      * Operation projectsGetAvailableTransitions
      *
-     * Gets available project transitions
+     * Returns all available status transitions for a project.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProjectTransitionDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\ProjectTransitionConflictDto
      */
-    public function projectsGetAvailableTransitions($id, $tenant_id = null, $user_id = null)
+    public function projectsGetAvailableTransitions($id, $tenant_id = null)
     {
-        list($response) = $this->projectsGetAvailableTransitionsWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->projectsGetAvailableTransitionsWithHttpInfo($id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsGetAvailableTransitionsWithHttpInfo
      *
-     * Gets available project transitions
+     * Returns all available status transitions for a project.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProjectTransitionDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\ProjectTransitionConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetAvailableTransitionsWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function projectsGetAvailableTransitionsWithHttpInfo($id, $tenant_id = null)
     {
-        $request = $this->projectsGetAvailableTransitionsRequest($id, $tenant_id, $user_id);
+        $request = $this->projectsGetAvailableTransitionsRequest($id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2742,18 +3074,17 @@ class ProjectsApi
     /**
      * Operation projectsGetAvailableTransitionsAsync
      *
-     * Gets available project transitions
+     * Returns all available status transitions for a project.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAvailableTransitionsAsync($id, $tenant_id = null, $user_id = null)
+    public function projectsGetAvailableTransitionsAsync($id, $tenant_id = null)
     {
-        return $this->projectsGetAvailableTransitionsAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->projectsGetAvailableTransitionsAsyncWithHttpInfo($id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2764,19 +3095,18 @@ class ProjectsApi
     /**
      * Operation projectsGetAvailableTransitionsAsyncWithHttpInfo
      *
-     * Gets available project transitions
+     * Returns all available status transitions for a project.
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAvailableTransitionsAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function projectsGetAvailableTransitionsAsyncWithHttpInfo($id, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProjectTransitionDto';
-        $request = $this->projectsGetAvailableTransitionsRequest($id, $tenant_id, $user_id);
+        $request = $this->projectsGetAvailableTransitionsRequest($id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2814,14 +3144,13 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsGetAvailableTransitions'
      *
-     * @param  int $id Project identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetAvailableTransitionsRequest($id, $tenant_id = null, $user_id = null)
+    public function projectsGetAvailableTransitionsRequest($id, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -2846,17 +3175,6 @@ class ProjectsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -2920,6 +3238,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2950,34 +3285,36 @@ class ProjectsApi
     /**
      * Operation projectsGetProjectOrder
      *
-     * Gets project order data from ecommerce system
+     * Returns an order description from the ecommerce system for the specified project.
      *
-     * @param  int $id Project identifier (required)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return mixed|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function projectsGetProjectOrder($id)
+    public function projectsGetProjectOrder($id, $tenant_id = null)
     {
-        list($response) = $this->projectsGetProjectOrderWithHttpInfo($id);
+        list($response) = $this->projectsGetProjectOrderWithHttpInfo($id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsGetProjectOrderWithHttpInfo
      *
-     * Gets project order data from ecommerce system
+     * Returns an order description from the ecommerce system for the specified project.
      *
-     * @param  int $id Project identifier (required)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of mixed|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetProjectOrderWithHttpInfo($id)
+    public function projectsGetProjectOrderWithHttpInfo($id, $tenant_id = null)
     {
-        $request = $this->projectsGetProjectOrderRequest($id);
+        $request = $this->projectsGetProjectOrderRequest($id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3073,16 +3410,17 @@ class ProjectsApi
     /**
      * Operation projectsGetProjectOrderAsync
      *
-     * Gets project order data from ecommerce system
+     * Returns an order description from the ecommerce system for the specified project.
      *
-     * @param  int $id Project identifier (required)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetProjectOrderAsync($id)
+    public function projectsGetProjectOrderAsync($id, $tenant_id = null)
     {
-        return $this->projectsGetProjectOrderAsyncWithHttpInfo($id)
+        return $this->projectsGetProjectOrderAsyncWithHttpInfo($id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3093,17 +3431,18 @@ class ProjectsApi
     /**
      * Operation projectsGetProjectOrderAsyncWithHttpInfo
      *
-     * Gets project order data from ecommerce system
+     * Returns an order description from the ecommerce system for the specified project.
      *
-     * @param  int $id Project identifier (required)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetProjectOrderAsyncWithHttpInfo($id)
+    public function projectsGetProjectOrderAsyncWithHttpInfo($id, $tenant_id = null)
     {
         $returnType = 'mixed';
-        $request = $this->projectsGetProjectOrderRequest($id);
+        $request = $this->projectsGetProjectOrderRequest($id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3141,12 +3480,13 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsGetProjectOrder'
      *
-     * @param  int $id Project identifier (required)
+     * @param  int $id Project identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetProjectOrderRequest($id)
+    public function projectsGetProjectOrderRequest($id, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -3162,6 +3502,17 @@ class ProjectsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
 
 
         // path params
@@ -3223,6 +3574,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3253,42 +3621,40 @@ class ProjectsApi
     /**
      * Operation projectsGetProjectPdfUrl
      *
-     * Gets project pdf url
+     * Returns an url to download project print file.
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProjectPdfResultDto
      */
-    public function projectsGetProjectPdfUrl($id, $design_user_id, $design_id, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfUrl($id, $design_user_id, $design_id, $tenant_id = null)
     {
-        list($response) = $this->projectsGetProjectPdfUrlWithHttpInfo($id, $design_user_id, $design_id, $tenant_id, $user_id);
+        list($response) = $this->projectsGetProjectPdfUrlWithHttpInfo($id, $design_user_id, $design_id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsGetProjectPdfUrlWithHttpInfo
      *
-     * Gets project pdf url
+     * Returns an url to download project print file.
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProjectPdfResultDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetProjectPdfUrlWithHttpInfo($id, $design_user_id, $design_id, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfUrlWithHttpInfo($id, $design_user_id, $design_id, $tenant_id = null)
     {
-        $request = $this->projectsGetProjectPdfUrlRequest($id, $design_user_id, $design_id, $tenant_id, $user_id);
+        $request = $this->projectsGetProjectPdfUrlRequest($id, $design_user_id, $design_id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3364,20 +3730,19 @@ class ProjectsApi
     /**
      * Operation projectsGetProjectPdfUrlAsync
      *
-     * Gets project pdf url
+     * Returns an url to download project print file.
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetProjectPdfUrlAsync($id, $design_user_id, $design_id, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfUrlAsync($id, $design_user_id, $design_id, $tenant_id = null)
     {
-        return $this->projectsGetProjectPdfUrlAsyncWithHttpInfo($id, $design_user_id, $design_id, $tenant_id, $user_id)
+        return $this->projectsGetProjectPdfUrlAsyncWithHttpInfo($id, $design_user_id, $design_id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3388,21 +3753,20 @@ class ProjectsApi
     /**
      * Operation projectsGetProjectPdfUrlAsyncWithHttpInfo
      *
-     * Gets project pdf url
+     * Returns an url to download project print file.
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetProjectPdfUrlAsyncWithHttpInfo($id, $design_user_id, $design_id, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfUrlAsyncWithHttpInfo($id, $design_user_id, $design_id, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProjectPdfResultDto';
-        $request = $this->projectsGetProjectPdfUrlRequest($id, $design_user_id, $design_id, $tenant_id, $user_id);
+        $request = $this->projectsGetProjectPdfUrlRequest($id, $design_user_id, $design_id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3440,16 +3804,15 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsGetProjectPdfUrl'
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetProjectPdfUrlRequest($id, $design_user_id, $design_id, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfUrlRequest($id, $design_user_id, $design_id, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -3508,17 +3871,6 @@ class ProjectsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -3582,6 +3934,23 @@ class ProjectsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3612,44 +3981,42 @@ class ProjectsApi
     /**
      * Operation projectsGetProjectPdfZip
      *
-     * Gets project pdf files in zip archive
+     * Returns an archive file, which contains all project print files.
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional, default to true)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \SplFileObject|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function projectsGetProjectPdfZip($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfZip($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null)
     {
-        list($response) = $this->projectsGetProjectPdfZipWithHttpInfo($id, $design_user_id, $design_id, $attachment, $tenant_id, $user_id);
+        list($response) = $this->projectsGetProjectPdfZipWithHttpInfo($id, $design_user_id, $design_id, $attachment, $tenant_id);
         return $response;
     }
 
     /**
      * Operation projectsGetProjectPdfZipWithHttpInfo
      *
-     * Gets project pdf files in zip archive
+     * Returns an archive file, which contains all project print files.
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional, default to true)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetProjectPdfZipWithHttpInfo($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfZipWithHttpInfo($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null)
     {
-        $request = $this->projectsGetProjectPdfZipRequest($id, $design_user_id, $design_id, $attachment, $tenant_id, $user_id);
+        $request = $this->projectsGetProjectPdfZipRequest($id, $design_user_id, $design_id, $attachment, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3745,21 +4112,20 @@ class ProjectsApi
     /**
      * Operation projectsGetProjectPdfZipAsync
      *
-     * Gets project pdf files in zip archive
+     * Returns an archive file, which contains all project print files.
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional, default to true)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetProjectPdfZipAsync($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfZipAsync($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null)
     {
-        return $this->projectsGetProjectPdfZipAsyncWithHttpInfo($id, $design_user_id, $design_id, $attachment, $tenant_id, $user_id)
+        return $this->projectsGetProjectPdfZipAsyncWithHttpInfo($id, $design_user_id, $design_id, $attachment, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3770,22 +4136,21 @@ class ProjectsApi
     /**
      * Operation projectsGetProjectPdfZipAsyncWithHttpInfo
      *
-     * Gets project pdf files in zip archive
+     * Returns an archive file, which contains all project print files.
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional, default to true)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetProjectPdfZipAsyncWithHttpInfo($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfZipAsyncWithHttpInfo($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null)
     {
         $returnType = '\SplFileObject';
-        $request = $this->projectsGetProjectPdfZipRequest($id, $design_user_id, $design_id, $attachment, $tenant_id, $user_id);
+        $request = $this->projectsGetProjectPdfZipRequest($id, $design_user_id, $design_id, $attachment, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3823,17 +4188,16 @@ class ProjectsApi
     /**
      * Create request for operation 'projectsGetProjectPdfZip'
      *
-     * @param  int $id Project unique identifier (required)
-     * @param  string $design_user_id User identifier (required)
-     * @param  string $design_id Design identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional, default to true)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Project identifier. (required)
+     * @param  string $design_user_id Design owner identifier. (required)
+     * @param  string $design_id Design identifier. (required)
+     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetProjectPdfZipRequest($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, $user_id = null)
+    public function projectsGetProjectPdfZipRequest($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -3905,17 +4269,6 @@ class ProjectsApi
                 $queryParams['tenantId'] = $tenant_id;
             }
         }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
-            }
-        }
 
 
         // path params
@@ -3976,6 +4329,23 @@ class ProjectsApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

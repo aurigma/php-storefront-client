@@ -117,36 +117,34 @@ class TenantInfoApi
     /**
      * Operation tenantInfoGetApplicationsInfo
      *
-     * Gets information about tenant applications
+     * Returns an information about the tenant applications.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\TenantApplicationsInfoDto
      */
-    public function tenantInfoGetApplicationsInfo($tenant_id = null, $user_id = null)
+    public function tenantInfoGetApplicationsInfo($tenant_id = null)
     {
-        list($response) = $this->tenantInfoGetApplicationsInfoWithHttpInfo($tenant_id, $user_id);
+        list($response) = $this->tenantInfoGetApplicationsInfoWithHttpInfo($tenant_id);
         return $response;
     }
 
     /**
      * Operation tenantInfoGetApplicationsInfoWithHttpInfo
      *
-     * Gets information about tenant applications
+     * Returns an information about the tenant applications.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\TenantApplicationsInfoDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function tenantInfoGetApplicationsInfoWithHttpInfo($tenant_id = null, $user_id = null)
+    public function tenantInfoGetApplicationsInfoWithHttpInfo($tenant_id = null)
     {
-        $request = $this->tenantInfoGetApplicationsInfoRequest($tenant_id, $user_id);
+        $request = $this->tenantInfoGetApplicationsInfoRequest($tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -222,17 +220,16 @@ class TenantInfoApi
     /**
      * Operation tenantInfoGetApplicationsInfoAsync
      *
-     * Gets information about tenant applications
+     * Returns an information about the tenant applications.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function tenantInfoGetApplicationsInfoAsync($tenant_id = null, $user_id = null)
+    public function tenantInfoGetApplicationsInfoAsync($tenant_id = null)
     {
-        return $this->tenantInfoGetApplicationsInfoAsyncWithHttpInfo($tenant_id, $user_id)
+        return $this->tenantInfoGetApplicationsInfoAsyncWithHttpInfo($tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -243,18 +240,17 @@ class TenantInfoApi
     /**
      * Operation tenantInfoGetApplicationsInfoAsyncWithHttpInfo
      *
-     * Gets information about tenant applications
+     * Returns an information about the tenant applications.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function tenantInfoGetApplicationsInfoAsyncWithHttpInfo($tenant_id = null, $user_id = null)
+    public function tenantInfoGetApplicationsInfoAsyncWithHttpInfo($tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\TenantApplicationsInfoDto';
-        $request = $this->tenantInfoGetApplicationsInfoRequest($tenant_id, $user_id);
+        $request = $this->tenantInfoGetApplicationsInfoRequest($tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -292,13 +288,12 @@ class TenantInfoApi
     /**
      * Create request for operation 'tenantInfoGetApplicationsInfo'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function tenantInfoGetApplicationsInfoRequest($tenant_id = null, $user_id = null)
+    public function tenantInfoGetApplicationsInfoRequest($tenant_id = null)
     {
 
         $resourcePath = '/api/storefront/v1/tenant-info/applications';
@@ -317,17 +312,6 @@ class TenantInfoApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -383,6 +367,23 @@ class TenantInfoApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -413,36 +414,34 @@ class TenantInfoApi
     /**
      * Operation tenantInfoGetInfo
      *
-     * Gets information about tenant
+     * Returns an information about the tenant.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\TenantInfoDto
      */
-    public function tenantInfoGetInfo($tenant_id = null, $user_id = null)
+    public function tenantInfoGetInfo($tenant_id = null)
     {
-        list($response) = $this->tenantInfoGetInfoWithHttpInfo($tenant_id, $user_id);
+        list($response) = $this->tenantInfoGetInfoWithHttpInfo($tenant_id);
         return $response;
     }
 
     /**
      * Operation tenantInfoGetInfoWithHttpInfo
      *
-     * Gets information about tenant
+     * Returns an information about the tenant.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\TenantInfoDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function tenantInfoGetInfoWithHttpInfo($tenant_id = null, $user_id = null)
+    public function tenantInfoGetInfoWithHttpInfo($tenant_id = null)
     {
-        $request = $this->tenantInfoGetInfoRequest($tenant_id, $user_id);
+        $request = $this->tenantInfoGetInfoRequest($tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -518,17 +517,16 @@ class TenantInfoApi
     /**
      * Operation tenantInfoGetInfoAsync
      *
-     * Gets information about tenant
+     * Returns an information about the tenant.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function tenantInfoGetInfoAsync($tenant_id = null, $user_id = null)
+    public function tenantInfoGetInfoAsync($tenant_id = null)
     {
-        return $this->tenantInfoGetInfoAsyncWithHttpInfo($tenant_id, $user_id)
+        return $this->tenantInfoGetInfoAsyncWithHttpInfo($tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -539,18 +537,17 @@ class TenantInfoApi
     /**
      * Operation tenantInfoGetInfoAsyncWithHttpInfo
      *
-     * Gets information about tenant
+     * Returns an information about the tenant.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function tenantInfoGetInfoAsyncWithHttpInfo($tenant_id = null, $user_id = null)
+    public function tenantInfoGetInfoAsyncWithHttpInfo($tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\TenantInfoDto';
-        $request = $this->tenantInfoGetInfoRequest($tenant_id, $user_id);
+        $request = $this->tenantInfoGetInfoRequest($tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -588,13 +585,12 @@ class TenantInfoApi
     /**
      * Create request for operation 'tenantInfoGetInfo'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function tenantInfoGetInfoRequest($tenant_id = null, $user_id = null)
+    public function tenantInfoGetInfoRequest($tenant_id = null)
     {
 
         $resourcePath = '/api/storefront/v1/tenant-info';
@@ -613,17 +609,6 @@ class TenantInfoApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -678,6 +663,320 @@ class TenantInfoApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation tenantInfoGetUsersInfo
+     *
+     * Returns a list of tenant users.
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\Storefront\Model\TenantUserInfoDto[]
+     */
+    public function tenantInfoGetUsersInfo($tenant_id = null)
+    {
+        list($response) = $this->tenantInfoGetUsersInfoWithHttpInfo($tenant_id);
+        return $response;
+    }
+
+    /**
+     * Operation tenantInfoGetUsersInfoWithHttpInfo
+     *
+     * Returns a list of tenant users.
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\Storefront\Model\TenantUserInfoDto[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function tenantInfoGetUsersInfoWithHttpInfo($tenant_id = null)
+    {
+        $request = $this->tenantInfoGetUsersInfoRequest($tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\Storefront\Model\TenantUserInfoDto[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\TenantUserInfoDto[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\Storefront\Model\TenantUserInfoDto[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\TenantUserInfoDto[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation tenantInfoGetUsersInfoAsync
+     *
+     * Returns a list of tenant users.
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function tenantInfoGetUsersInfoAsync($tenant_id = null)
+    {
+        return $this->tenantInfoGetUsersInfoAsyncWithHttpInfo($tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation tenantInfoGetUsersInfoAsyncWithHttpInfo
+     *
+     * Returns a list of tenant users.
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function tenantInfoGetUsersInfoAsyncWithHttpInfo($tenant_id = null)
+    {
+        $returnType = '\Aurigma\Storefront\Model\TenantUserInfoDto[]';
+        $request = $this->tenantInfoGetUsersInfoRequest($tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'tenantInfoGetUsersInfo'
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function tenantInfoGetUsersInfoRequest($tenant_id = null)
+    {
+
+        $resourcePath = '/api/storefront/v1/tenant-info/users';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['text/plain', 'application/json', 'text/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['text/plain', 'application/json', 'text/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

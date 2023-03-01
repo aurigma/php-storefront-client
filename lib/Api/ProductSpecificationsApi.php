@@ -117,38 +117,36 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGet
      *
-     * Gets product specification by id
+     * Returns a product specification by identifier.
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProductSpecificationDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function productSpecificationsGet($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGet($id, $tenant_id = null)
     {
-        list($response) = $this->productSpecificationsGetWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->productSpecificationsGetWithHttpInfo($id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation productSpecificationsGetWithHttpInfo
      *
-     * Gets product specification by id
+     * Returns a product specification by identifier.
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProductSpecificationDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productSpecificationsGetWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetWithHttpInfo($id, $tenant_id = null)
     {
-        $request = $this->productSpecificationsGetRequest($id, $tenant_id, $user_id);
+        $request = $this->productSpecificationsGetRequest($id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -244,18 +242,17 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetAsync
      *
-     * Gets product specification by id
+     * Returns a product specification by identifier.
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productSpecificationsGetAsync($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetAsync($id, $tenant_id = null)
     {
-        return $this->productSpecificationsGetAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->productSpecificationsGetAsyncWithHttpInfo($id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -266,19 +263,18 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetAsyncWithHttpInfo
      *
-     * Gets product specification by id
+     * Returns a product specification by identifier.
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productSpecificationsGetAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetAsyncWithHttpInfo($id, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\ProductSpecificationDto';
-        $request = $this->productSpecificationsGetRequest($id, $tenant_id, $user_id);
+        $request = $this->productSpecificationsGetRequest($id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -316,14 +312,13 @@ class ProductSpecificationsApi
     /**
      * Create request for operation 'productSpecificationsGet'
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productSpecificationsGetRequest($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetRequest($id, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -348,17 +343,6 @@ class ProductSpecificationsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -422,6 +406,23 @@ class ProductSpecificationsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -452,44 +453,42 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetAll
      *
-     * Gets all product specifications relevant to specified query parameters
+     * Returns all product specifications, relevant to the specified query parameters.
      *
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProductSpecificationDto
      */
-    public function productSpecificationsGetAll($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetAll($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        list($response) = $this->productSpecificationsGetAllWithHttpInfo($skip, $take, $sorting, $search, $tenant_id, $user_id);
+        list($response) = $this->productSpecificationsGetAllWithHttpInfo($skip, $take, $sorting, $search, $tenant_id);
         return $response;
     }
 
     /**
      * Operation productSpecificationsGetAllWithHttpInfo
      *
-     * Gets all product specifications relevant to specified query parameters
+     * Returns all product specifications, relevant to the specified query parameters.
      *
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProductSpecificationDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productSpecificationsGetAllWithHttpInfo($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetAllWithHttpInfo($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        $request = $this->productSpecificationsGetAllRequest($skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->productSpecificationsGetAllRequest($skip, $take, $sorting, $search, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -565,21 +564,20 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetAllAsync
      *
-     * Gets all product specifications relevant to specified query parameters
+     * Returns all product specifications, relevant to the specified query parameters.
      *
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productSpecificationsGetAllAsync($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetAllAsync($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        return $this->productSpecificationsGetAllAsyncWithHttpInfo($skip, $take, $sorting, $search, $tenant_id, $user_id)
+        return $this->productSpecificationsGetAllAsyncWithHttpInfo($skip, $take, $sorting, $search, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -590,22 +588,21 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetAllAsyncWithHttpInfo
      *
-     * Gets all product specifications relevant to specified query parameters
+     * Returns all product specifications, relevant to the specified query parameters.
      *
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productSpecificationsGetAllAsyncWithHttpInfo($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetAllAsyncWithHttpInfo($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProductSpecificationDto';
-        $request = $this->productSpecificationsGetAllRequest($skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->productSpecificationsGetAllRequest($skip, $take, $sorting, $search, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -643,17 +640,16 @@ class ProductSpecificationsApi
     /**
      * Create request for operation 'productSpecificationsGetAll'
      *
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productSpecificationsGetAllRequest($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetAllRequest($skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
 
         $resourcePath = '/api/storefront/v1/product-specifications';
@@ -718,17 +714,6 @@ class ProductSpecificationsApi
                 $queryParams['tenantId'] = $tenant_id;
             }
         }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
-            }
-        }
 
 
 
@@ -782,6 +767,23 @@ class ProductSpecificationsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -812,38 +814,36 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetConfiguration
      *
-     * Gets product configuration description by product specification id
+     * Returns a product personlization workflow configuration by product specification identifier.
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function productSpecificationsGetConfiguration($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetConfiguration($id, $tenant_id = null)
     {
-        list($response) = $this->productSpecificationsGetConfigurationWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->productSpecificationsGetConfigurationWithHttpInfo($id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation productSpecificationsGetConfigurationWithHttpInfo
      *
-     * Gets product configuration description by product specification id
+     * Returns a product personlization workflow configuration by product specification identifier.
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productSpecificationsGetConfigurationWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetConfigurationWithHttpInfo($id, $tenant_id = null)
     {
-        $request = $this->productSpecificationsGetConfigurationRequest($id, $tenant_id, $user_id);
+        $request = $this->productSpecificationsGetConfigurationRequest($id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -939,18 +939,17 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetConfigurationAsync
      *
-     * Gets product configuration description by product specification id
+     * Returns a product personlization workflow configuration by product specification identifier.
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productSpecificationsGetConfigurationAsync($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetConfigurationAsync($id, $tenant_id = null)
     {
-        return $this->productSpecificationsGetConfigurationAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->productSpecificationsGetConfigurationAsyncWithHttpInfo($id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -961,19 +960,18 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetConfigurationAsyncWithHttpInfo
      *
-     * Gets product configuration description by product specification id
+     * Returns a product personlization workflow configuration by product specification identifier.
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productSpecificationsGetConfigurationAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetConfigurationAsyncWithHttpInfo($id, $tenant_id = null)
     {
         $returnType = 'string';
-        $request = $this->productSpecificationsGetConfigurationRequest($id, $tenant_id, $user_id);
+        $request = $this->productSpecificationsGetConfigurationRequest($id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1011,14 +1009,13 @@ class ProductSpecificationsApi
     /**
      * Create request for operation 'productSpecificationsGetConfiguration'
      *
-     * @param  int $id Product specification identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productSpecificationsGetConfigurationRequest($id, $tenant_id = null, $user_id = null)
+    public function productSpecificationsGetConfigurationRequest($id, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -1043,17 +1040,6 @@ class ProductSpecificationsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -1116,6 +1102,23 @@ class ProductSpecificationsApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

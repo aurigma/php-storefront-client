@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProductReferenceDto Class Doc Comment
  *
  * @category Class
- * @description Storefront product reference dto class
+ * @description Dto class, containing information about storefront product reference.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -243,7 +243,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets product_reference
      *
-     * @param string|null $product_reference Product reference is an external reference to Customer's Canvas product specification, e.g online store product identifier
+     * @param string|null $product_reference Product reference is an external reference to Customer's Canvas product specification, e.g online store product identifier.
      *
      * @return self
      */
@@ -267,7 +267,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets product_specification_id
      *
-     * @param int|null $product_specification_id Customer's Canvas product specification identifier
+     * @param int|null $product_specification_id Customer's Canvas product specification identifier.
      *
      * @return self
      */
@@ -291,7 +291,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets storefront_id
      *
-     * @param int|null $storefront_id Storefront identifier
+     * @param int|null $storefront_id Storefront identifier.
      *
      * @return self
      */
@@ -315,7 +315,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets tenant_id
      *
-     * @param int|null $tenant_id Tenant identifier
+     * @param int|null $tenant_id Tenant identifier.
      *
      * @return self
      */
@@ -339,7 +339,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets created
      *
-     * @param \DateTime|null $created Storefront product reference creation date and time
+     * @param \DateTime|null $created Storefront product reference creation date and time.
      *
      * @return self
      */

@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * CreateProductReferenceDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing create operation parameters for storefront product reference
+ * @description Dto class, containing create operation parameters for storefront product reference.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -231,7 +231,7 @@ class CreateProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets product_reference
      *
-     * @param string $product_reference Product reference is an external reference to Customer's Canvas product specification, e.g online store product identifier
+     * @param string $product_reference Product reference is an external reference to Customer's Canvas product specification, e.g online store product identifier.
      *
      * @return self
      */
@@ -255,7 +255,7 @@ class CreateProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets product_specification_id
      *
-     * @param int $product_specification_id Customer's Canvas product specification identifier
+     * @param int $product_specification_id Customer's Canvas product specification identifier.
      *
      * @return self
      */

@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProjectDto Class Doc Comment
  *
  * @category Class
- * @description Project dto class
+ * @description Dto class, containing information about a project.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -61,6 +61,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'int',
+        'product_reference' => 'string',
         'storefront_id' => 'int',
         'tenant_id' => 'int',
         'order_id' => 'string',
@@ -88,6 +89,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'int32',
+        'product_reference' => null,
         'storefront_id' => 'int32',
         'tenant_id' => 'int32',
         'order_id' => null,
@@ -134,6 +136,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'product_reference' => 'productReference',
         'storefront_id' => 'storefrontId',
         'tenant_id' => 'tenantId',
         'order_id' => 'orderId',
@@ -159,6 +162,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
+        'product_reference' => 'setProductReference',
         'storefront_id' => 'setStorefrontId',
         'tenant_id' => 'setTenantId',
         'order_id' => 'setOrderId',
@@ -184,6 +188,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
+        'product_reference' => 'getProductReference',
         'storefront_id' => 'getStorefrontId',
         'tenant_id' => 'getTenantId',
         'order_id' => 'getOrderId',
@@ -260,6 +265,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['id'] = $data['id'] ?? null;
+        $this->container['product_reference'] = $data['product_reference'] ?? null;
         $this->container['storefront_id'] = $data['storefront_id'] ?? null;
         $this->container['tenant_id'] = $data['tenant_id'] ?? null;
         $this->container['order_id'] = $data['order_id'] ?? null;
@@ -315,13 +321,37 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param int|null $id Project identifier
+     * @param int|null $id Project identifier.
      *
      * @return self
      */
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_reference
+     *
+     * @return string|null
+     */
+    public function getProductReference()
+    {
+        return $this->container['product_reference'];
+    }
+
+    /**
+     * Sets product_reference
+     *
+     * @param string|null $product_reference Product reference (i.e external reference to Customer's Canvas product specification)
+     *
+     * @return self
+     */
+    public function setProductReference($product_reference)
+    {
+        $this->container['product_reference'] = $product_reference;
 
         return $this;
     }
@@ -339,7 +369,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets storefront_id
      *
-     * @param int|null $storefront_id Storefront identifier
+     * @param int|null $storefront_id Storefront identifier.
      *
      * @return self
      */
@@ -363,7 +393,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tenant_id
      *
-     * @param int|null $tenant_id Project tenant indentifier
+     * @param int|null $tenant_id Project tenant indentifier.
      *
      * @return self
      */
@@ -387,7 +417,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_id
      *
-     * @param string|null $order_id Order identifier in ecommerce system
+     * @param string|null $order_id Order identifier in ecommerce system.
      *
      * @return self
      */
@@ -411,7 +441,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_url
      *
-     * @param string|null $order_url Order url in ecommerce system
+     * @param string|null $order_url Order url in ecommerce system.
      *
      * @return self
      */
@@ -435,7 +465,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_number
      *
-     * @param int|null $order_number Order number in ecommerce system
+     * @param int|null $order_number Order number in ecommerce system.
      *
      * @return self
      */
@@ -459,7 +489,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_line_item_id
      *
-     * @param string|null $order_line_item_id Line item ID from external ecommerce system order.
+     * @param string|null $order_line_item_id Line item identifier from external ecommerce system order.
      *
      * @return self
      */
@@ -507,7 +537,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets customer_id
      *
-     * @param string|null $customer_id Customer identifier in ecommerce system
+     * @param string|null $customer_id Customer identifier in ecommerce system.
      *
      * @return self
      */
@@ -531,7 +561,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets customer_name
      *
-     * @param string|null $customer_name Customer name in ecommerce system
+     * @param string|null $customer_name Customer name in ecommerce system.
      *
      * @return self
      */
@@ -555,7 +585,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name Project name
+     * @param string|null $name Project name.
      *
      * @return self
      */
@@ -579,7 +609,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets owner_id
      *
-     * @param string|null $owner_id Project owner identifier
+     * @param string|null $owner_id Project owner identifier.
      *
      * @return self
      */
@@ -603,7 +633,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets items
      *
-     * @param \Aurigma\Storefront\Model\ProjectItemDto[]|null $items List of project items
+     * @param \Aurigma\Storefront\Model\ProjectItemDto[]|null $items List of project items.
      *
      * @return self
      */
@@ -627,7 +657,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param int|null $status Project status code
+     * @param int|null $status Project status code.
      *
      * @return self
      */
@@ -651,7 +681,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created
      *
-     * @param \DateTime|null $created Project creation time
+     * @param \DateTime|null $created Project creation time.
      *
      * @return self
      */
@@ -675,7 +705,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets last_modified
      *
-     * @param \DateTime|null $last_modified Project modification time
+     * @param \DateTime|null $last_modified Project modification time.
      *
      * @return self
      */
@@ -699,7 +729,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description Description of the project
+     * @param string|null $description Description of the project.
      *
      * @return self
      */

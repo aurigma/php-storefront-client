@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * CreateProjectDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing create operation parameters for project entity
+ * @description Dto class, containing create operation parameters for project entity.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -70,7 +70,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'customer_name' => 'string',
         'name' => 'string',
         'owner_id' => 'string',
-        'items' => '\Aurigma\Storefront\Model\ProjectItemDto[]',
+        'items' => '\Aurigma\Storefront\Model\ProjectItemParametersDto[]',
         'description' => 'string'
     ];
 
@@ -260,6 +260,9 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['product_reference'] === null) {
             $invalidProperties[] = "'product_reference' can't be null";
         }
+        if ($this->container['owner_id'] === null) {
+            $invalidProperties[] = "'owner_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -288,7 +291,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product_reference
      *
-     * @param string $product_reference Product reference (i.e external reference to Customer's Canvas product specification - main subject of this project)
+     * @param string $product_reference Product reference (i.e external reference to Customer's Canvas product specification - main subject of this project).
      *
      * @return self
      */
@@ -312,7 +315,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_id
      *
-     * @param string|null $order_id Order identifier in ecommerce system
+     * @param string|null $order_id Order identifier in ecommerce system.
      *
      * @return self
      */
@@ -336,7 +339,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_url
      *
-     * @param string|null $order_url Order url in ecommerce system
+     * @param string|null $order_url Order url in ecommerce system.
      *
      * @return self
      */
@@ -360,7 +363,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_number
      *
-     * @param int|null $order_number Order number in ecommerce system
+     * @param int|null $order_number Order number in ecommerce system.
      *
      * @return self
      */
@@ -384,7 +387,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_line_item_index
      *
-     * @param int|null $order_line_item_index Line item index from ecommerce system order
+     * @param int|null $order_line_item_index Line item index from ecommerce system order.
      *
      * @return self
      */
@@ -408,7 +411,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_line_item_id
      *
-     * @param string|null $order_line_item_id Line Item id from ecommerce system order
+     * @param string|null $order_line_item_id Line Item identifier from ecommerce system order.
      *
      * @return self
      */
@@ -432,7 +435,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets customer_id
      *
-     * @param string|null $customer_id Customer identifier in ecommerce system
+     * @param string|null $customer_id Customer identifier in ecommerce system.
      *
      * @return self
      */
@@ -456,7 +459,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets customer_name
      *
-     * @param string|null $customer_name Customer name in ecommerce system
+     * @param string|null $customer_name Customer name in ecommerce system.
      *
      * @return self
      */
@@ -480,7 +483,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name Project name
+     * @param string|null $name Project name.
      *
      * @return self
      */
@@ -494,7 +497,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets owner_id
      *
-     * @return string|null
+     * @return string
      */
     public function getOwnerId()
     {
@@ -504,7 +507,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets owner_id
      *
-     * @param string|null $owner_id Project owner identifier
+     * @param string $owner_id Project owner identifier.
      *
      * @return self
      */
@@ -518,7 +521,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets items
      *
-     * @return \Aurigma\Storefront\Model\ProjectItemDto[]|null
+     * @return \Aurigma\Storefront\Model\ProjectItemParametersDto[]|null
      */
     public function getItems()
     {
@@ -528,7 +531,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets items
      *
-     * @param \Aurigma\Storefront\Model\ProjectItemDto[]|null $items List of project items
+     * @param \Aurigma\Storefront\Model\ProjectItemParametersDto[]|null $items List of project items.
      *
      * @return self
      */
@@ -552,7 +555,7 @@ class CreateProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description Description of the project
+     * @param string|null $description Description of the project.
      *
      * @return self
      */

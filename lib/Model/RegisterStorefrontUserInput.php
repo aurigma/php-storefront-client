@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectStatusDto
+ * RegisterStorefrontUserInput
  *
  * PHP version 7.2
  *
@@ -32,10 +32,9 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * ProjectStatusDto Class Doc Comment
+ * RegisterStorefrontUserInput Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing the information about project status.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +42,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class RegisterStorefrontUserInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +51,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProjectStatusDto';
+    protected static $openAPIModelName = 'RegisterStorefrontUserInput';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +59,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'int',
-        'display_name' => 'string'
+        'storefront_user_id' => 'string'
     ];
 
     /**
@@ -72,8 +70,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => 'int32',
-        'display_name' => null
+        'storefront_user_id' => null
     ];
 
     /**
@@ -103,8 +100,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'display_name' => 'displayName'
+        'storefront_user_id' => 'storefrontUserId'
     ];
 
     /**
@@ -113,8 +109,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'display_name' => 'setDisplayName'
+        'storefront_user_id' => 'setStorefrontUserId'
     ];
 
     /**
@@ -123,8 +118,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'display_name' => 'getDisplayName'
+        'storefront_user_id' => 'getStorefrontUserId'
     ];
 
     /**
@@ -184,8 +178,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['code'] = $data['code'] ?? null;
-        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['storefront_user_id'] = $data['storefront_user_id'] ?? null;
     }
 
     /**
@@ -213,49 +206,25 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
-     *
-     * @return int|null
-     */
-    public function getCode()
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code
-     *
-     * @param int|null $code Status code.
-     *
-     * @return self
-     */
-    public function setCode($code)
-    {
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-
-    /**
-     * Gets display_name
+     * Gets storefront_user_id
      *
      * @return string|null
      */
-    public function getDisplayName()
+    public function getStorefrontUserId()
     {
-        return $this->container['display_name'];
+        return $this->container['storefront_user_id'];
     }
 
     /**
-     * Sets display_name
+     * Sets storefront_user_id
      *
-     * @param string|null $display_name Status display name.
+     * @param string|null $storefront_user_id Storefront user identifier.
      *
      * @return self
      */
-    public function setDisplayName($display_name)
+    public function setStorefrontUserId($storefront_user_id)
     {
-        $this->container['display_name'] = $display_name;
+        $this->container['storefront_user_id'] = $storefront_user_id;
 
         return $this;
     }

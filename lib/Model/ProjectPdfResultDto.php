@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProjectPdfResultDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing result of get project pdf url operation
+ * @description Dto class, containing result of &#39;get project pdf url&#39; operation.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -219,7 +219,7 @@ class ProjectPdfResultDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets url
      *
-     * @param string|null $url Project pdf url
+     * @param string|null $url Project pdf url.
      *
      * @return self
      */

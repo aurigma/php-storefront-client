@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectStatusDto
+ * ProjectItemParametersDto
  *
  * PHP version 7.2
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * ProjectStatusDto Class Doc Comment
+ * ProjectItemParametersDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing the information about project status.
+ * @description Dto class, containing create operation paramters for a project item.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +43,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProjectStatusDto';
+    protected static $openAPIModelName = 'ProjectItemParametersDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,13 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'int',
-        'display_name' => 'string'
+        'name' => 'string',
+        'quantity' => 'int',
+        'fields' => 'array<string,mixed>',
+        'hidden' => 'mixed',
+        'design_ids' => 'string[]',
+        'sku' => 'string',
+        'resources' => '\Aurigma\Storefront\Model\ProjectItemResourceParametersDto[]'
     ];
 
     /**
@@ -72,8 +77,13 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => 'int32',
-        'display_name' => null
+        'name' => null,
+        'quantity' => 'int32',
+        'fields' => null,
+        'hidden' => null,
+        'design_ids' => null,
+        'sku' => null,
+        'resources' => null
     ];
 
     /**
@@ -103,8 +113,13 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'display_name' => 'displayName'
+        'name' => 'name',
+        'quantity' => 'quantity',
+        'fields' => 'fields',
+        'hidden' => 'hidden',
+        'design_ids' => 'designIds',
+        'sku' => 'sku',
+        'resources' => 'resources'
     ];
 
     /**
@@ -113,8 +128,13 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'display_name' => 'setDisplayName'
+        'name' => 'setName',
+        'quantity' => 'setQuantity',
+        'fields' => 'setFields',
+        'hidden' => 'setHidden',
+        'design_ids' => 'setDesignIds',
+        'sku' => 'setSku',
+        'resources' => 'setResources'
     ];
 
     /**
@@ -123,8 +143,13 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'display_name' => 'getDisplayName'
+        'name' => 'getName',
+        'quantity' => 'getQuantity',
+        'fields' => 'getFields',
+        'hidden' => 'getHidden',
+        'design_ids' => 'getDesignIds',
+        'sku' => 'getSku',
+        'resources' => 'getResources'
     ];
 
     /**
@@ -184,8 +209,13 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['code'] = $data['code'] ?? null;
-        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['quantity'] = $data['quantity'] ?? null;
+        $this->container['fields'] = $data['fields'] ?? null;
+        $this->container['hidden'] = $data['hidden'] ?? null;
+        $this->container['design_ids'] = $data['design_ids'] ?? null;
+        $this->container['sku'] = $data['sku'] ?? null;
+        $this->container['resources'] = $data['resources'] ?? null;
     }
 
     /**
@@ -213,49 +243,169 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets name
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getCode()
+    public function getName()
     {
-        return $this->container['code'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets code
+     * Sets name
      *
-     * @param int|null $code Status code.
+     * @param string|null $name Item name.
      *
      * @return self
      */
-    public function setCode($code)
+    public function setName($name)
     {
-        $this->container['code'] = $code;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets display_name
+     * Gets quantity
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getDisplayName()
+    public function getQuantity()
     {
-        return $this->container['display_name'];
+        return $this->container['quantity'];
     }
 
     /**
-     * Sets display_name
+     * Sets quantity
      *
-     * @param string|null $display_name Status display name.
+     * @param int|null $quantity Item quantity information.
      *
      * @return self
      */
-    public function setDisplayName($display_name)
+    public function setQuantity($quantity)
     {
-        $this->container['display_name'] = $display_name;
+        $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets fields
+     *
+     * @return array<string,mixed>|null
+     */
+    public function getFields()
+    {
+        return $this->container['fields'];
+    }
+
+    /**
+     * Sets fields
+     *
+     * @param array<string,mixed>|null $fields Item information.
+     *
+     * @return self
+     */
+    public function setFields($fields)
+    {
+        $this->container['fields'] = $fields;
+
+        return $this;
+    }
+
+    /**
+     * Gets hidden
+     *
+     * @return mixed|null
+     */
+    public function getHidden()
+    {
+        return $this->container['hidden'];
+    }
+
+    /**
+     * Sets hidden
+     *
+     * @param mixed|null $hidden Additional item information.
+     *
+     * @return self
+     */
+    public function setHidden($hidden)
+    {
+        $this->container['hidden'] = $hidden;
+
+        return $this;
+    }
+
+    /**
+     * Gets design_ids
+     *
+     * @return string[]|null
+     */
+    public function getDesignIds()
+    {
+        return $this->container['design_ids'];
+    }
+
+    /**
+     * Sets design_ids
+     *
+     * @param string[]|null $design_ids A list of design identifiers associated to the item.
+     *
+     * @return self
+     */
+    public function setDesignIds($design_ids)
+    {
+        $this->container['design_ids'] = $design_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets sku
+     *
+     * @return string|null
+     */
+    public function getSku()
+    {
+        return $this->container['sku'];
+    }
+
+    /**
+     * Sets sku
+     *
+     * @param string|null $sku SKU.
+     *
+     * @return self
+     */
+    public function setSku($sku)
+    {
+        $this->container['sku'] = $sku;
+
+        return $this;
+    }
+
+    /**
+     * Gets resources
+     *
+     * @return \Aurigma\Storefront\Model\ProjectItemResourceParametersDto[]|null
+     */
+    public function getResources()
+    {
+        return $this->container['resources'];
+    }
+
+    /**
+     * Sets resources
+     *
+     * @param \Aurigma\Storefront\Model\ProjectItemResourceParametersDto[]|null $resources External resources descriptions.
+     *
+     * @return self
+     */
+    public function setResources($resources)
+    {
+        $this->container['resources'] = $resources;
 
         return $this;
     }

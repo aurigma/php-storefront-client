@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * StorefrontUserDto Class Doc Comment
  *
  * @category Class
- * @description Storefront user dto class
+ * @description DTO class, containing infromation about a storefront user.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -237,7 +237,7 @@ class StorefrontUserDto implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets user_id
      *
-     * @param string|null $user_id Storefront user identifier
+     * @param string|null $user_id Storefront user identifier.
      *
      * @return self
      */
@@ -261,7 +261,7 @@ class StorefrontUserDto implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets tenant_id
      *
-     * @param int|null $tenant_id Storefront tenant indentifier
+     * @param int|null $tenant_id Storefront tenant indentifier.
      *
      * @return self
      */
@@ -285,7 +285,7 @@ class StorefrontUserDto implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets storefront_id
      *
-     * @param int|null $storefront_id Storefront identifier
+     * @param int|null $storefront_id Storefront identifier.
      *
      * @return self
      */
@@ -309,7 +309,7 @@ class StorefrontUserDto implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_anonymous
      *
-     * @param bool|null $is_anonymous Indicates whether user is an anonymous
+     * @param bool|null $is_anonymous Indicates if the user is tracked as an anonymous.
      *
      * @return self
      */

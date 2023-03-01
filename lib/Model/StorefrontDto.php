@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * StorefrontDto Class Doc Comment
  *
  * @category Class
- * @description Storefront dto class
+ * @description Dto class, containing information about a storefront.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -243,7 +243,7 @@ class StorefrontDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param int|null $id Storefront identifier
+     * @param int|null $id Storefront identifier.
      *
      * @return self
      */
@@ -267,7 +267,7 @@ class StorefrontDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tenant_id
      *
-     * @param int|null $tenant_id Tenant identifier
+     * @param int|null $tenant_id Tenant identifier.
      *
      * @return self
      */
@@ -291,7 +291,7 @@ class StorefrontDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name Storefront name
+     * @param string|null $name Storefront name.
      *
      * @return self
      */
@@ -339,7 +339,7 @@ class StorefrontDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created
      *
-     * @param \DateTime|null $created Storefront entity creation date and time
+     * @param \DateTime|null $created Storefront entity creation date and time.
      *
      * @return self
      */

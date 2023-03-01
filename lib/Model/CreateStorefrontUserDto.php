@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * CreateStorefrontUserDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing create operation parameters for storefront user entity
+ * @description Dto class, containing create operation parameters for storefront user.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -225,7 +225,7 @@ class CreateStorefrontUserDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets storefront_user_id
      *
-     * @param string|null $storefront_user_id Storefront user identifier
+     * @param string|null $storefront_user_id Storefront user identifier.
      *
      * @return self
      */
@@ -249,7 +249,7 @@ class CreateStorefrontUserDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets is_anonymous
      *
-     * @param bool|null $is_anonymous Indicates whether user is an anonymous
+     * @param bool|null $is_anonymous Indicates if the user is tracked as an anonymous.
      *
      * @return self
      */

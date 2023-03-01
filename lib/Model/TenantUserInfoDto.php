@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectStatusDto
+ * TenantUserInfoDto
  *
  * PHP version 7.2
  *
@@ -32,10 +32,9 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * ProjectStatusDto Class Doc Comment
+ * TenantUserInfoDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing the information about project status.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +42,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class TenantUserInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +51,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProjectStatusDto';
+    protected static $openAPIModelName = 'TenantUserInfoDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +59,11 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'int',
-        'display_name' => 'string'
+        'tenant_id' => 'int',
+        'user_id' => 'int',
+        'user_name' => 'string',
+        'user_surname' => 'string',
+        'is_active' => 'bool'
     ];
 
     /**
@@ -72,8 +74,11 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => 'int32',
-        'display_name' => null
+        'tenant_id' => 'int32',
+        'user_id' => 'int64',
+        'user_name' => null,
+        'user_surname' => null,
+        'is_active' => null
     ];
 
     /**
@@ -103,8 +108,11 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'display_name' => 'displayName'
+        'tenant_id' => 'tenantId',
+        'user_id' => 'userId',
+        'user_name' => 'userName',
+        'user_surname' => 'userSurname',
+        'is_active' => 'isActive'
     ];
 
     /**
@@ -113,8 +121,11 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'display_name' => 'setDisplayName'
+        'tenant_id' => 'setTenantId',
+        'user_id' => 'setUserId',
+        'user_name' => 'setUserName',
+        'user_surname' => 'setUserSurname',
+        'is_active' => 'setIsActive'
     ];
 
     /**
@@ -123,8 +134,11 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'display_name' => 'getDisplayName'
+        'tenant_id' => 'getTenantId',
+        'user_id' => 'getUserId',
+        'user_name' => 'getUserName',
+        'user_surname' => 'getUserSurname',
+        'is_active' => 'getIsActive'
     ];
 
     /**
@@ -184,8 +198,11 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['code'] = $data['code'] ?? null;
-        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['tenant_id'] = $data['tenant_id'] ?? null;
+        $this->container['user_id'] = $data['user_id'] ?? null;
+        $this->container['user_name'] = $data['user_name'] ?? null;
+        $this->container['user_surname'] = $data['user_surname'] ?? null;
+        $this->container['is_active'] = $data['is_active'] ?? null;
     }
 
     /**
@@ -213,49 +230,121 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets tenant_id
      *
      * @return int|null
      */
-    public function getCode()
+    public function getTenantId()
     {
-        return $this->container['code'];
+        return $this->container['tenant_id'];
     }
 
     /**
-     * Sets code
+     * Sets tenant_id
      *
-     * @param int|null $code Status code.
+     * @param int|null $tenant_id Tenant identifier.
      *
      * @return self
      */
-    public function setCode($code)
+    public function setTenantId($tenant_id)
     {
-        $this->container['code'] = $code;
+        $this->container['tenant_id'] = $tenant_id;
 
         return $this;
     }
 
     /**
-     * Gets display_name
+     * Gets user_id
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getDisplayName()
+    public function getUserId()
     {
-        return $this->container['display_name'];
+        return $this->container['user_id'];
     }
 
     /**
-     * Sets display_name
+     * Sets user_id
      *
-     * @param string|null $display_name Status display name.
+     * @param int|null $user_id User identifier.
      *
      * @return self
      */
-    public function setDisplayName($display_name)
+    public function setUserId($user_id)
     {
-        $this->container['display_name'] = $display_name;
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_name
+     *
+     * @return string|null
+     */
+    public function getUserName()
+    {
+        return $this->container['user_name'];
+    }
+
+    /**
+     * Sets user_name
+     *
+     * @param string|null $user_name User name.
+     *
+     * @return self
+     */
+    public function setUserName($user_name)
+    {
+        $this->container['user_name'] = $user_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_surname
+     *
+     * @return string|null
+     */
+    public function getUserSurname()
+    {
+        return $this->container['user_surname'];
+    }
+
+    /**
+     * Sets user_surname
+     *
+     * @param string|null $user_surname User surname.
+     *
+     * @return self
+     */
+    public function setUserSurname($user_surname)
+    {
+        $this->container['user_surname'] = $user_surname;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_active
+     *
+     * @return bool|null
+     */
+    public function getIsActive()
+    {
+        return $this->container['is_active'];
+    }
+
+    /**
+     * Sets is_active
+     *
+     * @param bool|null $is_active User status.
+     *
+     * @return self
+     */
+    public function setIsActive($is_active)
+    {
+        $this->container['is_active'] = $is_active;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * DatePeriod
+ * ProjectProductResourceType
  *
  * PHP version 7.2
  *
@@ -30,23 +30,22 @@ namespace Aurigma\Storefront\Model;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * DatePeriod Class Doc Comment
+ * ProjectProductResourceType Class Doc Comment
  *
  * @category Class
- * @description Defines all available date period filter values for queries.
+ * @description Available product resource types
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class DatePeriod
+class ProjectProductResourceType
 {
     /**
      * Possible values of this enum
      */
-    const ALL = 'All';
-    const TODAY = 'Today';
-    const LAST7_DAYS = 'Last7Days';
-    const LAST30_DAYS = 'Last30Days';
+    const 0 = 0;
+    const 1 = 1;
+    const 2 = 2;
     
     /**
      * Gets allowable values of the enum
@@ -55,10 +54,9 @@ class DatePeriod
     public static function getAllowableEnumValues()
     {
         return [
-            self::ALL,
-            self::TODAY,
-            self::LAST7_DAYS,
-            self::LAST30_DAYS,
+            self::0,
+            self::1,
+            self::2,
         ];
     }
 }

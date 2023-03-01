@@ -117,40 +117,38 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersCreate
      *
-     * Creates new storefront user
+     * Creates a new storefront user.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\StorefrontUserDto
+     * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function storefrontUsersCreate($storefront_id, $tenant_id = null, $user_id = null, $create_storefront_user_dto = null)
+    public function storefrontUsersCreate($storefront_id, $tenant_id = null, $create_storefront_user_dto = null)
     {
-        list($response) = $this->storefrontUsersCreateWithHttpInfo($storefront_id, $tenant_id, $user_id, $create_storefront_user_dto);
+        list($response) = $this->storefrontUsersCreateWithHttpInfo($storefront_id, $tenant_id, $create_storefront_user_dto);
         return $response;
     }
 
     /**
      * Operation storefrontUsersCreateWithHttpInfo
      *
-     * Creates new storefront user
+     * Creates a new storefront user.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\StorefrontUserDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontUsersCreateWithHttpInfo($storefront_id, $tenant_id = null, $user_id = null, $create_storefront_user_dto = null)
+    public function storefrontUsersCreateWithHttpInfo($storefront_id, $tenant_id = null, $create_storefront_user_dto = null)
     {
-        $request = $this->storefrontUsersCreateRequest($storefront_id, $tenant_id, $user_id, $create_storefront_user_dto);
+        $request = $this->storefrontUsersCreateRequest($storefront_id, $tenant_id, $create_storefront_user_dto);
 
         try {
             $options = $this->createHttpClientOption();
@@ -193,6 +191,18 @@ class StorefrontUsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\Storefront\Model\StorefrontUserDto';
@@ -218,6 +228,14 @@ class StorefrontUsersApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -226,19 +244,18 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersCreateAsync
      *
-     * Creates new storefront user
+     * Creates a new storefront user.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersCreateAsync($storefront_id, $tenant_id = null, $user_id = null, $create_storefront_user_dto = null)
+    public function storefrontUsersCreateAsync($storefront_id, $tenant_id = null, $create_storefront_user_dto = null)
     {
-        return $this->storefrontUsersCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $user_id, $create_storefront_user_dto)
+        return $this->storefrontUsersCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $create_storefront_user_dto)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -249,20 +266,19 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersCreateAsyncWithHttpInfo
      *
-     * Creates new storefront user
+     * Creates a new storefront user.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $user_id = null, $create_storefront_user_dto = null)
+    public function storefrontUsersCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $create_storefront_user_dto = null)
     {
         $returnType = '\Aurigma\Storefront\Model\StorefrontUserDto';
-        $request = $this->storefrontUsersCreateRequest($storefront_id, $tenant_id, $user_id, $create_storefront_user_dto);
+        $request = $this->storefrontUsersCreateRequest($storefront_id, $tenant_id, $create_storefront_user_dto);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -300,15 +316,14 @@ class StorefrontUsersApi
     /**
      * Create request for operation 'storefrontUsersCreate'
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Create operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontUsersCreateRequest($storefront_id, $tenant_id = null, $user_id = null, $create_storefront_user_dto = null)
+    public function storefrontUsersCreateRequest($storefront_id, $tenant_id = null, $create_storefront_user_dto = null)
     {
         // verify the required parameter 'storefront_id' is set
         if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
@@ -344,17 +359,6 @@ class StorefrontUsersApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -416,6 +420,23 @@ class StorefrontUsersApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -446,40 +467,38 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersGet
      *
-     * Gets storefront user by id
+     * Returns a storefront user by identifier.
      *
-     * @param  string $id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function storefrontUsersGet($id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGet($id, $storefront_id, $tenant_id = null)
     {
-        list($response) = $this->storefrontUsersGetWithHttpInfo($id, $storefront_id, $tenant_id, $user_id);
+        list($response) = $this->storefrontUsersGetWithHttpInfo($id, $storefront_id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation storefrontUsersGetWithHttpInfo
      *
-     * Gets storefront user by id
+     * Returns a storefront user by identifier.
      *
-     * @param  string $id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontUsersGetWithHttpInfo($id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetWithHttpInfo($id, $storefront_id, $tenant_id = null)
     {
-        $request = $this->storefrontUsersGetRequest($id, $storefront_id, $tenant_id, $user_id);
+        $request = $this->storefrontUsersGetRequest($id, $storefront_id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -575,19 +594,18 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersGetAsync
      *
-     * Gets storefront user by id
+     * Returns a storefront user by identifier.
      *
-     * @param  string $id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersGetAsync($id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetAsync($id, $storefront_id, $tenant_id = null)
     {
-        return $this->storefrontUsersGetAsyncWithHttpInfo($id, $storefront_id, $tenant_id, $user_id)
+        return $this->storefrontUsersGetAsyncWithHttpInfo($id, $storefront_id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -598,20 +616,19 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersGetAsyncWithHttpInfo
      *
-     * Gets storefront user by id
+     * Returns a storefront user by identifier.
      *
-     * @param  string $id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersGetAsyncWithHttpInfo($id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetAsyncWithHttpInfo($id, $storefront_id, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\StorefrontUserDto';
-        $request = $this->storefrontUsersGetRequest($id, $storefront_id, $tenant_id, $user_id);
+        $request = $this->storefrontUsersGetRequest($id, $storefront_id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -649,15 +666,14 @@ class StorefrontUsersApi
     /**
      * Create request for operation 'storefrontUsersGet'
      *
-     * @param  string $id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontUsersGetRequest($id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetRequest($id, $storefront_id, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -699,17 +715,6 @@ class StorefrontUsersApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -773,6 +778,23 @@ class StorefrontUsersApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -803,48 +825,46 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersGetAll
      *
-     * Gets all storefront users relevant to specified query parameters
+     * Returns all storefront users, relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $storefront_user_id Storefront user identifier (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfStorefrontUserDto
      */
-    public function storefrontUsersGetAll($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetAll($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        list($response) = $this->storefrontUsersGetAllWithHttpInfo($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        list($response) = $this->storefrontUsersGetAllWithHttpInfo($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id);
         return $response;
     }
 
     /**
      * Operation storefrontUsersGetAllWithHttpInfo
      *
-     * Gets all storefront users relevant to specified query parameters
+     * Returns all storefront users, relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $storefront_user_id Storefront user identifier (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfStorefrontUserDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontUsersGetAllWithHttpInfo($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetAllWithHttpInfo($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        $request = $this->storefrontUsersGetAllRequest($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->storefrontUsersGetAllRequest($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -920,23 +940,22 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersGetAllAsync
      *
-     * Gets all storefront users relevant to specified query parameters
+     * Returns all storefront users, relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $storefront_user_id Storefront user identifier (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersGetAllAsync($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetAllAsync($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        return $this->storefrontUsersGetAllAsyncWithHttpInfo($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id, $user_id)
+        return $this->storefrontUsersGetAllAsyncWithHttpInfo($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -947,24 +966,23 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersGetAllAsyncWithHttpInfo
      *
-     * Gets all storefront users relevant to specified query parameters
+     * Returns all storefront users, relevant to the specified query parameters.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $storefront_user_id Storefront user identifier (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersGetAllAsyncWithHttpInfo($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetAllAsyncWithHttpInfo($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfStorefrontUserDto';
-        $request = $this->storefrontUsersGetAllRequest($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->storefrontUsersGetAllRequest($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1002,19 +1020,18 @@ class StorefrontUsersApi
     /**
      * Create request for operation 'storefrontUsersGetAll'
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  string $storefront_user_id Storefront user identifier (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $storefront_user_id Storefront user identifier. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontUsersGetAllRequest($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetAllRequest($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
         // verify the required parameter 'storefront_id' is set
         if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
@@ -1107,17 +1124,6 @@ class StorefrontUsersApi
                 $queryParams['tenantId'] = $tenant_id;
             }
         }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
-            }
-        }
 
 
 
@@ -1171,6 +1177,23 @@ class StorefrontUsersApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1201,39 +1224,38 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersGetToken
      *
-     * Gets storefront user token
+     * Returns an API access token for the specified storefront user.
      *
-     * @param  string $storefront_user_id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $storefront_user_id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return void
+     * @return string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function storefrontUsersGetToken($storefront_user_id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetToken($storefront_user_id, $storefront_id, $tenant_id = null)
     {
-        $this->storefrontUsersGetTokenWithHttpInfo($storefront_user_id, $storefront_id, $tenant_id, $user_id);
+        list($response) = $this->storefrontUsersGetTokenWithHttpInfo($storefront_user_id, $storefront_id, $tenant_id);
+        return $response;
     }
 
     /**
      * Operation storefrontUsersGetTokenWithHttpInfo
      *
-     * Gets storefront user token
+     * Returns an API access token for the specified storefront user.
      *
-     * @param  string $storefront_user_id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $storefront_user_id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontUsersGetTokenWithHttpInfo($storefront_user_id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetTokenWithHttpInfo($storefront_user_id, $storefront_id, $tenant_id = null)
     {
-        $request = $this->storefrontUsersGetTokenRequest($storefront_user_id, $storefront_id, $tenant_id, $user_id);
+        $request = $this->storefrontUsersGetTokenRequest($storefront_user_id, $storefront_id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1263,10 +1285,68 @@ class StorefrontUsersApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 201:
+                    if ('string' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'string', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'string';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1291,19 +1371,18 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersGetTokenAsync
      *
-     * Gets storefront user token
+     * Returns an API access token for the specified storefront user.
      *
-     * @param  string $storefront_user_id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $storefront_user_id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersGetTokenAsync($storefront_user_id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetTokenAsync($storefront_user_id, $storefront_id, $tenant_id = null)
     {
-        return $this->storefrontUsersGetTokenAsyncWithHttpInfo($storefront_user_id, $storefront_id, $tenant_id, $user_id)
+        return $this->storefrontUsersGetTokenAsyncWithHttpInfo($storefront_user_id, $storefront_id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1314,26 +1393,35 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersGetTokenAsyncWithHttpInfo
      *
-     * Gets storefront user token
+     * Returns an API access token for the specified storefront user.
      *
-     * @param  string $storefront_user_id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $storefront_user_id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersGetTokenAsyncWithHttpInfo($storefront_user_id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetTokenAsyncWithHttpInfo($storefront_user_id, $storefront_id, $tenant_id = null)
     {
-        $returnType = '';
-        $request = $this->storefrontUsersGetTokenRequest($storefront_user_id, $storefront_id, $tenant_id, $user_id);
+        $returnType = 'string';
+        $request = $this->storefrontUsersGetTokenRequest($storefront_user_id, $storefront_id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1355,15 +1443,14 @@ class StorefrontUsersApi
     /**
      * Create request for operation 'storefrontUsersGetToken'
      *
-     * @param  string $storefront_user_id Storefront user identifier (required)
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  string $storefront_user_id Storefront user identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontUsersGetTokenRequest($storefront_user_id, $storefront_id, $tenant_id = null, $user_id = null)
+    public function storefrontUsersGetTokenRequest($storefront_user_id, $storefront_id, $tenant_id = null)
     {
         // verify the required parameter 'storefront_user_id' is set
         if ($storefront_user_id === null || (is_array($storefront_user_id) && count($storefront_user_id) === 0)) {
@@ -1418,17 +1505,6 @@ class StorefrontUsersApi
                 $queryParams['tenantId'] = $tenant_id;
             }
         }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
-            }
-        }
 
 
 
@@ -1482,6 +1558,23 @@ class StorefrontUsersApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1512,39 +1605,37 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersMergeAnonymous
      *
-     * Merges anonymous storefront user data to regular storefront user account
+     * Transfers all existing data for the anonymous storefront user to the selected regular storefront user account.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Merge operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function storefrontUsersMergeAnonymous($storefront_id, $tenant_id = null, $user_id = null, $merge_anonymous_user_data_input = null)
+    public function storefrontUsersMergeAnonymous($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null)
     {
-        $this->storefrontUsersMergeAnonymousWithHttpInfo($storefront_id, $tenant_id, $user_id, $merge_anonymous_user_data_input);
+        $this->storefrontUsersMergeAnonymousWithHttpInfo($storefront_id, $tenant_id, $merge_anonymous_user_data_input);
     }
 
     /**
      * Operation storefrontUsersMergeAnonymousWithHttpInfo
      *
-     * Merges anonymous storefront user data to regular storefront user account
+     * Transfers all existing data for the anonymous storefront user to the selected regular storefront user account.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Merge operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontUsersMergeAnonymousWithHttpInfo($storefront_id, $tenant_id = null, $user_id = null, $merge_anonymous_user_data_input = null)
+    public function storefrontUsersMergeAnonymousWithHttpInfo($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null)
     {
-        $request = $this->storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id, $user_id, $merge_anonymous_user_data_input);
+        $request = $this->storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id, $merge_anonymous_user_data_input);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1602,19 +1693,18 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersMergeAnonymousAsync
      *
-     * Merges anonymous storefront user data to regular storefront user account
+     * Transfers all existing data for the anonymous storefront user to the selected regular storefront user account.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Merge operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersMergeAnonymousAsync($storefront_id, $tenant_id = null, $user_id = null, $merge_anonymous_user_data_input = null)
+    public function storefrontUsersMergeAnonymousAsync($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null)
     {
-        return $this->storefrontUsersMergeAnonymousAsyncWithHttpInfo($storefront_id, $tenant_id, $user_id, $merge_anonymous_user_data_input)
+        return $this->storefrontUsersMergeAnonymousAsyncWithHttpInfo($storefront_id, $tenant_id, $merge_anonymous_user_data_input)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1625,20 +1715,19 @@ class StorefrontUsersApi
     /**
      * Operation storefrontUsersMergeAnonymousAsyncWithHttpInfo
      *
-     * Merges anonymous storefront user data to regular storefront user account
+     * Transfers all existing data for the anonymous storefront user to the selected regular storefront user account.
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Merge operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersMergeAnonymousAsyncWithHttpInfo($storefront_id, $tenant_id = null, $user_id = null, $merge_anonymous_user_data_input = null)
+    public function storefrontUsersMergeAnonymousAsyncWithHttpInfo($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null)
     {
         $returnType = '';
-        $request = $this->storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id, $user_id, $merge_anonymous_user_data_input);
+        $request = $this->storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id, $merge_anonymous_user_data_input);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1666,15 +1755,14 @@ class StorefrontUsersApi
     /**
      * Create request for operation 'storefrontUsersMergeAnonymous'
      *
-     * @param  int $storefront_id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Merge operation parameters (optional)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id = null, $user_id = null, $merge_anonymous_user_data_input = null)
+    public function storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null)
     {
         // verify the required parameter 'storefront_id' is set
         if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
@@ -1710,17 +1798,6 @@ class StorefrontUsersApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -1781,6 +1858,373 @@ class StorefrontUsersApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation storefrontUsersRegister
+     *
+     * Registers a storefront user with the specified identifier.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     */
+    public function storefrontUsersRegister($storefront_id, $tenant_id = null, $register_storefront_user_input = null)
+    {
+        list($response) = $this->storefrontUsersRegisterWithHttpInfo($storefront_id, $tenant_id, $register_storefront_user_input);
+        return $response;
+    }
+
+    /**
+     * Operation storefrontUsersRegisterWithHttpInfo
+     *
+     * Registers a storefront user with the specified identifier.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function storefrontUsersRegisterWithHttpInfo($storefront_id, $tenant_id = null, $register_storefront_user_input = null)
+    {
+        $request = $this->storefrontUsersRegisterRequest($storefront_id, $tenant_id, $register_storefront_user_input);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\Storefront\Model\StorefrontUserDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\StorefrontUserDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\Storefront\Model\StorefrontUserDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\StorefrontUserDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation storefrontUsersRegisterAsync
+     *
+     * Registers a storefront user with the specified identifier.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function storefrontUsersRegisterAsync($storefront_id, $tenant_id = null, $register_storefront_user_input = null)
+    {
+        return $this->storefrontUsersRegisterAsyncWithHttpInfo($storefront_id, $tenant_id, $register_storefront_user_input)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation storefrontUsersRegisterAsyncWithHttpInfo
+     *
+     * Registers a storefront user with the specified identifier.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function storefrontUsersRegisterAsyncWithHttpInfo($storefront_id, $tenant_id = null, $register_storefront_user_input = null)
+    {
+        $returnType = '\Aurigma\Storefront\Model\StorefrontUserDto';
+        $request = $this->storefrontUsersRegisterRequest($storefront_id, $tenant_id, $register_storefront_user_input);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'storefrontUsersRegister'
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function storefrontUsersRegisterRequest($storefront_id, $tenant_id = null, $register_storefront_user_input = null)
+    {
+        // verify the required parameter 'storefront_id' is set
+        if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $storefront_id when calling storefrontUsersRegister'
+            );
+        }
+
+        $resourcePath = '/api/storefront/v1/storefront-users/register';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($storefront_id !== null) {
+            if('form' === 'form' && is_array($storefront_id)) {
+                foreach($storefront_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['storefrontId'] = $storefront_id;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['text/plain', 'application/json', 'text/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['text/plain', 'application/json', 'text/json'],
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($register_storefront_user_input)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($register_storefront_user_input));
+            } else {
+                $httpBody = $register_storefront_user_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

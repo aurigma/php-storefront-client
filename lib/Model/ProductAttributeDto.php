@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProductAttributeDto Class Doc Comment
  *
  * @category Class
- * @description Product attribute dto class
+ * @description Dto class, containing information about product attribute.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -231,7 +231,7 @@ class ProductAttributeDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets name
      *
-     * @param string|null $name Product attribute name
+     * @param string|null $name Product attribute name.
      *
      * @return self
      */
@@ -255,7 +255,7 @@ class ProductAttributeDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets type
      *
-     * @param string|null $type Product attribute type
+     * @param string|null $type Product attribute type.
      *
      * @return self
      */
@@ -279,7 +279,7 @@ class ProductAttributeDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets value
      *
-     * @param mixed|null $value Product attribute value
+     * @param mixed|null $value Product attribute value.
      *
      * @return self
      */

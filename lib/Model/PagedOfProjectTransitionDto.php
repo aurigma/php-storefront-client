@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * PagedOfProjectTransitionDto Class Doc Comment
  *
  * @category Class
- * @description Paged list of items
+ * @description Paged list of items.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -225,7 +225,7 @@ class PagedOfProjectTransitionDto implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets total
      *
-     * @param int|null $total Items count
+     * @param int|null $total Items count.
      *
      * @return self
      */
@@ -249,7 +249,7 @@ class PagedOfProjectTransitionDto implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets items
      *
-     * @param \Aurigma\Storefront\Model\ProjectTransitionDto[]|null $items Items list
+     * @param \Aurigma\Storefront\Model\ProjectTransitionDto[]|null $items Items list.
      *
      * @return self
      */

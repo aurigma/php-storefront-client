@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectStatusDto
+ * ProjectItemResourceParametersDto
  *
  * PHP version 7.2
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * ProjectStatusDto Class Doc Comment
+ * ProjectItemResourceParametersDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing the information about project status.
+ * @description Dto class, containing create operation paramters for a project item resource.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +43,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProjectStatusDto';
+    protected static $openAPIModelName = 'ProjectItemResourceParametersDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,9 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'int',
-        'display_name' => 'string'
+        'url' => 'string',
+        'name' => 'string',
+        'type' => '\Aurigma\Storefront\Model\ProjectProductResourceType'
     ];
 
     /**
@@ -72,8 +73,9 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => 'int32',
-        'display_name' => null
+        'url' => null,
+        'name' => null,
+        'type' => null
     ];
 
     /**
@@ -103,8 +105,9 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'display_name' => 'displayName'
+        'url' => 'url',
+        'name' => 'name',
+        'type' => 'type'
     ];
 
     /**
@@ -113,8 +116,9 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'display_name' => 'setDisplayName'
+        'url' => 'setUrl',
+        'name' => 'setName',
+        'type' => 'setType'
     ];
 
     /**
@@ -123,8 +127,9 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'display_name' => 'getDisplayName'
+        'url' => 'getUrl',
+        'name' => 'getName',
+        'type' => 'getType'
     ];
 
     /**
@@ -184,8 +189,9 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['code'] = $data['code'] ?? null;
-        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['url'] = $data['url'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**
@@ -213,49 +219,73 @@ class ProjectStatusDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets url
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getCode()
+    public function getUrl()
     {
-        return $this->container['code'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets code
+     * Sets url
      *
-     * @param int|null $code Status code.
+     * @param string|null $url Resource URL.
      *
      * @return self
      */
-    public function setCode($code)
+    public function setUrl($url)
     {
-        $this->container['code'] = $code;
+        $this->container['url'] = $url;
 
         return $this;
     }
 
     /**
-     * Gets display_name
+     * Gets name
      *
      * @return string|null
      */
-    public function getDisplayName()
+    public function getName()
     {
-        return $this->container['display_name'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets display_name
+     * Sets name
      *
-     * @param string|null $display_name Status display name.
+     * @param string|null $name Resource name.
      *
      * @return self
      */
-    public function setDisplayName($display_name)
+    public function setName($name)
     {
-        $this->container['display_name'] = $display_name;
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \Aurigma\Storefront\Model\ProjectProductResourceType|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \Aurigma\Storefront\Model\ProjectProductResourceType|null $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }

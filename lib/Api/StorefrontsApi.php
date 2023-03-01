@@ -117,38 +117,36 @@ class StorefrontsApi
     /**
      * Operation storefrontsGet
      *
-     * Gets storefront
+     * Returns a storefront by identifier.
      *
-     * @param  int $id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\StorefrontDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function storefrontsGet($id, $tenant_id = null, $user_id = null)
+    public function storefrontsGet($id, $tenant_id = null)
     {
-        list($response) = $this->storefrontsGetWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->storefrontsGetWithHttpInfo($id, $tenant_id);
         return $response;
     }
 
     /**
      * Operation storefrontsGetWithHttpInfo
      *
-     * Gets storefront
+     * Returns a storefront by identifier.
      *
-     * @param  int $id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\StorefrontDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontsGetWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function storefrontsGetWithHttpInfo($id, $tenant_id = null)
     {
-        $request = $this->storefrontsGetRequest($id, $tenant_id, $user_id);
+        $request = $this->storefrontsGetRequest($id, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -244,18 +242,17 @@ class StorefrontsApi
     /**
      * Operation storefrontsGetAsync
      *
-     * Gets storefront
+     * Returns a storefront by identifier.
      *
-     * @param  int $id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontsGetAsync($id, $tenant_id = null, $user_id = null)
+    public function storefrontsGetAsync($id, $tenant_id = null)
     {
-        return $this->storefrontsGetAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->storefrontsGetAsyncWithHttpInfo($id, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -266,19 +263,18 @@ class StorefrontsApi
     /**
      * Operation storefrontsGetAsyncWithHttpInfo
      *
-     * Gets storefront
+     * Returns a storefront by identifier.
      *
-     * @param  int $id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontsGetAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function storefrontsGetAsyncWithHttpInfo($id, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\StorefrontDto';
-        $request = $this->storefrontsGetRequest($id, $tenant_id, $user_id);
+        $request = $this->storefrontsGetRequest($id, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -316,14 +312,13 @@ class StorefrontsApi
     /**
      * Create request for operation 'storefrontsGet'
      *
-     * @param  int $id Storefront identifier (required)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  int $id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontsGetRequest($id, $tenant_id = null, $user_id = null)
+    public function storefrontsGetRequest($id, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -348,17 +343,6 @@ class StorefrontsApi
             }
             else {
                 $queryParams['tenantId'] = $tenant_id;
-            }
-        }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
             }
         }
 
@@ -422,6 +406,23 @@ class StorefrontsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -452,46 +453,44 @@ class StorefrontsApi
     /**
      * Operation storefrontsGetAll
      *
-     * Gets all storefronts relevant to specified query parameters
+     * Returns all storefronts, relevant to the specified query parameters.
      *
-     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfStorefrontDto
      */
-    public function storefrontsGetAll($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontsGetAll($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        list($response) = $this->storefrontsGetAllWithHttpInfo($types, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        list($response) = $this->storefrontsGetAllWithHttpInfo($types, $skip, $take, $sorting, $search, $tenant_id);
         return $response;
     }
 
     /**
      * Operation storefrontsGetAllWithHttpInfo
      *
-     * Gets all storefronts relevant to specified query parameters
+     * Returns all storefronts, relevant to the specified query parameters.
      *
-     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfStorefrontDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontsGetAllWithHttpInfo($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontsGetAllWithHttpInfo($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        $request = $this->storefrontsGetAllRequest($types, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->storefrontsGetAllRequest($types, $skip, $take, $sorting, $search, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -567,22 +566,21 @@ class StorefrontsApi
     /**
      * Operation storefrontsGetAllAsync
      *
-     * Gets all storefronts relevant to specified query parameters
+     * Returns all storefronts, relevant to the specified query parameters.
      *
-     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontsGetAllAsync($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontsGetAllAsync($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
-        return $this->storefrontsGetAllAsyncWithHttpInfo($types, $skip, $take, $sorting, $search, $tenant_id, $user_id)
+        return $this->storefrontsGetAllAsyncWithHttpInfo($types, $skip, $take, $sorting, $search, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -593,23 +591,22 @@ class StorefrontsApi
     /**
      * Operation storefrontsGetAllAsyncWithHttpInfo
      *
-     * Gets all storefronts relevant to specified query parameters
+     * Returns all storefronts, relevant to the specified query parameters.
      *
-     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontsGetAllAsyncWithHttpInfo($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontsGetAllAsyncWithHttpInfo($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfStorefrontDto';
-        $request = $this->storefrontsGetAllRequest($types, $skip, $take, $sorting, $search, $tenant_id, $user_id);
+        $request = $this->storefrontsGetAllRequest($types, $skip, $take, $sorting, $search, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -647,18 +644,17 @@ class StorefrontsApi
     /**
      * Create request for operation 'storefrontsGetAll'
      *
-     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter (optional)
-     * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
-     * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
-     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
-     * @param  string $search Search string for partial match (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
-     * @param  int $user_id User identifier (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontType[] $types Storefront type filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontsGetAllRequest($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, $user_id = null)
+    public function storefrontsGetAllRequest($types = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null)
     {
 
         $resourcePath = '/api/storefront/v1/storefronts';
@@ -734,17 +730,6 @@ class StorefrontsApi
                 $queryParams['tenantId'] = $tenant_id;
             }
         }
-        // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['userId'] = $user_id;
-            }
-        }
 
 
 
@@ -797,6 +782,23 @@ class StorefrontsApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

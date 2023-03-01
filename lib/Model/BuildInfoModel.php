@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * BuildInfoModel Class Doc Comment
  *
  * @category Class
- * @description Information about a service
+ * @description Information about a service.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -237,7 +237,7 @@ class BuildInfoModel implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets version
      *
-     * @param string|null $version Version number
+     * @param string|null $version Version number.
      *
      * @return self
      */
@@ -261,7 +261,7 @@ class BuildInfoModel implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets build_date
      *
-     * @param string|null $build_date Build date (UTC)
+     * @param string|null $build_date Build date (UTC).
      *
      * @return self
      */
@@ -285,7 +285,7 @@ class BuildInfoModel implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets configuration
      *
-     * @param string|null $configuration Build configuration (Debug | Release)
+     * @param string|null $configuration Build configuration (Debug | Release).
      *
      * @return self
      */
@@ -309,7 +309,7 @@ class BuildInfoModel implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets app_name
      *
-     * @param string|null $app_name Service name
+     * @param string|null $app_name Service name.
      *
      * @return self
      */

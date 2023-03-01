@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * TenantInfoDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing information about tenant
+ * @description Dto class, containing general information about tenant.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -62,7 +62,8 @@ class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'tenant_id' => 'int',
         'tenancy_name' => 'string',
-        'tenant_creation_time' => '\DateTime'
+        'tenant_creation_time' => '\DateTime',
+        'is_active' => 'bool'
     ];
 
     /**
@@ -75,7 +76,8 @@ class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'tenant_id' => 'int32',
         'tenancy_name' => null,
-        'tenant_creation_time' => 'date-time'
+        'tenant_creation_time' => 'date-time',
+        'is_active' => null
     ];
 
     /**
@@ -107,7 +109,8 @@ class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'tenant_id' => 'tenantId',
         'tenancy_name' => 'tenancyName',
-        'tenant_creation_time' => 'tenantCreationTime'
+        'tenant_creation_time' => 'tenantCreationTime',
+        'is_active' => 'isActive'
     ];
 
     /**
@@ -118,7 +121,8 @@ class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'tenant_id' => 'setTenantId',
         'tenancy_name' => 'setTenancyName',
-        'tenant_creation_time' => 'setTenantCreationTime'
+        'tenant_creation_time' => 'setTenantCreationTime',
+        'is_active' => 'setIsActive'
     ];
 
     /**
@@ -129,7 +133,8 @@ class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'tenant_id' => 'getTenantId',
         'tenancy_name' => 'getTenancyName',
-        'tenant_creation_time' => 'getTenantCreationTime'
+        'tenant_creation_time' => 'getTenantCreationTime',
+        'is_active' => 'getIsActive'
     ];
 
     /**
@@ -192,6 +197,7 @@ class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['tenant_id'] = $data['tenant_id'] ?? null;
         $this->container['tenancy_name'] = $data['tenancy_name'] ?? null;
         $this->container['tenant_creation_time'] = $data['tenant_creation_time'] ?? null;
+        $this->container['is_active'] = $data['is_active'] ?? null;
     }
 
     /**
@@ -231,7 +237,7 @@ class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tenant_id
      *
-     * @param int|null $tenant_id Tenant identifier
+     * @param int|null $tenant_id Tenant identifier.
      *
      * @return self
      */
@@ -255,7 +261,7 @@ class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tenancy_name
      *
-     * @param string|null $tenancy_name Tenancy name
+     * @param string|null $tenancy_name Tenancy name.
      *
      * @return self
      */
@@ -279,13 +285,37 @@ class TenantInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tenant_creation_time
      *
-     * @param \DateTime|null $tenant_creation_time Tenant creation time
+     * @param \DateTime|null $tenant_creation_time Tenant creation time.
      *
      * @return self
      */
     public function setTenantCreationTime($tenant_creation_time)
     {
         $this->container['tenant_creation_time'] = $tenant_creation_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_active
+     *
+     * @return bool|null
+     */
+    public function getIsActive()
+    {
+        return $this->container['is_active'];
+    }
+
+    /**
+     * Sets is_active
+     *
+     * @param bool|null $is_active Tenant activeness status.
+     *
+     * @return self
+     */
+    public function setIsActive($is_active)
+    {
+        $this->container['is_active'] = $is_active;
 
         return $this;
     }

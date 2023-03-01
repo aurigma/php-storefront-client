@@ -33,7 +33,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * StorefrontType Class Doc Comment
  *
  * @category Class
- * @description Storefront types
+ * @description Storefront types.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,9 +44,14 @@ class StorefrontType
      * Possible values of this enum
      */
     const CUSTOM = 'Custom';
-    const SHOPIFY = 'Shopify';
+    const SHOPIFY_LEGACY = 'ShopifyLegacy';
     const DOCKET_MANAGER = 'DocketManager';
-    const AUTH0_SAML = 'Auth0Saml';
+    const CUSTOM_SAML = 'CustomSaml';
+    const NOP_COMMERCE = 'NopCommerce';
+    const WOO_COMMERCE = 'WooCommerce';
+    const MAGENTO = 'Magento';
+    const BIG_COMMERCE = 'BigCommerce';
+    const SHOPIFY = 'Shopify';
     
     /**
      * Gets allowable values of the enum
@@ -56,9 +61,14 @@ class StorefrontType
     {
         return [
             self::CUSTOM,
-            self::SHOPIFY,
+            self::SHOPIFY_LEGACY,
             self::DOCKET_MANAGER,
-            self::AUTH0_SAML,
+            self::CUSTOM_SAML,
+            self::NOP_COMMERCE,
+            self::WOO_COMMERCE,
+            self::MAGENTO,
+            self::BIG_COMMERCE,
+            self::SHOPIFY,
         ];
     }
 }

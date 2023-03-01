@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProductSpecificationDto Class Doc Comment
  *
  * @category Class
- * @description Product specification dto class
+ * @description Dto class, containing information about product specification.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -249,7 +249,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets id
      *
-     * @param int|null $id Product specification identifier
+     * @param int|null $id Product specification identifier.
      *
      * @return self
      */
@@ -273,7 +273,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets tenant_id
      *
-     * @param int|null $tenant_id Tenant identifier
+     * @param int|null $tenant_id Tenant identifier.
      *
      * @return self
      */
@@ -297,7 +297,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets name
      *
-     * @param string|null $name Product specification name
+     * @param string|null $name Product specification name.
      *
      * @return self
      */
@@ -321,7 +321,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets product_attributes
      *
-     * @param \Aurigma\Storefront\Model\ProductAttributeDto[]|null $product_attributes List of product attributes
+     * @param \Aurigma\Storefront\Model\ProductAttributeDto[]|null $product_attributes List of product attributes.
      *
      * @return self
      */
@@ -345,7 +345,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets created
      *
-     * @param \DateTime|null $created Product specification creation time
+     * @param \DateTime|null $created Product specification creation time.
      *
      * @return self
      */
@@ -369,7 +369,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets last_modified
      *
-     * @param \DateTime|null $last_modified Product specification modification time
+     * @param \DateTime|null $last_modified Product specification modification time.
      *
      * @return self
      */

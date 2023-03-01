@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProjectItemDto Class Doc Comment
  *
  * @category Class
- * @description Project item dto class
+ * @description Dto class, containing information about a project item.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -65,7 +65,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'fields' => 'array<string,mixed>',
         'hidden' => 'mixed',
         'design_ids' => 'string[]',
-        'sku' => 'string'
+        'sku' => 'string',
+        'resources' => '\Aurigma\Storefront\Model\ProjectItemResourceDto[]'
     ];
 
     /**
@@ -81,7 +82,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'fields' => null,
         'hidden' => null,
         'design_ids' => null,
-        'sku' => null
+        'sku' => null,
+        'resources' => null
     ];
 
     /**
@@ -116,7 +118,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'fields' => 'fields',
         'hidden' => 'hidden',
         'design_ids' => 'designIds',
-        'sku' => 'sku'
+        'sku' => 'sku',
+        'resources' => 'resources'
     ];
 
     /**
@@ -130,7 +133,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'fields' => 'setFields',
         'hidden' => 'setHidden',
         'design_ids' => 'setDesignIds',
-        'sku' => 'setSku'
+        'sku' => 'setSku',
+        'resources' => 'setResources'
     ];
 
     /**
@@ -144,7 +148,8 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'fields' => 'getFields',
         'hidden' => 'getHidden',
         'design_ids' => 'getDesignIds',
-        'sku' => 'getSku'
+        'sku' => 'getSku',
+        'resources' => 'getResources'
     ];
 
     /**
@@ -210,6 +215,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['hidden'] = $data['hidden'] ?? null;
         $this->container['design_ids'] = $data['design_ids'] ?? null;
         $this->container['sku'] = $data['sku'] ?? null;
+        $this->container['resources'] = $data['resources'] ?? null;
     }
 
     /**
@@ -249,7 +255,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name Item name
+     * @param string|null $name Item name.
      *
      * @return self
      */
@@ -273,7 +279,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets quantity
      *
-     * @param int|null $quantity Item quantity information
+     * @param int|null $quantity Item quantity information.
      *
      * @return self
      */
@@ -297,7 +303,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fields
      *
-     * @param array<string,mixed>|null $fields Item information
+     * @param array<string,mixed>|null $fields Item information.
      *
      * @return self
      */
@@ -321,7 +327,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets hidden
      *
-     * @param mixed|null $hidden Additional item information
+     * @param mixed|null $hidden Additional item information.
      *
      * @return self
      */
@@ -345,7 +351,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets design_ids
      *
-     * @param string[]|null $design_ids List of item associated design identifiers
+     * @param string[]|null $design_ids A list of design identifiers associated to the item.
      *
      * @return self
      */
@@ -369,13 +375,37 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sku
      *
-     * @param string|null $sku SKU
+     * @param string|null $sku SKU.
      *
      * @return self
      */
     public function setSku($sku)
     {
         $this->container['sku'] = $sku;
+
+        return $this;
+    }
+
+    /**
+     * Gets resources
+     *
+     * @return \Aurigma\Storefront\Model\ProjectItemResourceDto[]|null
+     */
+    public function getResources()
+    {
+        return $this->container['resources'];
+    }
+
+    /**
+     * Sets resources
+     *
+     * @param \Aurigma\Storefront\Model\ProjectItemResourceDto[]|null $resources External resources descriptions.
+     *
+     * @return self
+     */
+    public function setResources($resources)
+    {
+        $this->container['resources'] = $resources;
 
         return $this;
     }
