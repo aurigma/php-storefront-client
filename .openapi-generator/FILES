@@ -1,6 +1,9 @@
 .gitignore
+.openapi-generator-ignore
 .php_cs
 .travis.yml
+README.md
+composer.json
 docs/Api/BuildInfoApi.md
 docs/Api/ProductReferencesApi.md
 docs/Api/ProductSpecificationsApi.md
@@ -31,8 +34,8 @@ docs/Model/ProjectItemDto.md
 docs/Model/ProjectItemParametersDto.md
 docs/Model/ProjectItemResourceDto.md
 docs/Model/ProjectItemResourceParametersDto.md
+docs/Model/ProjectItemResourceType.md
 docs/Model/ProjectPdfResultDto.md
-docs/Model/ProjectProductResourceType.md
 docs/Model/ProjectStatusDto.md
 docs/Model/ProjectTransitionConflictDto.md
 docs/Model/ProjectTransitionDto.md
@@ -78,8 +81,8 @@ lib/Model/ProjectItemDto.php
 lib/Model/ProjectItemParametersDto.php
 lib/Model/ProjectItemResourceDto.php
 lib/Model/ProjectItemResourceParametersDto.php
+lib/Model/ProjectItemResourceType.php
 lib/Model/ProjectPdfResultDto.php
-lib/Model/ProjectProductResourceType.php
 lib/Model/ProjectStatusDto.php
 lib/Model/ProjectTransitionConflictDto.php
 lib/Model/ProjectTransitionDto.php
@@ -122,8 +125,8 @@ test/Model/ProjectItemDtoTest.php
 test/Model/ProjectItemParametersDtoTest.php
 test/Model/ProjectItemResourceDtoTest.php
 test/Model/ProjectItemResourceParametersDtoTest.php
+test/Model/ProjectItemResourceTypeTest.php
 test/Model/ProjectPdfResultDtoTest.php
-test/Model/ProjectProductResourceTypeTest.php
 test/Model/ProjectStatusDtoTest.php
 test/Model/ProjectTransitionConflictDtoTest.php
 test/Model/ProjectTransitionDtoTest.php

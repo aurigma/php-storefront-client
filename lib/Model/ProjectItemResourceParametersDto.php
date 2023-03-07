@@ -62,7 +62,7 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     protected static $openAPITypes = [
         'url' => 'string',
         'name' => 'string',
-        'type' => '\Aurigma\Storefront\Model\ProjectProductResourceType'
+        'type' => '\Aurigma\Storefront\Model\ProjectItemResourceType'
     ];
 
     /**
@@ -269,7 +269,7 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     /**
      * Gets type
      *
-     * @return \Aurigma\Storefront\Model\ProjectProductResourceType|null
+     * @return \Aurigma\Storefront\Model\ProjectItemResourceType|null
      */
     public function getType()
     {
@@ -279,7 +279,7 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\ProjectProductResourceType|null $type type
+     * @param \Aurigma\Storefront\Model\ProjectItemResourceType|null $type type
      *
      * @return self
      */
