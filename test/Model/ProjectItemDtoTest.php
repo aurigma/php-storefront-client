@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProjectItemDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Project item dto class
+ * @description Dto class, containing information about a project item.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -89,6 +89,15 @@ class ProjectItemDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "quantity"
+     */
+    public function testPropertyQuantity()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "fields"
      */
     public function testPropertyFields()
@@ -110,6 +119,24 @@ class ProjectItemDtoTest extends TestCase
      * Test attribute "design_ids"
      */
     public function testPropertyDesignIds()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "sku"
+     */
+    public function testPropertySku()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "resources"
+     */
+    public function testPropertyResources()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

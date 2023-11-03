@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProjectTransitionConflictDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Information about project transition conflict
+ * @description Dto class, containing information about the project transition conflict.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

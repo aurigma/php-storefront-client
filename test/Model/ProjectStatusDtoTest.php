@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProjectStatusDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Project status dto class
+ * @description Dto class, containing the information about project status.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

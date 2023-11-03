@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * DatePeriodTest Class Doc Comment
  *
  * @category    Class
- * @description Available date period filter values for queries
+ * @description Defines all available date period filter values for queries.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

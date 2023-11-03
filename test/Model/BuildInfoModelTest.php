@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * BuildInfoModelTest Class Doc Comment
  *
  * @category    Class
- * @description Information about a service
+ * @description Information about a service.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

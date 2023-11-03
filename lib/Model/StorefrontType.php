@@ -52,6 +52,7 @@ class StorefrontType
     const MAGENTO = 'Magento';
     const BIG_COMMERCE = 'BigCommerce';
     const SHOPIFY = 'Shopify';
+    const SHOPIFY_CUSTOM = 'ShopifyCustom';
     
     /**
      * Gets allowable values of the enum
@@ -69,6 +70,7 @@ class StorefrontType
             self::MAGENTO,
             self::BIG_COMMERCE,
             self::SHOPIFY,
+            self::SHOPIFY_CUSTOM,
         ];
     }
 }

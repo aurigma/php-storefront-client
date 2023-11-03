@@ -74,7 +74,7 @@ class ProductSpecificationsApiTest extends TestCase
     /**
      * Test case for productSpecificationsGet
      *
-     * Gets product specification by id.
+     * Returns a product specification by identifier..
      *
      */
     public function testProductSpecificationsGet()
@@ -86,7 +86,7 @@ class ProductSpecificationsApiTest extends TestCase
     /**
      * Test case for productSpecificationsGetAll
      *
-     * Gets all product specifications relevant to specified query parameters.
+     * Returns all product specifications, relevant to the specified query parameters..
      *
      */
     public function testProductSpecificationsGetAll()
@@ -98,7 +98,7 @@ class ProductSpecificationsApiTest extends TestCase
     /**
      * Test case for productSpecificationsGetConfiguration
      *
-     * Gets product configuration description by product specification id.
+     * Returns a product personlization workflow configuration by product specification identifier..
      *
      */
     public function testProductSpecificationsGetConfiguration()

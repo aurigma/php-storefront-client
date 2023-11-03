@@ -74,7 +74,7 @@ class BuildInfoApiTest extends TestCase
     /**
      * Test case for buildInfoGetInfo
      *
-     * Gets assembly build info.
+     * Returns an assembly build info..
      *
      */
     public function testBuildInfoGetInfo()
@@ -86,7 +86,7 @@ class BuildInfoApiTest extends TestCase
     /**
      * Test case for buildInfoHeadInfo
      *
-     * Gets assembly build info.
+     * Returns an assembly build info..
      *
      */
     public function testBuildInfoHeadInfo()

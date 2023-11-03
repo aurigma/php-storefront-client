@@ -74,10 +74,34 @@ class TenantInfoApiTest extends TestCase
     /**
      * Test case for tenantInfoGetApplicationsInfo
      *
-     * Gets information about tenant applications.
+     * Returns an information about the tenant applications..
      *
      */
     public function testTenantInfoGetApplicationsInfo()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for tenantInfoGetInfo
+     *
+     * Returns an information about the tenant..
+     *
+     */
+    public function testTenantInfoGetInfo()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for tenantInfoGetUsersInfo
+     *
+     * Returns a list of tenant users..
+     *
+     */
+    public function testTenantInfoGetUsersInfo()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

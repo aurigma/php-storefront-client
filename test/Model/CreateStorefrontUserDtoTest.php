@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * CreateStorefrontUserDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing create operation parameters for storefront user entity
+ * @description Dto class, containing create operation parameters for storefront user.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

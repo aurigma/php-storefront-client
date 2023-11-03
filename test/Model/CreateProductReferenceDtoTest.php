@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * CreateProductReferenceDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing create operation parameters for storefront product reference
+ * @description Dto class, containing create operation parameters for storefront product reference.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * StorefrontDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Storefront dto class
+ * @description Dto class, containing information about a storefront.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

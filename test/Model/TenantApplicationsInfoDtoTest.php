@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * TenantApplicationsInfoDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing information about tenant applications
+ * @description Dto class, containing information about tenant applications.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -98,6 +98,15 @@ class TenantApplicationsInfoDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "simple_editor_url"
+     */
+    public function testPropertySimpleEditorUrl()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "preflight_url"
      */
     public function testPropertyPreflightUrl()
@@ -119,6 +128,33 @@ class TenantApplicationsInfoDtoTest extends TestCase
      * Test attribute "tenant_id"
      */
     public function testPropertyTenantId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "design_editor_api_key"
+     */
+    public function testPropertyDesignEditorApiKey()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "preflight_api_key"
+     */
+    public function testPropertyPreflightApiKey()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "dynamic_image_api_key"
+     */
+    public function testPropertyDynamicImageApiKey()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProjectPdfResultDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing result of get project pdf url operation
+ * @description Dto class, containing result of &#39;get project pdf url&#39; operation.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

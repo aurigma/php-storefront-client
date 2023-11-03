@@ -74,7 +74,7 @@ class ProductReferencesApiTest extends TestCase
     /**
      * Test case for productReferencesCreate
      *
-     * Creates new storefront product reference.
+     * Creates a new storefront product reference..
      *
      */
     public function testProductReferencesCreate()
@@ -86,7 +86,7 @@ class ProductReferencesApiTest extends TestCase
     /**
      * Test case for productReferencesDelete
      *
-     * Deletes storefront product reference.
+     * Deletes the storefront product reference..
      *
      */
     public function testProductReferencesDelete()
@@ -98,7 +98,7 @@ class ProductReferencesApiTest extends TestCase
     /**
      * Test case for productReferencesGet
      *
-     * Gets storefront product reference.
+     * Returns a storefront product reference..
      *
      */
     public function testProductReferencesGet()
@@ -110,7 +110,7 @@ class ProductReferencesApiTest extends TestCase
     /**
      * Test case for productReferencesGetAll
      *
-     * Gets all storefront product references relevant to specified query parameters.
+     * Returns all storefront product references relevant to the specified query parameters..
      *
      */
     public function testProductReferencesGetAll()
@@ -122,7 +122,7 @@ class ProductReferencesApiTest extends TestCase
     /**
      * Test case for productReferencesGetProductConfig
      *
-     * Gets product configuration information by storefront product reference.
+     * Returns a product personalization workflow configuration by storefront product reference..
      *
      */
     public function testProductReferencesGetProductConfig()
@@ -132,9 +132,21 @@ class ProductReferencesApiTest extends TestCase
     }
 
     /**
+     * Test case for productReferencesGetProductCostDetails
+     *
+     * Returns a product cost details from ecommerce system..
+     *
+     */
+    public function testProductReferencesGetProductCostDetails()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for productReferencesGetProductSpecification
      *
-     * Gets product specification by storefront product reference.
+     * Returns a product specification by the storefront product reference..
      *
      */
     public function testProductReferencesGetProductSpecification()

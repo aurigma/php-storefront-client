@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProductAttributeDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Product attribute dto class
+ * @description Dto class, containing information about product attribute.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

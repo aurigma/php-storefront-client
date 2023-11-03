@@ -74,7 +74,7 @@ class StorefrontUsersApiTest extends TestCase
     /**
      * Test case for storefrontUsersCreate
      *
-     * Creates new storefront user.
+     * Creates a new storefront user..
      *
      */
     public function testStorefrontUsersCreate()
@@ -86,7 +86,7 @@ class StorefrontUsersApiTest extends TestCase
     /**
      * Test case for storefrontUsersGet
      *
-     * Gets storefront user by id.
+     * Returns a storefront user by identifier..
      *
      */
     public function testStorefrontUsersGet()
@@ -98,7 +98,7 @@ class StorefrontUsersApiTest extends TestCase
     /**
      * Test case for storefrontUsersGetAll
      *
-     * Gets all storefront users relevant to specified query parameters.
+     * Returns all storefront users, relevant to the specified query parameters..
      *
      */
     public function testStorefrontUsersGetAll()
@@ -110,7 +110,7 @@ class StorefrontUsersApiTest extends TestCase
     /**
      * Test case for storefrontUsersGetToken
      *
-     * Gets storefront user token.
+     * Returns an API access token for the specified storefront user..
      *
      */
     public function testStorefrontUsersGetToken()
@@ -122,10 +122,22 @@ class StorefrontUsersApiTest extends TestCase
     /**
      * Test case for storefrontUsersMergeAnonymous
      *
-     * Merges anonymous storefront user data to regular storefront user account.
+     * Transfers all existing data for the anonymous storefront user to the selected regular storefront user account..
      *
      */
     public function testStorefrontUsersMergeAnonymous()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for storefrontUsersRegister
+     *
+     * Registers a storefront user with the specified identifier..
+     *
+     */
+    public function testStorefrontUsersRegister()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

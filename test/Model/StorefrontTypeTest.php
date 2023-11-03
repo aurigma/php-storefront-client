@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * StorefrontTypeTest Class Doc Comment
  *
  * @category    Class
- * @description Storefront types
+ * @description Storefront types.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

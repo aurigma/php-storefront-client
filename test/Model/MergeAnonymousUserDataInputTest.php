@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * MergeAnonymousUserDataInputTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing parameters for merge anonymous user operation
+ * @description Dto class, containing parameters for merge anonymous user operation.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

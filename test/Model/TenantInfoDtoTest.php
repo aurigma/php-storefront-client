@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * TenantInfoDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing information about tenant
+ * @description Dto class, containing general information about tenant.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -101,6 +101,15 @@ class TenantInfoDtoTest extends TestCase
      * Test attribute "tenant_creation_time"
      */
     public function testPropertyTenantCreationTime()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "is_active"
+     */
+    public function testPropertyIsActive()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

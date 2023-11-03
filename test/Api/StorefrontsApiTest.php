@@ -74,7 +74,7 @@ class StorefrontsApiTest extends TestCase
     /**
      * Test case for storefrontsGet
      *
-     * Gets storefront.
+     * Returns a storefront by identifier..
      *
      */
     public function testStorefrontsGet()
@@ -86,7 +86,7 @@ class StorefrontsApiTest extends TestCase
     /**
      * Test case for storefrontsGetAll
      *
-     * Gets all storefronts relevant to specified query parameters.
+     * Returns all storefronts, relevant to the specified query parameters..
      *
      */
     public function testStorefrontsGetAll()

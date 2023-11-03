@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProjectDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Project dto class
+ * @description Dto class, containing information about a project.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -89,6 +89,15 @@ class ProjectDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "product_reference"
+     */
+    public function testPropertyProductReference()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "storefront_id"
      */
     public function testPropertyStorefrontId()
@@ -101,15 +110,6 @@ class ProjectDtoTest extends TestCase
      * Test attribute "tenant_id"
      */
     public function testPropertyTenantId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "product_specification_id"
-     */
-    public function testPropertyProductSpecificationId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -137,6 +137,24 @@ class ProjectDtoTest extends TestCase
      * Test attribute "order_number"
      */
     public function testPropertyOrderNumber()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_line_item_id"
+     */
+    public function testPropertyOrderLineItemId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_line_item_index"
+     */
+    public function testPropertyOrderLineItemIndex()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -209,6 +227,15 @@ class ProjectDtoTest extends TestCase
      * Test attribute "last_modified"
      */
     public function testPropertyLastModified()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

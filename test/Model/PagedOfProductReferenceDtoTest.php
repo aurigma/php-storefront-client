@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * PagedOfProductReferenceDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Paged list of items
+ * @description Paged list of items.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

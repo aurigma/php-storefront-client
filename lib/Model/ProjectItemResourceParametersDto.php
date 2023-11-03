@@ -62,7 +62,8 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     protected static $openAPITypes = [
         'url' => 'string',
         'name' => 'string',
-        'type' => '\Aurigma\Storefront\Model\ProjectItemResourceType'
+        'type' => '\Aurigma\Storefront\Model\ProjectItemResourceType',
+        'resource_id' => 'string'
     ];
 
     /**
@@ -75,7 +76,8 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     protected static $openAPIFormats = [
         'url' => null,
         'name' => null,
-        'type' => null
+        'type' => null,
+        'resource_id' => null
     ];
 
     /**
@@ -107,7 +109,8 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     protected static $attributeMap = [
         'url' => 'url',
         'name' => 'name',
-        'type' => 'type'
+        'type' => 'type',
+        'resource_id' => 'resourceId'
     ];
 
     /**
@@ -118,7 +121,8 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     protected static $setters = [
         'url' => 'setUrl',
         'name' => 'setName',
-        'type' => 'setType'
+        'type' => 'setType',
+        'resource_id' => 'setResourceId'
     ];
 
     /**
@@ -129,7 +133,8 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     protected static $getters = [
         'url' => 'getUrl',
         'name' => 'getName',
-        'type' => 'getType'
+        'type' => 'getType',
+        'resource_id' => 'getResourceId'
     ];
 
     /**
@@ -192,6 +197,7 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
         $this->container['url'] = $data['url'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
+        $this->container['resource_id'] = $data['resource_id'] ?? null;
     }
 
     /**
@@ -286,6 +292,30 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     public function setType($type)
     {
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource_id
+     *
+     * @return string|null
+     */
+    public function getResourceId()
+    {
+        return $this->container['resource_id'];
+    }
+
+    /**
+     * Sets resource_id
+     *
+     * @param string|null $resource_id Original resource identifier.
+     *
+     * @return self
+     */
+    public function setResourceId($resource_id)
+    {
+        $this->container['resource_id'] = $resource_id;
 
         return $this;
     }

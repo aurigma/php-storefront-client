@@ -74,7 +74,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsChangeStatus
      *
-     * Changes project status.
+     * Changes the project status..
      *
      */
     public function testProjectsChangeStatus()
@@ -86,7 +86,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsCreate
      *
-     * Creates new project.
+     * Creates a new project..
      *
      */
     public function testProjectsCreate()
@@ -96,9 +96,21 @@ class ProjectsApiTest extends TestCase
     }
 
     /**
+     * Test case for projectsDelete
+     *
+     * Removes a project by identifier..
+     *
+     */
+    public function testProjectsDelete()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for projectsForceStatus
      *
-     * Force changes project status.
+     * Changes the project status forcibly without a proper transition..
      *
      */
     public function testProjectsForceStatus()
@@ -110,7 +122,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsGet
      *
-     * Gets project by id.
+     * Returns a project by identifier..
      *
      */
     public function testProjectsGet()
@@ -122,7 +134,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsGetAll
      *
-     * Gets all projects relevant to specified query parameters.
+     * Returns all projects, relevant to the specified query parameters..
      *
      */
     public function testProjectsGetAll()
@@ -134,7 +146,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsGetAllStatuses
      *
-     * Gets all project statuses.
+     * Returns a list of all existing project statuses..
      *
      */
     public function testProjectsGetAllStatuses()
@@ -146,7 +158,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsGetAllTransitions
      *
-     * Gets all project transitions.
+     * Returns a list of all existing project status transitions..
      *
      */
     public function testProjectsGetAllTransitions()
@@ -158,7 +170,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsGetAvailableTransitions
      *
-     * Gets available project transitions.
+     * Returns all available status transitions for a project..
      *
      */
     public function testProjectsGetAvailableTransitions()
@@ -170,7 +182,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsGetProjectOrder
      *
-     * Gets project order data from ecommerce system.
+     * Returns an order description from the ecommerce system for the specified project..
      *
      */
     public function testProjectsGetProjectOrder()
@@ -182,7 +194,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsGetProjectPdfUrl
      *
-     * Gets project pdf url.
+     * Returns an url to download project print file..
      *
      */
     public function testProjectsGetProjectPdfUrl()
@@ -194,7 +206,7 @@ class ProjectsApiTest extends TestCase
     /**
      * Test case for projectsGetProjectPdfZip
      *
-     * Gets project pdf files in zip archive.
+     * Returns an archive file, which contains all project print files..
      *
      */
     public function testProjectsGetProjectPdfZip()

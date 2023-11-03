@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProjectTransitionDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Project transition dto class
+ * @description Project transition dto class.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

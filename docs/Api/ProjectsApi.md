@@ -4,8 +4,10 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**projectsAttachDataToProjectOrder()**](ProjectsApi.md#projectsAttachDataToProjectOrder) | **POST** /api/storefront/v1/projects/{id}/order-data | Attachs the specified data to the project&#39;s order in ecommerce system.
 [**projectsChangeStatus()**](ProjectsApi.md#projectsChangeStatus) | **POST** /api/storefront/v1/projects/{id}/transitions/{transition} | Changes the project status.
 [**projectsCreate()**](ProjectsApi.md#projectsCreate) | **POST** /api/storefront/v1/projects | Creates a new project.
+[**projectsCreateByRenderHiResScenario()**](ProjectsApi.md#projectsCreateByRenderHiResScenario) | **POST** /api/storefront/v1/projects/by-scenario/render-hires | Creates a new project by &#39;Render HiRes&#39; scenario.
 [**projectsDelete()**](ProjectsApi.md#projectsDelete) | **DELETE** /api/storefront/v1/projects/{id} | Removes a project by identifier.
 [**projectsForceStatus()**](ProjectsApi.md#projectsForceStatus) | **POST** /api/storefront/v1/projects/{id}/statuses/{status} | Changes the project status forcibly without a proper transition.
 [**projectsGet()**](ProjectsApi.md#projectsGet) | **GET** /api/storefront/v1/projects/{id} | Returns a project by identifier.
@@ -13,10 +15,92 @@ Method | HTTP request | Description
 [**projectsGetAllStatuses()**](ProjectsApi.md#projectsGetAllStatuses) | **GET** /api/storefront/v1/projects/statuses | Returns a list of all existing project statuses.
 [**projectsGetAllTransitions()**](ProjectsApi.md#projectsGetAllTransitions) | **GET** /api/storefront/v1/projects/transitions | Returns a list of all existing project status transitions.
 [**projectsGetAvailableTransitions()**](ProjectsApi.md#projectsGetAvailableTransitions) | **GET** /api/storefront/v1/projects/{id}/transitions | Returns all available status transitions for a project.
+[**projectsGetPreview()**](ProjectsApi.md#projectsGetPreview) | **GET** /api/storefront/v1/projects/{id}/preview | Returns a project preview file by project identifier.
+[**projectsGetPreviewUrl()**](ProjectsApi.md#projectsGetPreviewUrl) | **GET** /api/storefront/v1/projects/{id}/preview-url | Returns a project preview URL by project identifier.
 [**projectsGetProjectOrder()**](ProjectsApi.md#projectsGetProjectOrder) | **GET** /api/storefront/v1/projects/{id}/order | Returns an order description from the ecommerce system for the specified project.
 [**projectsGetProjectPdfUrl()**](ProjectsApi.md#projectsGetProjectPdfUrl) | **GET** /api/storefront/v1/projects/{id}/project-pdf | Returns an url to download project print file.
 [**projectsGetProjectPdfZip()**](ProjectsApi.md#projectsGetProjectPdfZip) | **GET** /api/storefront/v1/projects/{id}/project-pdf-zip | Returns an archive file, which contains all project print files.
+[**projectsGetProjectProcessingResults()**](ProjectsApi.md#projectsGetProjectProcessingResults) | **GET** /api/storefront/v1/projects/{id}/processing-results | Returns a project processing results.
+[**projectsRestartProjectProcessing()**](ProjectsApi.md#projectsRestartProjectProcessing) | **POST** /api/storefront/v1/projects/{id}/restart-processing | Restarts a project processing routine.
+[**projectsResumeProjectProcessing()**](ProjectsApi.md#projectsResumeProjectProcessing) | **POST** /api/storefront/v1/projects/{id}/resume-processing | Resumes project processing.
 
+
+## `projectsAttachDataToProjectOrder()`
+
+```php
+projectsAttachDataToProjectOrder($id, $tenant_id, $order_data_item_dto)
+```
+
+Attachs the specified data to the project's order in ecommerce system.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int | Project identifier.
+$tenant_id = 56; // int | Tenant identifier.
+$order_data_item_dto = array(new \Aurigma\Storefront\Model\OrderDataItemDto()); // \Aurigma\Storefront\Model\OrderDataItemDto[] | A list of data items, which should be attached to project's order.
+
+try {
+    $apiInstance->projectsAttachDataToProjectOrder($id, $tenant_id, $order_data_item_dto);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectsApi->projectsAttachDataToProjectOrder: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Project identifier. |
+ **tenant_id** | **int**| Tenant identifier. | [optional]
+ **order_data_item_dto** | [**\Aurigma\Storefront\Model\OrderDataItemDto[]**](../Model/OrderDataItemDto.md)| A list of data items, which should be attached to project&#39;s order. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `text/json`, `application/_*+json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `projectsChangeStatus()`
 
@@ -156,6 +240,84 @@ Name | Type | Description  | Notes
  **storefront_id** | **int**| Storefront identifier. |
  **tenant_id** | **int**| Tenant identifier. | [optional]
  **create_project_dto** | [**\Aurigma\Storefront\Model\CreateProjectDto**](../Model/CreateProjectDto.md)| Create operation parameters. | [optional]
+
+### Return type
+
+[**\Aurigma\Storefront\Model\ProjectDto**](../Model/ProjectDto.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `text/json`, `application/_*+json`
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `projectsCreateByRenderHiResScenario()`
+
+```php
+projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto): \Aurigma\Storefront\Model\ProjectDto
+```
+
+Creates a new project by 'Render HiRes' scenario.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$storefront_id = 56; // int | Storefront identifier.
+$tenant_id = 56; // int | Tenant identifier.
+$create_project_by_render_hi_res_scenario_dto = new \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto(); // \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto | Create operation parameters.
+
+try {
+    $result = $apiInstance->projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectsApi->projectsCreateByRenderHiResScenario: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **storefront_id** | **int**| Storefront identifier. |
+ **tenant_id** | **int**| Tenant identifier. | [optional]
+ **create_project_by_render_hi_res_scenario_dto** | [**\Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto**](../Model/CreateProjectByRenderHiResScenarioDto.md)| Create operation parameters. | [optional]
 
 ### Return type
 
@@ -406,7 +568,7 @@ Name | Type | Description  | Notes
 ## `projectsGetAll()`
 
 ```php
-projectsGetAll($storefront_id, $owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $tenant_id): \Aurigma\Storefront\Model\PagedOfProjectDto
+projectsGetAll($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $storefront_id, $tenant_id): \Aurigma\Storefront\Model\PagedOfProjectDto
 ```
 
 Returns all projects, relevant to the specified query parameters.
@@ -444,7 +606,6 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$storefront_id = 56; // int | Storefront identifier.
 $owner_id = 'owner_id_example'; // string | Project owner (storefront user id) filter.
 $product_reference = 'product_reference_example'; // string | Product reference filter.
 $status = 56; // int | Project status filter.
@@ -454,10 +615,11 @@ $take = 56; // int | Defines page length (how many consequent items of sorted re
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
 $search = 'search_example'; // string | Search string for partial match.
 $order_id = 'order_id_example'; // string | Identifier of corresponding order.
+$storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
-    $result = $apiInstance->projectsGetAll($storefront_id, $owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $tenant_id);
+    $result = $apiInstance->projectsGetAll($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $storefront_id, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsGetAll: ', $e->getMessage(), PHP_EOL;
@@ -468,7 +630,6 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **storefront_id** | **int**| Storefront identifier. |
  **owner_id** | **string**| Project owner (storefront user id) filter. | [optional]
  **product_reference** | **string**| Product reference filter. | [optional]
  **status** | **int**| Project status filter. | [optional]
@@ -478,6 +639,7 @@ Name | Type | Description  | Notes
  **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional]
  **search** | **string**| Search string for partial match. | [optional]
  **order_id** | **string**| Identifier of corresponding order. | [optional]
+ **storefront_id** | **int**| Storefront identifier. | [optional]
  **tenant_id** | **int**| Tenant identifier. | [optional]
 
 ### Return type
@@ -707,6 +869,158 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Aurigma\Storefront\Model\PagedOfProjectTransitionDto**](../Model/PagedOfProjectTransitionDto.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `projectsGetPreview()`
+
+```php
+projectsGetPreview($id, $tenant_id): \SplFileObject
+```
+
+Returns a project preview file by project identifier.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int | Project identifier.
+$tenant_id = 56; // int | Tenant identifier.
+
+try {
+    $result = $apiInstance->projectsGetPreview($id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectsApi->projectsGetPreview: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Project identifier. |
+ **tenant_id** | **int**| Tenant identifier. | [optional]
+
+### Return type
+
+[**\SplFileObject**](../Model/\SplFileObject.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `projectsGetPreviewUrl()`
+
+```php
+projectsGetPreviewUrl($id, $tenant_id): string
+```
+
+Returns a project preview URL by project identifier.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int | Project identifier.
+$tenant_id = 56; // int | Tenant identifier.
+
+try {
+    $result = $apiInstance->projectsGetPreviewUrl($id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectsApi->projectsGetPreviewUrl: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Project identifier. |
+ **tenant_id** | **int**| Tenant identifier. | [optional]
+
+### Return type
+
+**string**
 
 ### Authorization
 
@@ -954,6 +1268,232 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: `application/octet-stream`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `projectsGetProjectProcessingResults()`
+
+```php
+projectsGetProjectProcessingResults($id, $tenant_id): \Aurigma\Storefront\Model\ProjectProcessingResultsDto
+```
+
+Returns a project processing results.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int | Project identifier.
+$tenant_id = 56; // int | Tenant identifier.
+
+try {
+    $result = $apiInstance->projectsGetProjectProcessingResults($id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectsApi->projectsGetProjectProcessingResults: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Project identifier. |
+ **tenant_id** | **int**| Tenant identifier. | [optional]
+
+### Return type
+
+[**\Aurigma\Storefront\Model\ProjectProcessingResultsDto**](../Model/ProjectProcessingResultsDto.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `projectsRestartProjectProcessing()`
+
+```php
+projectsRestartProjectProcessing($id, $tenant_id)
+```
+
+Restarts a project processing routine.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int | Project identifier.
+$tenant_id = 56; // int | Tenant identifier.
+
+try {
+    $apiInstance->projectsRestartProjectProcessing($id, $tenant_id);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectsApi->projectsRestartProjectProcessing: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Project identifier. |
+ **tenant_id** | **int**| Tenant identifier. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `projectsResumeProjectProcessing()`
+
+```php
+projectsResumeProjectProcessing($id, $tenant_id)
+```
+
+Resumes project processing.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int | Project identifier.
+$tenant_id = 56; // int | Tenant identifier.
+
+try {
+    $apiInstance->projectsResumeProjectProcessing($id, $tenant_id);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectsApi->projectsResumeProjectProcessing: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Project identifier. |
+ **tenant_id** | **int**| Tenant identifier. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
