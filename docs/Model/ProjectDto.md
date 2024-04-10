@@ -19,8 +19,8 @@ Name | Type | Description | Notes
 **owner_id** | **string** | Project owner identifier. | [optional]
 **items** | [**\Aurigma\Storefront\Model\ProjectItemDto[]**](ProjectItemDto.md) | List of project items. | [optional]
 **status** | **int** | Project status code. | [optional]
-**created** | [**\DateTime**](\DateTime.md) | Project creation time. | [optional]
-**last_modified** | [**\DateTime**](\DateTime.md) | Project modification time. | [optional]
+**created** | **\DateTime** | Project creation time. | [optional]
+**last_modified** | **\DateTime** | Project modification time. | [optional]
 **description** | **string** | Description of the project. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

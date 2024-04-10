@@ -1,11 +1,11 @@
 # Aurigma\Storefront\BuildInfoApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**buildInfoGetInfo()**](BuildInfoApi.md#buildInfoGetInfo) | **GET** /api/storefront/v1/info | Returns an assembly build info.
-[**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/storefront/v1/info | Returns an assembly build info.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**buildInfoGetInfo()**](BuildInfoApi.md#buildInfoGetInfo) | **GET** /api/storefront/v1/info | Returns an assembly build info. |
+| [**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/storefront/v1/info | Returns an assembly build info. |
 
 
 ## `buildInfoGetInfo()`
