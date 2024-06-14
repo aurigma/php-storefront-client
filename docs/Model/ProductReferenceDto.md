@@ -8,6 +8,6 @@ Name | Type | Description | Notes
 **product_specification_id** | **int** | Customer&#39;s Canvas product specification identifier. | [optional]
 **storefront_id** | **int** | Storefront identifier. | [optional]
 **tenant_id** | **int** | Tenant identifier. | [optional]
-**created** | [**\DateTime**](\DateTime.md) | Storefront product reference creation date and time. | [optional]
+**created** | **\DateTime** | Storefront product reference creation date and time. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

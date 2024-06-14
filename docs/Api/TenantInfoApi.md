@@ -1,12 +1,12 @@
 # Aurigma\Storefront\TenantInfoApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**tenantInfoGetApplicationsInfo()**](TenantInfoApi.md#tenantInfoGetApplicationsInfo) | **GET** /api/storefront/v1/tenant-info/applications | Returns an information about the tenant applications.
-[**tenantInfoGetInfo()**](TenantInfoApi.md#tenantInfoGetInfo) | **GET** /api/storefront/v1/tenant-info | Returns an information about the tenant.
-[**tenantInfoGetUsersInfo()**](TenantInfoApi.md#tenantInfoGetUsersInfo) | **GET** /api/storefront/v1/tenant-info/users | Returns a list of tenant users.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**tenantInfoGetApplicationsInfo()**](TenantInfoApi.md#tenantInfoGetApplicationsInfo) | **GET** /api/storefront/v1/tenant-info/applications | Returns an information about the tenant applications. |
+| [**tenantInfoGetInfo()**](TenantInfoApi.md#tenantInfoGetInfo) | **GET** /api/storefront/v1/tenant-info | Returns an information about the tenant. |
+| [**tenantInfoGetUsersInfo()**](TenantInfoApi.md#tenantInfoGetUsersInfo) | **GET** /api/storefront/v1/tenant-info/users | Returns a list of tenant users. |
 
 
 ## `tenantInfoGetApplicationsInfo()`
@@ -24,21 +24,21 @@ Returns an information about the tenant applications.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 // Configure API key authorization: apiKey
 $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 // Configure API key authorization: bearerAuth
 $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 // Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -62,9 +62,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [bearerAuth](../../README.md#bearerAuth), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -98,21 +98,21 @@ Returns an information about the tenant.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 // Configure API key authorization: apiKey
 $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 // Configure API key authorization: bearerAuth
 $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 // Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -136,9 +136,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [bearerAuth](../../README.md#bearerAuth), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -172,21 +172,21 @@ Returns a list of tenant users.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 // Configure API key authorization: apiKey
 $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 // Configure API key authorization: bearerAuth
 $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 // Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -210,9 +210,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [bearerAuth](../../README.md#bearerAuth), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [bearerAuth](../../README.md#bearerAuth), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
