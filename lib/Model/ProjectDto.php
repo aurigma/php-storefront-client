@@ -75,7 +75,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'int',
         'created' => '\DateTime',
         'last_modified' => '\DateTime',
-        'description' => 'string'
+        'description' => 'string',
+        'processing_status' => '\Aurigma\Storefront\Model\ProjectProcessingStatus'
     ];
 
     /**
@@ -103,7 +104,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'int32',
         'created' => 'date-time',
         'last_modified' => 'date-time',
-        'description' => null
+        'description' => null,
+        'processing_status' => null
     ];
 
     /**
@@ -129,7 +131,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => false,
         'created' => false,
         'last_modified' => true,
-        'description' => true
+        'description' => true,
+        'processing_status' => false
     ];
 
     /**
@@ -235,7 +238,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'status',
         'created' => 'created',
         'last_modified' => 'lastModified',
-        'description' => 'description'
+        'description' => 'description',
+        'processing_status' => 'processingStatus'
     ];
 
     /**
@@ -261,7 +265,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'setStatus',
         'created' => 'setCreated',
         'last_modified' => 'setLastModified',
-        'description' => 'setDescription'
+        'description' => 'setDescription',
+        'processing_status' => 'setProcessingStatus'
     ];
 
     /**
@@ -287,7 +292,8 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'getStatus',
         'created' => 'getCreated',
         'last_modified' => 'getLastModified',
-        'description' => 'getDescription'
+        'description' => 'getDescription',
+        'processing_status' => 'getProcessingStatus'
     ];
 
     /**
@@ -365,6 +371,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('created', $data ?? [], null);
         $this->setIfExists('last_modified', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('processing_status', $data ?? [], null);
     }
 
     /**
@@ -982,6 +989,33 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets processing_status
+     *
+     * @return \Aurigma\Storefront\Model\ProjectProcessingStatus|null
+     */
+    public function getProcessingStatus()
+    {
+        return $this->container['processing_status'];
+    }
+
+    /**
+     * Sets processing_status
+     *
+     * @param \Aurigma\Storefront\Model\ProjectProcessingStatus|null $processing_status Project processing status.
+     *
+     * @return self
+     */
+    public function setProcessingStatus($processing_status)
+    {
+        if (is_null($processing_status)) {
+            throw new \InvalidArgumentException('non-nullable processing_status cannot be null');
+        }
+        $this->container['processing_status'] = $processing_status;
 
         return $this;
     }

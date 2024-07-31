@@ -8,7 +8,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**productReferencesDelete()**](ProductReferencesApi.md#productReferencesDelete) | **DELETE** /api/storefront/v1/product-references/{reference} | Deletes the storefront product reference. |
 | [**productReferencesGet()**](ProductReferencesApi.md#productReferencesGet) | **GET** /api/storefront/v1/product-references/{reference} | Returns a storefront product reference. |
 | [**productReferencesGetAll()**](ProductReferencesApi.md#productReferencesGetAll) | **GET** /api/storefront/v1/product-references | Returns all storefront product references relevant to the specified query parameters. |
-| [**productReferencesGetProductConfig()**](ProductReferencesApi.md#productReferencesGetProductConfig) | **GET** /api/storefront/v1/product-references/{reference}/product-config | Returns a product personalization workflow configuration by storefront product reference. |
+| [**productReferencesGetPersonalizationWorkflow()**](ProductReferencesApi.md#productReferencesGetPersonalizationWorkflow) | **GET** /api/storefront/v1/product-references/{reference}/personalization-workflow | Returns a product personalization workflow description by product specification identifier. |
+| [**productReferencesGetProductConfig()**](ProductReferencesApi.md#productReferencesGetProductConfig) | **GET** /api/storefront/v1/product-references/{reference}/product-config |  |
 | [**productReferencesGetProductCostDetails()**](ProductReferencesApi.md#productReferencesGetProductCostDetails) | **GET** /api/storefront/v1/product-references/{reference}/product-cost-details | Returns a product cost details from ecommerce system. |
 | [**productReferencesGetProductSpecification()**](ProductReferencesApi.md#productReferencesGetProductSpecification) | **GET** /api/storefront/v1/product-references/{reference}/product-specification | Returns a product specification by the storefront product reference. |
 
@@ -16,7 +17,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `productReferencesCreate()`
 
 ```php
-productReferencesCreate($storefront_id, $tenant_id, $create_product_reference_dto): \Aurigma\Storefront\Model\ProductReferenceDto
+productReferencesCreate($storefront_id, $tenant_id, $product_references_create_request): \Aurigma\Storefront\Model\ProductReferenceDto
 ```
 
 Creates a new storefront product reference.
@@ -56,10 +57,10 @@ $apiInstance = new Aurigma\Storefront\Api\ProductReferencesApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$create_product_reference_dto = new \Aurigma\Storefront\Model\CreateProductReferenceDto(); // \Aurigma\Storefront\Model\CreateProductReferenceDto | Create operation parameters.
+$product_references_create_request = new \Aurigma\Storefront\Model\ProductReferencesCreateRequest(); // \Aurigma\Storefront\Model\ProductReferencesCreateRequest | Create operation parameters.
 
 try {
-    $result = $apiInstance->productReferencesCreate($storefront_id, $tenant_id, $create_product_reference_dto);
+    $result = $apiInstance->productReferencesCreate($storefront_id, $tenant_id, $product_references_create_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProductReferencesApi->productReferencesCreate: ', $e->getMessage(), PHP_EOL;
@@ -72,7 +73,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **create_product_reference_dto** | [**\Aurigma\Storefront\Model\CreateProductReferenceDto**](../Model/CreateProductReferenceDto.md)| Create operation parameters. | [optional] |
+| **product_references_create_request** | [**\Aurigma\Storefront\Model\ProductReferencesCreateRequest**](../Model/ProductReferencesCreateRequest.md)| Create operation parameters. | [optional] |
 
 ### Return type
 
@@ -335,13 +336,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `productReferencesGetProductConfig()`
+## `productReferencesGetPersonalizationWorkflow()`
 
 ```php
-productReferencesGetProductConfig($reference, $storefront_id, $tenant_id): string
+productReferencesGetPersonalizationWorkflow($reference, $storefront_id, $tenant_id): \Aurigma\Storefront\Model\PersonalizationWorkflowDto
 ```
 
-Returns a product personalization workflow configuration by storefront product reference.
+Returns a product personalization workflow description by product specification identifier.
 
 ### Example
 
@@ -381,6 +382,84 @@ $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
+    $result = $apiInstance->productReferencesGetPersonalizationWorkflow($reference, $storefront_id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductReferencesApi->productReferencesGetPersonalizationWorkflow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **reference** | **string**| Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. | |
+| **storefront_id** | **int**| Storefront identifier. | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
+
+### Return type
+
+[**\Aurigma\Storefront\Model\PersonalizationWorkflowDto**](../Model/PersonalizationWorkflowDto.md)
+
+### Authorization
+
+[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [bearerAuth](../../README.md#bearerAuth), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `productReferencesGetProductConfig()`
+
+```php
+productReferencesGetProductConfig($reference, $storefront_id, $tenant_id): string
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProductReferencesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$reference = 'reference_example'; // string
+$storefront_id = 56; // int
+$tenant_id = 56; // int
+
+try {
     $result = $apiInstance->productReferencesGetProductConfig($reference, $storefront_id, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
@@ -392,9 +471,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **reference** | **string**| Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. | |
-| **storefront_id** | **int**| Storefront identifier. | |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **reference** | **string**|  | |
+| **storefront_id** | **int**|  | |
+| **tenant_id** | **int**|  | [optional] |
 
 ### Return type
 
@@ -407,7 +486,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `text/plain`, `application/json`, `text/json`
+- **Accept**: `text/plain`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

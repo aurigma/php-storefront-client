@@ -419,7 +419,7 @@ class StorefrontDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\StorefrontType|null $type type
+     * @param \Aurigma\Storefront\Model\StorefrontType|null $type Storefront ecommerce system type.
      *
      * @return self
      */

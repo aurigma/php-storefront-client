@@ -10,5 +10,7 @@ Name | Type | Description | Notes
 **product_attributes** | [**\Aurigma\Storefront\Model\ProductAttributeDto[]**](ProductAttributeDto.md) | List of product attributes. | [optional]
 **created** | **\DateTime** | Product specification creation time. | [optional]
 **last_modified** | **\DateTime** | Product specification modification time. | [optional]
+**personalization_workflow_id** | **int** | Personalization workflow identifier. | [optional]
+**processing_pipeline_id** | **int** | Processing pipeline identifier. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -86,6 +86,9 @@ class ProductReferencesApi
         'productReferencesGetAll' => [
             'application/json',
         ],
+        'productReferencesGetPersonalizationWorkflow' => [
+            'application/json',
+        ],
         'productReferencesGetProductConfig' => [
             'application/json',
         ],
@@ -150,16 +153,16 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function productReferencesCreate($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreate($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
-        list($response) = $this->productReferencesCreateWithHttpInfo($storefront_id, $tenant_id, $create_product_reference_dto, $contentType);
+        list($response) = $this->productReferencesCreateWithHttpInfo($storefront_id, $tenant_id, $product_references_create_request, $contentType);
         return $response;
     }
 
@@ -170,16 +173,16 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesCreateWithHttpInfo($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreateWithHttpInfo($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
-        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $create_product_reference_dto, $contentType);
+        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $product_references_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -331,15 +334,15 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesCreateAsync($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreateAsync($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
-        return $this->productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $create_product_reference_dto, $contentType)
+        return $this->productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $product_references_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -354,16 +357,16 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\ProductReferenceDto';
-        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $create_product_reference_dto, $contentType);
+        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $product_references_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -406,13 +409,13 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesCreateRequest($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreateRequest($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -461,12 +464,12 @@ class ProductReferencesApi
         );
 
         // for model (json/xml)
-        if (isset($create_product_reference_dto)) {
+        if (isset($product_references_create_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_product_reference_dto));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($product_references_create_request));
             } else {
-                $httpBody = $create_product_reference_dto;
+                $httpBody = $product_references_create_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1772,18 +1775,411 @@ class ProductReferencesApi
     }
 
     /**
-     * Operation productReferencesGetProductConfig
+     * Operation productReferencesGetPersonalizationWorkflow
      *
-     * Returns a product personalization workflow configuration by storefront product reference.
+     * Returns a product personalization workflow description by product specification identifier.
      *
      * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
-     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetPersonalizationWorkflow'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\Storefront\Model\PersonalizationWorkflowDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     */
+    public function productReferencesGetPersonalizationWorkflow($reference, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetPersonalizationWorkflow'][0])
+    {
+        list($response) = $this->productReferencesGetPersonalizationWorkflowWithHttpInfo($reference, $storefront_id, $tenant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation productReferencesGetPersonalizationWorkflowWithHttpInfo
+     *
+     * Returns a product personalization workflow description by product specification identifier.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetPersonalizationWorkflow'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\Storefront\Model\PersonalizationWorkflowDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function productReferencesGetPersonalizationWorkflowWithHttpInfo($reference, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetPersonalizationWorkflow'][0])
+    {
+        $request = $this->productReferencesGetPersonalizationWorkflowRequest($reference, $storefront_id, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\Storefront\Model\PersonalizationWorkflowDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\PersonalizationWorkflowDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\PersonalizationWorkflowDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\Storefront\Model\PersonalizationWorkflowDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\PersonalizationWorkflowDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation productReferencesGetPersonalizationWorkflowAsync
+     *
+     * Returns a product personalization workflow description by product specification identifier.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetPersonalizationWorkflow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function productReferencesGetPersonalizationWorkflowAsync($reference, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetPersonalizationWorkflow'][0])
+    {
+        return $this->productReferencesGetPersonalizationWorkflowAsyncWithHttpInfo($reference, $storefront_id, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation productReferencesGetPersonalizationWorkflowAsyncWithHttpInfo
+     *
+     * Returns a product personalization workflow description by product specification identifier.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetPersonalizationWorkflow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function productReferencesGetPersonalizationWorkflowAsyncWithHttpInfo($reference, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetPersonalizationWorkflow'][0])
+    {
+        $returnType = '\Aurigma\Storefront\Model\PersonalizationWorkflowDto';
+        $request = $this->productReferencesGetPersonalizationWorkflowRequest($reference, $storefront_id, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'productReferencesGetPersonalizationWorkflow'
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetPersonalizationWorkflow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function productReferencesGetPersonalizationWorkflowRequest($reference, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetPersonalizationWorkflow'][0])
+    {
+
+        // verify the required parameter 'reference' is set
+        if ($reference === null || (is_array($reference) && count($reference) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $reference when calling productReferencesGetPersonalizationWorkflow'
+            );
+        }
+
+
+
+
+        $resourcePath = '/api/storefront/v1/product-references/{reference}/personalization-workflow';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $storefront_id,
+            'storefrontId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($reference !== null) {
+            $resourcePath = str_replace(
+                '{' . 'reference' . '}',
+                ObjectSerializer::toPathValue($reference),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation productReferencesGetProductConfig
+     *
+     * @param  string $reference reference (required)
+     * @param  int $storefront_id storefront_id (required)
+     * @param  int $tenant_id tenant_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @deprecated
      */
     public function productReferencesGetProductConfig($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductConfig'][0])
     {
@@ -1794,16 +2190,15 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfigWithHttpInfo
      *
-     * Returns a product personalization workflow configuration by storefront product reference.
-     *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
-     * @param  int $storefront_id Storefront identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $reference (required)
+     * @param  int $storefront_id (required)
+     * @param  int $tenant_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @deprecated
      */
     public function productReferencesGetProductConfigWithHttpInfo($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductConfig'][0])
     {
@@ -1955,15 +2350,14 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfigAsync
      *
-     * Returns a product personalization workflow configuration by storefront product reference.
-     *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
-     * @param  int $storefront_id Storefront identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $reference (required)
+     * @param  int $storefront_id (required)
+     * @param  int $tenant_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
+     * @deprecated
      */
     public function productReferencesGetProductConfigAsync($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductConfig'][0])
     {
@@ -1978,15 +2372,14 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfigAsyncWithHttpInfo
      *
-     * Returns a product personalization workflow configuration by storefront product reference.
-     *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
-     * @param  int $storefront_id Storefront identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $reference (required)
+     * @param  int $storefront_id (required)
+     * @param  int $tenant_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
+     * @deprecated
      */
     public function productReferencesGetProductConfigAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductConfig'][0])
     {
@@ -2032,13 +2425,14 @@ class ProductReferencesApi
     /**
      * Create request for operation 'productReferencesGetProductConfig'
      *
-     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
-     * @param  int $storefront_id Storefront identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $reference (required)
+     * @param  int $storefront_id (required)
+     * @param  int $tenant_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
+     * @deprecated
      */
     public function productReferencesGetProductConfigRequest($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductConfig'][0])
     {
@@ -2097,7 +2491,7 @@ class ProductReferencesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['text/plain', ],
             $contentType,
             $multipart
         );

@@ -392,7 +392,7 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\ProjectItemResourceType|null $type type
+     * @param \Aurigma\Storefront\Model\ProjectItemResourceType|null $type Resource type.
      *
      * @return self
      */

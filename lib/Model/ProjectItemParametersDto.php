@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProjectItemParametersDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing create operation paramters for a project item.
+ * @description Dto class, containing create operation parameters for a project item.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

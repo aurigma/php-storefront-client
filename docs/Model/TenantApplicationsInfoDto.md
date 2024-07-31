@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **design_editor_url** | **string** | An url to the &#39;Design Editor&#39; tenant application. | [optional]
 **ui_framework_url** | **string** | An url to the &#39;UI Framework&#39;. | [optional]
 **simple_editor_url** | **string** | An url to the &#39;Simple editor&#39;. | [optional]
+**workflow_elements_url** | **string** | An url to the &#39;Workflow Elements&#39; web components library. | [optional]
+**template_editor_url** | **string** | An url to the &#39;Template editor&#39;. | [optional]
 **preflight_url** | **string** | An url to the &#39;Preflight&#39; tenant application. | [optional]
 **dynamic_image_url** | **string** | An url to the &#39;Dynamic Image&#39; tenant application. | [optional]
 **tenant_id** | **int** | Tenant identifier | [optional]

@@ -61,6 +61,8 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
         'design_editor_url' => 'string',
         'ui_framework_url' => 'string',
         'simple_editor_url' => 'string',
+        'workflow_elements_url' => 'string',
+        'template_editor_url' => 'string',
         'preflight_url' => 'string',
         'dynamic_image_url' => 'string',
         'tenant_id' => 'int',
@@ -80,6 +82,8 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
         'design_editor_url' => null,
         'ui_framework_url' => null,
         'simple_editor_url' => null,
+        'workflow_elements_url' => null,
+        'template_editor_url' => null,
         'preflight_url' => null,
         'dynamic_image_url' => null,
         'tenant_id' => 'int32',
@@ -97,6 +101,8 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
         'design_editor_url' => true,
         'ui_framework_url' => true,
         'simple_editor_url' => true,
+        'workflow_elements_url' => true,
+        'template_editor_url' => true,
         'preflight_url' => true,
         'dynamic_image_url' => true,
         'tenant_id' => false,
@@ -194,6 +200,8 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
         'design_editor_url' => 'designEditorUrl',
         'ui_framework_url' => 'uiFrameworkUrl',
         'simple_editor_url' => 'simpleEditorUrl',
+        'workflow_elements_url' => 'workflowElementsUrl',
+        'template_editor_url' => 'templateEditorUrl',
         'preflight_url' => 'preflightUrl',
         'dynamic_image_url' => 'dynamicImageUrl',
         'tenant_id' => 'tenantId',
@@ -211,6 +219,8 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
         'design_editor_url' => 'setDesignEditorUrl',
         'ui_framework_url' => 'setUiFrameworkUrl',
         'simple_editor_url' => 'setSimpleEditorUrl',
+        'workflow_elements_url' => 'setWorkflowElementsUrl',
+        'template_editor_url' => 'setTemplateEditorUrl',
         'preflight_url' => 'setPreflightUrl',
         'dynamic_image_url' => 'setDynamicImageUrl',
         'tenant_id' => 'setTenantId',
@@ -228,6 +238,8 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
         'design_editor_url' => 'getDesignEditorUrl',
         'ui_framework_url' => 'getUiFrameworkUrl',
         'simple_editor_url' => 'getSimpleEditorUrl',
+        'workflow_elements_url' => 'getWorkflowElementsUrl',
+        'template_editor_url' => 'getTemplateEditorUrl',
         'preflight_url' => 'getPreflightUrl',
         'dynamic_image_url' => 'getDynamicImageUrl',
         'tenant_id' => 'getTenantId',
@@ -296,6 +308,8 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('design_editor_url', $data ?? [], null);
         $this->setIfExists('ui_framework_url', $data ?? [], null);
         $this->setIfExists('simple_editor_url', $data ?? [], null);
+        $this->setIfExists('workflow_elements_url', $data ?? [], null);
+        $this->setIfExists('template_editor_url', $data ?? [], null);
         $this->setIfExists('preflight_url', $data ?? [], null);
         $this->setIfExists('dynamic_image_url', $data ?? [], null);
         $this->setIfExists('tenant_id', $data ?? [], null);
@@ -444,6 +458,74 @@ class TenantApplicationsInfoDto implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['simple_editor_url'] = $simple_editor_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets workflow_elements_url
+     *
+     * @return string|null
+     */
+    public function getWorkflowElementsUrl()
+    {
+        return $this->container['workflow_elements_url'];
+    }
+
+    /**
+     * Sets workflow_elements_url
+     *
+     * @param string|null $workflow_elements_url An url to the 'Workflow Elements' web components library.
+     *
+     * @return self
+     */
+    public function setWorkflowElementsUrl($workflow_elements_url)
+    {
+        if (is_null($workflow_elements_url)) {
+            array_push($this->openAPINullablesSetToNull, 'workflow_elements_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('workflow_elements_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['workflow_elements_url'] = $workflow_elements_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets template_editor_url
+     *
+     * @return string|null
+     */
+    public function getTemplateEditorUrl()
+    {
+        return $this->container['template_editor_url'];
+    }
+
+    /**
+     * Sets template_editor_url
+     *
+     * @param string|null $template_editor_url An url to the 'Template editor'.
+     *
+     * @return self
+     */
+    public function setTemplateEditorUrl($template_editor_url)
+    {
+        if (is_null($template_editor_url)) {
+            array_push($this->openAPINullablesSetToNull, 'template_editor_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('template_editor_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['template_editor_url'] = $template_editor_url;
 
         return $this;
     }

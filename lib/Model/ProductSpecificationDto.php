@@ -63,7 +63,9 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'name' => 'string',
         'product_attributes' => '\Aurigma\Storefront\Model\ProductAttributeDto[]',
         'created' => '\DateTime',
-        'last_modified' => '\DateTime'
+        'last_modified' => '\DateTime',
+        'personalization_workflow_id' => 'int',
+        'processing_pipeline_id' => 'int'
     ];
 
     /**
@@ -79,7 +81,9 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'name' => null,
         'product_attributes' => null,
         'created' => 'date-time',
-        'last_modified' => 'date-time'
+        'last_modified' => 'date-time',
+        'personalization_workflow_id' => 'int32',
+        'processing_pipeline_id' => 'int32'
     ];
 
     /**
@@ -93,7 +97,9 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'name' => true,
         'product_attributes' => true,
         'created' => false,
-        'last_modified' => true
+        'last_modified' => true,
+        'personalization_workflow_id' => false,
+        'processing_pipeline_id' => false
     ];
 
     /**
@@ -187,7 +193,9 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'name' => 'name',
         'product_attributes' => 'productAttributes',
         'created' => 'created',
-        'last_modified' => 'lastModified'
+        'last_modified' => 'lastModified',
+        'personalization_workflow_id' => 'personalizationWorkflowId',
+        'processing_pipeline_id' => 'processingPipelineId'
     ];
 
     /**
@@ -201,7 +209,9 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'name' => 'setName',
         'product_attributes' => 'setProductAttributes',
         'created' => 'setCreated',
-        'last_modified' => 'setLastModified'
+        'last_modified' => 'setLastModified',
+        'personalization_workflow_id' => 'setPersonalizationWorkflowId',
+        'processing_pipeline_id' => 'setProcessingPipelineId'
     ];
 
     /**
@@ -215,7 +225,9 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'name' => 'getName',
         'product_attributes' => 'getProductAttributes',
         'created' => 'getCreated',
-        'last_modified' => 'getLastModified'
+        'last_modified' => 'getLastModified',
+        'personalization_workflow_id' => 'getPersonalizationWorkflowId',
+        'processing_pipeline_id' => 'getProcessingPipelineId'
     ];
 
     /**
@@ -281,6 +293,8 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('product_attributes', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
         $this->setIfExists('last_modified', $data ?? [], null);
+        $this->setIfExists('personalization_workflow_id', $data ?? [], null);
+        $this->setIfExists('processing_pipeline_id', $data ?? [], null);
     }
 
     /**
@@ -504,6 +518,60 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
             }
         }
         $this->container['last_modified'] = $last_modified;
+
+        return $this;
+    }
+
+    /**
+     * Gets personalization_workflow_id
+     *
+     * @return int|null
+     */
+    public function getPersonalizationWorkflowId()
+    {
+        return $this->container['personalization_workflow_id'];
+    }
+
+    /**
+     * Sets personalization_workflow_id
+     *
+     * @param int|null $personalization_workflow_id Personalization workflow identifier.
+     *
+     * @return self
+     */
+    public function setPersonalizationWorkflowId($personalization_workflow_id)
+    {
+        if (is_null($personalization_workflow_id)) {
+            throw new \InvalidArgumentException('non-nullable personalization_workflow_id cannot be null');
+        }
+        $this->container['personalization_workflow_id'] = $personalization_workflow_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets processing_pipeline_id
+     *
+     * @return int|null
+     */
+    public function getProcessingPipelineId()
+    {
+        return $this->container['processing_pipeline_id'];
+    }
+
+    /**
+     * Sets processing_pipeline_id
+     *
+     * @param int|null $processing_pipeline_id Processing pipeline identifier.
+     *
+     * @return self
+     */
+    public function setProcessingPipelineId($processing_pipeline_id)
+    {
+        if (is_null($processing_pipeline_id)) {
+            throw new \InvalidArgumentException('non-nullable processing_pipeline_id cannot be null');
+        }
+        $this->container['processing_pipeline_id'] = $processing_pipeline_id;
 
         return $this;
     }

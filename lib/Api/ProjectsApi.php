@@ -92,6 +92,12 @@ class ProjectsApi
             'text/json',
             'application/*+json',
         ],
+        'projectsCreateBySpecificPipelineScenario' => [
+            'application/json-patch+json',
+            'application/json',
+            'text/json',
+            'application/*+json',
+        ],
         'projectsDelete' => [
             'application/json',
         ],
@@ -948,16 +954,16 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateRequest $projects_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function projectsCreate($storefront_id, $tenant_id = null, $create_project_dto = null, string $contentType = self::contentTypes['projectsCreate'][0])
+    public function projectsCreate($storefront_id, $tenant_id = null, $projects_create_request = null, string $contentType = self::contentTypes['projectsCreate'][0])
     {
-        list($response) = $this->projectsCreateWithHttpInfo($storefront_id, $tenant_id, $create_project_dto, $contentType);
+        list($response) = $this->projectsCreateWithHttpInfo($storefront_id, $tenant_id, $projects_create_request, $contentType);
         return $response;
     }
 
@@ -968,16 +974,16 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateRequest $projects_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsCreateWithHttpInfo($storefront_id, $tenant_id = null, $create_project_dto = null, string $contentType = self::contentTypes['projectsCreate'][0])
+    public function projectsCreateWithHttpInfo($storefront_id, $tenant_id = null, $projects_create_request = null, string $contentType = self::contentTypes['projectsCreate'][0])
     {
-        $request = $this->projectsCreateRequest($storefront_id, $tenant_id, $create_project_dto, $contentType);
+        $request = $this->projectsCreateRequest($storefront_id, $tenant_id, $projects_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1129,15 +1135,15 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateRequest $projects_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsCreateAsync($storefront_id, $tenant_id = null, $create_project_dto = null, string $contentType = self::contentTypes['projectsCreate'][0])
+    public function projectsCreateAsync($storefront_id, $tenant_id = null, $projects_create_request = null, string $contentType = self::contentTypes['projectsCreate'][0])
     {
-        return $this->projectsCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $create_project_dto, $contentType)
+        return $this->projectsCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $projects_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1152,16 +1158,16 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateRequest $projects_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $create_project_dto = null, string $contentType = self::contentTypes['projectsCreate'][0])
+    public function projectsCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $projects_create_request = null, string $contentType = self::contentTypes['projectsCreate'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\ProjectDto';
-        $request = $this->projectsCreateRequest($storefront_id, $tenant_id, $create_project_dto, $contentType);
+        $request = $this->projectsCreateRequest($storefront_id, $tenant_id, $projects_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1204,13 +1210,13 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectDto $create_project_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateRequest $projects_create_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsCreateRequest($storefront_id, $tenant_id = null, $create_project_dto = null, string $contentType = self::contentTypes['projectsCreate'][0])
+    public function projectsCreateRequest($storefront_id, $tenant_id = null, $projects_create_request = null, string $contentType = self::contentTypes['projectsCreate'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -1259,12 +1265,12 @@ class ProjectsApi
         );
 
         // for model (json/xml)
-        if (isset($create_project_dto)) {
+        if (isset($projects_create_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_project_dto));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($projects_create_request));
             } else {
-                $httpBody = $create_project_dto;
+                $httpBody = $projects_create_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1341,16 +1347,16 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto $create_project_by_render_hi_res_scenario_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest $projects_create_by_render_hi_res_scenario_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateByRenderHiResScenario'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function projectsCreateByRenderHiResScenario($storefront_id, $tenant_id = null, $create_project_by_render_hi_res_scenario_dto = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
+    public function projectsCreateByRenderHiResScenario($storefront_id, $tenant_id = null, $projects_create_by_render_hi_res_scenario_request = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
     {
-        list($response) = $this->projectsCreateByRenderHiResScenarioWithHttpInfo($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto, $contentType);
+        list($response) = $this->projectsCreateByRenderHiResScenarioWithHttpInfo($storefront_id, $tenant_id, $projects_create_by_render_hi_res_scenario_request, $contentType);
         return $response;
     }
 
@@ -1361,16 +1367,16 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto $create_project_by_render_hi_res_scenario_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest $projects_create_by_render_hi_res_scenario_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateByRenderHiResScenario'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsCreateByRenderHiResScenarioWithHttpInfo($storefront_id, $tenant_id = null, $create_project_by_render_hi_res_scenario_dto = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
+    public function projectsCreateByRenderHiResScenarioWithHttpInfo($storefront_id, $tenant_id = null, $projects_create_by_render_hi_res_scenario_request = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
     {
-        $request = $this->projectsCreateByRenderHiResScenarioRequest($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto, $contentType);
+        $request = $this->projectsCreateByRenderHiResScenarioRequest($storefront_id, $tenant_id, $projects_create_by_render_hi_res_scenario_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1522,15 +1528,15 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto $create_project_by_render_hi_res_scenario_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest $projects_create_by_render_hi_res_scenario_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateByRenderHiResScenario'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsCreateByRenderHiResScenarioAsync($storefront_id, $tenant_id = null, $create_project_by_render_hi_res_scenario_dto = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
+    public function projectsCreateByRenderHiResScenarioAsync($storefront_id, $tenant_id = null, $projects_create_by_render_hi_res_scenario_request = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
     {
-        return $this->projectsCreateByRenderHiResScenarioAsyncWithHttpInfo($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto, $contentType)
+        return $this->projectsCreateByRenderHiResScenarioAsyncWithHttpInfo($storefront_id, $tenant_id, $projects_create_by_render_hi_res_scenario_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1545,16 +1551,16 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto $create_project_by_render_hi_res_scenario_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest $projects_create_by_render_hi_res_scenario_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateByRenderHiResScenario'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsCreateByRenderHiResScenarioAsyncWithHttpInfo($storefront_id, $tenant_id = null, $create_project_by_render_hi_res_scenario_dto = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
+    public function projectsCreateByRenderHiResScenarioAsyncWithHttpInfo($storefront_id, $tenant_id = null, $projects_create_by_render_hi_res_scenario_request = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\ProjectDto';
-        $request = $this->projectsCreateByRenderHiResScenarioRequest($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto, $contentType);
+        $request = $this->projectsCreateByRenderHiResScenarioRequest($storefront_id, $tenant_id, $projects_create_by_render_hi_res_scenario_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1597,13 +1603,13 @@ class ProjectsApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto $create_project_by_render_hi_res_scenario_dto Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest $projects_create_by_render_hi_res_scenario_request Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateByRenderHiResScenario'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsCreateByRenderHiResScenarioRequest($storefront_id, $tenant_id = null, $create_project_by_render_hi_res_scenario_dto = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
+    public function projectsCreateByRenderHiResScenarioRequest($storefront_id, $tenant_id = null, $projects_create_by_render_hi_res_scenario_request = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -1652,12 +1658,405 @@ class ProjectsApi
         );
 
         // for model (json/xml)
-        if (isset($create_project_by_render_hi_res_scenario_dto)) {
+        if (isset($projects_create_by_render_hi_res_scenario_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_project_by_render_hi_res_scenario_dto));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($projects_create_by_render_hi_res_scenario_request));
             } else {
-                $httpBody = $create_project_by_render_hi_res_scenario_dto;
+                $httpBody = $projects_create_by_render_hi_res_scenario_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation projectsCreateBySpecificPipelineScenario
+     *
+     * Creates a new project by &#39;Specific Pipeline&#39; scenario.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest $projects_create_by_specific_pipeline_scenario_request Create operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateBySpecificPipelineScenario'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     */
+    public function projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id = null, $projects_create_by_specific_pipeline_scenario_request = null, string $contentType = self::contentTypes['projectsCreateBySpecificPipelineScenario'][0])
+    {
+        list($response) = $this->projectsCreateBySpecificPipelineScenarioWithHttpInfo($storefront_id, $tenant_id, $projects_create_by_specific_pipeline_scenario_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation projectsCreateBySpecificPipelineScenarioWithHttpInfo
+     *
+     * Creates a new project by &#39;Specific Pipeline&#39; scenario.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest $projects_create_by_specific_pipeline_scenario_request Create operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateBySpecificPipelineScenario'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function projectsCreateBySpecificPipelineScenarioWithHttpInfo($storefront_id, $tenant_id = null, $projects_create_by_specific_pipeline_scenario_request = null, string $contentType = self::contentTypes['projectsCreateBySpecificPipelineScenario'][0])
+    {
+        $request = $this->projectsCreateBySpecificPipelineScenarioRequest($storefront_id, $tenant_id, $projects_create_by_specific_pipeline_scenario_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\Aurigma\Storefront\Model\ProjectDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\ProjectDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\ProjectDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\Storefront\Model\ProjectDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\ProjectDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation projectsCreateBySpecificPipelineScenarioAsync
+     *
+     * Creates a new project by &#39;Specific Pipeline&#39; scenario.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest $projects_create_by_specific_pipeline_scenario_request Create operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateBySpecificPipelineScenario'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function projectsCreateBySpecificPipelineScenarioAsync($storefront_id, $tenant_id = null, $projects_create_by_specific_pipeline_scenario_request = null, string $contentType = self::contentTypes['projectsCreateBySpecificPipelineScenario'][0])
+    {
+        return $this->projectsCreateBySpecificPipelineScenarioAsyncWithHttpInfo($storefront_id, $tenant_id, $projects_create_by_specific_pipeline_scenario_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation projectsCreateBySpecificPipelineScenarioAsyncWithHttpInfo
+     *
+     * Creates a new project by &#39;Specific Pipeline&#39; scenario.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest $projects_create_by_specific_pipeline_scenario_request Create operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateBySpecificPipelineScenario'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function projectsCreateBySpecificPipelineScenarioAsyncWithHttpInfo($storefront_id, $tenant_id = null, $projects_create_by_specific_pipeline_scenario_request = null, string $contentType = self::contentTypes['projectsCreateBySpecificPipelineScenario'][0])
+    {
+        $returnType = '\Aurigma\Storefront\Model\ProjectDto';
+        $request = $this->projectsCreateBySpecificPipelineScenarioRequest($storefront_id, $tenant_id, $projects_create_by_specific_pipeline_scenario_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'projectsCreateBySpecificPipelineScenario'
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest $projects_create_by_specific_pipeline_scenario_request Create operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsCreateBySpecificPipelineScenario'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function projectsCreateBySpecificPipelineScenarioRequest($storefront_id, $tenant_id = null, $projects_create_by_specific_pipeline_scenario_request = null, string $contentType = self::contentTypes['projectsCreateBySpecificPipelineScenario'][0])
+    {
+
+        // verify the required parameter 'storefront_id' is set
+        if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $storefront_id when calling projectsCreateBySpecificPipelineScenario'
+            );
+        }
+
+
+
+
+        $resourcePath = '/api/storefront/v1/projects/by-scenario/specific-pipeline';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $storefront_id,
+            'storefrontId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($projects_create_by_specific_pipeline_scenario_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($projects_create_by_specific_pipeline_scenario_request));
+            } else {
+                $httpBody = $projects_create_by_specific_pipeline_scenario_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2822,12 +3221,13 @@ class ProjectsApi
      * @param  string $owner_id Project owner (storefront user id) filter. (optional)
      * @param  string $product_reference Product reference filter. (optional)
      * @param  int $status Project status filter. (optional)
-     * @param  DatePeriod $date_period Project date period filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectProcessingStatus $processing_status Project processing status filter. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -2836,9 +3236,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProjectDto
      */
-    public function projectsGetAll($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAll($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
-        list($response) = $this->projectsGetAllWithHttpInfo($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $storefront_id, $tenant_id, $contentType);
+        list($response) = $this->projectsGetAllWithHttpInfo($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $storefront_id, $tenant_id, $contentType);
         return $response;
     }
 
@@ -2850,12 +3250,13 @@ class ProjectsApi
      * @param  string $owner_id Project owner (storefront user id) filter. (optional)
      * @param  string $product_reference Product reference filter. (optional)
      * @param  int $status Project status filter. (optional)
-     * @param  DatePeriod $date_period Project date period filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectProcessingStatus $processing_status Project processing status filter. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -2864,9 +3265,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProjectDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetAllWithHttpInfo($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAllWithHttpInfo($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
-        $request = $this->projectsGetAllRequest($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $storefront_id, $tenant_id, $contentType);
+        $request = $this->projectsGetAllRequest($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $storefront_id, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2984,12 +3385,13 @@ class ProjectsApi
      * @param  string $owner_id Project owner (storefront user id) filter. (optional)
      * @param  string $product_reference Product reference filter. (optional)
      * @param  int $status Project status filter. (optional)
-     * @param  DatePeriod $date_period Project date period filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectProcessingStatus $processing_status Project processing status filter. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -2997,9 +3399,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllAsync($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAllAsync($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
-        return $this->projectsGetAllAsyncWithHttpInfo($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $storefront_id, $tenant_id, $contentType)
+        return $this->projectsGetAllAsyncWithHttpInfo($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $storefront_id, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3015,12 +3417,13 @@ class ProjectsApi
      * @param  string $owner_id Project owner (storefront user id) filter. (optional)
      * @param  string $product_reference Product reference filter. (optional)
      * @param  int $status Project status filter. (optional)
-     * @param  DatePeriod $date_period Project date period filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectProcessingStatus $processing_status Project processing status filter. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -3028,10 +3431,10 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllAsyncWithHttpInfo($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAllAsyncWithHttpInfo($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProjectDto';
-        $request = $this->projectsGetAllRequest($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $storefront_id, $tenant_id, $contentType);
+        $request = $this->projectsGetAllRequest($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $storefront_id, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3075,12 +3478,13 @@ class ProjectsApi
      * @param  string $owner_id Project owner (storefront user id) filter. (optional)
      * @param  string $product_reference Product reference filter. (optional)
      * @param  int $status Project status filter. (optional)
-     * @param  DatePeriod $date_period Project date period filter. (optional)
+     * @param  \Aurigma\Storefront\Model\DatePeriod $date_period Project date period filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
+     * @param  \Aurigma\Storefront\Model\ProjectProcessingStatus $processing_status Project processing status filter. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -3088,8 +3492,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetAllRequest($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAllRequest($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
+
 
 
 
@@ -3187,6 +3592,15 @@ class ProjectsApi
             $order_id,
             'orderId', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $processing_status,
+            'processingStatus', // param base name
+            'ProjectProcessingStatus', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -4775,7 +5189,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return string|string
      */
     public function projectsGetPreviewUrl($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetPreviewUrl'][0])
     {
@@ -4794,7 +5208,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|string, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsGetPreviewUrlWithHttpInfo($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetPreviewUrl'][0])
     {
@@ -4864,11 +5278,11 @@ class ProjectsApi
                         $response->getHeaders()
                     ];
                 case 404:
-                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                    if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                        if ('string' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4886,7 +5300,7 @@ class ProjectsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        ObjectSerializer::deserialize($content, 'string', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4933,7 +5347,7 @@ class ProjectsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        'string',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5069,7 +5483,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['text/plain', ],
             $contentType,
             $multipart
         );
