@@ -80,6 +80,33 @@ class ProjectOutputFileDetailsDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "project_item_id"
+     */
+    public function testPropertyProjectItemId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_line_item_id"
+     */
+    public function testPropertyOrderLineItemId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_line_item_index"
+     */
+    public function testPropertyOrderLineItemIndex()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "url"
      */
     public function testPropertyUrl()
@@ -119,6 +146,15 @@ class ProjectOutputFileDetailsDtoTest extends TestCase
      * Test attribute "anonymous_access"
      */
     public function testPropertyAnonymousAccess()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "size"
+     */
+    public function testPropertySize()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

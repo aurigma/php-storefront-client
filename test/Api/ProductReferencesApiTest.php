@@ -120,6 +120,18 @@ class ProductReferencesApiTest extends TestCase
     }
 
     /**
+     * Test case for productReferencesGetPersonalizationWorkflow
+     *
+     * Returns a product personalization workflow description by product specification identifier..
+     *
+     */
+    public function testProductReferencesGetPersonalizationWorkflow()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for productReferencesGetProductConfig
      *
      * Returns a product personalization workflow configuration by storefront product reference..

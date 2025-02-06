@@ -447,6 +447,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets product_reference
      *
      * @return string|null
+     * @deprecated
      */
     public function getProductReference()
     {
@@ -456,9 +457,10 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product_reference
      *
-     * @param string|null $product_reference Product reference (i.e external reference to Customer's Canvas product specification)
+     * @param string|null $product_reference Storefront product identifier.
      *
      * @return self
+     * @deprecated
      */
     public function setProductReference($product_reference)
     {
@@ -637,6 +639,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets order_line_item_id
      *
      * @return string|null
+     * @deprecated
      */
     public function getOrderLineItemId()
     {
@@ -646,9 +649,10 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_line_item_id
      *
-     * @param string|null $order_line_item_id Line item identifier from external ecommerce system order.
+     * @param string|null $order_line_item_id Order item identifier from storefront order.
      *
      * @return self
+     * @deprecated
      */
     public function setOrderLineItemId($order_line_item_id)
     {
@@ -671,6 +675,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets order_line_item_index
      *
      * @return int|null
+     * @deprecated
      */
     public function getOrderLineItemIndex()
     {
@@ -680,9 +685,10 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_line_item_index
      *
-     * @param int|null $order_line_item_index Line item index from external ecommerce system order.
+     * @param int|null $order_line_item_index Order item index from storefront order.
      *
      * @return self
+     * @deprecated
      */
     public function setOrderLineItemIndex($order_line_item_index)
     {
@@ -1006,7 +1012,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets processing_status
      *
-     * @param \Aurigma\Storefront\Model\ProjectProcessingStatus|null $processing_status Project processing status.
+     * @param \Aurigma\Storefront\Model\ProjectProcessingStatus|null $processing_status processing_status
      *
      * @return self
      */

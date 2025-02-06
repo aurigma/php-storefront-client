@@ -58,7 +58,9 @@ class SpecificPipelineScenarioDto implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'pipeline_id' => 'int'
+        'pipeline_id' => 'int',
+        'post_processing_pipeline_id' => 'int',
+        'item_pipelines' => '\Aurigma\Storefront\Model\ItemPipelineDto[]'
     ];
 
     /**
@@ -69,7 +71,9 @@ class SpecificPipelineScenarioDto implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'pipeline_id' => 'int32'
+        'pipeline_id' => 'int32',
+        'post_processing_pipeline_id' => 'int32',
+        'item_pipelines' => null
     ];
 
     /**
@@ -78,7 +82,9 @@ class SpecificPipelineScenarioDto implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'pipeline_id' => false
+        'pipeline_id' => true,
+        'post_processing_pipeline_id' => true,
+        'item_pipelines' => true
     ];
 
     /**
@@ -167,7 +173,9 @@ class SpecificPipelineScenarioDto implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'pipeline_id' => 'pipelineId'
+        'pipeline_id' => 'pipelineId',
+        'post_processing_pipeline_id' => 'postProcessingPipelineId',
+        'item_pipelines' => 'itemPipelines'
     ];
 
     /**
@@ -176,7 +184,9 @@ class SpecificPipelineScenarioDto implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'pipeline_id' => 'setPipelineId'
+        'pipeline_id' => 'setPipelineId',
+        'post_processing_pipeline_id' => 'setPostProcessingPipelineId',
+        'item_pipelines' => 'setItemPipelines'
     ];
 
     /**
@@ -185,7 +195,9 @@ class SpecificPipelineScenarioDto implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'pipeline_id' => 'getPipelineId'
+        'pipeline_id' => 'getPipelineId',
+        'post_processing_pipeline_id' => 'getPostProcessingPipelineId',
+        'item_pipelines' => 'getItemPipelines'
     ];
 
     /**
@@ -246,6 +258,8 @@ class SpecificPipelineScenarioDto implements ModelInterface, ArrayAccess, \JsonS
     public function __construct(array $data = null)
     {
         $this->setIfExists('pipeline_id', $data ?? [], null);
+        $this->setIfExists('post_processing_pipeline_id', $data ?? [], null);
+        $this->setIfExists('item_pipelines', $data ?? [], null);
     }
 
     /**
@@ -310,9 +324,84 @@ class SpecificPipelineScenarioDto implements ModelInterface, ArrayAccess, \JsonS
     public function setPipelineId($pipeline_id)
     {
         if (is_null($pipeline_id)) {
-            throw new \InvalidArgumentException('non-nullable pipeline_id cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'pipeline_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('pipeline_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['pipeline_id'] = $pipeline_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets post_processing_pipeline_id
+     *
+     * @return int|null
+     */
+    public function getPostProcessingPipelineId()
+    {
+        return $this->container['post_processing_pipeline_id'];
+    }
+
+    /**
+     * Sets post_processing_pipeline_id
+     *
+     * @param int|null $post_processing_pipeline_id An existing processing pipeline identifier for project post-processing.
+     *
+     * @return self
+     */
+    public function setPostProcessingPipelineId($post_processing_pipeline_id)
+    {
+        if (is_null($post_processing_pipeline_id)) {
+            array_push($this->openAPINullablesSetToNull, 'post_processing_pipeline_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('post_processing_pipeline_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['post_processing_pipeline_id'] = $post_processing_pipeline_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets item_pipelines
+     *
+     * @return \Aurigma\Storefront\Model\ItemPipelineDto[]|null
+     */
+    public function getItemPipelines()
+    {
+        return $this->container['item_pipelines'];
+    }
+
+    /**
+     * Sets item_pipelines
+     *
+     * @param \Aurigma\Storefront\Model\ItemPipelineDto[]|null $item_pipelines List of objects describing connections between project items and processing pipelines.
+     *
+     * @return self
+     */
+    public function setItemPipelines($item_pipelines)
+    {
+        if (is_null($item_pipelines)) {
+            array_push($this->openAPINullablesSetToNull, 'item_pipelines');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('item_pipelines', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['item_pipelines'] = $item_pipelines;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateProjectByRenderHiResScenarioDtoTest
+ * ItemPipelineDtoTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Aurigma\Storefront\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreateProjectByRenderHiResScenarioDtoTest Class Doc Comment
+ * ItemPipelineDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing &#39;create&#39; operation parameters for project entity.
+ * @description ItemPipelineDto
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreateProjectByRenderHiResScenarioDtoTest extends TestCase
+class ItemPipelineDtoTest extends TestCase
 {
 
     /**
@@ -71,72 +71,27 @@ class CreateProjectByRenderHiResScenarioDtoTest extends TestCase
     }
 
     /**
-     * Test "CreateProjectByRenderHiResScenarioDto"
+     * Test "ItemPipelineDto"
      */
-    public function testCreateProjectByRenderHiResScenarioDto()
+    public function testItemPipelineDto()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "owner_id"
+     * Test attribute "item_name"
      */
-    public function testPropertyOwnerId()
+    public function testPropertyItemName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "pipeline_id"
      */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "description"
-     */
-    public function testPropertyDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order_details"
-     */
-    public function testPropertyOrderDetails()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order_line_item_index"
-     */
-    public function testPropertyOrderLineItemIndex()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order_line_item_id"
-     */
-    public function testPropertyOrderLineItemId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "scenario"
-     */
-    public function testPropertyScenario()
+    public function testPropertyPipelineId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

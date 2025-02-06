@@ -61,7 +61,9 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
         'owner_id' => 'string',
         'name' => 'string',
         'description' => 'string',
-        'order_details' => '\Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDtoOrderDetails',
+        'order_details' => '\Aurigma\Storefront\Model\OrderDetailsDto',
+        'order_line_item_index' => 'int',
+        'order_line_item_id' => 'string',
         'scenario' => '\Aurigma\Storefront\Model\RenderHiResScenarioDto'
     ];
 
@@ -77,6 +79,8 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
         'name' => null,
         'description' => null,
         'order_details' => null,
+        'order_line_item_index' => 'int32',
+        'order_line_item_id' => null,
         'scenario' => null
     ];
 
@@ -89,7 +93,9 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
         'owner_id' => false,
         'name' => true,
         'description' => true,
-        'order_details' => true,
+        'order_details' => false,
+        'order_line_item_index' => true,
+        'order_line_item_id' => true,
         'scenario' => false
     ];
 
@@ -183,6 +189,8 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
         'name' => 'name',
         'description' => 'description',
         'order_details' => 'orderDetails',
+        'order_line_item_index' => 'orderLineItemIndex',
+        'order_line_item_id' => 'orderLineItemId',
         'scenario' => 'scenario'
     ];
 
@@ -196,6 +204,8 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
         'name' => 'setName',
         'description' => 'setDescription',
         'order_details' => 'setOrderDetails',
+        'order_line_item_index' => 'setOrderLineItemIndex',
+        'order_line_item_id' => 'setOrderLineItemId',
         'scenario' => 'setScenario'
     ];
 
@@ -209,6 +219,8 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
         'name' => 'getName',
         'description' => 'getDescription',
         'order_details' => 'getOrderDetails',
+        'order_line_item_index' => 'getOrderLineItemIndex',
+        'order_line_item_id' => 'getOrderLineItemId',
         'scenario' => 'getScenario'
     ];
 
@@ -273,6 +285,8 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('order_details', $data ?? [], null);
+        $this->setIfExists('order_line_item_index', $data ?? [], null);
+        $this->setIfExists('order_line_item_id', $data ?? [], null);
         $this->setIfExists('scenario', $data ?? [], null);
     }
 
@@ -422,7 +436,7 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
     /**
      * Gets order_details
      *
-     * @return \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDtoOrderDetails|null
+     * @return \Aurigma\Storefront\Model\OrderDetailsDto|null
      */
     public function getOrderDetails()
     {
@@ -432,23 +446,84 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
     /**
      * Sets order_details
      *
-     * @param \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDtoOrderDetails|null $order_details order_details
+     * @param \Aurigma\Storefront\Model\OrderDetailsDto|null $order_details order_details
      *
      * @return self
      */
     public function setOrderDetails($order_details)
     {
         if (is_null($order_details)) {
-            array_push($this->openAPINullablesSetToNull, 'order_details');
+            throw new \InvalidArgumentException('non-nullable order_details cannot be null');
+        }
+        $this->container['order_details'] = $order_details;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_index
+     *
+     * @return int|null
+     */
+    public function getOrderLineItemIndex()
+    {
+        return $this->container['order_line_item_index'];
+    }
+
+    /**
+     * Sets order_line_item_index
+     *
+     * @param int|null $order_line_item_index Line item index from ecommerce system order.
+     *
+     * @return self
+     */
+    public function setOrderLineItemIndex($order_line_item_index)
+    {
+        if (is_null($order_line_item_index)) {
+            array_push($this->openAPINullablesSetToNull, 'order_line_item_index');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_details', $nullablesSetToNull);
+            $index = array_search('order_line_item_index', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['order_details'] = $order_details;
+        $this->container['order_line_item_index'] = $order_line_item_index;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_id
+     *
+     * @return string|null
+     */
+    public function getOrderLineItemId()
+    {
+        return $this->container['order_line_item_id'];
+    }
+
+    /**
+     * Sets order_line_item_id
+     *
+     * @param string|null $order_line_item_id Line Item identifier from ecommerce system order.
+     *
+     * @return self
+     */
+    public function setOrderLineItemId($order_line_item_id)
+    {
+        if (is_null($order_line_item_id)) {
+            array_push($this->openAPINullablesSetToNull, 'order_line_item_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_line_item_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['order_line_item_id'] = $order_line_item_id;
 
         return $this;
     }
@@ -466,7 +541,7 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
     /**
      * Sets scenario
      *
-     * @param \Aurigma\Storefront\Model\RenderHiResScenarioDto $scenario List of project items.
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioDto $scenario scenario
      *
      * @return self
      */

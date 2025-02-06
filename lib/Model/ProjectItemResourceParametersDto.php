@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProjectItemResourceParametersDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing create operation paramters for a project item resource.
+ * @description Dto class, containing create operation parameters for a project item resource.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -392,7 +392,7 @@ class ProjectItemResourceParametersDto implements ModelInterface, ArrayAccess, \
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\ProjectItemResourceType|null $type Resource type.
+     * @param \Aurigma\Storefront\Model\ProjectItemResourceType|null $type type
      *
      * @return self
      */

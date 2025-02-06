@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderDetailsDto
+ * CreateSingleItemProjectDto
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * OrderDetailsDto Class Doc Comment
+ * CreateSingleItemProjectDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing ecommerce order description.
+ * @description Dto class, containing create operation parameters for single-item project entity.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateSingleItemProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrderDetailsDto';
+    protected static $openAPIModelName = 'CreateSingleItemProjectDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +58,19 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'product_reference' => 'string',
+        'order_line_item_index' => 'int',
+        'order_line_item_id' => 'string',
+        'items' => '\Aurigma\Storefront\Model\ProjectItemParametersDto[]',
         'order_id' => 'string',
         'order_url' => 'string',
         'order_number' => 'int',
-        'order_line_item_index' => 'int',
-        'order_line_item_id' => 'string',
         'customer_id' => 'string',
-        'customer_name' => 'string'
+        'customer_name' => 'string',
+        'name' => 'string',
+        'owner_id' => 'string',
+        'item' => '\Aurigma\Storefront\Model\ProjectItemParametersDto',
+        'description' => 'string'
     ];
 
     /**
@@ -75,13 +81,19 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'product_reference' => null,
+        'order_line_item_index' => 'int32',
+        'order_line_item_id' => null,
+        'items' => null,
         'order_id' => null,
         'order_url' => null,
         'order_number' => 'int32',
-        'order_line_item_index' => 'int32',
-        'order_line_item_id' => null,
         'customer_id' => null,
-        'customer_name' => null
+        'customer_name' => null,
+        'name' => null,
+        'owner_id' => null,
+        'item' => null,
+        'description' => null
     ];
 
     /**
@@ -90,13 +102,19 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'product_reference' => true,
+        'order_line_item_index' => true,
+        'order_line_item_id' => true,
+        'items' => true,
         'order_id' => true,
         'order_url' => true,
         'order_number' => true,
-        'order_line_item_index' => true,
-        'order_line_item_id' => true,
         'customer_id' => true,
-        'customer_name' => true
+        'customer_name' => true,
+        'name' => true,
+        'owner_id' => false,
+        'item' => false,
+        'description' => true
     ];
 
     /**
@@ -185,13 +203,19 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'product_reference' => 'productReference',
+        'order_line_item_index' => 'orderLineItemIndex',
+        'order_line_item_id' => 'orderLineItemId',
+        'items' => 'items',
         'order_id' => 'orderId',
         'order_url' => 'orderUrl',
         'order_number' => 'orderNumber',
-        'order_line_item_index' => 'orderLineItemIndex',
-        'order_line_item_id' => 'orderLineItemId',
         'customer_id' => 'customerId',
-        'customer_name' => 'customerName'
+        'customer_name' => 'customerName',
+        'name' => 'name',
+        'owner_id' => 'ownerId',
+        'item' => 'item',
+        'description' => 'description'
     ];
 
     /**
@@ -200,13 +224,19 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'product_reference' => 'setProductReference',
+        'order_line_item_index' => 'setOrderLineItemIndex',
+        'order_line_item_id' => 'setOrderLineItemId',
+        'items' => 'setItems',
         'order_id' => 'setOrderId',
         'order_url' => 'setOrderUrl',
         'order_number' => 'setOrderNumber',
-        'order_line_item_index' => 'setOrderLineItemIndex',
-        'order_line_item_id' => 'setOrderLineItemId',
         'customer_id' => 'setCustomerId',
-        'customer_name' => 'setCustomerName'
+        'customer_name' => 'setCustomerName',
+        'name' => 'setName',
+        'owner_id' => 'setOwnerId',
+        'item' => 'setItem',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -215,13 +245,19 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'product_reference' => 'getProductReference',
+        'order_line_item_index' => 'getOrderLineItemIndex',
+        'order_line_item_id' => 'getOrderLineItemId',
+        'items' => 'getItems',
         'order_id' => 'getOrderId',
         'order_url' => 'getOrderUrl',
         'order_number' => 'getOrderNumber',
-        'order_line_item_index' => 'getOrderLineItemIndex',
-        'order_line_item_id' => 'getOrderLineItemId',
         'customer_id' => 'getCustomerId',
-        'customer_name' => 'getCustomerName'
+        'customer_name' => 'getCustomerName',
+        'name' => 'getName',
+        'owner_id' => 'getOwnerId',
+        'item' => 'getItem',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -281,13 +317,19 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('product_reference', $data ?? [], null);
+        $this->setIfExists('order_line_item_index', $data ?? [], null);
+        $this->setIfExists('order_line_item_id', $data ?? [], null);
+        $this->setIfExists('items', $data ?? [], null);
         $this->setIfExists('order_id', $data ?? [], null);
         $this->setIfExists('order_url', $data ?? [], null);
         $this->setIfExists('order_number', $data ?? [], null);
-        $this->setIfExists('order_line_item_index', $data ?? [], null);
-        $this->setIfExists('order_line_item_id', $data ?? [], null);
         $this->setIfExists('customer_id', $data ?? [], null);
         $this->setIfExists('customer_name', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('owner_id', $data ?? [], null);
+        $this->setIfExists('item', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
     }
 
     /**
@@ -317,6 +359,9 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['owner_id'] === null) {
+            $invalidProperties[] = "'owner_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -331,6 +376,150 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets product_reference
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getProductReference()
+    {
+        return $this->container['product_reference'];
+    }
+
+    /**
+     * Sets product_reference
+     *
+     * @param string|null $product_reference Product reference (i.e external reference to Customer's Canvas product specification - main subject of this project).
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setProductReference($product_reference)
+    {
+        if (is_null($product_reference)) {
+            array_push($this->openAPINullablesSetToNull, 'product_reference');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('product_reference', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['product_reference'] = $product_reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_index
+     *
+     * @return int|null
+     * @deprecated
+     */
+    public function getOrderLineItemIndex()
+    {
+        return $this->container['order_line_item_index'];
+    }
+
+    /**
+     * Sets order_line_item_index
+     *
+     * @param int|null $order_line_item_index Line item index from ecommerce system order.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setOrderLineItemIndex($order_line_item_index)
+    {
+        if (is_null($order_line_item_index)) {
+            array_push($this->openAPINullablesSetToNull, 'order_line_item_index');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_line_item_index', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['order_line_item_index'] = $order_line_item_index;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_id
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getOrderLineItemId()
+    {
+        return $this->container['order_line_item_id'];
+    }
+
+    /**
+     * Sets order_line_item_id
+     *
+     * @param string|null $order_line_item_id Line Item identifier from ecommerce system order.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setOrderLineItemId($order_line_item_id)
+    {
+        if (is_null($order_line_item_id)) {
+            array_push($this->openAPINullablesSetToNull, 'order_line_item_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_line_item_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['order_line_item_id'] = $order_line_item_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets items
+     *
+     * @return \Aurigma\Storefront\Model\ProjectItemParametersDto[]|null
+     * @deprecated
+     */
+    public function getItems()
+    {
+        return $this->container['items'];
+    }
+
+    /**
+     * Sets items
+     *
+     * @param \Aurigma\Storefront\Model\ProjectItemParametersDto[]|null $items List of project items.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setItems($items)
+    {
+        if (is_null($items)) {
+            array_push($this->openAPINullablesSetToNull, 'items');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('items', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['items'] = $items;
+
+        return $this;
+    }
 
     /**
      * Gets order_id
@@ -435,78 +624,6 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets order_line_item_index
-     *
-     * @return int|null
-     * @deprecated
-     */
-    public function getOrderLineItemIndex()
-    {
-        return $this->container['order_line_item_index'];
-    }
-
-    /**
-     * Sets order_line_item_index
-     *
-     * @param int|null $order_line_item_index Line item index from ecommerce system order.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setOrderLineItemIndex($order_line_item_index)
-    {
-        if (is_null($order_line_item_index)) {
-            array_push($this->openAPINullablesSetToNull, 'order_line_item_index');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_line_item_index', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['order_line_item_index'] = $order_line_item_index;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_line_item_id
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getOrderLineItemId()
-    {
-        return $this->container['order_line_item_id'];
-    }
-
-    /**
-     * Sets order_line_item_id
-     *
-     * @param string|null $order_line_item_id Line Item identifier from ecommerce system order.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setOrderLineItemId($order_line_item_id)
-    {
-        if (is_null($order_line_item_id)) {
-            array_push($this->openAPINullablesSetToNull, 'order_line_item_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_line_item_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['order_line_item_id'] = $order_line_item_id;
-
-        return $this;
-    }
-
-    /**
      * Gets customer_id
      *
      * @return string|null
@@ -570,6 +687,128 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['customer_name'] = $customer_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name Project name.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            array_push($this->openAPINullablesSetToNull, 'name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner_id
+     *
+     * @return string
+     */
+    public function getOwnerId()
+    {
+        return $this->container['owner_id'];
+    }
+
+    /**
+     * Sets owner_id
+     *
+     * @param string $owner_id Project owner identifier.
+     *
+     * @return self
+     */
+    public function setOwnerId($owner_id)
+    {
+        if (is_null($owner_id)) {
+            throw new \InvalidArgumentException('non-nullable owner_id cannot be null');
+        }
+        $this->container['owner_id'] = $owner_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets item
+     *
+     * @return \Aurigma\Storefront\Model\ProjectItemParametersDto|null
+     */
+    public function getItem()
+    {
+        return $this->container['item'];
+    }
+
+    /**
+     * Sets item
+     *
+     * @param \Aurigma\Storefront\Model\ProjectItemParametersDto|null $item item
+     *
+     * @return self
+     */
+    public function setItem($item)
+    {
+        if (is_null($item)) {
+            throw new \InvalidArgumentException('non-nullable item cannot be null');
+        }
+        $this->container['item'] = $item;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Description of the project.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['description'] = $description;
 
         return $this;
     }

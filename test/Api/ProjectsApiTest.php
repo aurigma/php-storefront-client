@@ -96,24 +96,48 @@ class ProjectsApiTest extends TestCase
     }
 
     /**
-     * Test case for projectsCreate
-     *
-     * Creates a new project..
-     *
-     */
-    public function testProjectsCreate()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for projectsCreateByRenderHiResScenario
      *
      * Creates a new project by 'Render HiRes' scenario..
      *
      */
     public function testProjectsCreateByRenderHiResScenario()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for projectsCreateBySpecificPipelineScenario
+     *
+     * Creates a new project by 'Specific Pipeline' scenario..
+     *
+     */
+    public function testProjectsCreateBySpecificPipelineScenario()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for projectsCreateWithMultipleItems
+     *
+     * Creates a new project with multiple items..
+     *
+     */
+    public function testProjectsCreateWithMultipleItems()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for projectsCreateWithSingleItem
+     *
+     * Creates a new project with single item..
+     *
+     */
+    public function testProjectsCreateWithSingleItem()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

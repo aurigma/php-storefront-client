@@ -61,7 +61,7 @@ class CreateProjectBySpecificPipelineScenarioDto implements ModelInterface, Arra
         'owner_id' => 'string',
         'name' => 'string',
         'description' => 'string',
-        'order_details' => '\Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDtoOrderDetails',
+        'order_details' => '\Aurigma\Storefront\Model\OrderDetailsDto',
         'items' => '\Aurigma\Storefront\Model\ProjectItemParametersDto[]',
         'scenario' => '\Aurigma\Storefront\Model\SpecificPipelineScenarioDto'
     ];
@@ -91,7 +91,7 @@ class CreateProjectBySpecificPipelineScenarioDto implements ModelInterface, Arra
         'owner_id' => false,
         'name' => true,
         'description' => true,
-        'order_details' => true,
+        'order_details' => false,
         'items' => true,
         'scenario' => false
     ];
@@ -429,7 +429,7 @@ class CreateProjectBySpecificPipelineScenarioDto implements ModelInterface, Arra
     /**
      * Gets order_details
      *
-     * @return \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDtoOrderDetails|null
+     * @return \Aurigma\Storefront\Model\OrderDetailsDto|null
      */
     public function getOrderDetails()
     {
@@ -439,21 +439,14 @@ class CreateProjectBySpecificPipelineScenarioDto implements ModelInterface, Arra
     /**
      * Sets order_details
      *
-     * @param \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDtoOrderDetails|null $order_details order_details
+     * @param \Aurigma\Storefront\Model\OrderDetailsDto|null $order_details order_details
      *
      * @return self
      */
     public function setOrderDetails($order_details)
     {
         if (is_null($order_details)) {
-            array_push($this->openAPINullablesSetToNull, 'order_details');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_details', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable order_details cannot be null');
         }
         $this->container['order_details'] = $order_details;
 
@@ -507,7 +500,7 @@ class CreateProjectBySpecificPipelineScenarioDto implements ModelInterface, Arra
     /**
      * Sets scenario
      *
-     * @param \Aurigma\Storefront\Model\SpecificPipelineScenarioDto $scenario 'Specific Pipeline' scenario params. For more information check BackOffice.Web.PublicApi.ApiStorefront.Models.SpecificPipelineScenarioDto.
+     * @param \Aurigma\Storefront\Model\SpecificPipelineScenarioDto $scenario scenario
      *
      * @return self
      */

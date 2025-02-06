@@ -87,4 +87,22 @@ class SpecificPipelineScenarioDtoTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "post_processing_pipeline_id"
+     */
+    public function testPropertyPostProcessingPipelineId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "item_pipelines"
+     */
+    public function testPropertyItemPipelines()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

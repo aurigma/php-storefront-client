@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderDetailsDto
+ * ItemPipelineDto
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \Aurigma\Storefront\ObjectSerializer;
 
 /**
- * OrderDetailsDto Class Doc Comment
+ * ItemPipelineDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing ecommerce order description.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class ItemPipelineDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrderDetailsDto';
+    protected static $openAPIModelName = 'ItemPipelineDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +57,8 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'order_id' => 'string',
-        'order_url' => 'string',
-        'order_number' => 'int',
-        'order_line_item_index' => 'int',
-        'order_line_item_id' => 'string',
-        'customer_id' => 'string',
-        'customer_name' => 'string'
+        'item_name' => 'string',
+        'pipeline_id' => 'int'
     ];
 
     /**
@@ -75,13 +69,8 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'order_id' => null,
-        'order_url' => null,
-        'order_number' => 'int32',
-        'order_line_item_index' => 'int32',
-        'order_line_item_id' => null,
-        'customer_id' => null,
-        'customer_name' => null
+        'item_name' => null,
+        'pipeline_id' => 'int32'
     ];
 
     /**
@@ -90,13 +79,8 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'order_id' => true,
-        'order_url' => true,
-        'order_number' => true,
-        'order_line_item_index' => true,
-        'order_line_item_id' => true,
-        'customer_id' => true,
-        'customer_name' => true
+        'item_name' => true,
+        'pipeline_id' => false
     ];
 
     /**
@@ -185,13 +169,8 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'order_id' => 'orderId',
-        'order_url' => 'orderUrl',
-        'order_number' => 'orderNumber',
-        'order_line_item_index' => 'orderLineItemIndex',
-        'order_line_item_id' => 'orderLineItemId',
-        'customer_id' => 'customerId',
-        'customer_name' => 'customerName'
+        'item_name' => 'itemName',
+        'pipeline_id' => 'pipelineId'
     ];
 
     /**
@@ -200,13 +179,8 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'order_id' => 'setOrderId',
-        'order_url' => 'setOrderUrl',
-        'order_number' => 'setOrderNumber',
-        'order_line_item_index' => 'setOrderLineItemIndex',
-        'order_line_item_id' => 'setOrderLineItemId',
-        'customer_id' => 'setCustomerId',
-        'customer_name' => 'setCustomerName'
+        'item_name' => 'setItemName',
+        'pipeline_id' => 'setPipelineId'
     ];
 
     /**
@@ -215,13 +189,8 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'order_id' => 'getOrderId',
-        'order_url' => 'getOrderUrl',
-        'order_number' => 'getOrderNumber',
-        'order_line_item_index' => 'getOrderLineItemIndex',
-        'order_line_item_id' => 'getOrderLineItemId',
-        'customer_id' => 'getCustomerId',
-        'customer_name' => 'getCustomerName'
+        'item_name' => 'getItemName',
+        'pipeline_id' => 'getPipelineId'
     ];
 
     /**
@@ -281,13 +250,8 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('order_id', $data ?? [], null);
-        $this->setIfExists('order_url', $data ?? [], null);
-        $this->setIfExists('order_number', $data ?? [], null);
-        $this->setIfExists('order_line_item_index', $data ?? [], null);
-        $this->setIfExists('order_line_item_id', $data ?? [], null);
-        $this->setIfExists('customer_id', $data ?? [], null);
-        $this->setIfExists('customer_name', $data ?? [], null);
+        $this->setIfExists('item_name', $data ?? [], null);
+        $this->setIfExists('pipeline_id', $data ?? [], null);
     }
 
     /**
@@ -333,243 +297,62 @@ class OrderDetailsDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets order_id
+     * Gets item_name
      *
      * @return string|null
      */
-    public function getOrderId()
+    public function getItemName()
     {
-        return $this->container['order_id'];
+        return $this->container['item_name'];
     }
 
     /**
-     * Sets order_id
+     * Sets item_name
      *
-     * @param string|null $order_id Order identifier in ecommerce system.
+     * @param string|null $item_name item_name
      *
      * @return self
      */
-    public function setOrderId($order_id)
+    public function setItemName($item_name)
     {
-        if (is_null($order_id)) {
-            array_push($this->openAPINullablesSetToNull, 'order_id');
+        if (is_null($item_name)) {
+            array_push($this->openAPINullablesSetToNull, 'item_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_id', $nullablesSetToNull);
+            $index = array_search('item_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['order_id'] = $order_id;
+        $this->container['item_name'] = $item_name;
 
         return $this;
     }
 
     /**
-     * Gets order_url
-     *
-     * @return string|null
-     */
-    public function getOrderUrl()
-    {
-        return $this->container['order_url'];
-    }
-
-    /**
-     * Sets order_url
-     *
-     * @param string|null $order_url Order url in ecommerce system.
-     *
-     * @return self
-     */
-    public function setOrderUrl($order_url)
-    {
-        if (is_null($order_url)) {
-            array_push($this->openAPINullablesSetToNull, 'order_url');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_url', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['order_url'] = $order_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_number
+     * Gets pipeline_id
      *
      * @return int|null
      */
-    public function getOrderNumber()
+    public function getPipelineId()
     {
-        return $this->container['order_number'];
+        return $this->container['pipeline_id'];
     }
 
     /**
-     * Sets order_number
+     * Sets pipeline_id
      *
-     * @param int|null $order_number Order number in ecommerce system.
+     * @param int|null $pipeline_id pipeline_id
      *
      * @return self
      */
-    public function setOrderNumber($order_number)
+    public function setPipelineId($pipeline_id)
     {
-        if (is_null($order_number)) {
-            array_push($this->openAPINullablesSetToNull, 'order_number');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_number', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($pipeline_id)) {
+            throw new \InvalidArgumentException('non-nullable pipeline_id cannot be null');
         }
-        $this->container['order_number'] = $order_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_line_item_index
-     *
-     * @return int|null
-     * @deprecated
-     */
-    public function getOrderLineItemIndex()
-    {
-        return $this->container['order_line_item_index'];
-    }
-
-    /**
-     * Sets order_line_item_index
-     *
-     * @param int|null $order_line_item_index Line item index from ecommerce system order.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setOrderLineItemIndex($order_line_item_index)
-    {
-        if (is_null($order_line_item_index)) {
-            array_push($this->openAPINullablesSetToNull, 'order_line_item_index');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_line_item_index', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['order_line_item_index'] = $order_line_item_index;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_line_item_id
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getOrderLineItemId()
-    {
-        return $this->container['order_line_item_id'];
-    }
-
-    /**
-     * Sets order_line_item_id
-     *
-     * @param string|null $order_line_item_id Line Item identifier from ecommerce system order.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setOrderLineItemId($order_line_item_id)
-    {
-        if (is_null($order_line_item_id)) {
-            array_push($this->openAPINullablesSetToNull, 'order_line_item_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_line_item_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['order_line_item_id'] = $order_line_item_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets customer_id
-     *
-     * @return string|null
-     */
-    public function getCustomerId()
-    {
-        return $this->container['customer_id'];
-    }
-
-    /**
-     * Sets customer_id
-     *
-     * @param string|null $customer_id Customer identifier in ecommerce system.
-     *
-     * @return self
-     */
-    public function setCustomerId($customer_id)
-    {
-        if (is_null($customer_id)) {
-            array_push($this->openAPINullablesSetToNull, 'customer_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('customer_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['customer_id'] = $customer_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets customer_name
-     *
-     * @return string|null
-     */
-    public function getCustomerName()
-    {
-        return $this->container['customer_name'];
-    }
-
-    /**
-     * Sets customer_name
-     *
-     * @param string|null $customer_name Customer name in ecommerce system.
-     *
-     * @return self
-     */
-    public function setCustomerName($customer_name)
-    {
-        if (is_null($customer_name)) {
-            array_push($this->openAPINullablesSetToNull, 'customer_name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('customer_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['customer_name'] = $customer_name;
+        $this->container['pipeline_id'] = $pipeline_id;
 
         return $this;
     }

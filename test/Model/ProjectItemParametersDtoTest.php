@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProjectItemParametersDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing create operation paramters for a project item.
+ * @description Dto class, containing create operation parameters for a project item.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -92,6 +92,33 @@ class ProjectItemParametersDtoTest extends TestCase
      * Test attribute "quantity"
      */
     public function testPropertyQuantity()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_line_item_index"
+     */
+    public function testPropertyOrderLineItemIndex()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_line_item_id"
+     */
+    public function testPropertyOrderLineItemId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "product_reference"
+     */
+    public function testPropertyProductReference()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

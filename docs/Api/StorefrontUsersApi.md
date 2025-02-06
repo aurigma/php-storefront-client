@@ -15,7 +15,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `storefrontUsersCreate()`
 
 ```php
-storefrontUsersCreate($storefront_id, $tenant_id, $storefront_users_create_request): \Aurigma\Storefront\Model\StorefrontUserDto
+storefrontUsersCreate($storefront_id, $tenant_id, $create_storefront_user_dto): \Aurigma\Storefront\Model\StorefrontUserDto
 ```
 
 Creates a new storefront user.
@@ -57,10 +57,10 @@ $apiInstance = new Aurigma\Storefront\Api\StorefrontUsersApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$storefront_users_create_request = new \Aurigma\Storefront\Model\StorefrontUsersCreateRequest(); // \Aurigma\Storefront\Model\StorefrontUsersCreateRequest | Operation parameters.
+$create_storefront_user_dto = new \Aurigma\Storefront\Model\CreateStorefrontUserDto(); // \Aurigma\Storefront\Model\CreateStorefrontUserDto | Operation parameters.
 
 try {
-    $result = $apiInstance->storefrontUsersCreate($storefront_id, $tenant_id, $storefront_users_create_request);
+    $result = $apiInstance->storefrontUsersCreate($storefront_id, $tenant_id, $create_storefront_user_dto);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StorefrontUsersApi->storefrontUsersCreate: ', $e->getMessage(), PHP_EOL;
@@ -73,7 +73,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **storefront_users_create_request** | [**\Aurigma\Storefront\Model\StorefrontUsersCreateRequest**](../Model/StorefrontUsersCreateRequest.md)| Operation parameters. | [optional] |
+| **create_storefront_user_dto** | [**\Aurigma\Storefront\Model\CreateStorefrontUserDto**](../Model/CreateStorefrontUserDto.md)| Operation parameters. | [optional] |
 
 ### Return type
 
@@ -337,7 +337,7 @@ try {
 ## `storefrontUsersMergeAnonymous()`
 
 ```php
-storefrontUsersMergeAnonymous($storefront_id, $tenant_id, $storefront_users_merge_anonymous_request)
+storefrontUsersMergeAnonymous($storefront_id, $tenant_id, $merge_anonymous_user_data_input)
 ```
 
 Transfers all existing data for the anonymous storefront user to the selected regular storefront user account.
@@ -377,10 +377,10 @@ $apiInstance = new Aurigma\Storefront\Api\StorefrontUsersApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$storefront_users_merge_anonymous_request = new \Aurigma\Storefront\Model\StorefrontUsersMergeAnonymousRequest(); // \Aurigma\Storefront\Model\StorefrontUsersMergeAnonymousRequest | Operation parameters.
+$merge_anonymous_user_data_input = new \Aurigma\Storefront\Model\MergeAnonymousUserDataInput(); // \Aurigma\Storefront\Model\MergeAnonymousUserDataInput | Operation parameters.
 
 try {
-    $apiInstance->storefrontUsersMergeAnonymous($storefront_id, $tenant_id, $storefront_users_merge_anonymous_request);
+    $apiInstance->storefrontUsersMergeAnonymous($storefront_id, $tenant_id, $merge_anonymous_user_data_input);
 } catch (Exception $e) {
     echo 'Exception when calling StorefrontUsersApi->storefrontUsersMergeAnonymous: ', $e->getMessage(), PHP_EOL;
 }
@@ -392,7 +392,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **storefront_users_merge_anonymous_request** | [**\Aurigma\Storefront\Model\StorefrontUsersMergeAnonymousRequest**](../Model/StorefrontUsersMergeAnonymousRequest.md)| Operation parameters. | [optional] |
+| **merge_anonymous_user_data_input** | [**\Aurigma\Storefront\Model\MergeAnonymousUserDataInput**](../Model/MergeAnonymousUserDataInput.md)| Operation parameters. | [optional] |
 
 ### Return type
 
@@ -414,7 +414,7 @@ void (empty response body)
 ## `storefrontUsersRegister()`
 
 ```php
-storefrontUsersRegister($storefront_id, $tenant_id, $storefront_users_register_request): \Aurigma\Storefront\Model\StorefrontUserDto
+storefrontUsersRegister($storefront_id, $tenant_id, $register_storefront_user_input): \Aurigma\Storefront\Model\StorefrontUserDto
 ```
 
 Registers a storefront user with the specified identifier.
@@ -456,10 +456,10 @@ $apiInstance = new Aurigma\Storefront\Api\StorefrontUsersApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$storefront_users_register_request = new \Aurigma\Storefront\Model\StorefrontUsersRegisterRequest(); // \Aurigma\Storefront\Model\StorefrontUsersRegisterRequest | Operation parameters.
+$register_storefront_user_input = new \Aurigma\Storefront\Model\RegisterStorefrontUserInput(); // \Aurigma\Storefront\Model\RegisterStorefrontUserInput | Operation parameters.
 
 try {
-    $result = $apiInstance->storefrontUsersRegister($storefront_id, $tenant_id, $storefront_users_register_request);
+    $result = $apiInstance->storefrontUsersRegister($storefront_id, $tenant_id, $register_storefront_user_input);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StorefrontUsersApi->storefrontUsersRegister: ', $e->getMessage(), PHP_EOL;
@@ -472,7 +472,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **storefront_users_register_request** | [**\Aurigma\Storefront\Model\StorefrontUsersRegisterRequest**](../Model/StorefrontUsersRegisterRequest.md)| Operation parameters. | [optional] |
+| **register_storefront_user_input** | [**\Aurigma\Storefront\Model\RegisterStorefrontUserInput**](../Model/RegisterStorefrontUserInput.md)| Operation parameters. | [optional] |
 
 ### Return type
 

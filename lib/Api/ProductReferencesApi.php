@@ -153,16 +153,16 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
      */
-    public function productReferencesCreate($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreate($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
-        list($response) = $this->productReferencesCreateWithHttpInfo($storefront_id, $tenant_id, $product_references_create_request, $contentType);
+        list($response) = $this->productReferencesCreateWithHttpInfo($storefront_id, $tenant_id, $create_product_reference_dto, $contentType);
         return $response;
     }
 
@@ -173,16 +173,16 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\ProductReferenceDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesCreateWithHttpInfo($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreateWithHttpInfo($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
-        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $product_references_create_request, $contentType);
+        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $create_product_reference_dto, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -334,15 +334,15 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesCreateAsync($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreateAsync($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
-        return $this->productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $product_references_create_request, $contentType)
+        return $this->productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $create_product_reference_dto, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -357,16 +357,16 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\ProductReferenceDto';
-        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $product_references_create_request, $contentType);
+        $request = $this->productReferencesCreateRequest($storefront_id, $tenant_id, $create_product_reference_dto, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -409,13 +409,13 @@ class ProductReferencesApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\ProductReferencesCreateRequest $product_references_create_request Create operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\CreateProductReferenceDto $create_product_reference_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesCreateRequest($storefront_id, $tenant_id = null, $product_references_create_request = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
+    public function productReferencesCreateRequest($storefront_id, $tenant_id = null, $create_product_reference_dto = null, string $contentType = self::contentTypes['productReferencesCreate'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -464,12 +464,12 @@ class ProductReferencesApi
         );
 
         // for model (json/xml)
-        if (isset($product_references_create_request)) {
+        if (isset($create_product_reference_dto)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($product_references_create_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_product_reference_dto));
             } else {
-                $httpBody = $product_references_create_request;
+                $httpBody = $create_product_reference_dto;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2171,9 +2171,11 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfig
      *
-     * @param  string $reference reference (required)
-     * @param  int $storefront_id storefront_id (required)
-     * @param  int $tenant_id tenant_id (optional)
+     * Returns a product personalization workflow configuration by storefront product reference.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2190,9 +2192,11 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfigWithHttpInfo
      *
-     * @param  string $reference (required)
-     * @param  int $storefront_id (required)
-     * @param  int $tenant_id (optional)
+     * Returns a product personalization workflow configuration by storefront product reference.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2350,9 +2354,11 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfigAsync
      *
-     * @param  string $reference (required)
-     * @param  int $storefront_id (required)
-     * @param  int $tenant_id (optional)
+     * Returns a product personalization workflow configuration by storefront product reference.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2372,9 +2378,11 @@ class ProductReferencesApi
     /**
      * Operation productReferencesGetProductConfigAsyncWithHttpInfo
      *
-     * @param  string $reference (required)
-     * @param  int $storefront_id (required)
-     * @param  int $tenant_id (optional)
+     * Returns a product personalization workflow configuration by storefront product reference.
+     *
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2425,9 +2433,9 @@ class ProductReferencesApi
     /**
      * Create request for operation 'productReferencesGetProductConfig'
      *
-     * @param  string $reference (required)
-     * @param  int $storefront_id (required)
-     * @param  int $tenant_id (optional)
+     * @param  string $reference Product reference - external reference to Customer&#39;s Canvas product specification, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductConfig'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

@@ -96,6 +96,18 @@ class TenantInfoApiTest extends TestCase
     }
 
     /**
+     * Test case for tenantInfoGetMeasureUnitsInfo
+     *
+     * Returns an information about the tenant measure units..
+     *
+     */
+    public function testTenantInfoGetMeasureUnitsInfo()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for tenantInfoGetUsersInfo
      *
      * Returns a list of tenant users..

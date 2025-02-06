@@ -317,7 +317,7 @@ class ProjectProcessingResultsDto implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets status
      *
-     * @param \Aurigma\Storefront\Model\ProjectProcessingStatus|null $status Project processing status.
+     * @param \Aurigma\Storefront\Model\ProjectProcessingStatus|null $status status
      *
      * @return self
      */

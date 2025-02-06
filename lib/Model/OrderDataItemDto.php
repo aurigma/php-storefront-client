@@ -385,7 +385,7 @@ class OrderDataItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\OrderDataItemValueType|null $type Order data item type.
+     * @param \Aurigma\Storefront\Model\OrderDataItemValueType|null $type type
      *
      * @return self
      */

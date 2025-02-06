@@ -58,8 +58,12 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'int',
         'name' => 'string',
         'quantity' => 'int',
+        'order_line_item_id' => 'string',
+        'order_line_item_index' => 'int',
+        'product_reference' => 'string',
         'fields' => 'array<string,mixed>',
         'hidden' => 'mixed',
         'design_ids' => 'string[]',
@@ -75,8 +79,12 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => 'int32',
         'name' => null,
         'quantity' => 'int32',
+        'order_line_item_id' => null,
+        'order_line_item_index' => 'int32',
+        'product_reference' => null,
         'fields' => null,
         'hidden' => null,
         'design_ids' => null,
@@ -90,8 +98,12 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'id' => false,
         'name' => true,
         'quantity' => true,
+        'order_line_item_id' => true,
+        'order_line_item_index' => true,
+        'product_reference' => true,
         'fields' => true,
         'hidden' => true,
         'design_ids' => true,
@@ -185,8 +197,12 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'name' => 'name',
         'quantity' => 'quantity',
+        'order_line_item_id' => 'orderLineItemId',
+        'order_line_item_index' => 'orderLineItemIndex',
+        'product_reference' => 'productReference',
         'fields' => 'fields',
         'hidden' => 'hidden',
         'design_ids' => 'designIds',
@@ -200,8 +216,12 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'name' => 'setName',
         'quantity' => 'setQuantity',
+        'order_line_item_id' => 'setOrderLineItemId',
+        'order_line_item_index' => 'setOrderLineItemIndex',
+        'product_reference' => 'setProductReference',
         'fields' => 'setFields',
         'hidden' => 'setHidden',
         'design_ids' => 'setDesignIds',
@@ -215,8 +235,12 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'name' => 'getName',
         'quantity' => 'getQuantity',
+        'order_line_item_id' => 'getOrderLineItemId',
+        'order_line_item_index' => 'getOrderLineItemIndex',
+        'product_reference' => 'getProductReference',
         'fields' => 'getFields',
         'hidden' => 'getHidden',
         'design_ids' => 'getDesignIds',
@@ -281,8 +305,12 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('order_line_item_id', $data ?? [], null);
+        $this->setIfExists('order_line_item_index', $data ?? [], null);
+        $this->setIfExists('product_reference', $data ?? [], null);
         $this->setIfExists('fields', $data ?? [], null);
         $this->setIfExists('hidden', $data ?? [], null);
         $this->setIfExists('design_ids', $data ?? [], null);
@@ -331,6 +359,33 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id Item identifier.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
 
     /**
      * Gets name
@@ -396,6 +451,108 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_id
+     *
+     * @return string|null
+     */
+    public function getOrderLineItemId()
+    {
+        return $this->container['order_line_item_id'];
+    }
+
+    /**
+     * Sets order_line_item_id
+     *
+     * @param string|null $order_line_item_id Order item identifier from storefront order.
+     *
+     * @return self
+     */
+    public function setOrderLineItemId($order_line_item_id)
+    {
+        if (is_null($order_line_item_id)) {
+            array_push($this->openAPINullablesSetToNull, 'order_line_item_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_line_item_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['order_line_item_id'] = $order_line_item_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_index
+     *
+     * @return int|null
+     */
+    public function getOrderLineItemIndex()
+    {
+        return $this->container['order_line_item_index'];
+    }
+
+    /**
+     * Sets order_line_item_index
+     *
+     * @param int|null $order_line_item_index Order item index from storefront order.
+     *
+     * @return self
+     */
+    public function setOrderLineItemIndex($order_line_item_index)
+    {
+        if (is_null($order_line_item_index)) {
+            array_push($this->openAPINullablesSetToNull, 'order_line_item_index');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_line_item_index', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['order_line_item_index'] = $order_line_item_index;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_reference
+     *
+     * @return string|null
+     */
+    public function getProductReference()
+    {
+        return $this->container['product_reference'];
+    }
+
+    /**
+     * Sets product_reference
+     *
+     * @param string|null $product_reference Storefront product reference (i.e external reference to Customer's Canvas product specification).
+     *
+     * @return self
+     */
+    public function setProductReference($product_reference)
+    {
+        if (is_null($product_reference)) {
+            array_push($this->openAPINullablesSetToNull, 'product_reference');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('product_reference', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['product_reference'] = $product_reference;
 
         return $this;
     }

@@ -240,4 +240,13 @@ class ProjectDtoTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "processing_status"
+     */
+    public function testPropertyProcessingStatus()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

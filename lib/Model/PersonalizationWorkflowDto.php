@@ -378,7 +378,7 @@ class PersonalizationWorkflowDto implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets workflow_type
      *
-     * @param \Aurigma\Storefront\Model\WorkflowType|null $workflow_type Workflow type.
+     * @param \Aurigma\Storefront\Model\WorkflowType|null $workflow_type workflow_type
      *
      * @return self
      */

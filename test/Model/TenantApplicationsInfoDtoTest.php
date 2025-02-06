@@ -107,6 +107,24 @@ class TenantApplicationsInfoDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "workflow_elements_url"
+     */
+    public function testPropertyWorkflowElementsUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "template_editor_url"
+     */
+    public function testPropertyTemplateEditorUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "preflight_url"
      */
     public function testPropertyPreflightUrl()

@@ -385,7 +385,7 @@ class ProjectItemResourceDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\ProjectItemResourceType|null $type Resource type.
+     * @param \Aurigma\Storefront\Model\ProjectItemResourceType|null $type type
      *
      * @return self
      */

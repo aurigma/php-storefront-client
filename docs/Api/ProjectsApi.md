@@ -6,9 +6,10 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**projectsAttachDataToProjectOrder()**](ProjectsApi.md#projectsAttachDataToProjectOrder) | **POST** /api/storefront/v1/projects/{id}/order-data | Attachs the specified data to the project&#39;s order in ecommerce system. |
 | [**projectsChangeStatus()**](ProjectsApi.md#projectsChangeStatus) | **POST** /api/storefront/v1/projects/{id}/transitions/{transition} | Changes the project status. |
-| [**projectsCreate()**](ProjectsApi.md#projectsCreate) | **POST** /api/storefront/v1/projects | Creates a new project. |
 | [**projectsCreateByRenderHiResScenario()**](ProjectsApi.md#projectsCreateByRenderHiResScenario) | **POST** /api/storefront/v1/projects/by-scenario/render-hires | Creates a new project by &#39;Render HiRes&#39; scenario. |
 | [**projectsCreateBySpecificPipelineScenario()**](ProjectsApi.md#projectsCreateBySpecificPipelineScenario) | **POST** /api/storefront/v1/projects/by-scenario/specific-pipeline | Creates a new project by &#39;Specific Pipeline&#39; scenario. |
+| [**projectsCreateWithMultipleItems()**](ProjectsApi.md#projectsCreateWithMultipleItems) | **POST** /api/storefront/v1/projects/with-multiple-items | Creates a new project with multiple items. |
+| [**projectsCreateWithSingleItem()**](ProjectsApi.md#projectsCreateWithSingleItem) | **POST** /api/storefront/v1/projects/with-single-item | Creates a new project with single item. |
 | [**projectsDelete()**](ProjectsApi.md#projectsDelete) | **DELETE** /api/storefront/v1/projects/{id} | Removes a project by identifier. |
 | [**projectsForceStatus()**](ProjectsApi.md#projectsForceStatus) | **POST** /api/storefront/v1/projects/{id}/statuses/{status} | Changes the project status forcibly without a proper transition. |
 | [**projectsGet()**](ProjectsApi.md#projectsGet) | **GET** /api/storefront/v1/projects/{id} | Returns a project by identifier. |
@@ -29,7 +30,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `projectsAttachDataToProjectOrder()`
 
 ```php
-projectsAttachDataToProjectOrder($id, $tenant_id, $order_data_item_dto)
+projectsAttachDataToProjectOrder($id, $item_id, $tenant_id, $order_data_item_dto)
 ```
 
 Attachs the specified data to the project's order in ecommerce system.
@@ -68,11 +69,12 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
     $config
 );
 $id = 56; // int | Project identifier.
+$item_id = 56; // int
 $tenant_id = 56; // int | Tenant identifier.
 $order_data_item_dto = array(new \Aurigma\Storefront\Model\OrderDataItemDto()); // \Aurigma\Storefront\Model\OrderDataItemDto[] | A list of data items, which should be attached to project's order.
 
 try {
-    $apiInstance->projectsAttachDataToProjectOrder($id, $tenant_id, $order_data_item_dto);
+    $apiInstance->projectsAttachDataToProjectOrder($id, $item_id, $tenant_id, $order_data_item_dto);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsAttachDataToProjectOrder: ', $e->getMessage(), PHP_EOL;
 }
@@ -83,6 +85,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **int**| Project identifier. | |
+| **item_id** | **int**|  | [optional] |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
 | **order_data_item_dto** | [**\Aurigma\Storefront\Model\OrderDataItemDto[]**](../Model/OrderDataItemDto.md)| A list of data items, which should be attached to project&#39;s order. | [optional] |
 
@@ -181,88 +184,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `projectsCreate()`
-
-```php
-projectsCreate($storefront_id, $tenant_id, $projects_create_request): \Aurigma\Storefront\Model\ProjectDto
-```
-
-Creates a new project.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: bearerAuth
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$storefront_id = 56; // int | Storefront identifier.
-$tenant_id = 56; // int | Tenant identifier.
-$projects_create_request = new \Aurigma\Storefront\Model\ProjectsCreateRequest(); // \Aurigma\Storefront\Model\ProjectsCreateRequest | Create operation parameters.
-
-try {
-    $result = $apiInstance->projectsCreate($storefront_id, $tenant_id, $projects_create_request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling ProjectsApi->projectsCreate: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **storefront_id** | **int**| Storefront identifier. | |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **projects_create_request** | [**\Aurigma\Storefront\Model\ProjectsCreateRequest**](../Model/ProjectsCreateRequest.md)| Create operation parameters. | [optional] |
-
-### Return type
-
-[**\Aurigma\Storefront\Model\ProjectDto**](../Model/ProjectDto.md)
-
-### Authorization
-
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [bearerAuth](../../README.md#bearerAuth), [oauth2-implicit](../../README.md#oauth2-implicit)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json-patch+json`, `application/json`, `text/json`, `application/*+json`
-- **Accept**: `text/plain`, `application/json`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `projectsCreateByRenderHiResScenario()`
 
 ```php
-projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $projects_create_by_render_hi_res_scenario_request): \Aurigma\Storefront\Model\ProjectDto
+projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto): \Aurigma\Storefront\Model\ProjectDto
 ```
 
 Creates a new project by 'Render HiRes' scenario.
@@ -302,10 +227,10 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$projects_create_by_render_hi_res_scenario_request = new \Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest(); // \Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest | Create operation parameters.
+$create_project_by_render_hi_res_scenario_dto = new \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto(); // \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto | Create operation parameters.
 
 try {
-    $result = $apiInstance->projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $projects_create_by_render_hi_res_scenario_request);
+    $result = $apiInstance->projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsCreateByRenderHiResScenario: ', $e->getMessage(), PHP_EOL;
@@ -318,7 +243,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **projects_create_by_render_hi_res_scenario_request** | [**\Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest**](../Model/ProjectsCreateByRenderHiResScenarioRequest.md)| Create operation parameters. | [optional] |
+| **create_project_by_render_hi_res_scenario_dto** | [**\Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto**](../Model/CreateProjectByRenderHiResScenarioDto.md)| Create operation parameters. | [optional] |
 
 ### Return type
 
@@ -340,7 +265,7 @@ try {
 ## `projectsCreateBySpecificPipelineScenario()`
 
 ```php
-projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id, $projects_create_by_specific_pipeline_scenario_request): \Aurigma\Storefront\Model\ProjectDto
+projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id, $create_project_by_specific_pipeline_scenario_dto): \Aurigma\Storefront\Model\ProjectDto
 ```
 
 Creates a new project by 'Specific Pipeline' scenario.
@@ -380,10 +305,10 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$projects_create_by_specific_pipeline_scenario_request = new \Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest(); // \Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest | Create operation parameters.
+$create_project_by_specific_pipeline_scenario_dto = new \Aurigma\Storefront\Model\CreateProjectBySpecificPipelineScenarioDto(); // \Aurigma\Storefront\Model\CreateProjectBySpecificPipelineScenarioDto | Create operation parameters.
 
 try {
-    $result = $apiInstance->projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id, $projects_create_by_specific_pipeline_scenario_request);
+    $result = $apiInstance->projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id, $create_project_by_specific_pipeline_scenario_dto);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsCreateBySpecificPipelineScenario: ', $e->getMessage(), PHP_EOL;
@@ -396,7 +321,163 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **projects_create_by_specific_pipeline_scenario_request** | [**\Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest**](../Model/ProjectsCreateBySpecificPipelineScenarioRequest.md)| Create operation parameters. | [optional] |
+| **create_project_by_specific_pipeline_scenario_dto** | [**\Aurigma\Storefront\Model\CreateProjectBySpecificPipelineScenarioDto**](../Model/CreateProjectBySpecificPipelineScenarioDto.md)| Create operation parameters. | [optional] |
+
+### Return type
+
+[**\Aurigma\Storefront\Model\ProjectDto**](../Model/ProjectDto.md)
+
+### Authorization
+
+[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [bearerAuth](../../README.md#bearerAuth), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `text/json`, `application/*+json`
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `projectsCreateWithMultipleItems()`
+
+```php
+projectsCreateWithMultipleItems($storefront_id, $tenant_id, $create_multi_item_project_dto): \Aurigma\Storefront\Model\ProjectDto
+```
+
+Creates a new project with multiple items.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$storefront_id = 56; // int | Storefront identifier.
+$tenant_id = 56; // int | Tenant identifier.
+$create_multi_item_project_dto = new \Aurigma\Storefront\Model\CreateMultiItemProjectDto(); // \Aurigma\Storefront\Model\CreateMultiItemProjectDto | Create operation parameters.
+
+try {
+    $result = $apiInstance->projectsCreateWithMultipleItems($storefront_id, $tenant_id, $create_multi_item_project_dto);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectsApi->projectsCreateWithMultipleItems: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **storefront_id** | **int**| Storefront identifier. | |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **create_multi_item_project_dto** | [**\Aurigma\Storefront\Model\CreateMultiItemProjectDto**](../Model/CreateMultiItemProjectDto.md)| Create operation parameters. | [optional] |
+
+### Return type
+
+[**\Aurigma\Storefront\Model\ProjectDto**](../Model/ProjectDto.md)
+
+### Authorization
+
+[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [bearerAuth](../../README.md#bearerAuth), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `text/json`, `application/*+json`
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `projectsCreateWithSingleItem()`
+
+```php
+projectsCreateWithSingleItem($storefront_id, $tenant_id, $create_single_item_project_dto): \Aurigma\Storefront\Model\ProjectDto
+```
+
+Creates a new project with single item.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: apiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: bearerAuth
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$storefront_id = 56; // int | Storefront identifier.
+$tenant_id = 56; // int | Tenant identifier.
+$create_single_item_project_dto = new \Aurigma\Storefront\Model\CreateSingleItemProjectDto(); // \Aurigma\Storefront\Model\CreateSingleItemProjectDto | Create operation parameters.
+
+try {
+    $result = $apiInstance->projectsCreateWithSingleItem($storefront_id, $tenant_id, $create_single_item_project_dto);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectsApi->projectsCreateWithSingleItem: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **storefront_id** | **int**| Storefront identifier. | |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **create_single_item_project_dto** | [**\Aurigma\Storefront\Model\CreateSingleItemProjectDto**](../Model/CreateSingleItemProjectDto.md)| Create operation parameters. | [optional] |
 
 ### Return type
 
@@ -688,13 +769,13 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
 $owner_id = 'owner_id_example'; // string | Project owner (storefront user id) filter.
 $product_reference = 'product_reference_example'; // string | Product reference filter.
 $status = 56; // int | Project status filter.
-$date_period = new \Aurigma\Storefront\Model\\Aurigma\Storefront\Model\DatePeriod(); // \Aurigma\Storefront\Model\DatePeriod | Project date period filter.
+$date_period = new \Aurigma\Storefront\Model\DatePeriod(); // DatePeriod | Project date period filter.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
 $take = 56; // int | Defines page length (how many consequent items of sorted result list should be taken).
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
 $search = 'search_example'; // string | Search string for partial match.
 $order_id = 'order_id_example'; // string | Identifier of corresponding order.
-$processing_status = new \Aurigma\Storefront\Model\\Aurigma\Storefront\Model\ProjectProcessingStatus(); // \Aurigma\Storefront\Model\ProjectProcessingStatus | Project processing status filter.
+$processing_status = new \Aurigma\Storefront\Model\ProjectProcessingStatus(); // ProjectProcessingStatus | Project processing status filter.
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
 
@@ -713,13 +794,13 @@ try {
 | **owner_id** | **string**| Project owner (storefront user id) filter. | [optional] |
 | **product_reference** | **string**| Product reference filter. | [optional] |
 | **status** | **int**| Project status filter. | [optional] |
-| **date_period** | [**\Aurigma\Storefront\Model\DatePeriod**](../Model/.md)| Project date period filter. | [optional] |
+| **date_period** | [**DatePeriod**](../Model/.md)| Project date period filter. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
 | **take** | **int**| Defines page length (how many consequent items of sorted result list should be taken). | [optional] |
 | **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
 | **search** | **string**| Search string for partial match. | [optional] |
 | **order_id** | **string**| Identifier of corresponding order. | [optional] |
-| **processing_status** | [**\Aurigma\Storefront\Model\ProjectProcessingStatus**](../Model/.md)| Project processing status filter. | [optional] |
+| **processing_status** | [**ProjectProcessingStatus**](../Model/.md)| Project processing status filter. | [optional] |
 | **storefront_id** | **int**| Storefront identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
 
@@ -1357,7 +1438,7 @@ try {
 ## `projectsGetProjectProcessingResults()`
 
 ```php
-projectsGetProjectProcessingResults($id, $tenant_id): \Aurigma\Storefront\Model\ProjectProcessingResultsDto
+projectsGetProjectProcessingResults($id, $item_id, $tenant_id): \Aurigma\Storefront\Model\ProjectProcessingResultsDto
 ```
 
 Returns a project processing results.
@@ -1396,10 +1477,11 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
     $config
 );
 $id = 56; // int | Project identifier.
+$item_id = 56; // int | Project item identifier.
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
-    $result = $apiInstance->projectsGetProjectProcessingResults($id, $tenant_id);
+    $result = $apiInstance->projectsGetProjectProcessingResults($id, $item_id, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsGetProjectProcessingResults: ', $e->getMessage(), PHP_EOL;
@@ -1411,6 +1493,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **int**| Project identifier. | |
+| **item_id** | **int**| Project item identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
@@ -1433,7 +1516,7 @@ try {
 ## `projectsRestartProjectProcessing()`
 
 ```php
-projectsRestartProjectProcessing($id, $tenant_id)
+projectsRestartProjectProcessing($id, $item_id, $tenant_id)
 ```
 
 Restarts a project processing routine.
@@ -1472,10 +1555,11 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
     $config
 );
 $id = 56; // int | Project identifier.
+$item_id = 56; // int | Project item identifier. If value is set, only specified item processing will be restarted.
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
-    $apiInstance->projectsRestartProjectProcessing($id, $tenant_id);
+    $apiInstance->projectsRestartProjectProcessing($id, $item_id, $tenant_id);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsRestartProjectProcessing: ', $e->getMessage(), PHP_EOL;
 }
@@ -1486,6 +1570,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **int**| Project identifier. | |
+| **item_id** | **int**| Project item identifier. If value is set, only specified item processing will be restarted. | [optional] |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
@@ -1508,7 +1593,7 @@ void (empty response body)
 ## `projectsResumeProjectProcessing()`
 
 ```php
-projectsResumeProjectProcessing($id, $tenant_id)
+projectsResumeProjectProcessing($id, $item_id, $tenant_id)
 ```
 
 Resumes project processing.
@@ -1547,10 +1632,11 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
     $config
 );
 $id = 56; // int | Project identifier.
+$item_id = 56; // int | Project item identifier. If value is set, only specified item processing will be resumed.
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
-    $apiInstance->projectsResumeProjectProcessing($id, $tenant_id);
+    $apiInstance->projectsResumeProjectProcessing($id, $item_id, $tenant_id);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsResumeProjectProcessing: ', $e->getMessage(), PHP_EOL;
 }
@@ -1561,6 +1647,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **int**| Project identifier. | |
+| **item_id** | **int**| Project item identifier. If value is set, only specified item processing will be resumed. | [optional] |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type

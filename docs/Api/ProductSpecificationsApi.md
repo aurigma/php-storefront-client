@@ -6,7 +6,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**productSpecificationsGet()**](ProductSpecificationsApi.md#productSpecificationsGet) | **GET** /api/storefront/v1/product-specifications/{id} | Returns a product specification by identifier. |
 | [**productSpecificationsGetAll()**](ProductSpecificationsApi.md#productSpecificationsGetAll) | **GET** /api/storefront/v1/product-specifications | Returns all product specifications, relevant to the specified query parameters. |
-| [**productSpecificationsGetConfiguration()**](ProductSpecificationsApi.md#productSpecificationsGetConfiguration) | **GET** /api/storefront/v1/product-specifications/{id}/config |  |
+| [**productSpecificationsGetConfiguration()**](ProductSpecificationsApi.md#productSpecificationsGetConfiguration) | **GET** /api/storefront/v1/product-specifications/{id}/config | Returns a product personalization workflow configuration by product specification identifier. |
 | [**productSpecificationsGetPersonalizationWorkflow()**](ProductSpecificationsApi.md#productSpecificationsGetPersonalizationWorkflow) | **GET** /api/storefront/v1/product-specifications/{id}/personalization-workflow | Returns a product personalization workflow description by product specification identifier. |
 
 
@@ -174,7 +174,7 @@ try {
 productSpecificationsGetConfiguration($id, $tenant_id): string
 ```
 
-
+Returns a product personalization workflow configuration by product specification identifier.
 
 ### Example
 
@@ -209,8 +209,8 @@ $apiInstance = new Aurigma\Storefront\Api\ProductSpecificationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 56; // int
-$tenant_id = 56; // int
+$id = 56; // int | Product specification identifier.
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->productSpecificationsGetConfiguration($id, $tenant_id);
@@ -224,8 +224,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **int**|  | |
-| **tenant_id** | **int**|  | [optional] |
+| **id** | **int**| Product specification identifier. | |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 

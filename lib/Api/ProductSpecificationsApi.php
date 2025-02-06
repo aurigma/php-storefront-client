@@ -897,8 +897,10 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetConfiguration
      *
-     * @param  int $id id (required)
-     * @param  int $tenant_id tenant_id (optional)
+     * Returns a product personalization workflow configuration by product specification identifier.
+     *
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productSpecificationsGetConfiguration'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
@@ -915,8 +917,10 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetConfigurationWithHttpInfo
      *
-     * @param  int $id (required)
-     * @param  int $tenant_id (optional)
+     * Returns a product personalization workflow configuration by product specification identifier.
+     *
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productSpecificationsGetConfiguration'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1074,8 +1078,10 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetConfigurationAsync
      *
-     * @param  int $id (required)
-     * @param  int $tenant_id (optional)
+     * Returns a product personalization workflow configuration by product specification identifier.
+     *
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productSpecificationsGetConfiguration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1095,8 +1101,10 @@ class ProductSpecificationsApi
     /**
      * Operation productSpecificationsGetConfigurationAsyncWithHttpInfo
      *
-     * @param  int $id (required)
-     * @param  int $tenant_id (optional)
+     * Returns a product personalization workflow configuration by product specification identifier.
+     *
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productSpecificationsGetConfiguration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1147,8 +1155,8 @@ class ProductSpecificationsApi
     /**
      * Create request for operation 'productSpecificationsGetConfiguration'
      *
-     * @param  int $id (required)
-     * @param  int $tenant_id (optional)
+     * @param  int $id Product specification identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productSpecificationsGetConfiguration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

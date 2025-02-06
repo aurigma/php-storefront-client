@@ -93,9 +93,9 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
         'design_id' => false,
         'name' => true,
         'dpi' => false,
-        'format' => true,
-        'color_space' => true,
-        'flip_mode' => true,
+        'format' => false,
+        'color_space' => false,
+        'flip_mode' => false,
         'anonymous_access' => true
     ];
 
@@ -436,21 +436,14 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets format
      *
-     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputFormat|null $format Output file format.
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputFormat|null $format format
      *
      * @return self
      */
     public function setFormat($format)
     {
         if (is_null($format)) {
-            array_push($this->openAPINullablesSetToNull, 'format');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('format', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable format cannot be null');
         }
         $this->container['format'] = $format;
 
@@ -470,21 +463,14 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets color_space
      *
-     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputColorSpace|null $color_space Output file color space.
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputColorSpace|null $color_space color_space
      *
      * @return self
      */
     public function setColorSpace($color_space)
     {
         if (is_null($color_space)) {
-            array_push($this->openAPINullablesSetToNull, 'color_space');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('color_space', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable color_space cannot be null');
         }
         $this->container['color_space'] = $color_space;
 
@@ -504,21 +490,14 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets flip_mode
      *
-     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputFlipMode|null $flip_mode Output file flip mode.
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputFlipMode|null $flip_mode flip_mode
      *
      * @return self
      */
     public function setFlipMode($flip_mode)
     {
         if (is_null($flip_mode)) {
-            array_push($this->openAPINullablesSetToNull, 'flip_mode');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flip_mode', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable flip_mode cannot be null');
         }
         $this->container['flip_mode'] = $flip_mode;
 

@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProjectItemResourceParametersDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing create operation paramters for a project item resource.
+ * @description Dto class, containing create operation parameters for a project item resource.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

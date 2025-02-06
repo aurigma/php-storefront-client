@@ -50,6 +50,8 @@ class RenderHiResScenarioOutputFormat
 
     public const TIFF = 'Tiff';
 
+    public const BMP = 'Bmp';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -60,7 +62,8 @@ class RenderHiResScenarioOutputFormat
             self::PDF,
             self::JPEG,
             self::PNG,
-            self::TIFF
+            self::TIFF,
+            self::BMP
         ];
     }
 }

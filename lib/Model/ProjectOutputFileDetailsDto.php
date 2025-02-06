@@ -58,11 +58,15 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
+        'project_item_id' => 'int',
+        'order_line_item_id' => 'string',
+        'order_line_item_index' => 'int',
         'url' => 'string',
         'name' => 'string',
         'format' => 'string',
         'artifact_id' => 'string',
-        'anonymous_access' => 'bool'
+        'anonymous_access' => 'bool',
+        'size' => 'int'
     ];
 
     /**
@@ -73,11 +77,15 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'project_item_id' => 'int32',
+        'order_line_item_id' => null,
+        'order_line_item_index' => 'int32',
         'url' => null,
         'name' => null,
         'format' => null,
         'artifact_id' => null,
-        'anonymous_access' => null
+        'anonymous_access' => null,
+        'size' => 'int64'
     ];
 
     /**
@@ -86,11 +94,15 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'project_item_id' => true,
+        'order_line_item_id' => true,
+        'order_line_item_index' => true,
         'url' => true,
         'name' => true,
         'format' => true,
         'artifact_id' => true,
-        'anonymous_access' => false
+        'anonymous_access' => false,
+        'size' => true
     ];
 
     /**
@@ -179,11 +191,15 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
+        'project_item_id' => 'projectItemId',
+        'order_line_item_id' => 'orderLineItemId',
+        'order_line_item_index' => 'orderLineItemIndex',
         'url' => 'url',
         'name' => 'name',
         'format' => 'format',
         'artifact_id' => 'artifactId',
-        'anonymous_access' => 'anonymousAccess'
+        'anonymous_access' => 'anonymousAccess',
+        'size' => 'size'
     ];
 
     /**
@@ -192,11 +208,15 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
+        'project_item_id' => 'setProjectItemId',
+        'order_line_item_id' => 'setOrderLineItemId',
+        'order_line_item_index' => 'setOrderLineItemIndex',
         'url' => 'setUrl',
         'name' => 'setName',
         'format' => 'setFormat',
         'artifact_id' => 'setArtifactId',
-        'anonymous_access' => 'setAnonymousAccess'
+        'anonymous_access' => 'setAnonymousAccess',
+        'size' => 'setSize'
     ];
 
     /**
@@ -205,11 +225,15 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
+        'project_item_id' => 'getProjectItemId',
+        'order_line_item_id' => 'getOrderLineItemId',
+        'order_line_item_index' => 'getOrderLineItemIndex',
         'url' => 'getUrl',
         'name' => 'getName',
         'format' => 'getFormat',
         'artifact_id' => 'getArtifactId',
-        'anonymous_access' => 'getAnonymousAccess'
+        'anonymous_access' => 'getAnonymousAccess',
+        'size' => 'getSize'
     ];
 
     /**
@@ -269,11 +293,15 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('project_item_id', $data ?? [], null);
+        $this->setIfExists('order_line_item_id', $data ?? [], null);
+        $this->setIfExists('order_line_item_index', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('format', $data ?? [], null);
         $this->setIfExists('artifact_id', $data ?? [], null);
         $this->setIfExists('anonymous_access', $data ?? [], null);
+        $this->setIfExists('size', $data ?? [], null);
     }
 
     /**
@@ -317,6 +345,108 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets project_item_id
+     *
+     * @return int|null
+     */
+    public function getProjectItemId()
+    {
+        return $this->container['project_item_id'];
+    }
+
+    /**
+     * Sets project_item_id
+     *
+     * @param int|null $project_item_id Project item identifier.
+     *
+     * @return self
+     */
+    public function setProjectItemId($project_item_id)
+    {
+        if (is_null($project_item_id)) {
+            array_push($this->openAPINullablesSetToNull, 'project_item_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('project_item_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['project_item_id'] = $project_item_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_id
+     *
+     * @return string|null
+     */
+    public function getOrderLineItemId()
+    {
+        return $this->container['order_line_item_id'];
+    }
+
+    /**
+     * Sets order_line_item_id
+     *
+     * @param string|null $order_line_item_id Order item identifier from storefront.
+     *
+     * @return self
+     */
+    public function setOrderLineItemId($order_line_item_id)
+    {
+        if (is_null($order_line_item_id)) {
+            array_push($this->openAPINullablesSetToNull, 'order_line_item_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_line_item_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['order_line_item_id'] = $order_line_item_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_index
+     *
+     * @return int|null
+     */
+    public function getOrderLineItemIndex()
+    {
+        return $this->container['order_line_item_index'];
+    }
+
+    /**
+     * Sets order_line_item_index
+     *
+     * @param int|null $order_line_item_index Order item index from storefront.
+     *
+     * @return self
+     */
+    public function setOrderLineItemIndex($order_line_item_index)
+    {
+        if (is_null($order_line_item_index)) {
+            array_push($this->openAPINullablesSetToNull, 'order_line_item_index');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_line_item_index', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['order_line_item_index'] = $order_line_item_index;
+
+        return $this;
+    }
 
     /**
      * Gets url
@@ -365,7 +495,7 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets name
      *
-     * @param string|null $name Project output file name
+     * @param string|null $name Project output file name.
      *
      * @return self
      */
@@ -399,7 +529,7 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets format
      *
-     * @param string|null $format Project output file format
+     * @param string|null $format Project output file format.
      *
      * @return self
      */
@@ -433,7 +563,7 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets artifact_id
      *
-     * @param string|null $artifact_id Project output file id withing artifacts storage.
+     * @param string|null $artifact_id Output artifact file identifier.
      *
      * @return self
      */
@@ -477,6 +607,40 @@ class ProjectOutputFileDetailsDto implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable anonymous_access cannot be null');
         }
         $this->container['anonymous_access'] = $anonymous_access;
+
+        return $this;
+    }
+
+    /**
+     * Gets size
+     *
+     * @return int|null
+     */
+    public function getSize()
+    {
+        return $this->container['size'];
+    }
+
+    /**
+     * Sets size
+     *
+     * @param int|null $size Project output file size in bytes.
+     *
+     * @return self
+     */
+    public function setSize($size)
+    {
+        if (is_null($size)) {
+            array_push($this->openAPINullablesSetToNull, 'size');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('size', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['size'] = $size;
 
         return $this;
     }

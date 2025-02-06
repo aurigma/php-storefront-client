@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateProjectByRenderHiResScenarioDtoTest
+ * CreateSingleItemProjectDtoTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Aurigma\Storefront\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreateProjectByRenderHiResScenarioDtoTest Class Doc Comment
+ * CreateSingleItemProjectDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing &#39;create&#39; operation parameters for project entity.
+ * @description Dto class, containing create operation parameters for single-item project entity.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreateProjectByRenderHiResScenarioDtoTest extends TestCase
+class CreateSingleItemProjectDtoTest extends TestCase
 {
 
     /**
@@ -71,45 +71,18 @@ class CreateProjectByRenderHiResScenarioDtoTest extends TestCase
     }
 
     /**
-     * Test "CreateProjectByRenderHiResScenarioDto"
+     * Test "CreateSingleItemProjectDto"
      */
-    public function testCreateProjectByRenderHiResScenarioDto()
+    public function testCreateSingleItemProjectDto()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "owner_id"
+     * Test attribute "product_reference"
      */
-    public function testPropertyOwnerId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "description"
-     */
-    public function testPropertyDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order_details"
-     */
-    public function testPropertyOrderDetails()
+    public function testPropertyProductReference()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -134,9 +107,90 @@ class CreateProjectByRenderHiResScenarioDtoTest extends TestCase
     }
 
     /**
-     * Test attribute "scenario"
+     * Test attribute "items"
      */
-    public function testPropertyScenario()
+    public function testPropertyItems()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_id"
+     */
+    public function testPropertyOrderId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_url"
+     */
+    public function testPropertyOrderUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_number"
+     */
+    public function testPropertyOrderNumber()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "customer_id"
+     */
+    public function testPropertyCustomerId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "customer_name"
+     */
+    public function testPropertyCustomerName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "name"
+     */
+    public function testPropertyName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "owner_id"
+     */
+    public function testPropertyOwnerId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "item"
+     */
+    public function testPropertyItem()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

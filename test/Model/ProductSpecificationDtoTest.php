@@ -132,4 +132,22 @@ class ProductSpecificationDtoTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "personalization_workflow_id"
+     */
+    public function testPropertyPersonalizationWorkflowId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "processing_pipeline_id"
+     */
+    public function testPropertyProcessingPipelineId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

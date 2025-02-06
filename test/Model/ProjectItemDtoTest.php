@@ -80,6 +80,15 @@ class ProjectItemDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "id"
+     */
+    public function testPropertyId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "name"
      */
     public function testPropertyName()
@@ -92,6 +101,33 @@ class ProjectItemDtoTest extends TestCase
      * Test attribute "quantity"
      */
     public function testPropertyQuantity()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_line_item_id"
+     */
+    public function testPropertyOrderLineItemId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_line_item_index"
+     */
+    public function testPropertyOrderLineItemIndex()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "product_reference"
+     */
+    public function testPropertyProductReference()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

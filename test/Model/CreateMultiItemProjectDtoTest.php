@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateProjectByRenderHiResScenarioDtoTest
+ * CreateMultiItemProjectDtoTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Aurigma\Storefront\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreateProjectByRenderHiResScenarioDtoTest Class Doc Comment
+ * CreateMultiItemProjectDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing &#39;create&#39; operation parameters for project entity.
+ * @description Dto class, containing create operation parameters for multi-item project entity.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreateProjectByRenderHiResScenarioDtoTest extends TestCase
+class CreateMultiItemProjectDtoTest extends TestCase
 {
 
     /**
@@ -71,18 +71,54 @@ class CreateProjectByRenderHiResScenarioDtoTest extends TestCase
     }
 
     /**
-     * Test "CreateProjectByRenderHiResScenarioDto"
+     * Test "CreateMultiItemProjectDto"
      */
-    public function testCreateProjectByRenderHiResScenarioDto()
+    public function testCreateMultiItemProjectDto()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "owner_id"
+     * Test attribute "order_id"
      */
-    public function testPropertyOwnerId()
+    public function testPropertyOrderId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_url"
+     */
+    public function testPropertyOrderUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "order_number"
+     */
+    public function testPropertyOrderNumber()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "customer_id"
+     */
+    public function testPropertyCustomerId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "customer_name"
+     */
+    public function testPropertyCustomerName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -98,45 +134,27 @@ class CreateProjectByRenderHiResScenarioDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "owner_id"
+     */
+    public function testPropertyOwnerId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "items"
+     */
+    public function testPropertyItems()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "description"
      */
     public function testPropertyDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order_details"
-     */
-    public function testPropertyOrderDetails()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order_line_item_index"
-     */
-    public function testPropertyOrderLineItemIndex()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order_line_item_id"
-     */
-    public function testPropertyOrderLineItemId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "scenario"
-     */
-    public function testPropertyScenario()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

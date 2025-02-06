@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * RenderHiResScenarioDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing &#39;RenderHiRes&#39; scenario paramters.
+ * @description Dto class, containing &#39;RenderHiRes&#39; scenario parameters.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
