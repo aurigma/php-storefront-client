@@ -58,7 +58,9 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'available_transitions' => '\Aurigma\Storefront\Model\ProjectTransitionDto[]'
+        'available_transitions' => '\Aurigma\Storefront\Model\ProjectTransitionDto[]',
+        'description' => 'string',
+        'type' => '\Aurigma\Storefront\Model\ConflictType'
     ];
 
     /**
@@ -69,7 +71,9 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'available_transitions' => null
+        'available_transitions' => null,
+        'description' => null,
+        'type' => null
     ];
 
     /**
@@ -78,7 +82,9 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'available_transitions' => true
+        'available_transitions' => true,
+        'description' => true,
+        'type' => false
     ];
 
     /**
@@ -167,7 +173,9 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'available_transitions' => 'availableTransitions'
+        'available_transitions' => 'availableTransitions',
+        'description' => 'description',
+        'type' => 'type'
     ];
 
     /**
@@ -176,7 +184,9 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'available_transitions' => 'setAvailableTransitions'
+        'available_transitions' => 'setAvailableTransitions',
+        'description' => 'setDescription',
+        'type' => 'setType'
     ];
 
     /**
@@ -185,7 +195,9 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'available_transitions' => 'getAvailableTransitions'
+        'available_transitions' => 'getAvailableTransitions',
+        'description' => 'getDescription',
+        'type' => 'getType'
     ];
 
     /**
@@ -246,6 +258,8 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('available_transitions', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -320,6 +334,67 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
             }
         }
         $this->container['available_transitions'] = $available_transitions;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Problem description.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \Aurigma\Storefront\Model\ConflictType|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \Aurigma\Storefront\Model\ConflictType|null $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

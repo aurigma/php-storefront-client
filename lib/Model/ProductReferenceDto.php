@@ -35,7 +35,7 @@ use \Aurigma\Storefront\ObjectSerializer;
  * ProductReferenceDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing information about storefront product reference.
+ * @description DTO class, containing information about storefront product reference.
  * @package  Aurigma\Storefront
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -59,7 +59,12 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPITypes = [
         'product_reference' => 'string',
+        'product_reference_type' => '\Aurigma\Storefront\Model\ProductReferenceType',
+        'product_reference_name' => 'string',
         'product_specification_id' => 'int',
+        'product_id' => 'int',
+        'product_version_id' => 'int',
+        'product_link_id' => 'int',
         'storefront_id' => 'int',
         'tenant_id' => 'int',
         'created' => '\DateTime'
@@ -74,7 +79,12 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPIFormats = [
         'product_reference' => null,
+        'product_reference_type' => null,
+        'product_reference_name' => null,
         'product_specification_id' => 'int32',
+        'product_id' => 'int32',
+        'product_version_id' => 'int32',
+        'product_link_id' => 'int32',
         'storefront_id' => 'int32',
         'tenant_id' => 'int32',
         'created' => 'date-time'
@@ -87,7 +97,12 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPINullables = [
         'product_reference' => true,
+        'product_reference_type' => false,
+        'product_reference_name' => true,
         'product_specification_id' => false,
+        'product_id' => false,
+        'product_version_id' => false,
+        'product_link_id' => false,
         'storefront_id' => false,
         'tenant_id' => false,
         'created' => false
@@ -180,7 +195,12 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $attributeMap = [
         'product_reference' => 'productReference',
+        'product_reference_type' => 'productReferenceType',
+        'product_reference_name' => 'productReferenceName',
         'product_specification_id' => 'productSpecificationId',
+        'product_id' => 'productId',
+        'product_version_id' => 'productVersionId',
+        'product_link_id' => 'productLinkId',
         'storefront_id' => 'storefrontId',
         'tenant_id' => 'tenantId',
         'created' => 'created'
@@ -193,7 +213,12 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $setters = [
         'product_reference' => 'setProductReference',
+        'product_reference_type' => 'setProductReferenceType',
+        'product_reference_name' => 'setProductReferenceName',
         'product_specification_id' => 'setProductSpecificationId',
+        'product_id' => 'setProductId',
+        'product_version_id' => 'setProductVersionId',
+        'product_link_id' => 'setProductLinkId',
         'storefront_id' => 'setStorefrontId',
         'tenant_id' => 'setTenantId',
         'created' => 'setCreated'
@@ -206,7 +231,12 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $getters = [
         'product_reference' => 'getProductReference',
+        'product_reference_type' => 'getProductReferenceType',
+        'product_reference_name' => 'getProductReferenceName',
         'product_specification_id' => 'getProductSpecificationId',
+        'product_id' => 'getProductId',
+        'product_version_id' => 'getProductVersionId',
+        'product_link_id' => 'getProductLinkId',
         'storefront_id' => 'getStorefrontId',
         'tenant_id' => 'getTenantId',
         'created' => 'getCreated'
@@ -270,7 +300,12 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
     public function __construct(array $data = null)
     {
         $this->setIfExists('product_reference', $data ?? [], null);
+        $this->setIfExists('product_reference_type', $data ?? [], null);
+        $this->setIfExists('product_reference_name', $data ?? [], null);
         $this->setIfExists('product_specification_id', $data ?? [], null);
+        $this->setIfExists('product_id', $data ?? [], null);
+        $this->setIfExists('product_version_id', $data ?? [], null);
+        $this->setIfExists('product_link_id', $data ?? [], null);
         $this->setIfExists('storefront_id', $data ?? [], null);
         $this->setIfExists('tenant_id', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
@@ -331,7 +366,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets product_reference
      *
-     * @param string|null $product_reference Product reference is an external reference to Customer's Canvas product specification, e.g online store product identifier.
+     * @param string|null $product_reference Product reference is an external reference to Customer's Canvas product, e.g online store product identifier.
      *
      * @return self
      */
@@ -348,6 +383,67 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['product_reference'] = $product_reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_reference_type
+     *
+     * @return \Aurigma\Storefront\Model\ProductReferenceType|null
+     */
+    public function getProductReferenceType()
+    {
+        return $this->container['product_reference_type'];
+    }
+
+    /**
+     * Sets product_reference_type
+     *
+     * @param \Aurigma\Storefront\Model\ProductReferenceType|null $product_reference_type product_reference_type
+     *
+     * @return self
+     */
+    public function setProductReferenceType($product_reference_type)
+    {
+        if (is_null($product_reference_type)) {
+            throw new \InvalidArgumentException('non-nullable product_reference_type cannot be null');
+        }
+        $this->container['product_reference_type'] = $product_reference_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_reference_name
+     *
+     * @return string|null
+     */
+    public function getProductReferenceName()
+    {
+        return $this->container['product_reference_name'];
+    }
+
+    /**
+     * Sets product_reference_name
+     *
+     * @param string|null $product_reference_name Product reference name, e.g. online store product name.
+     *
+     * @return self
+     */
+    public function setProductReferenceName($product_reference_name)
+    {
+        if (is_null($product_reference_name)) {
+            array_push($this->openAPINullablesSetToNull, 'product_reference_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('product_reference_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['product_reference_name'] = $product_reference_name;
 
         return $this;
     }
@@ -375,6 +471,87 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable product_specification_id cannot be null');
         }
         $this->container['product_specification_id'] = $product_specification_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_id
+     *
+     * @return int|null
+     */
+    public function getProductId()
+    {
+        return $this->container['product_id'];
+    }
+
+    /**
+     * Sets product_id
+     *
+     * @param int|null $product_id Customer's Canvas product identifier.
+     *
+     * @return self
+     */
+    public function setProductId($product_id)
+    {
+        if (is_null($product_id)) {
+            throw new \InvalidArgumentException('non-nullable product_id cannot be null');
+        }
+        $this->container['product_id'] = $product_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_version_id
+     *
+     * @return int|null
+     */
+    public function getProductVersionId()
+    {
+        return $this->container['product_version_id'];
+    }
+
+    /**
+     * Sets product_version_id
+     *
+     * @param int|null $product_version_id Customer's Canvas product version identifier.
+     *
+     * @return self
+     */
+    public function setProductVersionId($product_version_id)
+    {
+        if (is_null($product_version_id)) {
+            throw new \InvalidArgumentException('non-nullable product_version_id cannot be null');
+        }
+        $this->container['product_version_id'] = $product_version_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_link_id
+     *
+     * @return int|null
+     */
+    public function getProductLinkId()
+    {
+        return $this->container['product_link_id'];
+    }
+
+    /**
+     * Sets product_link_id
+     *
+     * @param int|null $product_link_id Customer's Canvas product link identifier.
+     *
+     * @return self
+     */
+    public function setProductLinkId($product_link_id)
+    {
+        if (is_null($product_link_id)) {
+            throw new \InvalidArgumentException('non-nullable product_link_id cannot be null');
+        }
+        $this->container['product_link_id'] = $product_link_id;
 
         return $this;
     }

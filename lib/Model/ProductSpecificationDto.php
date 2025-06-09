@@ -61,6 +61,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'id' => 'int',
         'tenant_id' => 'int',
         'name' => 'string',
+        'description' => 'string',
         'product_attributes' => '\Aurigma\Storefront\Model\ProductAttributeDto[]',
         'created' => '\DateTime',
         'last_modified' => '\DateTime',
@@ -79,6 +80,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'id' => 'int32',
         'tenant_id' => 'int32',
         'name' => null,
+        'description' => null,
         'product_attributes' => null,
         'created' => 'date-time',
         'last_modified' => 'date-time',
@@ -95,6 +97,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'id' => false,
         'tenant_id' => false,
         'name' => true,
+        'description' => true,
         'product_attributes' => true,
         'created' => false,
         'last_modified' => true,
@@ -191,6 +194,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'id' => 'id',
         'tenant_id' => 'tenantId',
         'name' => 'name',
+        'description' => 'description',
         'product_attributes' => 'productAttributes',
         'created' => 'created',
         'last_modified' => 'lastModified',
@@ -207,6 +211,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'id' => 'setId',
         'tenant_id' => 'setTenantId',
         'name' => 'setName',
+        'description' => 'setDescription',
         'product_attributes' => 'setProductAttributes',
         'created' => 'setCreated',
         'last_modified' => 'setLastModified',
@@ -223,6 +228,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         'id' => 'getId',
         'tenant_id' => 'getTenantId',
         'name' => 'getName',
+        'description' => 'getDescription',
         'product_attributes' => 'getProductAttributes',
         'created' => 'getCreated',
         'last_modified' => 'getLastModified',
@@ -290,6 +296,7 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('tenant_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('product_attributes', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
         $this->setIfExists('last_modified', $data ?? [], null);
@@ -423,6 +430,40 @@ class ProductSpecificationDto implements ModelInterface, ArrayAccess, \JsonSeria
             }
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Product specification description.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['description'] = $description;
 
         return $this;
     }

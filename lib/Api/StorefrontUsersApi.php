@@ -72,10 +72,7 @@ class StorefrontUsersApi
     /** @var string[] $contentTypes **/
     public const contentTypes = [
         'storefrontUsersCreate' => [
-            'application/json-patch+json',
             'application/json',
-            'text/json',
-            'application/*+json',
         ],
         'storefrontUsersGet' => [
             'application/json',
@@ -87,16 +84,10 @@ class StorefrontUsersApi
             'application/json',
         ],
         'storefrontUsersMergeAnonymous' => [
-            'application/json-patch+json',
             'application/json',
-            'text/json',
-            'application/*+json',
         ],
         'storefrontUsersRegister' => [
-            'application/json-patch+json',
             'application/json',
-            'text/json',
-            'application/*+json',
         ],
     ];
 
@@ -158,7 +149,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function storefrontUsersCreate($storefront_id, $tenant_id = null, $create_storefront_user_dto = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
     {
@@ -178,7 +169,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function storefrontUsersCreateWithHttpInfo($storefront_id, $tenant_id = null, $create_storefront_user_dto = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
     {
@@ -248,11 +239,11 @@ class StorefrontUsersApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -270,7 +261,7 @@ class StorefrontUsersApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -317,7 +308,7 @@ class StorefrontUsersApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -458,7 +449,7 @@ class StorefrontUsersApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -495,10 +486,6 @@ class StorefrontUsersApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -508,14 +495,14 @@ class StorefrontUsersApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -551,7 +538,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function storefrontUsersGet($id, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGet'][0])
     {
@@ -571,7 +558,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function storefrontUsersGetWithHttpInfo($id, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGet'][0])
     {
@@ -667,6 +654,33 @@ class StorefrontUsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\Storefront\Model\StorefrontUserDto';
@@ -711,6 +725,14 @@ class StorefrontUsersApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -865,7 +887,7 @@ class StorefrontUsersApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -895,10 +917,6 @@ class StorefrontUsersApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -908,14 +926,14 @@ class StorefrontUsersApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -955,7 +973,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\PagedOfStorefrontUserDto
+     * @return \Aurigma\Storefront\Model\PagedOfStorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function storefrontUsersGetAll($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
     {
@@ -979,7 +997,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\PagedOfStorefrontUserDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\PagedOfStorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function storefrontUsersGetAllWithHttpInfo($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
     {
@@ -1048,6 +1066,33 @@ class StorefrontUsersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\Storefront\Model\PagedOfStorefrontUserDto';
@@ -1084,6 +1129,14 @@ class StorefrontUsersApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\PagedOfStorefrontUserDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1285,7 +1338,7 @@ class StorefrontUsersApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1315,10 +1368,6 @@ class StorefrontUsersApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1328,14 +1377,14 @@ class StorefrontUsersApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1371,7 +1420,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return string|string|string
+     * @return string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function storefrontUsersGetToken($storefront_user_id, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetToken'][0])
     {
@@ -1391,7 +1440,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of string|string|string, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function storefrontUsersGetTokenWithHttpInfo($storefront_user_id, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetToken'][0])
     {
@@ -1461,11 +1510,11 @@ class StorefrontUsersApi
                         $response->getHeaders()
                     ];
                 case 404:
-                    if ('string' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('string' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1483,16 +1532,16 @@ class StorefrontUsersApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'string', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('string' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('string' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1510,7 +1559,7 @@ class StorefrontUsersApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'string', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1557,7 +1606,7 @@ class StorefrontUsersApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'string',
+                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1565,7 +1614,7 @@ class StorefrontUsersApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'string',
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1721,7 +1770,7 @@ class StorefrontUsersApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', ],
+            ['text/plain', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -1751,10 +1800,6 @@ class StorefrontUsersApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1764,14 +1809,14 @@ class StorefrontUsersApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1882,7 +1927,7 @@ class StorefrontUsersApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2010,7 +2055,7 @@ class StorefrontUsersApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2047,10 +2092,6 @@ class StorefrontUsersApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2060,14 +2101,14 @@ class StorefrontUsersApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -2103,7 +2144,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function storefrontUsersRegister($storefront_id, $tenant_id = null, $register_storefront_user_input = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
     {
@@ -2123,7 +2164,7 @@ class StorefrontUsersApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function storefrontUsersRegisterWithHttpInfo($storefront_id, $tenant_id = null, $register_storefront_user_input = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
     {
@@ -2193,11 +2234,11 @@ class StorefrontUsersApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2215,7 +2256,7 @@ class StorefrontUsersApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2262,7 +2303,7 @@ class StorefrontUsersApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2403,7 +2444,7 @@ class StorefrontUsersApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2440,10 +2481,6 @@ class StorefrontUsersApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2453,14 +2490,14 @@ class StorefrontUsersApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

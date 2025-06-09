@@ -72,37 +72,25 @@ class ProjectsApi
     /** @var string[] $contentTypes **/
     public const contentTypes = [
         'projectsAttachDataToProjectOrder' => [
-            'application/json-patch+json',
             'application/json',
-            'text/json',
-            'application/*+json',
+        ],
+        'projectsBatchDelete' => [
+            'application/json',
         ],
         'projectsChangeStatus' => [
             'application/json',
         ],
         'projectsCreateByRenderHiResScenario' => [
-            'application/json-patch+json',
             'application/json',
-            'text/json',
-            'application/*+json',
         ],
         'projectsCreateBySpecificPipelineScenario' => [
-            'application/json-patch+json',
             'application/json',
-            'text/json',
-            'application/*+json',
         ],
         'projectsCreateWithMultipleItems' => [
-            'application/json-patch+json',
             'application/json',
-            'text/json',
-            'application/*+json',
         ],
         'projectsCreateWithSingleItem' => [
-            'application/json-patch+json',
             'application/json',
-            'text/json',
-            'application/*+json',
         ],
         'projectsDelete' => [
             'application/json',
@@ -132,12 +120,6 @@ class ProjectsApi
             'application/json',
         ],
         'projectsGetProjectOrder' => [
-            'application/json',
-        ],
-        'projectsGetProjectPdfUrl' => [
-            'application/json',
-        ],
-        'projectsGetProjectPdfZip' => [
             'application/json',
         ],
         'projectsGetProjectProcessingResults' => [
@@ -203,7 +185,7 @@ class ProjectsApi
      * Attachs the specified data to the project&#39;s order in ecommerce system.
      *
      * @param  int $id Project identifier. (required)
-     * @param  int $item_id item_id (optional)
+     * @param  int $item_id Project item identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  \Aurigma\Storefront\Model\OrderDataItemDto[] $order_data_item_dto A list of data items, which should be attached to project&#39;s order. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsAttachDataToProjectOrder'] to see the possible values for this operation
@@ -223,7 +205,7 @@ class ProjectsApi
      * Attachs the specified data to the project&#39;s order in ecommerce system.
      *
      * @param  int $id Project identifier. (required)
-     * @param  int $item_id (optional)
+     * @param  int $item_id Project item identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  \Aurigma\Storefront\Model\OrderDataItemDto[] $order_data_item_dto A list of data items, which should be attached to project&#39;s order. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsAttachDataToProjectOrder'] to see the possible values for this operation
@@ -283,6 +265,14 @@ class ProjectsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -294,7 +284,7 @@ class ProjectsApi
      * Attachs the specified data to the project&#39;s order in ecommerce system.
      *
      * @param  int $id Project identifier. (required)
-     * @param  int $item_id (optional)
+     * @param  int $item_id Project item identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  \Aurigma\Storefront\Model\OrderDataItemDto[] $order_data_item_dto A list of data items, which should be attached to project&#39;s order. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsAttachDataToProjectOrder'] to see the possible values for this operation
@@ -318,7 +308,7 @@ class ProjectsApi
      * Attachs the specified data to the project&#39;s order in ecommerce system.
      *
      * @param  int $id Project identifier. (required)
-     * @param  int $item_id (optional)
+     * @param  int $item_id Project item identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  \Aurigma\Storefront\Model\OrderDataItemDto[] $order_data_item_dto A list of data items, which should be attached to project&#39;s order. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsAttachDataToProjectOrder'] to see the possible values for this operation
@@ -358,7 +348,7 @@ class ProjectsApi
      * Create request for operation 'projectsAttachDataToProjectOrder'
      *
      * @param  int $id Project identifier. (required)
-     * @param  int $item_id (optional)
+     * @param  int $item_id Project item identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  \Aurigma\Storefront\Model\OrderDataItemDto[] $order_data_item_dto A list of data items, which should be attached to project&#39;s order. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsAttachDataToProjectOrder'] to see the possible values for this operation
@@ -455,10 +445,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -468,14 +454,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -493,6 +479,339 @@ class ProjectsApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation projectsBatchDelete
+     *
+     * Deletes specified projects.   These projects will be hide from projects list immediately, but complete projects data cleaning will take some additional time.
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\BatchDeleteProjectsInput $batch_delete_projects_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsBatchDelete'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\Storefront\Model\PagedOfProjectStatusDto
+     */
+    public function projectsBatchDelete($tenant_id = null, $batch_delete_projects_input = null, string $contentType = self::contentTypes['projectsBatchDelete'][0])
+    {
+        list($response) = $this->projectsBatchDeleteWithHttpInfo($tenant_id, $batch_delete_projects_input, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation projectsBatchDeleteWithHttpInfo
+     *
+     * Deletes specified projects.   These projects will be hide from projects list immediately, but complete projects data cleaning will take some additional time.
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\BatchDeleteProjectsInput $batch_delete_projects_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsBatchDelete'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\Storefront\Model\PagedOfProjectStatusDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function projectsBatchDeleteWithHttpInfo($tenant_id = null, $batch_delete_projects_input = null, string $contentType = self::contentTypes['projectsBatchDelete'][0])
+    {
+        $request = $this->projectsBatchDeleteRequest($tenant_id, $batch_delete_projects_input, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\Storefront\Model\PagedOfProjectStatusDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\PagedOfProjectStatusDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\PagedOfProjectStatusDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\Storefront\Model\PagedOfProjectStatusDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\PagedOfProjectStatusDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation projectsBatchDeleteAsync
+     *
+     * Deletes specified projects.   These projects will be hide from projects list immediately, but complete projects data cleaning will take some additional time.
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\BatchDeleteProjectsInput $batch_delete_projects_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsBatchDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function projectsBatchDeleteAsync($tenant_id = null, $batch_delete_projects_input = null, string $contentType = self::contentTypes['projectsBatchDelete'][0])
+    {
+        return $this->projectsBatchDeleteAsyncWithHttpInfo($tenant_id, $batch_delete_projects_input, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation projectsBatchDeleteAsyncWithHttpInfo
+     *
+     * Deletes specified projects.   These projects will be hide from projects list immediately, but complete projects data cleaning will take some additional time.
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\BatchDeleteProjectsInput $batch_delete_projects_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsBatchDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function projectsBatchDeleteAsyncWithHttpInfo($tenant_id = null, $batch_delete_projects_input = null, string $contentType = self::contentTypes['projectsBatchDelete'][0])
+    {
+        $returnType = '\Aurigma\Storefront\Model\PagedOfProjectStatusDto';
+        $request = $this->projectsBatchDeleteRequest($tenant_id, $batch_delete_projects_input, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'projectsBatchDelete'
+     *
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\Storefront\Model\BatchDeleteProjectsInput $batch_delete_projects_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsBatchDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function projectsBatchDeleteRequest($tenant_id = null, $batch_delete_projects_input = null, string $contentType = self::contentTypes['projectsBatchDelete'][0])
+    {
+
+
+
+
+        $resourcePath = '/api/storefront/v1/projects/batch-delete';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($batch_delete_projects_input)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($batch_delete_projects_input));
+            } else {
+                $httpBody = $batch_delete_projects_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -894,7 +1213,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -924,10 +1243,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -937,14 +1252,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -980,7 +1295,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsCreateByRenderHiResScenario($storefront_id, $tenant_id = null, $create_project_by_render_hi_res_scenario_dto = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
     {
@@ -1000,7 +1315,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsCreateByRenderHiResScenarioWithHttpInfo($storefront_id, $tenant_id = null, $create_project_by_render_hi_res_scenario_dto = null, string $contentType = self::contentTypes['projectsCreateByRenderHiResScenario'][0])
     {
@@ -1097,11 +1412,11 @@ class ProjectsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1119,7 +1434,7 @@ class ProjectsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1174,7 +1489,7 @@ class ProjectsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1315,7 +1630,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1352,10 +1667,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1365,14 +1676,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1408,7 +1719,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id = null, $create_project_by_specific_pipeline_scenario_dto = null, string $contentType = self::contentTypes['projectsCreateBySpecificPipelineScenario'][0])
     {
@@ -1428,7 +1739,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsCreateBySpecificPipelineScenarioWithHttpInfo($storefront_id, $tenant_id = null, $create_project_by_specific_pipeline_scenario_dto = null, string $contentType = self::contentTypes['projectsCreateBySpecificPipelineScenario'][0])
     {
@@ -1525,11 +1836,11 @@ class ProjectsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1547,7 +1858,7 @@ class ProjectsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1602,7 +1913,7 @@ class ProjectsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1743,7 +2054,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -1780,10 +2091,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1793,14 +2100,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1836,7 +2143,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsCreateWithMultipleItems($storefront_id, $tenant_id = null, $create_multi_item_project_dto = null, string $contentType = self::contentTypes['projectsCreateWithMultipleItems'][0])
     {
@@ -1856,7 +2163,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsCreateWithMultipleItemsWithHttpInfo($storefront_id, $tenant_id = null, $create_multi_item_project_dto = null, string $contentType = self::contentTypes['projectsCreateWithMultipleItems'][0])
     {
@@ -1953,11 +2260,11 @@ class ProjectsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1975,7 +2282,7 @@ class ProjectsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2030,7 +2337,7 @@ class ProjectsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2171,7 +2478,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2208,10 +2515,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2221,14 +2524,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -2264,7 +2567,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsCreateWithSingleItem($storefront_id, $tenant_id = null, $create_single_item_project_dto = null, string $contentType = self::contentTypes['projectsCreateWithSingleItem'][0])
     {
@@ -2284,7 +2587,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsCreateWithSingleItemWithHttpInfo($storefront_id, $tenant_id = null, $create_single_item_project_dto = null, string $contentType = self::contentTypes['projectsCreateWithSingleItem'][0])
     {
@@ -2381,11 +2684,11 @@ class ProjectsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2403,7 +2706,7 @@ class ProjectsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2458,7 +2761,7 @@ class ProjectsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2599,7 +2902,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2636,10 +2939,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2649,14 +2948,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -2758,6 +3057,14 @@ class ProjectsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2880,7 +3187,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -2910,10 +3217,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2923,14 +3226,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -2966,7 +3269,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\ProjectStatusDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\ProjectStatusDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsForceStatus($id, $status, $tenant_id = null, string $contentType = self::contentTypes['projectsForceStatus'][0])
     {
@@ -2986,7 +3289,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\ProjectStatusDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\ProjectStatusDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsForceStatusWithHttpInfo($id, $status, $tenant_id = null, string $contentType = self::contentTypes['projectsForceStatus'][0])
     {
@@ -3109,6 +3412,33 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\Storefront\Model\ProjectStatusDto';
@@ -3161,6 +3491,14 @@ class ProjectsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3314,7 +3652,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3344,10 +3682,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3357,14 +3691,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -3399,7 +3733,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsGet($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGet'][0])
     {
@@ -3418,7 +3752,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\ProjectDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsGetWithHttpInfo($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGet'][0])
     {
@@ -3514,6 +3848,33 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\Storefront\Model\ProjectDto';
@@ -3558,6 +3919,14 @@ class ProjectsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3693,7 +4062,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3723,10 +4092,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3736,14 +4101,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -3782,6 +4147,7 @@ class ProjectsApi
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
      * @param  ProjectProcessingStatus $processing_status Project processing status filter. (optional)
+     * @param  bool $include_obsolete Indicates if obsolete projects prepared to be removed should be included to result. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -3790,9 +4156,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProjectDto
      */
-    public function projectsGetAll($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAll($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $include_obsolete = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
-        list($response) = $this->projectsGetAllWithHttpInfo($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $storefront_id, $tenant_id, $contentType);
+        list($response) = $this->projectsGetAllWithHttpInfo($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $include_obsolete, $storefront_id, $tenant_id, $contentType);
         return $response;
     }
 
@@ -3811,6 +4177,7 @@ class ProjectsApi
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
      * @param  ProjectProcessingStatus $processing_status Project processing status filter. (optional)
+     * @param  bool $include_obsolete Indicates if obsolete projects prepared to be removed should be included to result. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -3819,9 +4186,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProjectDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetAllWithHttpInfo($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAllWithHttpInfo($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $include_obsolete = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
-        $request = $this->projectsGetAllRequest($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $storefront_id, $tenant_id, $contentType);
+        $request = $this->projectsGetAllRequest($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $include_obsolete, $storefront_id, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3946,6 +4313,7 @@ class ProjectsApi
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
      * @param  ProjectProcessingStatus $processing_status Project processing status filter. (optional)
+     * @param  bool $include_obsolete Indicates if obsolete projects prepared to be removed should be included to result. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -3953,9 +4321,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllAsync($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAllAsync($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $include_obsolete = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
-        return $this->projectsGetAllAsyncWithHttpInfo($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $storefront_id, $tenant_id, $contentType)
+        return $this->projectsGetAllAsyncWithHttpInfo($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $include_obsolete, $storefront_id, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3978,6 +4346,7 @@ class ProjectsApi
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
      * @param  ProjectProcessingStatus $processing_status Project processing status filter. (optional)
+     * @param  bool $include_obsolete Indicates if obsolete projects prepared to be removed should be included to result. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -3985,10 +4354,10 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function projectsGetAllAsyncWithHttpInfo($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAllAsyncWithHttpInfo($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $include_obsolete = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProjectDto';
-        $request = $this->projectsGetAllRequest($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $storefront_id, $tenant_id, $contentType);
+        $request = $this->projectsGetAllRequest($owner_id, $product_reference, $status, $date_period, $skip, $take, $sorting, $search, $order_id, $processing_status, $include_obsolete, $storefront_id, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4039,6 +4408,7 @@ class ProjectsApi
      * @param  string $search Search string for partial match. (optional)
      * @param  string $order_id Identifier of corresponding order. (optional)
      * @param  ProjectProcessingStatus $processing_status Project processing status filter. (optional)
+     * @param  bool $include_obsolete Indicates if obsolete projects prepared to be removed should be included to result. (optional)
      * @param  int $storefront_id Storefront identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetAll'] to see the possible values for this operation
@@ -4046,8 +4416,9 @@ class ProjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetAllRequest($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
+    public function projectsGetAllRequest($owner_id = null, $product_reference = null, $status = null, $date_period = null, $skip = null, $take = null, $sorting = null, $search = null, $order_id = null, $processing_status = null, $include_obsolete = null, $storefront_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAll'][0])
     {
+
 
 
 
@@ -4161,6 +4532,15 @@ class ProjectsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $include_obsolete,
+            'includeObsolete', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $storefront_id,
             'storefrontId', // param base name
             'integer', // openApiType
@@ -4182,7 +4562,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4212,10 +4592,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4225,14 +4601,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -4506,7 +4882,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4536,10 +4912,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4549,14 +4921,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -4830,7 +5202,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4860,10 +5232,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4873,14 +5241,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -4915,7 +5283,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\PagedOfProjectTransitionDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\ProjectTransitionConflictDto
+     * @return \Aurigma\Storefront\Model\PagedOfProjectTransitionDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsGetAvailableTransitions($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAvailableTransitions'][0])
     {
@@ -4934,7 +5302,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\PagedOfProjectTransitionDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\ProjectTransitionConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\PagedOfProjectTransitionDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsGetAvailableTransitionsWithHttpInfo($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetAvailableTransitions'][0])
     {
@@ -5058,11 +5426,11 @@ class ProjectsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\Storefront\Model\ProjectTransitionConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\ProjectTransitionConflictDto' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5080,7 +5448,7 @@ class ProjectsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\ProjectTransitionConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5143,7 +5511,7 @@ class ProjectsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\ProjectTransitionConflictDto',
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5279,7 +5647,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -5309,10 +5677,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5322,14 +5686,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -5364,7 +5728,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \SplFileObject|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsGetPreview($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetPreview'][0])
     {
@@ -5383,7 +5747,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsGetPreviewWithHttpInfo($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetPreview'][0])
     {
@@ -5479,6 +5843,33 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -5523,6 +5914,14 @@ class ProjectsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5658,7 +6057,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/octet-stream', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -5688,10 +6087,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5701,14 +6096,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -5743,7 +6138,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return string|string
+     * @return string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsGetPreviewUrl($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetPreviewUrl'][0])
     {
@@ -5762,7 +6157,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of string|string, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsGetPreviewUrlWithHttpInfo($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetPreviewUrl'][0])
     {
@@ -5832,11 +6227,11 @@ class ProjectsApi
                         $response->getHeaders()
                     ];
                 case 404:
-                    if ('string' === '\SplFileObject') {
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('string' !== 'string') {
+                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5854,7 +6249,34 @@ class ProjectsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'string', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5901,7 +6323,15 @@ class ProjectsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'string',
+                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6037,7 +6467,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', ],
+            ['text/plain', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -6067,10 +6497,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6080,14 +6506,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -6122,7 +6548,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return mixed|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsGetProjectOrder($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectOrder'][0])
     {
@@ -6141,7 +6567,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsGetProjectOrderWithHttpInfo($id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectOrder'][0])
     {
@@ -6237,6 +6663,33 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -6281,6 +6734,14 @@ class ProjectsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6446,10 +6907,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6459,393 +6916,6 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation projectsGetProjectPdfUrl
-     *
-     * Returns an url to download project print file.
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfUrl'] to see the possible values for this operation
-     *
-     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\ProjectPdfResultDto
-     * @deprecated
-     */
-    public function projectsGetProjectPdfUrl($id, $design_user_id, $design_id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfUrl'][0])
-    {
-        list($response) = $this->projectsGetProjectPdfUrlWithHttpInfo($id, $design_user_id, $design_id, $tenant_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation projectsGetProjectPdfUrlWithHttpInfo
-     *
-     * Returns an url to download project print file.
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfUrl'] to see the possible values for this operation
-     *
-     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\ProjectPdfResultDto, HTTP status code, HTTP response headers (array of strings)
-     * @deprecated
-     */
-    public function projectsGetProjectPdfUrlWithHttpInfo($id, $design_user_id, $design_id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfUrl'][0])
-    {
-        $request = $this->projectsGetProjectPdfUrlRequest($id, $design_user_id, $design_id, $tenant_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Aurigma\Storefront\Model\ProjectPdfResultDto' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\ProjectPdfResultDto' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\ProjectPdfResultDto', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Aurigma\Storefront\Model\ProjectPdfResultDto';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\ProjectPdfResultDto',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation projectsGetProjectPdfUrlAsync
-     *
-     * Returns an url to download project print file.
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfUrl'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     * @deprecated
-     */
-    public function projectsGetProjectPdfUrlAsync($id, $design_user_id, $design_id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfUrl'][0])
-    {
-        return $this->projectsGetProjectPdfUrlAsyncWithHttpInfo($id, $design_user_id, $design_id, $tenant_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation projectsGetProjectPdfUrlAsyncWithHttpInfo
-     *
-     * Returns an url to download project print file.
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfUrl'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     * @deprecated
-     */
-    public function projectsGetProjectPdfUrlAsyncWithHttpInfo($id, $design_user_id, $design_id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfUrl'][0])
-    {
-        $returnType = '\Aurigma\Storefront\Model\ProjectPdfResultDto';
-        $request = $this->projectsGetProjectPdfUrlRequest($id, $design_user_id, $design_id, $tenant_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'projectsGetProjectPdfUrl'
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfUrl'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     * @deprecated
-     */
-    public function projectsGetProjectPdfUrlRequest($id, $design_user_id, $design_id, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfUrl'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling projectsGetProjectPdfUrl'
-            );
-        }
-
-        // verify the required parameter 'design_user_id' is set
-        if ($design_user_id === null || (is_array($design_user_id) && count($design_user_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $design_user_id when calling projectsGetProjectPdfUrl'
-            );
-        }
-
-        // verify the required parameter 'design_id' is set
-        if ($design_id === null || (is_array($design_id) && count($design_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $design_id when calling projectsGetProjectPdfUrl'
-            );
-        }
-
-
-
-        $resourcePath = '/api/storefront/v1/projects/{id}/project-pdf';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $design_user_id,
-            'designUserId', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $design_id,
-            'designId', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $tenant_id,
-            'tenantId', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
-        if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
-        }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
@@ -6854,451 +6924,6 @@ class ProjectsApi
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation projectsGetProjectPdfZip
-     *
-     * Returns an archive file, which contains all project print files.
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfZip'] to see the possible values for this operation
-     *
-     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
-     * @deprecated
-     */
-    public function projectsGetProjectPdfZip($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfZip'][0])
-    {
-        list($response) = $this->projectsGetProjectPdfZipWithHttpInfo($id, $design_user_id, $design_id, $attachment, $tenant_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation projectsGetProjectPdfZipWithHttpInfo
-     *
-     * Returns an archive file, which contains all project print files.
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfZip'] to see the possible values for this operation
-     *
-     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
-     * @deprecated
-     */
-    public function projectsGetProjectPdfZipWithHttpInfo($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfZip'][0])
-    {
-        $request = $this->projectsGetProjectPdfZipRequest($id, $design_user_id, $design_id, $attachment, $tenant_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\SplFileObject' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SplFileObject' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 404:
-                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\SplFileObject';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SplFileObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation projectsGetProjectPdfZipAsync
-     *
-     * Returns an archive file, which contains all project print files.
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfZip'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     * @deprecated
-     */
-    public function projectsGetProjectPdfZipAsync($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfZip'][0])
-    {
-        return $this->projectsGetProjectPdfZipAsyncWithHttpInfo($id, $design_user_id, $design_id, $attachment, $tenant_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation projectsGetProjectPdfZipAsyncWithHttpInfo
-     *
-     * Returns an archive file, which contains all project print files.
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfZip'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     * @deprecated
-     */
-    public function projectsGetProjectPdfZipAsyncWithHttpInfo($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfZip'][0])
-    {
-        $returnType = '\SplFileObject';
-        $request = $this->projectsGetProjectPdfZipRequest($id, $design_user_id, $design_id, $attachment, $tenant_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'projectsGetProjectPdfZip'
-     *
-     * @param  int $id Project identifier. (required)
-     * @param  string $design_user_id Design owner identifier. (required)
-     * @param  string $design_id Design identifier. (required)
-     * @param  bool $attachment If set to &#39;true&#39;, the requested file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional, default to true)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGetProjectPdfZip'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     * @deprecated
-     */
-    public function projectsGetProjectPdfZipRequest($id, $design_user_id, $design_id, $attachment = true, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectPdfZip'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling projectsGetProjectPdfZip'
-            );
-        }
-
-        // verify the required parameter 'design_user_id' is set
-        if ($design_user_id === null || (is_array($design_user_id) && count($design_user_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $design_user_id when calling projectsGetProjectPdfZip'
-            );
-        }
-
-        // verify the required parameter 'design_id' is set
-        if ($design_id === null || (is_array($design_id) && count($design_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $design_id when calling projectsGetProjectPdfZip'
-            );
-        }
-
-
-
-
-        $resourcePath = '/api/storefront/v1/projects/{id}/project-pdf-zip';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $design_user_id,
-            'designUserId', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $design_id,
-            'designId', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $attachment,
-            'attachment', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $tenant_id,
-            'tenantId', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/octet-stream', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
-        if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -7334,7 +6959,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\Storefront\Model\ProjectProcessingResultsDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails
+     * @return \Aurigma\Storefront\Model\ProjectProcessingResultsDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
      */
     public function projectsGetProjectProcessingResults($id, $item_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectProcessingResults'][0])
     {
@@ -7354,7 +6979,7 @@ class ProjectsApi
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\Storefront\Model\ProjectProcessingResultsDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\Storefront\Model\ProjectProcessingResultsDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function projectsGetProjectProcessingResultsWithHttpInfo($id, $item_id = null, $tenant_id = null, string $contentType = self::contentTypes['projectsGetProjectProcessingResults'][0])
     {
@@ -7450,6 +7075,33 @@ class ProjectsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\Storefront\Model\ProjectProcessingResultsDto';
@@ -7494,6 +7146,14 @@ class ProjectsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7642,7 +7302,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7672,10 +7332,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -7685,14 +7341,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -7796,6 +7452,14 @@ class ProjectsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7931,7 +7595,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -7961,10 +7625,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -7974,14 +7634,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -8085,6 +7745,14 @@ class ProjectsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8220,7 +7888,7 @@ class ProjectsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
+            ['application/json', ],
             $contentType,
             $multipart
         );
@@ -8250,10 +7918,6 @@ class ProjectsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -8263,14 +7927,14 @@ class ProjectsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
-        }
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

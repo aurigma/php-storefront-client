@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **format** | [**\Aurigma\Storefront\Model\RenderHiResScenarioOutputFormat**](RenderHiResScenarioOutputFormat.md) |  | [optional]
 **color_space** | [**\Aurigma\Storefront\Model\RenderHiResScenarioOutputColorSpace**](RenderHiResScenarioOutputColorSpace.md) |  | [optional]
 **flip_mode** | [**\Aurigma\Storefront\Model\RenderHiResScenarioOutputFlipMode**](RenderHiResScenarioOutputFlipMode.md) |  | [optional]
+**rotate_mode** | [**\Aurigma\Storefront\Model\RenderHiResScenarioOutputRotateMode**](RenderHiResScenarioOutputRotateMode.md) |  | [optional]
 **anonymous_access** | **bool** | Output file access mode. | [optional] [default to false]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

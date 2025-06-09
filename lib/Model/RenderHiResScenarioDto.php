@@ -64,6 +64,7 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
         'format' => '\Aurigma\Storefront\Model\RenderHiResScenarioOutputFormat',
         'color_space' => '\Aurigma\Storefront\Model\RenderHiResScenarioOutputColorSpace',
         'flip_mode' => '\Aurigma\Storefront\Model\RenderHiResScenarioOutputFlipMode',
+        'rotate_mode' => '\Aurigma\Storefront\Model\RenderHiResScenarioOutputRotateMode',
         'anonymous_access' => 'bool'
     ];
 
@@ -81,6 +82,7 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
         'format' => null,
         'color_space' => null,
         'flip_mode' => null,
+        'rotate_mode' => null,
         'anonymous_access' => null
     ];
 
@@ -96,6 +98,7 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
         'format' => false,
         'color_space' => false,
         'flip_mode' => false,
+        'rotate_mode' => false,
         'anonymous_access' => true
     ];
 
@@ -191,6 +194,7 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
         'format' => 'format',
         'color_space' => 'colorSpace',
         'flip_mode' => 'flipMode',
+        'rotate_mode' => 'rotateMode',
         'anonymous_access' => 'anonymousAccess'
     ];
 
@@ -206,6 +210,7 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
         'format' => 'setFormat',
         'color_space' => 'setColorSpace',
         'flip_mode' => 'setFlipMode',
+        'rotate_mode' => 'setRotateMode',
         'anonymous_access' => 'setAnonymousAccess'
     ];
 
@@ -221,6 +226,7 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
         'format' => 'getFormat',
         'color_space' => 'getColorSpace',
         'flip_mode' => 'getFlipMode',
+        'rotate_mode' => 'getRotateMode',
         'anonymous_access' => 'getAnonymousAccess'
     ];
 
@@ -287,6 +293,7 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('format', $data ?? [], null);
         $this->setIfExists('color_space', $data ?? [], null);
         $this->setIfExists('flip_mode', $data ?? [], null);
+        $this->setIfExists('rotate_mode', $data ?? [], null);
         $this->setIfExists('anonymous_access', $data ?? [], false);
     }
 
@@ -500,6 +507,33 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable flip_mode cannot be null');
         }
         $this->container['flip_mode'] = $flip_mode;
+
+        return $this;
+    }
+
+    /**
+     * Gets rotate_mode
+     *
+     * @return \Aurigma\Storefront\Model\RenderHiResScenarioOutputRotateMode|null
+     */
+    public function getRotateMode()
+    {
+        return $this->container['rotate_mode'];
+    }
+
+    /**
+     * Sets rotate_mode
+     *
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputRotateMode|null $rotate_mode rotate_mode
+     *
+     * @return self
+     */
+    public function setRotateMode($rotate_mode)
+    {
+        if (is_null($rotate_mode)) {
+            throw new \InvalidArgumentException('non-nullable rotate_mode cannot be null');
+        }
+        $this->container['rotate_mode'] = $rotate_mode;
 
         return $this;
     }
