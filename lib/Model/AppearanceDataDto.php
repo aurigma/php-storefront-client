@@ -310,7 +310,7 @@ class AppearanceDataDto implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\AppearanceDataType|null $type type
+     * @param \Aurigma\Storefront\Model\AppearanceDataType|null $type Appearance type.
      *
      * @return self
      */

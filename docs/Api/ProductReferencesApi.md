@@ -6,11 +6,13 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**productReferencesGet()**](ProductReferencesApi.md#productReferencesGet) | **GET** /api/storefront/v1/product-references/{reference} | Returns a storefront product reference. |
 | [**productReferencesGetAll()**](ProductReferencesApi.md#productReferencesGetAll) | **GET** /api/storefront/v1/product-references | Returns all storefront product references relevant to the specified query parameters. |
+| [**productReferencesGetAllProductBundles()**](ProductReferencesApi.md#productReferencesGetAllProductBundles) | **GET** /api/storefront/v1/product-references/product-bundles | Returns a list of product bundles associated with storefront product references relevant to the specified query parameters. |
 | [**productReferencesGetAllProductLinks()**](ProductReferencesApi.md#productReferencesGetAllProductLinks) | **GET** /api/storefront/v1/product-references/product-links | Returns a list of product links associated with storefront product references relevant to the specified query parameters. |
 | [**productReferencesGetAllProductSpecifications()**](ProductReferencesApi.md#productReferencesGetAllProductSpecifications) | **GET** /api/storefront/v1/product-references/product-specifications | Returns a list of product specifications associated with storefront product references relevant to the specified query parameters. |
 | [**productReferencesGetAllProducts()**](ProductReferencesApi.md#productReferencesGetAllProducts) | **GET** /api/storefront/v1/product-references/products | Returns a list of products associated with storefront product references relevant to the specified query parameters. |
 | [**productReferencesGetPersonalizationWorkflow()**](ProductReferencesApi.md#productReferencesGetPersonalizationWorkflow) | **GET** /api/storefront/v1/product-references/{reference}/personalization-workflow | Returns a product personalization workflow. |
 | [**productReferencesGetProduct()**](ProductReferencesApi.md#productReferencesGetProduct) | **GET** /api/storefront/v1/product-references/{reference}/product | Returns a product by storefront product reference. |
+| [**productReferencesGetProductBundle()**](ProductReferencesApi.md#productReferencesGetProductBundle) | **GET** /api/storefront/v1/product-references/{reference}/product-bundle | Returns a product bundle by storefront product reference. |
 | [**productReferencesGetProductCostDetails()**](ProductReferencesApi.md#productReferencesGetProductCostDetails) | **GET** /api/storefront/v1/product-references/{reference}/product-cost-details | Returns a product cost details from ecommerce system. |
 | [**productReferencesGetProductLink()**](ProductReferencesApi.md#productReferencesGetProductLink) | **GET** /api/storefront/v1/product-references/{reference}/product-link | Returns a product link by storefront product reference. |
 | [**productReferencesGetProductSpecification()**](ProductReferencesApi.md#productReferencesGetProductSpecification) | **GET** /api/storefront/v1/product-references/{reference}/product-specification | Returns a product specification by the storefront product reference. |
@@ -95,7 +97,7 @@ try {
 ## `productReferencesGetAll()`
 
 ```php
-productReferencesGetAll($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id): \Aurigma\Storefront\Model\PagedOfProductReferenceDto
+productReferencesGetAll($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id): \Aurigma\Storefront\Model\PagedOfProductReferenceDto
 ```
 
 Returns all storefront product references relevant to the specified query parameters.
@@ -135,6 +137,7 @@ $product_reference = 'product_reference_example'; // string | Product reference 
 $product_specification_id = 56; // int | Customer's Canvas product specification filter.
 $product_id = 56; // int | Customer's Canvas product filter.
 $product_link_id = 56; // int | Customer's Canvas product link filter.
+$product_bundle_id = 56; // int | Customer's Canvas product bundle filter.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
 $take = 56; // int | Defines page length (how many consequent items of sorted result list should be taken).
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
@@ -145,7 +148,7 @@ $custom_fields = 'custom_fields_example'; // string | Serialized custom fields d
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
-    $result = $apiInstance->productReferencesGetAll($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id);
+    $result = $apiInstance->productReferencesGetAll($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProductReferencesApi->productReferencesGetAll: ', $e->getMessage(), PHP_EOL;
@@ -161,6 +164,7 @@ try {
 | **product_specification_id** | **int**| Customer&#39;s Canvas product specification filter. | [optional] |
 | **product_id** | **int**| Customer&#39;s Canvas product filter. | [optional] |
 | **product_link_id** | **int**| Customer&#39;s Canvas product link filter. | [optional] |
+| **product_bundle_id** | **int**| Customer&#39;s Canvas product bundle filter. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
 | **take** | **int**| Defines page length (how many consequent items of sorted result list should be taken). | [optional] |
 | **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
@@ -187,10 +191,107 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `productReferencesGetAllProductBundles()`
+
+```php
+productReferencesGetAllProductBundles($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id): \Aurigma\Storefront\Model\PagedOfProductBundleDto
+```
+
+Returns a list of product bundles associated with storefront product references relevant to the specified query parameters.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProductReferencesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$storefront_id = 56; // int | Storefront identifier.
+$product_reference = 'product_reference_example'; // string | Product reference filter.  Product reference is an external reference to Customer's Canvas product, e.g online store product identifier.
+$product_specification_id = 56; // int | Customer's Canvas product specification filter.
+$product_id = 56; // int | Customer's Canvas product filter.
+$product_link_id = 56; // int | Customer's Canvas product link filter.
+$product_bundle_id = 56; // int | Customer's Canvas product bundle filter.
+$skip = 56; // int | Defines page start offset from beginning of sorted result list.
+$take = 56; // int | Defines page length (how many consequent items of sorted result list should be taken).
+$sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
+$search = 'search_example'; // string | Search string for partial match.
+$sku = 'sku_example'; // string | SKU filter.
+$tags = array('tags_example'); // string[] | List of tags that product should have.
+$custom_fields = 'custom_fields_example'; // string | Serialized custom fields dictionary filter. For example: {\"public\":\"true\",\"name\":\"my item\"}.
+$tenant_id = 56; // int | Tenant identifier.
+
+try {
+    $result = $apiInstance->productReferencesGetAllProductBundles($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductReferencesApi->productReferencesGetAllProductBundles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **storefront_id** | **int**| Storefront identifier. | |
+| **product_reference** | **string**| Product reference filter.  Product reference is an external reference to Customer&#39;s Canvas product, e.g online store product identifier. | [optional] |
+| **product_specification_id** | **int**| Customer&#39;s Canvas product specification filter. | [optional] |
+| **product_id** | **int**| Customer&#39;s Canvas product filter. | [optional] |
+| **product_link_id** | **int**| Customer&#39;s Canvas product link filter. | [optional] |
+| **product_bundle_id** | **int**| Customer&#39;s Canvas product bundle filter. | [optional] |
+| **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
+| **take** | **int**| Defines page length (how many consequent items of sorted result list should be taken). | [optional] |
+| **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
+| **search** | **string**| Search string for partial match. | [optional] |
+| **sku** | **string**| SKU filter. | [optional] |
+| **tags** | [**string[]**](../Model/string.md)| List of tags that product should have. | [optional] |
+| **custom_fields** | **string**| Serialized custom fields dictionary filter. For example: {\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}. | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
+
+### Return type
+
+[**\Aurigma\Storefront\Model\PagedOfProductBundleDto**](../Model/PagedOfProductBundleDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `productReferencesGetAllProductLinks()`
 
 ```php
-productReferencesGetAllProductLinks($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id): \Aurigma\Storefront\Model\PagedOfProductLinkDto
+productReferencesGetAllProductLinks($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id): \Aurigma\Storefront\Model\PagedOfProductLinkDto
 ```
 
 Returns a list of product links associated with storefront product references relevant to the specified query parameters.
@@ -230,6 +331,7 @@ $product_reference = 'product_reference_example'; // string | Product reference 
 $product_specification_id = 56; // int | Customer's Canvas product specification filter.
 $product_id = 56; // int | Customer's Canvas product filter.
 $product_link_id = 56; // int | Customer's Canvas product link filter.
+$product_bundle_id = 56; // int | Customer's Canvas product bundle filter.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
 $take = 56; // int | Defines page length (how many consequent items of sorted result list should be taken).
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
@@ -240,7 +342,7 @@ $custom_fields = 'custom_fields_example'; // string | Serialized custom fields d
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
-    $result = $apiInstance->productReferencesGetAllProductLinks($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id);
+    $result = $apiInstance->productReferencesGetAllProductLinks($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProductReferencesApi->productReferencesGetAllProductLinks: ', $e->getMessage(), PHP_EOL;
@@ -256,6 +358,7 @@ try {
 | **product_specification_id** | **int**| Customer&#39;s Canvas product specification filter. | [optional] |
 | **product_id** | **int**| Customer&#39;s Canvas product filter. | [optional] |
 | **product_link_id** | **int**| Customer&#39;s Canvas product link filter. | [optional] |
+| **product_bundle_id** | **int**| Customer&#39;s Canvas product bundle filter. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
 | **take** | **int**| Defines page length (how many consequent items of sorted result list should be taken). | [optional] |
 | **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
@@ -285,7 +388,7 @@ try {
 ## `productReferencesGetAllProductSpecifications()`
 
 ```php
-productReferencesGetAllProductSpecifications($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id): \Aurigma\Storefront\Model\PagedOfProductSpecificationDto
+productReferencesGetAllProductSpecifications($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id): \Aurigma\Storefront\Model\PagedOfProductSpecificationDto
 ```
 
 Returns a list of product specifications associated with storefront product references relevant to the specified query parameters.
@@ -325,6 +428,7 @@ $product_reference = 'product_reference_example'; // string | Product reference 
 $product_specification_id = 56; // int | Customer's Canvas product specification filter.
 $product_id = 56; // int | Customer's Canvas product filter.
 $product_link_id = 56; // int | Customer's Canvas product link filter.
+$product_bundle_id = 56; // int | Customer's Canvas product bundle filter.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
 $take = 56; // int | Defines page length (how many consequent items of sorted result list should be taken).
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
@@ -335,7 +439,7 @@ $custom_fields = 'custom_fields_example'; // string | Serialized custom fields d
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
-    $result = $apiInstance->productReferencesGetAllProductSpecifications($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id);
+    $result = $apiInstance->productReferencesGetAllProductSpecifications($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProductReferencesApi->productReferencesGetAllProductSpecifications: ', $e->getMessage(), PHP_EOL;
@@ -351,6 +455,7 @@ try {
 | **product_specification_id** | **int**| Customer&#39;s Canvas product specification filter. | [optional] |
 | **product_id** | **int**| Customer&#39;s Canvas product filter. | [optional] |
 | **product_link_id** | **int**| Customer&#39;s Canvas product link filter. | [optional] |
+| **product_bundle_id** | **int**| Customer&#39;s Canvas product bundle filter. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
 | **take** | **int**| Defines page length (how many consequent items of sorted result list should be taken). | [optional] |
 | **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
@@ -380,7 +485,7 @@ try {
 ## `productReferencesGetAllProducts()`
 
 ```php
-productReferencesGetAllProducts($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id): \Aurigma\Storefront\Model\PagedOfProductDto
+productReferencesGetAllProducts($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id): \Aurigma\Storefront\Model\PagedOfProductDto
 ```
 
 Returns a list of products associated with storefront product references relevant to the specified query parameters.
@@ -420,6 +525,7 @@ $product_reference = 'product_reference_example'; // string | Product reference 
 $product_specification_id = 56; // int | Customer's Canvas product specification filter.
 $product_id = 56; // int | Customer's Canvas product filter.
 $product_link_id = 56; // int | Customer's Canvas product link filter.
+$product_bundle_id = 56; // int | Customer's Canvas product bundle filter.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
 $take = 56; // int | Defines page length (how many consequent items of sorted result list should be taken).
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
@@ -430,7 +536,7 @@ $custom_fields = 'custom_fields_example'; // string | Serialized custom fields d
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
-    $result = $apiInstance->productReferencesGetAllProducts($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id);
+    $result = $apiInstance->productReferencesGetAllProducts($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProductReferencesApi->productReferencesGetAllProducts: ', $e->getMessage(), PHP_EOL;
@@ -446,6 +552,7 @@ try {
 | **product_specification_id** | **int**| Customer&#39;s Canvas product specification filter. | [optional] |
 | **product_id** | **int**| Customer&#39;s Canvas product filter. | [optional] |
 | **product_link_id** | **int**| Customer&#39;s Canvas product link filter. | [optional] |
+| **product_bundle_id** | **int**| Customer&#39;s Canvas product bundle filter. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
 | **take** | **int**| Defines page length (how many consequent items of sorted result list should be taken). | [optional] |
 | **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
@@ -608,6 +715,81 @@ try {
 ### Return type
 
 [**\Aurigma\Storefront\Model\ProductDto**](../Model/ProductDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `productReferencesGetProductBundle()`
+
+```php
+productReferencesGetProductBundle($reference, $storefront_id, $tenant_id): \Aurigma\Storefront\Model\ProductBundleDto
+```
+
+Returns a product bundle by storefront product reference.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\Storefront\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\Storefront\Api\ProductReferencesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$reference = 'reference_example'; // string | An external reference to Customer's Canvas product, e.g online store product identifier.
+$storefront_id = 56; // int | Storefront identifier.
+$tenant_id = 56; // int | Tenant identifier.
+
+try {
+    $result = $apiInstance->productReferencesGetProductBundle($reference, $storefront_id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductReferencesApi->productReferencesGetProductBundle: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **reference** | **string**| An external reference to Customer&#39;s Canvas product, e.g online store product identifier. | |
+| **storefront_id** | **int**| Storefront identifier. | |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
+
+### Return type
+
+[**\Aurigma\Storefront\Model\ProductBundleDto**](../Model/ProductBundleDto.md)
 
 ### Authorization
 

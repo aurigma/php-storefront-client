@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **customer_name** | **string** | Customer name in ecommerce system. | [optional]
 **name** | **string** | Project name. | [optional]
 **owner_id** | **string** | Project owner identifier. |
-**item** | [**\Aurigma\Storefront\Model\ProjectItemParametersDto**](ProjectItemParametersDto.md) |  | [optional]
+**item** | [**\Aurigma\Storefront\Model\CreateSingleItemProjectDtoItem**](CreateSingleItemProjectDtoItem.md) |  | [optional]
 **description** | **string** | Description of the project. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

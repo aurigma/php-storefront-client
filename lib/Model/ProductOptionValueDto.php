@@ -63,10 +63,11 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
         'sort_index' => 'int',
         'is_default' => 'bool',
         'tag' => 'string',
-        'simple_option_value' => '\Aurigma\Storefront\Model\SimpleOptionValue',
+        'uid' => 'string',
+        'simple_option_value' => '\Aurigma\Storefront\Model\ProductOptionValueDtoSimpleOptionValue',
         'description' => 'string',
         'colors' => 'string[]',
-        'image' => '\Aurigma\Storefront\Model\ImageInfo'
+        'image' => '\Aurigma\Storefront\Model\ProductOptionValueDtoImage'
     ];
 
     /**
@@ -82,6 +83,7 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
         'sort_index' => 'int32',
         'is_default' => null,
         'tag' => null,
+        'uid' => null,
         'simple_option_value' => null,
         'description' => null,
         'colors' => null,
@@ -99,10 +101,11 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
         'sort_index' => false,
         'is_default' => false,
         'tag' => true,
-        'simple_option_value' => false,
+        'uid' => true,
+        'simple_option_value' => true,
         'description' => true,
         'colors' => true,
-        'image' => false
+        'image' => true
     ];
 
     /**
@@ -196,6 +199,7 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
         'sort_index' => 'sortIndex',
         'is_default' => 'isDefault',
         'tag' => 'tag',
+        'uid' => 'uid',
         'simple_option_value' => 'simpleOptionValue',
         'description' => 'description',
         'colors' => 'colors',
@@ -213,6 +217,7 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
         'sort_index' => 'setSortIndex',
         'is_default' => 'setIsDefault',
         'tag' => 'setTag',
+        'uid' => 'setUid',
         'simple_option_value' => 'setSimpleOptionValue',
         'description' => 'setDescription',
         'colors' => 'setColors',
@@ -230,6 +235,7 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
         'sort_index' => 'getSortIndex',
         'is_default' => 'getIsDefault',
         'tag' => 'getTag',
+        'uid' => 'getUid',
         'simple_option_value' => 'getSimpleOptionValue',
         'description' => 'getDescription',
         'colors' => 'getColors',
@@ -298,6 +304,7 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('sort_index', $data ?? [], null);
         $this->setIfExists('is_default', $data ?? [], null);
         $this->setIfExists('tag', $data ?? [], null);
+        $this->setIfExists('uid', $data ?? [], null);
         $this->setIfExists('simple_option_value', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('colors', $data ?? [], null);
@@ -496,9 +503,43 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets uid
+     *
+     * @return string|null
+     */
+    public function getUid()
+    {
+        return $this->container['uid'];
+    }
+
+    /**
+     * Sets uid
+     *
+     * @param string|null $uid Product option value UID.
+     *
+     * @return self
+     */
+    public function setUid($uid)
+    {
+        if (is_null($uid)) {
+            array_push($this->openAPINullablesSetToNull, 'uid');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('uid', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['uid'] = $uid;
+
+        return $this;
+    }
+
+    /**
      * Gets simple_option_value
      *
-     * @return \Aurigma\Storefront\Model\SimpleOptionValue|null
+     * @return \Aurigma\Storefront\Model\ProductOptionValueDtoSimpleOptionValue|null
      */
     public function getSimpleOptionValue()
     {
@@ -508,14 +549,21 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets simple_option_value
      *
-     * @param \Aurigma\Storefront\Model\SimpleOptionValue|null $simple_option_value simple_option_value
+     * @param \Aurigma\Storefront\Model\ProductOptionValueDtoSimpleOptionValue|null $simple_option_value simple_option_value
      *
      * @return self
      */
     public function setSimpleOptionValue($simple_option_value)
     {
         if (is_null($simple_option_value)) {
-            throw new \InvalidArgumentException('non-nullable simple_option_value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'simple_option_value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('simple_option_value', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['simple_option_value'] = $simple_option_value;
 
@@ -593,7 +641,7 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets image
      *
-     * @return \Aurigma\Storefront\Model\ImageInfo|null
+     * @return \Aurigma\Storefront\Model\ProductOptionValueDtoImage|null
      */
     public function getImage()
     {
@@ -603,14 +651,21 @@ class ProductOptionValueDto implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets image
      *
-     * @param \Aurigma\Storefront\Model\ImageInfo|null $image image
+     * @param \Aurigma\Storefront\Model\ProductOptionValueDtoImage|null $image image
      *
      * @return self
      */
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new \InvalidArgumentException('non-nullable image cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'image');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('image', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['image'] = $image;
 

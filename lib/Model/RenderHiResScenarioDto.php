@@ -95,10 +95,10 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
         'design_id' => false,
         'name' => true,
         'dpi' => false,
-        'format' => false,
-        'color_space' => false,
-        'flip_mode' => false,
-        'rotate_mode' => false,
+        'format' => true,
+        'color_space' => true,
+        'flip_mode' => true,
+        'rotate_mode' => true,
         'anonymous_access' => true
     ];
 
@@ -443,14 +443,21 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets format
      *
-     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputFormat|null $format format
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputFormat|null $format Output file format.
      *
      * @return self
      */
     public function setFormat($format)
     {
         if (is_null($format)) {
-            throw new \InvalidArgumentException('non-nullable format cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'format');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('format', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['format'] = $format;
 
@@ -470,14 +477,21 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets color_space
      *
-     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputColorSpace|null $color_space color_space
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputColorSpace|null $color_space Output file color space.
      *
      * @return self
      */
     public function setColorSpace($color_space)
     {
         if (is_null($color_space)) {
-            throw new \InvalidArgumentException('non-nullable color_space cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'color_space');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('color_space', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['color_space'] = $color_space;
 
@@ -497,14 +511,21 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets flip_mode
      *
-     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputFlipMode|null $flip_mode flip_mode
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputFlipMode|null $flip_mode Output file flip mode.
      *
      * @return self
      */
     public function setFlipMode($flip_mode)
     {
         if (is_null($flip_mode)) {
-            throw new \InvalidArgumentException('non-nullable flip_mode cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'flip_mode');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('flip_mode', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['flip_mode'] = $flip_mode;
 
@@ -524,14 +545,21 @@ class RenderHiResScenarioDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets rotate_mode
      *
-     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputRotateMode|null $rotate_mode rotate_mode
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioOutputRotateMode|null $rotate_mode Output file rotate mode.
      *
      * @return self
      */
     public function setRotateMode($rotate_mode)
     {
         if (is_null($rotate_mode)) {
-            throw new \InvalidArgumentException('non-nullable rotate_mode cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'rotate_mode');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rotate_mode', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['rotate_mode'] = $rotate_mode;
 

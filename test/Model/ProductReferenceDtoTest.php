@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ProductReferenceDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Dto class, containing information about storefront product reference.
+ * @description DTO class, containing information about storefront product reference.
  * @package     Aurigma\Storefront
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -89,9 +89,63 @@ class ProductReferenceDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "product_reference_type"
+     */
+    public function testPropertyProductReferenceType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "product_reference_name"
+     */
+    public function testPropertyProductReferenceName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "product_specification_id"
      */
     public function testPropertyProductSpecificationId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "product_id"
+     */
+    public function testPropertyProductId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "product_version_id"
+     */
+    public function testPropertyProductVersionId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "product_link_id"
+     */
+    public function testPropertyProductLinkId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "product_bundle_id"
+     */
+    public function testPropertyProductBundleId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

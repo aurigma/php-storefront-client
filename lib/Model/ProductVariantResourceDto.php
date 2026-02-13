@@ -62,7 +62,7 @@ class ProductVariantResourceDto implements ModelInterface, ArrayAccess, \JsonSer
         'name' => 'string',
         'url' => 'string',
         'type' => '\Aurigma\Storefront\Model\ProductVariantResourceType',
-        'resource_preview' => '\Aurigma\Storefront\Model\ProductVariantResourcePreview'
+        'resource_preview' => '\Aurigma\Storefront\Model\ProductVariantResourceDtoResourcePreview'
     ];
 
     /**
@@ -90,7 +90,7 @@ class ProductVariantResourceDto implements ModelInterface, ArrayAccess, \JsonSer
         'name' => true,
         'url' => true,
         'type' => false,
-        'resource_preview' => false
+        'resource_preview' => true
     ];
 
     /**
@@ -433,7 +433,7 @@ class ProductVariantResourceDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\ProductVariantResourceType|null $type type
+     * @param \Aurigma\Storefront\Model\ProductVariantResourceType|null $type Resource type.
      *
      * @return self
      */
@@ -450,7 +450,7 @@ class ProductVariantResourceDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets resource_preview
      *
-     * @return \Aurigma\Storefront\Model\ProductVariantResourcePreview|null
+     * @return \Aurigma\Storefront\Model\ProductVariantResourceDtoResourcePreview|null
      */
     public function getResourcePreview()
     {
@@ -460,14 +460,21 @@ class ProductVariantResourceDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets resource_preview
      *
-     * @param \Aurigma\Storefront\Model\ProductVariantResourcePreview|null $resource_preview resource_preview
+     * @param \Aurigma\Storefront\Model\ProductVariantResourceDtoResourcePreview|null $resource_preview resource_preview
      *
      * @return self
      */
     public function setResourcePreview($resource_preview)
     {
         if (is_null($resource_preview)) {
-            throw new \InvalidArgumentException('non-nullable resource_preview cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'resource_preview');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resource_preview', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['resource_preview'] = $resource_preview;
 

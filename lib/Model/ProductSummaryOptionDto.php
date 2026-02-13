@@ -60,6 +60,7 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPITypes = [
         'id' => 'int',
         'tag' => 'string',
+        'uid' => 'string',
         'title' => 'string',
         'description' => 'string',
         'tooltip' => 'string',
@@ -68,8 +69,8 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
         'use_for_design_binding' => 'bool',
         'use_for_mockup_binding' => 'bool',
         'use_for_document_binding' => 'bool',
-        'appearance_data' => '\Aurigma\Storefront\Model\AppearanceDataDto',
-        'image' => '\Aurigma\Storefront\Model\ImageInfo',
+        'appearance_data' => '\Aurigma\Storefront\Model\ProductSummaryOptionDtoAppearanceData',
+        'image' => '\Aurigma\Storefront\Model\ProductSummaryOptionDtoImage',
         'product_option_values' => '\Aurigma\Storefront\Model\ProductSummaryOptionValueDto[]'
     ];
 
@@ -83,6 +84,7 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPIFormats = [
         'id' => 'int32',
         'tag' => null,
+        'uid' => null,
         'title' => null,
         'description' => null,
         'tooltip' => null,
@@ -104,6 +106,7 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     protected static array $openAPINullables = [
         'id' => false,
         'tag' => true,
+        'uid' => true,
         'title' => true,
         'description' => true,
         'tooltip' => true,
@@ -112,8 +115,8 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
         'use_for_design_binding' => false,
         'use_for_mockup_binding' => false,
         'use_for_document_binding' => false,
-        'appearance_data' => false,
-        'image' => false,
+        'appearance_data' => true,
+        'image' => true,
         'product_option_values' => true
     ];
 
@@ -205,6 +208,7 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $attributeMap = [
         'id' => 'id',
         'tag' => 'tag',
+        'uid' => 'uid',
         'title' => 'title',
         'description' => 'description',
         'tooltip' => 'tooltip',
@@ -226,6 +230,7 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $setters = [
         'id' => 'setId',
         'tag' => 'setTag',
+        'uid' => 'setUid',
         'title' => 'setTitle',
         'description' => 'setDescription',
         'tooltip' => 'setTooltip',
@@ -247,6 +252,7 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $getters = [
         'id' => 'getId',
         'tag' => 'getTag',
+        'uid' => 'getUid',
         'title' => 'getTitle',
         'description' => 'getDescription',
         'tooltip' => 'getTooltip',
@@ -319,6 +325,7 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('tag', $data ?? [], null);
+        $this->setIfExists('uid', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('tooltip', $data ?? [], null);
@@ -431,6 +438,40 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
             }
         }
         $this->container['tag'] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Gets uid
+     *
+     * @return string|null
+     */
+    public function getUid()
+    {
+        return $this->container['uid'];
+    }
+
+    /**
+     * Sets uid
+     *
+     * @param string|null $uid Product option UID.
+     *
+     * @return self
+     */
+    public function setUid($uid)
+    {
+        if (is_null($uid)) {
+            array_push($this->openAPINullablesSetToNull, 'uid');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('uid', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['uid'] = $uid;
 
         return $this;
     }
@@ -682,7 +723,7 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets appearance_data
      *
-     * @return \Aurigma\Storefront\Model\AppearanceDataDto|null
+     * @return \Aurigma\Storefront\Model\ProductSummaryOptionDtoAppearanceData|null
      */
     public function getAppearanceData()
     {
@@ -692,14 +733,21 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets appearance_data
      *
-     * @param \Aurigma\Storefront\Model\AppearanceDataDto|null $appearance_data appearance_data
+     * @param \Aurigma\Storefront\Model\ProductSummaryOptionDtoAppearanceData|null $appearance_data appearance_data
      *
      * @return self
      */
     public function setAppearanceData($appearance_data)
     {
         if (is_null($appearance_data)) {
-            throw new \InvalidArgumentException('non-nullable appearance_data cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'appearance_data');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('appearance_data', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['appearance_data'] = $appearance_data;
 
@@ -709,7 +757,7 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets image
      *
-     * @return \Aurigma\Storefront\Model\ImageInfo|null
+     * @return \Aurigma\Storefront\Model\ProductSummaryOptionDtoImage|null
      */
     public function getImage()
     {
@@ -719,14 +767,21 @@ class ProductSummaryOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets image
      *
-     * @param \Aurigma\Storefront\Model\ImageInfo|null $image image
+     * @param \Aurigma\Storefront\Model\ProductSummaryOptionDtoImage|null $image image
      *
      * @return self
      */
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new \InvalidArgumentException('non-nullable image cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'image');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('image', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['image'] = $image;
 

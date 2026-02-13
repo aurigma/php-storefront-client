@@ -64,7 +64,7 @@ class ProductVariantOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
         'product_option_traits' => 'string[]',
         'product_option_title' => 'string',
         'product_option_value_title' => 'string',
-        'simple_option_value' => '\Aurigma\Storefront\Model\SimpleOptionValue'
+        'simple_option_value' => '\Aurigma\Storefront\Model\ProductOptionValueDtoSimpleOptionValue'
     ];
 
     /**
@@ -96,7 +96,7 @@ class ProductVariantOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
         'product_option_traits' => true,
         'product_option_title' => true,
         'product_option_value_title' => true,
-        'simple_option_value' => false
+        'simple_option_value' => true
     ];
 
     /**
@@ -413,7 +413,7 @@ class ProductVariantOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets product_option_type
      *
-     * @param \Aurigma\Storefront\Model\OptionType|null $product_option_type product_option_type
+     * @param \Aurigma\Storefront\Model\OptionType|null $product_option_type Product option type ('Simple' / 'Size' / 'PageCount').
      *
      * @return self
      */
@@ -532,7 +532,7 @@ class ProductVariantOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets simple_option_value
      *
-     * @return \Aurigma\Storefront\Model\SimpleOptionValue|null
+     * @return \Aurigma\Storefront\Model\ProductOptionValueDtoSimpleOptionValue|null
      */
     public function getSimpleOptionValue()
     {
@@ -542,14 +542,21 @@ class ProductVariantOptionDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets simple_option_value
      *
-     * @param \Aurigma\Storefront\Model\SimpleOptionValue|null $simple_option_value simple_option_value
+     * @param \Aurigma\Storefront\Model\ProductOptionValueDtoSimpleOptionValue|null $simple_option_value simple_option_value
      *
      * @return self
      */
     public function setSimpleOptionValue($simple_option_value)
     {
         if (is_null($simple_option_value)) {
-            throw new \InvalidArgumentException('non-nullable simple_option_value cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'simple_option_value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('simple_option_value', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['simple_option_value'] = $simple_option_value;
 

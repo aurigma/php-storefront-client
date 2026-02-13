@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **product_variant_id** | **int** | Product variant identifier. | [optional]
+**product_variant_uid** | **string** | Product variant unique identifier. | [optional]
 **product_version_id** | **int** | Product version identifier. | [optional]
 **product_id** | **int** | Product identifier. | [optional]
 **tenant_id** | **int** | Tenant identifier. | [optional]

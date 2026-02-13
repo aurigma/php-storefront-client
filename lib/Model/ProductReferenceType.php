@@ -49,6 +49,8 @@ class ProductReferenceType
 
     public const PRODUCT_LINK = 'ProductLink';
 
+    public const PRODUCT_BUNDLE = 'ProductBundle';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -58,7 +60,8 @@ class ProductReferenceType
         return [
             self::PRODUCT_SPECIFICATION,
             self::PRODUCT,
-            self::PRODUCT_LINK
+            self::PRODUCT_LINK,
+            self::PRODUCT_BUNDLE
         ];
     }
 }

@@ -89,6 +89,15 @@ class ProjectItemParametersDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "group_id"
+     */
+    public function testPropertyGroupId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "quantity"
      */
     public function testPropertyQuantity()
@@ -164,6 +173,15 @@ class ProjectItemParametersDtoTest extends TestCase
      * Test attribute "resources"
      */
     public function testPropertyResources()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "product_specifier"
+     */
+    public function testPropertyProductSpecifier()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

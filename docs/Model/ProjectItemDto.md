@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Item identifier. | [optional]
 **name** | **string** | Item name. | [optional]
+**group_id** | **string** | Project item group identifier. | [optional]
 **quantity** | **int** | Item quantity information. | [optional]
 **order_line_item_id** | **string** | Order item identifier from storefront order. | [optional]
 **order_line_item_index** | **int** | Order item index from storefront order. | [optional]

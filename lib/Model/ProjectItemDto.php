@@ -60,6 +60,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'int',
         'name' => 'string',
+        'group_id' => 'string',
         'quantity' => 'int',
         'order_line_item_id' => 'string',
         'order_line_item_index' => 'int',
@@ -81,6 +82,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int32',
         'name' => null,
+        'group_id' => null,
         'quantity' => 'int32',
         'order_line_item_id' => null,
         'order_line_item_index' => 'int32',
@@ -100,6 +102,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => false,
         'name' => true,
+        'group_id' => true,
         'quantity' => true,
         'order_line_item_id' => true,
         'order_line_item_index' => true,
@@ -199,6 +202,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
+        'group_id' => 'groupId',
         'quantity' => 'quantity',
         'order_line_item_id' => 'orderLineItemId',
         'order_line_item_index' => 'orderLineItemIndex',
@@ -218,6 +222,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
+        'group_id' => 'setGroupId',
         'quantity' => 'setQuantity',
         'order_line_item_id' => 'setOrderLineItemId',
         'order_line_item_index' => 'setOrderLineItemIndex',
@@ -237,6 +242,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
+        'group_id' => 'getGroupId',
         'quantity' => 'getQuantity',
         'order_line_item_id' => 'getOrderLineItemId',
         'order_line_item_index' => 'getOrderLineItemIndex',
@@ -307,6 +313,7 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('group_id', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
         $this->setIfExists('order_line_item_id', $data ?? [], null);
         $this->setIfExists('order_line_item_index', $data ?? [], null);
@@ -417,6 +424,40 @@ class ProjectItemDto implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets group_id
+     *
+     * @return string|null
+     */
+    public function getGroupId()
+    {
+        return $this->container['group_id'];
+    }
+
+    /**
+     * Sets group_id
+     *
+     * @param string|null $group_id Project item group identifier.
+     *
+     * @return self
+     */
+    public function setGroupId($group_id)
+    {
+        if (is_null($group_id)) {
+            array_push($this->openAPINullablesSetToNull, 'group_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('group_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['group_id'] = $group_id;
 
         return $this;
     }

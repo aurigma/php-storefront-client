@@ -144,16 +144,16 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersCreateRequest $storefront_users_create_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
-    public function storefrontUsersCreate($storefront_id, $tenant_id = null, $create_storefront_user_dto = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
+    public function storefrontUsersCreate($storefront_id, $tenant_id = null, $storefront_users_create_request = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
     {
-        list($response) = $this->storefrontUsersCreateWithHttpInfo($storefront_id, $tenant_id, $create_storefront_user_dto, $contentType);
+        list($response) = $this->storefrontUsersCreateWithHttpInfo($storefront_id, $tenant_id, $storefront_users_create_request, $contentType);
         return $response;
     }
 
@@ -164,16 +164,16 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersCreateRequest $storefront_users_create_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontUsersCreateWithHttpInfo($storefront_id, $tenant_id = null, $create_storefront_user_dto = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
+    public function storefrontUsersCreateWithHttpInfo($storefront_id, $tenant_id = null, $storefront_users_create_request = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
     {
-        $request = $this->storefrontUsersCreateRequest($storefront_id, $tenant_id, $create_storefront_user_dto, $contentType);
+        $request = $this->storefrontUsersCreateRequest($storefront_id, $tenant_id, $storefront_users_create_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -325,15 +325,15 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersCreateRequest $storefront_users_create_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersCreateAsync($storefront_id, $tenant_id = null, $create_storefront_user_dto = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
+    public function storefrontUsersCreateAsync($storefront_id, $tenant_id = null, $storefront_users_create_request = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
     {
-        return $this->storefrontUsersCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $create_storefront_user_dto, $contentType)
+        return $this->storefrontUsersCreateAsyncWithHttpInfo($storefront_id, $tenant_id, $storefront_users_create_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -348,16 +348,16 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersCreateRequest $storefront_users_create_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $create_storefront_user_dto = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
+    public function storefrontUsersCreateAsyncWithHttpInfo($storefront_id, $tenant_id = null, $storefront_users_create_request = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\StorefrontUserDto';
-        $request = $this->storefrontUsersCreateRequest($storefront_id, $tenant_id, $create_storefront_user_dto, $contentType);
+        $request = $this->storefrontUsersCreateRequest($storefront_id, $tenant_id, $storefront_users_create_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -400,13 +400,13 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\CreateStorefrontUserDto $create_storefront_user_dto Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersCreateRequest $storefront_users_create_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontUsersCreateRequest($storefront_id, $tenant_id = null, $create_storefront_user_dto = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
+    public function storefrontUsersCreateRequest($storefront_id, $tenant_id = null, $storefront_users_create_request = null, string $contentType = self::contentTypes['storefrontUsersCreate'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -455,12 +455,12 @@ class StorefrontUsersApi
         );
 
         // for model (json/xml)
-        if (isset($create_storefront_user_dto)) {
+        if (isset($storefront_users_create_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_storefront_user_dto));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($storefront_users_create_request));
             } else {
-                $httpBody = $create_storefront_user_dto;
+                $httpBody = $storefront_users_create_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -968,6 +968,7 @@ class StorefrontUsersApi
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
+     * @param  bool $include_anonymous Flag that indicates if anonymous users should be included. &#x60;True&#x60; by default. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersGetAll'] to see the possible values for this operation
      *
@@ -975,9 +976,9 @@ class StorefrontUsersApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfStorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
-    public function storefrontUsersGetAll($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
+    public function storefrontUsersGetAll($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $include_anonymous = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
     {
-        list($response) = $this->storefrontUsersGetAllWithHttpInfo($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id, $contentType);
+        list($response) = $this->storefrontUsersGetAllWithHttpInfo($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $include_anonymous, $tenant_id, $contentType);
         return $response;
     }
 
@@ -992,6 +993,7 @@ class StorefrontUsersApi
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
+     * @param  bool $include_anonymous Flag that indicates if anonymous users should be included. &#x60;True&#x60; by default. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersGetAll'] to see the possible values for this operation
      *
@@ -999,9 +1001,9 @@ class StorefrontUsersApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfStorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontUsersGetAllWithHttpInfo($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
+    public function storefrontUsersGetAllWithHttpInfo($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $include_anonymous = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
     {
-        $request = $this->storefrontUsersGetAllRequest($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id, $contentType);
+        $request = $this->storefrontUsersGetAllRequest($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $include_anonymous, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1157,15 +1159,16 @@ class StorefrontUsersApi
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
+     * @param  bool $include_anonymous Flag that indicates if anonymous users should be included. &#x60;True&#x60; by default. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersGetAllAsync($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
+    public function storefrontUsersGetAllAsync($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $include_anonymous = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
     {
-        return $this->storefrontUsersGetAllAsyncWithHttpInfo($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id, $contentType)
+        return $this->storefrontUsersGetAllAsyncWithHttpInfo($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $include_anonymous, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1184,16 +1187,17 @@ class StorefrontUsersApi
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
+     * @param  bool $include_anonymous Flag that indicates if anonymous users should be included. &#x60;True&#x60; by default. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersGetAllAsyncWithHttpInfo($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
+    public function storefrontUsersGetAllAsyncWithHttpInfo($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $include_anonymous = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfStorefrontUserDto';
-        $request = $this->storefrontUsersGetAllRequest($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $tenant_id, $contentType);
+        $request = $this->storefrontUsersGetAllRequest($storefront_id, $storefront_user_id, $skip, $take, $sorting, $search, $include_anonymous, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1240,13 +1244,14 @@ class StorefrontUsersApi
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
+     * @param  bool $include_anonymous Flag that indicates if anonymous users should be included. &#x60;True&#x60; by default. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontUsersGetAllRequest($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
+    public function storefrontUsersGetAllRequest($storefront_id, $storefront_user_id = null, $skip = null, $take = null, $sorting = null, $search = null, $include_anonymous = null, $tenant_id = null, string $contentType = self::contentTypes['storefrontUsersGetAll'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -1255,6 +1260,7 @@ class StorefrontUsersApi
                 'Missing the required parameter $storefront_id when calling storefrontUsersGetAll'
             );
         }
+
 
 
 
@@ -1311,6 +1317,15 @@ class StorefrontUsersApi
             $search,
             'search', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $include_anonymous,
+            'includeAnonymous', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -1847,16 +1862,16 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersMergeAnonymousRequest $storefront_users_merge_anonymous_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersMergeAnonymous'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function storefrontUsersMergeAnonymous($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
+    public function storefrontUsersMergeAnonymous($storefront_id, $tenant_id = null, $storefront_users_merge_anonymous_request = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
     {
-        $this->storefrontUsersMergeAnonymousWithHttpInfo($storefront_id, $tenant_id, $merge_anonymous_user_data_input, $contentType);
+        $this->storefrontUsersMergeAnonymousWithHttpInfo($storefront_id, $tenant_id, $storefront_users_merge_anonymous_request, $contentType);
     }
 
     /**
@@ -1866,16 +1881,16 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersMergeAnonymousRequest $storefront_users_merge_anonymous_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersMergeAnonymous'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontUsersMergeAnonymousWithHttpInfo($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
+    public function storefrontUsersMergeAnonymousWithHttpInfo($storefront_id, $tenant_id = null, $storefront_users_merge_anonymous_request = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
     {
-        $request = $this->storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id, $merge_anonymous_user_data_input, $contentType);
+        $request = $this->storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id, $storefront_users_merge_anonymous_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1944,15 +1959,15 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersMergeAnonymousRequest $storefront_users_merge_anonymous_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersMergeAnonymous'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersMergeAnonymousAsync($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
+    public function storefrontUsersMergeAnonymousAsync($storefront_id, $tenant_id = null, $storefront_users_merge_anonymous_request = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
     {
-        return $this->storefrontUsersMergeAnonymousAsyncWithHttpInfo($storefront_id, $tenant_id, $merge_anonymous_user_data_input, $contentType)
+        return $this->storefrontUsersMergeAnonymousAsyncWithHttpInfo($storefront_id, $tenant_id, $storefront_users_merge_anonymous_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1967,16 +1982,16 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersMergeAnonymousRequest $storefront_users_merge_anonymous_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersMergeAnonymous'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersMergeAnonymousAsyncWithHttpInfo($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
+    public function storefrontUsersMergeAnonymousAsyncWithHttpInfo($storefront_id, $tenant_id = null, $storefront_users_merge_anonymous_request = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
     {
         $returnType = '';
-        $request = $this->storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id, $merge_anonymous_user_data_input, $contentType);
+        $request = $this->storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id, $storefront_users_merge_anonymous_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2006,13 +2021,13 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\MergeAnonymousUserDataInput $merge_anonymous_user_data_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersMergeAnonymousRequest $storefront_users_merge_anonymous_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersMergeAnonymous'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id = null, $merge_anonymous_user_data_input = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
+    public function storefrontUsersMergeAnonymousRequest($storefront_id, $tenant_id = null, $storefront_users_merge_anonymous_request = null, string $contentType = self::contentTypes['storefrontUsersMergeAnonymous'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -2061,12 +2076,12 @@ class StorefrontUsersApi
         );
 
         // for model (json/xml)
-        if (isset($merge_anonymous_user_data_input)) {
+        if (isset($storefront_users_merge_anonymous_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($merge_anonymous_user_data_input));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($storefront_users_merge_anonymous_request));
             } else {
-                $httpBody = $merge_anonymous_user_data_input;
+                $httpBody = $storefront_users_merge_anonymous_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2139,16 +2154,16 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersRegisterRequest $storefront_users_register_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersRegister'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
-    public function storefrontUsersRegister($storefront_id, $tenant_id = null, $register_storefront_user_input = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
+    public function storefrontUsersRegister($storefront_id, $tenant_id = null, $storefront_users_register_request = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
     {
-        list($response) = $this->storefrontUsersRegisterWithHttpInfo($storefront_id, $tenant_id, $register_storefront_user_input, $contentType);
+        list($response) = $this->storefrontUsersRegisterWithHttpInfo($storefront_id, $tenant_id, $storefront_users_register_request, $contentType);
         return $response;
     }
 
@@ -2159,16 +2174,16 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersRegisterRequest $storefront_users_register_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersRegister'] to see the possible values for this operation
      *
      * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\StorefrontUserDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storefrontUsersRegisterWithHttpInfo($storefront_id, $tenant_id = null, $register_storefront_user_input = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
+    public function storefrontUsersRegisterWithHttpInfo($storefront_id, $tenant_id = null, $storefront_users_register_request = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
     {
-        $request = $this->storefrontUsersRegisterRequest($storefront_id, $tenant_id, $register_storefront_user_input, $contentType);
+        $request = $this->storefrontUsersRegisterRequest($storefront_id, $tenant_id, $storefront_users_register_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2320,15 +2335,15 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersRegisterRequest $storefront_users_register_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersRegister'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersRegisterAsync($storefront_id, $tenant_id = null, $register_storefront_user_input = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
+    public function storefrontUsersRegisterAsync($storefront_id, $tenant_id = null, $storefront_users_register_request = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
     {
-        return $this->storefrontUsersRegisterAsyncWithHttpInfo($storefront_id, $tenant_id, $register_storefront_user_input, $contentType)
+        return $this->storefrontUsersRegisterAsyncWithHttpInfo($storefront_id, $tenant_id, $storefront_users_register_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2343,16 +2358,16 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersRegisterRequest $storefront_users_register_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersRegister'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storefrontUsersRegisterAsyncWithHttpInfo($storefront_id, $tenant_id = null, $register_storefront_user_input = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
+    public function storefrontUsersRegisterAsyncWithHttpInfo($storefront_id, $tenant_id = null, $storefront_users_register_request = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\StorefrontUserDto';
-        $request = $this->storefrontUsersRegisterRequest($storefront_id, $tenant_id, $register_storefront_user_input, $contentType);
+        $request = $this->storefrontUsersRegisterRequest($storefront_id, $tenant_id, $storefront_users_register_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2395,13 +2410,13 @@ class StorefrontUsersApi
      *
      * @param  int $storefront_id Storefront identifier. (required)
      * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\Storefront\Model\RegisterStorefrontUserInput $register_storefront_user_input Operation parameters. (optional)
+     * @param  \Aurigma\Storefront\Model\StorefrontUsersRegisterRequest $storefront_users_register_request Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['storefrontUsersRegister'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storefrontUsersRegisterRequest($storefront_id, $tenant_id = null, $register_storefront_user_input = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
+    public function storefrontUsersRegisterRequest($storefront_id, $tenant_id = null, $storefront_users_register_request = null, string $contentType = self::contentTypes['storefrontUsersRegister'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -2450,12 +2465,12 @@ class StorefrontUsersApi
         );
 
         // for model (json/xml)
-        if (isset($register_storefront_user_input)) {
+        if (isset($storefront_users_register_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($register_storefront_user_input));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($storefront_users_register_request));
             } else {
-                $httpBody = $register_storefront_user_input;
+                $httpBody = $storefront_users_register_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

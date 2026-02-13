@@ -84,6 +84,18 @@ class ProjectsApiTest extends TestCase
     }
 
     /**
+     * Test case for projectsBatchDelete
+     *
+     * Deletes specified projects.   These projects will be hide from projects list immediately, but complete projects data cleaning will take some additional time..
+     *
+     */
+    public function testProjectsBatchDelete()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for projectsChangeStatus
      *
      * Changes the project status..
@@ -258,30 +270,6 @@ class ProjectsApiTest extends TestCase
      *
      */
     public function testProjectsGetProjectOrder()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for projectsGetProjectPdfUrl
-     *
-     * Returns an url to download project print file..
-     *
-     */
-    public function testProjectsGetProjectPdfUrl()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for projectsGetProjectPdfZip
-     *
-     * Returns an archive file, which contains all project print files..
-     *
-     */
-    public function testProjectsGetProjectPdfZip()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

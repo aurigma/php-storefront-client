@@ -59,6 +59,7 @@ class ProductVariantDocumentDto implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'product_variant_id' => 'int',
+        'product_variant_uid' => 'string',
         'product_version_id' => 'int',
         'product_id' => 'int',
         'tenant_id' => 'int',
@@ -83,6 +84,7 @@ class ProductVariantDocumentDto implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPIFormats = [
         'product_variant_id' => 'int32',
+        'product_variant_uid' => null,
         'product_version_id' => 'int32',
         'product_id' => 'int32',
         'tenant_id' => 'int32',
@@ -105,6 +107,7 @@ class ProductVariantDocumentDto implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static array $openAPINullables = [
         'product_variant_id' => false,
+        'product_variant_uid' => true,
         'product_version_id' => false,
         'product_id' => false,
         'tenant_id' => false,
@@ -207,6 +210,7 @@ class ProductVariantDocumentDto implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $attributeMap = [
         'product_variant_id' => 'productVariantId',
+        'product_variant_uid' => 'productVariantUID',
         'product_version_id' => 'productVersionId',
         'product_id' => 'productId',
         'tenant_id' => 'tenantId',
@@ -229,6 +233,7 @@ class ProductVariantDocumentDto implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $setters = [
         'product_variant_id' => 'setProductVariantId',
+        'product_variant_uid' => 'setProductVariantUid',
         'product_version_id' => 'setProductVersionId',
         'product_id' => 'setProductId',
         'tenant_id' => 'setTenantId',
@@ -251,6 +256,7 @@ class ProductVariantDocumentDto implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $getters = [
         'product_variant_id' => 'getProductVariantId',
+        'product_variant_uid' => 'getProductVariantUid',
         'product_version_id' => 'getProductVersionId',
         'product_id' => 'getProductId',
         'tenant_id' => 'getTenantId',
@@ -324,6 +330,7 @@ class ProductVariantDocumentDto implements ModelInterface, ArrayAccess, \JsonSer
     public function __construct(array $data = null)
     {
         $this->setIfExists('product_variant_id', $data ?? [], null);
+        $this->setIfExists('product_variant_uid', $data ?? [], null);
         $this->setIfExists('product_version_id', $data ?? [], null);
         $this->setIfExists('product_id', $data ?? [], null);
         $this->setIfExists('tenant_id', $data ?? [], null);
@@ -404,6 +411,40 @@ class ProductVariantDocumentDto implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable product_variant_id cannot be null');
         }
         $this->container['product_variant_id'] = $product_variant_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_variant_uid
+     *
+     * @return string|null
+     */
+    public function getProductVariantUid()
+    {
+        return $this->container['product_variant_uid'];
+    }
+
+    /**
+     * Sets product_variant_uid
+     *
+     * @param string|null $product_variant_uid Product variant unique identifier.
+     *
+     * @return self
+     */
+    public function setProductVariantUid($product_variant_uid)
+    {
+        if (is_null($product_variant_uid)) {
+            array_push($this->openAPINullablesSetToNull, 'product_variant_uid');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('product_variant_uid', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['product_variant_uid'] = $product_variant_uid;
 
         return $this;
     }

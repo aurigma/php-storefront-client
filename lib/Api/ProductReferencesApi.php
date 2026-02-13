@@ -77,6 +77,9 @@ class ProductReferencesApi
         'productReferencesGetAll' => [
             'application/json',
         ],
+        'productReferencesGetAllProductBundles' => [
+            'application/json',
+        ],
         'productReferencesGetAllProductLinks' => [
             'application/json',
         ],
@@ -90,6 +93,9 @@ class ProductReferencesApi
             'application/json',
         ],
         'productReferencesGetProduct' => [
+            'application/json',
+        ],
+        'productReferencesGetProductBundle' => [
             'application/json',
         ],
         'productReferencesGetProductCostDetails' => [
@@ -593,6 +599,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -607,9 +614,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProductReferenceDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
-    public function productReferencesGetAll($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
+    public function productReferencesGetAll($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
     {
-        list($response) = $this->productReferencesGetAllWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        list($response) = $this->productReferencesGetAllWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
         return $response;
     }
 
@@ -623,6 +630,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -637,9 +645,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProductReferenceDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesGetAllWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
+    public function productReferencesGetAllWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
     {
-        $request = $this->productReferencesGetAllRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        $request = $this->productReferencesGetAllRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -794,6 +802,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -807,9 +816,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllAsync($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
+    public function productReferencesGetAllAsync($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
     {
-        return $this->productReferencesGetAllAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType)
+        return $this->productReferencesGetAllAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -827,6 +836,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -840,10 +850,10 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
+    public function productReferencesGetAllAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProductReferenceDto';
-        $request = $this->productReferencesGetAllRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        $request = $this->productReferencesGetAllRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -889,6 +899,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -902,7 +913,7 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesGetAllRequest($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
+    public function productReferencesGetAllRequest($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAll'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -911,6 +922,7 @@ class ProductReferencesApi
                 'Missing the required parameter $storefront_id when calling productReferencesGetAll'
             );
         }
+
 
 
 
@@ -963,6 +975,571 @@ class ProductReferencesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $product_link_id,
             'productLinkId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $product_bundle_id,
+            'productBundleId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $skip,
+            'skip', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $take,
+            'take', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sorting,
+            'sorting', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $search,
+            'search', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sku,
+            'sku', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tags,
+            'tags', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $custom_fields,
+            'customFields', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $storefront_id,
+            'storefrontId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation productReferencesGetAllProductBundles
+     *
+     * Returns a list of product bundles associated with storefront product references relevant to the specified query parameters.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter.  Product reference is an external reference to Customer&#39;s Canvas product, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
+     * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
+     * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $sku SKU filter. (optional)
+     * @param  string[] $tags List of tags that product should have. (optional)
+     * @param  string $custom_fields Serialized custom fields dictionary filter. For example: {\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetAllProductBundles'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\Storefront\Model\PagedOfProductBundleDto|\Aurigma\Storefront\Model\GeneralConflictDto
+     */
+    public function productReferencesGetAllProductBundles($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductBundles'][0])
+    {
+        list($response) = $this->productReferencesGetAllProductBundlesWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation productReferencesGetAllProductBundlesWithHttpInfo
+     *
+     * Returns a list of product bundles associated with storefront product references relevant to the specified query parameters.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter.  Product reference is an external reference to Customer&#39;s Canvas product, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
+     * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
+     * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $sku SKU filter. (optional)
+     * @param  string[] $tags List of tags that product should have. (optional)
+     * @param  string $custom_fields Serialized custom fields dictionary filter. For example: {\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetAllProductBundles'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\Storefront\Model\PagedOfProductBundleDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function productReferencesGetAllProductBundlesWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductBundles'][0])
+    {
+        $request = $this->productReferencesGetAllProductBundlesRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\Storefront\Model\PagedOfProductBundleDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\PagedOfProductBundleDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\PagedOfProductBundleDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\Storefront\Model\PagedOfProductBundleDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\PagedOfProductBundleDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation productReferencesGetAllProductBundlesAsync
+     *
+     * Returns a list of product bundles associated with storefront product references relevant to the specified query parameters.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter.  Product reference is an external reference to Customer&#39;s Canvas product, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
+     * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
+     * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $sku SKU filter. (optional)
+     * @param  string[] $tags List of tags that product should have. (optional)
+     * @param  string $custom_fields Serialized custom fields dictionary filter. For example: {\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetAllProductBundles'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function productReferencesGetAllProductBundlesAsync($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductBundles'][0])
+    {
+        return $this->productReferencesGetAllProductBundlesAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation productReferencesGetAllProductBundlesAsyncWithHttpInfo
+     *
+     * Returns a list of product bundles associated with storefront product references relevant to the specified query parameters.
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter.  Product reference is an external reference to Customer&#39;s Canvas product, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
+     * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
+     * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $sku SKU filter. (optional)
+     * @param  string[] $tags List of tags that product should have. (optional)
+     * @param  string $custom_fields Serialized custom fields dictionary filter. For example: {\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetAllProductBundles'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function productReferencesGetAllProductBundlesAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductBundles'][0])
+    {
+        $returnType = '\Aurigma\Storefront\Model\PagedOfProductBundleDto';
+        $request = $this->productReferencesGetAllProductBundlesRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'productReferencesGetAllProductBundles'
+     *
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  string $product_reference Product reference filter.  Product reference is an external reference to Customer&#39;s Canvas product, e.g online store product identifier. (optional)
+     * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
+     * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
+     * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
+     * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
+     * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
+     * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
+     * @param  string $search Search string for partial match. (optional)
+     * @param  string $sku SKU filter. (optional)
+     * @param  string[] $tags List of tags that product should have. (optional)
+     * @param  string $custom_fields Serialized custom fields dictionary filter. For example: {\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}. (optional)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetAllProductBundles'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function productReferencesGetAllProductBundlesRequest($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductBundles'][0])
+    {
+
+        // verify the required parameter 'storefront_id' is set
+        if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $storefront_id when calling productReferencesGetAllProductBundles'
+            );
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $resourcePath = '/api/storefront/v1/product-references/product-bundles';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $product_reference,
+            'productReference', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $product_specification_id,
+            'productSpecificationId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $product_id,
+            'productId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $product_link_id,
+            'productLinkId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $product_bundle_id,
+            'productBundleId', // param base name
             'integer', // openApiType
             'form', // style
             true, // explode
@@ -1134,6 +1711,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1148,9 +1726,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProductLinkDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
-    public function productReferencesGetAllProductLinks($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
+    public function productReferencesGetAllProductLinks($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
     {
-        list($response) = $this->productReferencesGetAllProductLinksWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        list($response) = $this->productReferencesGetAllProductLinksWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
         return $response;
     }
 
@@ -1164,6 +1742,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1178,9 +1757,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProductLinkDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesGetAllProductLinksWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
+    public function productReferencesGetAllProductLinksWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
     {
-        $request = $this->productReferencesGetAllProductLinksRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        $request = $this->productReferencesGetAllProductLinksRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1335,6 +1914,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1348,9 +1928,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllProductLinksAsync($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
+    public function productReferencesGetAllProductLinksAsync($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
     {
-        return $this->productReferencesGetAllProductLinksAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType)
+        return $this->productReferencesGetAllProductLinksAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1368,6 +1948,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1381,10 +1962,10 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllProductLinksAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
+    public function productReferencesGetAllProductLinksAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProductLinkDto';
-        $request = $this->productReferencesGetAllProductLinksRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        $request = $this->productReferencesGetAllProductLinksRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1430,6 +2011,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1443,7 +2025,7 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesGetAllProductLinksRequest($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
+    public function productReferencesGetAllProductLinksRequest($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductLinks'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -1452,6 +2034,7 @@ class ProductReferencesApi
                 'Missing the required parameter $storefront_id when calling productReferencesGetAllProductLinks'
             );
         }
+
 
 
 
@@ -1504,6 +2087,15 @@ class ProductReferencesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $product_link_id,
             'productLinkId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $product_bundle_id,
+            'productBundleId', // param base name
             'integer', // openApiType
             'form', // style
             true, // explode
@@ -1675,6 +2267,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1689,9 +2282,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProductSpecificationDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
-    public function productReferencesGetAllProductSpecifications($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
+    public function productReferencesGetAllProductSpecifications($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
     {
-        list($response) = $this->productReferencesGetAllProductSpecificationsWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        list($response) = $this->productReferencesGetAllProductSpecificationsWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
         return $response;
     }
 
@@ -1705,6 +2298,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1719,9 +2313,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProductSpecificationDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesGetAllProductSpecificationsWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
+    public function productReferencesGetAllProductSpecificationsWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
     {
-        $request = $this->productReferencesGetAllProductSpecificationsRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        $request = $this->productReferencesGetAllProductSpecificationsRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1876,6 +2470,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1889,9 +2484,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllProductSpecificationsAsync($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
+    public function productReferencesGetAllProductSpecificationsAsync($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
     {
-        return $this->productReferencesGetAllProductSpecificationsAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType)
+        return $this->productReferencesGetAllProductSpecificationsAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1909,6 +2504,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1922,10 +2518,10 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllProductSpecificationsAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
+    public function productReferencesGetAllProductSpecificationsAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProductSpecificationDto';
-        $request = $this->productReferencesGetAllProductSpecificationsRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        $request = $this->productReferencesGetAllProductSpecificationsRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1971,6 +2567,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -1984,7 +2581,7 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesGetAllProductSpecificationsRequest($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
+    public function productReferencesGetAllProductSpecificationsRequest($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProductSpecifications'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -1993,6 +2590,7 @@ class ProductReferencesApi
                 'Missing the required parameter $storefront_id when calling productReferencesGetAllProductSpecifications'
             );
         }
+
 
 
 
@@ -2045,6 +2643,15 @@ class ProductReferencesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $product_link_id,
             'productLinkId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $product_bundle_id,
+            'productBundleId', // param base name
             'integer', // openApiType
             'form', // style
             true, // explode
@@ -2216,6 +2823,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -2230,9 +2838,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\Storefront\Model\PagedOfProductDto|\Aurigma\Storefront\Model\GeneralConflictDto
      */
-    public function productReferencesGetAllProducts($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
+    public function productReferencesGetAllProducts($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
     {
-        list($response) = $this->productReferencesGetAllProductsWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        list($response) = $this->productReferencesGetAllProductsWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
         return $response;
     }
 
@@ -2246,6 +2854,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -2260,9 +2869,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\Storefront\Model\PagedOfProductDto|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function productReferencesGetAllProductsWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
+    public function productReferencesGetAllProductsWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
     {
-        $request = $this->productReferencesGetAllProductsRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        $request = $this->productReferencesGetAllProductsRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2417,6 +3026,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -2430,9 +3040,9 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllProductsAsync($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
+    public function productReferencesGetAllProductsAsync($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
     {
-        return $this->productReferencesGetAllProductsAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType)
+        return $this->productReferencesGetAllProductsAsyncWithHttpInfo($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2450,6 +3060,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -2463,10 +3074,10 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function productReferencesGetAllProductsAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
+    public function productReferencesGetAllProductsAsyncWithHttpInfo($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
     {
         $returnType = '\Aurigma\Storefront\Model\PagedOfProductDto';
-        $request = $this->productReferencesGetAllProductsRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
+        $request = $this->productReferencesGetAllProductsRequest($storefront_id, $product_reference, $product_specification_id, $product_id, $product_link_id, $product_bundle_id, $skip, $take, $sorting, $search, $sku, $tags, $custom_fields, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2512,6 +3123,7 @@ class ProductReferencesApi
      * @param  int $product_specification_id Customer&#39;s Canvas product specification filter. (optional)
      * @param  int $product_id Customer&#39;s Canvas product filter. (optional)
      * @param  int $product_link_id Customer&#39;s Canvas product link filter. (optional)
+     * @param  int $product_bundle_id Customer&#39;s Canvas product bundle filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -2525,7 +3137,7 @@ class ProductReferencesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function productReferencesGetAllProductsRequest($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
+    public function productReferencesGetAllProductsRequest($storefront_id, $product_reference = null, $product_specification_id = null, $product_id = null, $product_link_id = null, $product_bundle_id = null, $skip = null, $take = null, $sorting = null, $search = null, $sku = null, $tags = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetAllProducts'][0])
     {
 
         // verify the required parameter 'storefront_id' is set
@@ -2534,6 +3146,7 @@ class ProductReferencesApi
                 'Missing the required parameter $storefront_id when calling productReferencesGetAllProducts'
             );
         }
+
 
 
 
@@ -2586,6 +3199,15 @@ class ProductReferencesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $product_link_id,
             'productLinkId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $product_bundle_id,
+            'productBundleId', // param base name
             'integer', // openApiType
             'form', // style
             true, // explode
@@ -3496,6 +4118,437 @@ class ProductReferencesApi
 
 
         $resourcePath = '/api/storefront/v1/product-references/{reference}/product';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $storefront_id,
+            'storefrontId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($reference !== null) {
+            $resourcePath = str_replace(
+                '{' . 'reference' . '}',
+                ObjectSerializer::toPathValue($reference),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation productReferencesGetProductBundle
+     *
+     * Returns a product bundle by storefront product reference.
+     *
+     * @param  string $reference An external reference to Customer&#39;s Canvas product, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductBundle'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\Storefront\Model\ProductBundleDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto
+     */
+    public function productReferencesGetProductBundle($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductBundle'][0])
+    {
+        list($response) = $this->productReferencesGetProductBundleWithHttpInfo($reference, $storefront_id, $tenant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation productReferencesGetProductBundleWithHttpInfo
+     *
+     * Returns a product bundle by storefront product reference.
+     *
+     * @param  string $reference An external reference to Customer&#39;s Canvas product, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductBundle'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\Storefront\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\Storefront\Model\ProductBundleDto|\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails|\Aurigma\Storefront\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function productReferencesGetProductBundleWithHttpInfo($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductBundle'][0])
+    {
+        $request = $this->productReferencesGetProductBundleRequest($reference, $storefront_id, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\Storefront\Model\ProductBundleDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\ProductBundleDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\ProductBundleDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\Storefront\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\Storefront\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\Storefront\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\Storefront\Model\ProductBundleDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\ProductBundleDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\MicrosoftAspNetCoreMvcProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\Storefront\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation productReferencesGetProductBundleAsync
+     *
+     * Returns a product bundle by storefront product reference.
+     *
+     * @param  string $reference An external reference to Customer&#39;s Canvas product, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductBundle'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function productReferencesGetProductBundleAsync($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductBundle'][0])
+    {
+        return $this->productReferencesGetProductBundleAsyncWithHttpInfo($reference, $storefront_id, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation productReferencesGetProductBundleAsyncWithHttpInfo
+     *
+     * Returns a product bundle by storefront product reference.
+     *
+     * @param  string $reference An external reference to Customer&#39;s Canvas product, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductBundle'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function productReferencesGetProductBundleAsyncWithHttpInfo($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductBundle'][0])
+    {
+        $returnType = '\Aurigma\Storefront\Model\ProductBundleDto';
+        $request = $this->productReferencesGetProductBundleRequest($reference, $storefront_id, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'productReferencesGetProductBundle'
+     *
+     * @param  string $reference An external reference to Customer&#39;s Canvas product, e.g online store product identifier. (required)
+     * @param  int $storefront_id Storefront identifier. (required)
+     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productReferencesGetProductBundle'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function productReferencesGetProductBundleRequest($reference, $storefront_id, $tenant_id = null, string $contentType = self::contentTypes['productReferencesGetProductBundle'][0])
+    {
+
+        // verify the required parameter 'reference' is set
+        if ($reference === null || (is_array($reference) && count($reference) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $reference when calling productReferencesGetProductBundle'
+            );
+        }
+
+        // verify the required parameter 'storefront_id' is set
+        if ($storefront_id === null || (is_array($storefront_id) && count($storefront_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $storefront_id when calling productReferencesGetProductBundle'
+            );
+        }
+
+
+
+        $resourcePath = '/api/storefront/v1/product-references/{reference}/product-bundle';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

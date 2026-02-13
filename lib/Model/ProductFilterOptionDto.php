@@ -413,7 +413,7 @@ class ProductFilterOptionDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets product_option_type
      *
-     * @param \Aurigma\Storefront\Model\OptionType|null $product_option_type product_option_type
+     * @param \Aurigma\Storefront\Model\OptionType|null $product_option_type Product option type ('Simple' / 'Size' / 'PageCount').
      *
      * @return self
      */

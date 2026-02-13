@@ -107,6 +107,15 @@ class ProductSpecificationDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "product_attributes"
      */
     public function testPropertyProductAttributes()

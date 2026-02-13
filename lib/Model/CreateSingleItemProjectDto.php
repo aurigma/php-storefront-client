@@ -69,7 +69,7 @@ class CreateSingleItemProjectDto implements ModelInterface, ArrayAccess, \JsonSe
         'customer_name' => 'string',
         'name' => 'string',
         'owner_id' => 'string',
-        'item' => '\Aurigma\Storefront\Model\ProjectItemParametersDto',
+        'item' => '\Aurigma\Storefront\Model\CreateSingleItemProjectDtoItem',
         'description' => 'string'
     ];
 
@@ -113,7 +113,7 @@ class CreateSingleItemProjectDto implements ModelInterface, ArrayAccess, \JsonSe
         'customer_name' => true,
         'name' => true,
         'owner_id' => false,
-        'item' => false,
+        'item' => true,
         'description' => true
     ];
 
@@ -755,7 +755,7 @@ class CreateSingleItemProjectDto implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets item
      *
-     * @return \Aurigma\Storefront\Model\ProjectItemParametersDto|null
+     * @return \Aurigma\Storefront\Model\CreateSingleItemProjectDtoItem|null
      */
     public function getItem()
     {
@@ -765,14 +765,21 @@ class CreateSingleItemProjectDto implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets item
      *
-     * @param \Aurigma\Storefront\Model\ProjectItemParametersDto|null $item item
+     * @param \Aurigma\Storefront\Model\CreateSingleItemProjectDtoItem|null $item item
      *
      * @return self
      */
     public function setItem($item)
     {
         if (is_null($item)) {
-            throw new \InvalidArgumentException('non-nullable item cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'item');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('item', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['item'] = $item;
 

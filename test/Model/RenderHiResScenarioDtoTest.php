@@ -134,6 +134,15 @@ class RenderHiResScenarioDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "rotate_mode"
+     */
+    public function testPropertyRotateMode()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "anonymous_access"
      */
     public function testPropertyAnonymousAccess()

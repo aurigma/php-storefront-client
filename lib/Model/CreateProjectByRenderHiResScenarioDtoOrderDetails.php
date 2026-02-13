@@ -438,6 +438,7 @@ class CreateProjectByRenderHiResScenarioDtoOrderDetails implements ModelInterfac
      * Gets order_line_item_index
      *
      * @return int|null
+     * @deprecated
      */
     public function getOrderLineItemIndex()
     {
@@ -450,6 +451,7 @@ class CreateProjectByRenderHiResScenarioDtoOrderDetails implements ModelInterfac
      * @param int|null $order_line_item_index Line item index from ecommerce system order.
      *
      * @return self
+     * @deprecated
      */
     public function setOrderLineItemIndex($order_line_item_index)
     {
@@ -472,6 +474,7 @@ class CreateProjectByRenderHiResScenarioDtoOrderDetails implements ModelInterfac
      * Gets order_line_item_id
      *
      * @return string|null
+     * @deprecated
      */
     public function getOrderLineItemId()
     {
@@ -484,6 +487,7 @@ class CreateProjectByRenderHiResScenarioDtoOrderDetails implements ModelInterfac
      * @param string|null $order_line_item_id Line Item identifier from ecommerce system order.
      *
      * @return self
+     * @deprecated
      */
     public function setOrderLineItemId($order_line_item_id)
     {

@@ -72,30 +72,6 @@ class ProductReferencesApiTest extends TestCase
     }
 
     /**
-     * Test case for productReferencesCreate
-     *
-     * Creates a new storefront product reference..
-     *
-     */
-    public function testProductReferencesCreate()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for productReferencesDelete
-     *
-     * Deletes the storefront product reference..
-     *
-     */
-    public function testProductReferencesDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for productReferencesGet
      *
      * Returns a storefront product reference..
@@ -120,9 +96,57 @@ class ProductReferencesApiTest extends TestCase
     }
 
     /**
+     * Test case for productReferencesGetAllProductBundles
+     *
+     * Returns a list of product bundles associated with storefront product references relevant to the specified query parameters..
+     *
+     */
+    public function testProductReferencesGetAllProductBundles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for productReferencesGetAllProductLinks
+     *
+     * Returns a list of product links associated with storefront product references relevant to the specified query parameters..
+     *
+     */
+    public function testProductReferencesGetAllProductLinks()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for productReferencesGetAllProductSpecifications
+     *
+     * Returns a list of product specifications associated with storefront product references relevant to the specified query parameters..
+     *
+     */
+    public function testProductReferencesGetAllProductSpecifications()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for productReferencesGetAllProducts
+     *
+     * Returns a list of products associated with storefront product references relevant to the specified query parameters..
+     *
+     */
+    public function testProductReferencesGetAllProducts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for productReferencesGetPersonalizationWorkflow
      *
-     * Returns a product personalization workflow description by product specification identifier..
+     * Returns a product personalization workflow..
      *
      */
     public function testProductReferencesGetPersonalizationWorkflow()
@@ -132,12 +156,24 @@ class ProductReferencesApiTest extends TestCase
     }
 
     /**
-     * Test case for productReferencesGetProductConfig
+     * Test case for productReferencesGetProduct
      *
-     * Returns a product personalization workflow configuration by storefront product reference..
+     * Returns a product by storefront product reference..
      *
      */
-    public function testProductReferencesGetProductConfig()
+    public function testProductReferencesGetProduct()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for productReferencesGetProductBundle
+     *
+     * Returns a product bundle by storefront product reference..
+     *
+     */
+    public function testProductReferencesGetProductBundle()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -156,12 +192,36 @@ class ProductReferencesApiTest extends TestCase
     }
 
     /**
+     * Test case for productReferencesGetProductLink
+     *
+     * Returns a product link by storefront product reference..
+     *
+     */
+    public function testProductReferencesGetProductLink()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for productReferencesGetProductSpecification
      *
      * Returns a product specification by the storefront product reference..
      *
      */
     public function testProductReferencesGetProductSpecification()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for productReferencesGetProductSummary
+     *
+     * Returns a product summary by storefront product reference..
+     *
+     */
+    public function testProductReferencesGetProductSummary()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -22,6 +22,6 @@ Name | Type | Description | Notes
 **created** | **\DateTime** | Project creation time. | [optional]
 **last_modified** | **\DateTime** | Project modification time. | [optional]
 **description** | **string** | Description of the project. | [optional]
-**processing_status** | [**\Aurigma\Storefront\Model\ProjectProcessingStatus**](ProjectProcessingStatus.md) |  | [optional]
+**processing_status** | [**\Aurigma\Storefront\Model\ProjectProcessingStatus**](ProjectProcessingStatus.md) | Project processing status. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -98,6 +98,15 @@ class ProjectItemDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "group_id"
+     */
+    public function testPropertyGroupId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "quantity"
      */
     public function testPropertyQuantity()

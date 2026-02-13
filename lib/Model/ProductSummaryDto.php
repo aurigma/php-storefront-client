@@ -63,13 +63,15 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
         'product_link_id' => 'int',
         'product_link_version_id' => 'int',
         'product_filter_id' => 'int',
+        'product_bundle_id' => 'int',
+        'product_bundle_version_id' => 'int',
         'product_variant_id' => 'int',
         'product_variant_sku' => 'string',
         'product_variant_price' => 'float',
         'is_product_variant_available' => 'bool',
         'name' => 'string',
         'description' => 'string',
-        'image' => '\Aurigma\Storefront\Model\ImageInfo',
+        'image' => '\Aurigma\Storefront\Model\ProductSummaryDtoImage',
         'tenant_id' => 'int',
         'personalization_workflow_id' => 'int',
         'processing_pipeline_id' => 'int',
@@ -91,6 +93,8 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
         'product_link_id' => 'int32',
         'product_link_version_id' => 'int32',
         'product_filter_id' => 'int32',
+        'product_bundle_id' => 'int32',
+        'product_bundle_version_id' => 'int32',
         'product_variant_id' => 'int32',
         'product_variant_sku' => null,
         'product_variant_price' => 'double',
@@ -117,13 +121,15 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
         'product_link_id' => true,
         'product_link_version_id' => true,
         'product_filter_id' => true,
+        'product_bundle_id' => true,
+        'product_bundle_version_id' => true,
         'product_variant_id' => true,
         'product_variant_sku' => true,
         'product_variant_price' => true,
         'is_product_variant_available' => true,
         'name' => true,
         'description' => true,
-        'image' => false,
+        'image' => true,
         'tenant_id' => false,
         'personalization_workflow_id' => true,
         'processing_pipeline_id' => true,
@@ -223,6 +229,8 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
         'product_link_id' => 'productLinkId',
         'product_link_version_id' => 'productLinkVersionId',
         'product_filter_id' => 'productFilterId',
+        'product_bundle_id' => 'productBundleId',
+        'product_bundle_version_id' => 'productBundleVersionId',
         'product_variant_id' => 'productVariantId',
         'product_variant_sku' => 'productVariantSku',
         'product_variant_price' => 'productVariantPrice',
@@ -249,6 +257,8 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
         'product_link_id' => 'setProductLinkId',
         'product_link_version_id' => 'setProductLinkVersionId',
         'product_filter_id' => 'setProductFilterId',
+        'product_bundle_id' => 'setProductBundleId',
+        'product_bundle_version_id' => 'setProductBundleVersionId',
         'product_variant_id' => 'setProductVariantId',
         'product_variant_sku' => 'setProductVariantSku',
         'product_variant_price' => 'setProductVariantPrice',
@@ -275,6 +285,8 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
         'product_link_id' => 'getProductLinkId',
         'product_link_version_id' => 'getProductLinkVersionId',
         'product_filter_id' => 'getProductFilterId',
+        'product_bundle_id' => 'getProductBundleId',
+        'product_bundle_version_id' => 'getProductBundleVersionId',
         'product_variant_id' => 'getProductVariantId',
         'product_variant_sku' => 'getProductVariantSku',
         'product_variant_price' => 'getProductVariantPrice',
@@ -352,6 +364,8 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('product_link_id', $data ?? [], null);
         $this->setIfExists('product_link_version_id', $data ?? [], null);
         $this->setIfExists('product_filter_id', $data ?? [], null);
+        $this->setIfExists('product_bundle_id', $data ?? [], null);
+        $this->setIfExists('product_bundle_version_id', $data ?? [], null);
         $this->setIfExists('product_variant_id', $data ?? [], null);
         $this->setIfExists('product_variant_sku', $data ?? [], null);
         $this->setIfExists('product_variant_price', $data ?? [], null);
@@ -566,6 +580,74 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * Gets product_bundle_id
+     *
+     * @return int|null
+     */
+    public function getProductBundleId()
+    {
+        return $this->container['product_bundle_id'];
+    }
+
+    /**
+     * Sets product_bundle_id
+     *
+     * @param int|null $product_bundle_id Product bundle identifier. If product bundle is not specified, should be null.
+     *
+     * @return self
+     */
+    public function setProductBundleId($product_bundle_id)
+    {
+        if (is_null($product_bundle_id)) {
+            array_push($this->openAPINullablesSetToNull, 'product_bundle_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('product_bundle_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['product_bundle_id'] = $product_bundle_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_bundle_version_id
+     *
+     * @return int|null
+     */
+    public function getProductBundleVersionId()
+    {
+        return $this->container['product_bundle_version_id'];
+    }
+
+    /**
+     * Sets product_bundle_version_id
+     *
+     * @param int|null $product_bundle_version_id Product bundle version identifier. If product bundle is not specified, should be null.
+     *
+     * @return self
+     */
+    public function setProductBundleVersionId($product_bundle_version_id)
+    {
+        if (is_null($product_bundle_version_id)) {
+            array_push($this->openAPINullablesSetToNull, 'product_bundle_version_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('product_bundle_version_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['product_bundle_version_id'] = $product_bundle_version_id;
+
+        return $this;
+    }
+
+    /**
      * Gets product_variant_id
      *
      * @return int|null
@@ -772,7 +854,7 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets image
      *
-     * @return \Aurigma\Storefront\Model\ImageInfo|null
+     * @return \Aurigma\Storefront\Model\ProductSummaryDtoImage|null
      */
     public function getImage()
     {
@@ -782,14 +864,21 @@ class ProductSummaryDto implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets image
      *
-     * @param \Aurigma\Storefront\Model\ImageInfo|null $image image
+     * @param \Aurigma\Storefront\Model\ProductSummaryDtoImage|null $image image
      *
      * @return self
      */
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new \InvalidArgumentException('non-nullable image cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'image');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('image', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['image'] = $image;
 

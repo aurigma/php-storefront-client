@@ -1012,7 +1012,7 @@ class ProjectDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets processing_status
      *
-     * @param \Aurigma\Storefront\Model\ProjectProcessingStatus|null $processing_status processing_status
+     * @param \Aurigma\Storefront\Model\ProjectProcessingStatus|null $processing_status Project processing status.
      *
      * @return self
      */

@@ -65,6 +65,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
         'product_id' => 'int',
         'product_version_id' => 'int',
         'product_link_id' => 'int',
+        'product_bundle_id' => 'int',
         'storefront_id' => 'int',
         'tenant_id' => 'int',
         'created' => '\DateTime'
@@ -85,6 +86,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
         'product_id' => 'int32',
         'product_version_id' => 'int32',
         'product_link_id' => 'int32',
+        'product_bundle_id' => 'int32',
         'storefront_id' => 'int32',
         'tenant_id' => 'int32',
         'created' => 'date-time'
@@ -103,6 +105,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
         'product_id' => false,
         'product_version_id' => false,
         'product_link_id' => false,
+        'product_bundle_id' => false,
         'storefront_id' => false,
         'tenant_id' => false,
         'created' => false
@@ -201,6 +204,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
         'product_id' => 'productId',
         'product_version_id' => 'productVersionId',
         'product_link_id' => 'productLinkId',
+        'product_bundle_id' => 'productBundleId',
         'storefront_id' => 'storefrontId',
         'tenant_id' => 'tenantId',
         'created' => 'created'
@@ -219,6 +223,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
         'product_id' => 'setProductId',
         'product_version_id' => 'setProductVersionId',
         'product_link_id' => 'setProductLinkId',
+        'product_bundle_id' => 'setProductBundleId',
         'storefront_id' => 'setStorefrontId',
         'tenant_id' => 'setTenantId',
         'created' => 'setCreated'
@@ -237,6 +242,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
         'product_id' => 'getProductId',
         'product_version_id' => 'getProductVersionId',
         'product_link_id' => 'getProductLinkId',
+        'product_bundle_id' => 'getProductBundleId',
         'storefront_id' => 'getStorefrontId',
         'tenant_id' => 'getTenantId',
         'created' => 'getCreated'
@@ -306,6 +312,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('product_id', $data ?? [], null);
         $this->setIfExists('product_version_id', $data ?? [], null);
         $this->setIfExists('product_link_id', $data ?? [], null);
+        $this->setIfExists('product_bundle_id', $data ?? [], null);
         $this->setIfExists('storefront_id', $data ?? [], null);
         $this->setIfExists('tenant_id', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
@@ -400,7 +407,7 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets product_reference_type
      *
-     * @param \Aurigma\Storefront\Model\ProductReferenceType|null $product_reference_type product_reference_type
+     * @param \Aurigma\Storefront\Model\ProductReferenceType|null $product_reference_type Product reference target type.
      *
      * @return self
      */
@@ -552,6 +559,33 @@ class ProductReferenceDto implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable product_link_id cannot be null');
         }
         $this->container['product_link_id'] = $product_link_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_bundle_id
+     *
+     * @return int|null
+     */
+    public function getProductBundleId()
+    {
+        return $this->container['product_bundle_id'];
+    }
+
+    /**
+     * Sets product_bundle_id
+     *
+     * @param int|null $product_bundle_id Customer's Canvas product bundle identifier.
+     *
+     * @return self
+     */
+    public function setProductBundleId($product_bundle_id)
+    {
+        if (is_null($product_bundle_id)) {
+            throw new \InvalidArgumentException('non-nullable product_bundle_id cannot be null');
+        }
+        $this->container['product_bundle_id'] = $product_bundle_id;
 
         return $this;
     }

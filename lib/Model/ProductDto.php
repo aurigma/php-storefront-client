@@ -63,7 +63,7 @@ class ProductDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'tenant_id' => 'int',
         'name' => 'string',
         'description' => 'string',
-        'image' => '\Aurigma\Storefront\Model\ImageInfo',
+        'image' => '\Aurigma\Storefront\Model\ProductSummaryDtoImage',
         'created' => '\DateTime',
         'last_modified' => '\DateTime',
         'tags' => 'string[]',
@@ -111,7 +111,7 @@ class ProductDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'tenant_id' => false,
         'name' => true,
         'description' => true,
-        'image' => false,
+        'image' => true,
         'created' => false,
         'last_modified' => true,
         'tags' => true,
@@ -540,7 +540,7 @@ class ProductDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets image
      *
-     * @return \Aurigma\Storefront\Model\ImageInfo|null
+     * @return \Aurigma\Storefront\Model\ProductSummaryDtoImage|null
      */
     public function getImage()
     {
@@ -550,14 +550,21 @@ class ProductDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets image
      *
-     * @param \Aurigma\Storefront\Model\ImageInfo|null $image image
+     * @param \Aurigma\Storefront\Model\ProductSummaryDtoImage|null $image image
      *
      * @return self
      */
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new \InvalidArgumentException('non-nullable image cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'image');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('image', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['image'] = $image;
 

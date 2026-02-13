@@ -444,7 +444,7 @@ $apiInstance = new Aurigma\Storefront\Api\ProductsApi(
 );
 $id = 56; // int | Product identifier.
 $product_link_id = 56; // int | Product link identifier.
-$product_version_id = 56; // int
+$product_version_id = 56; // int | Product version identifier.
 $tenant_id = 56; // int | Tenant identifier.
 
 try {
@@ -461,7 +461,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **int**| Product identifier. | |
 | **product_link_id** | **int**| Product link identifier. | |
-| **product_version_id** | **int**|  | [optional] |
+| **product_version_id** | **int**| Product version identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
@@ -520,7 +520,7 @@ $apiInstance = new Aurigma\Storefront\Api\ProductsApi(
     $config
 );
 $id = 56; // int | Product identifier.
-$product_version_id = 56; // int
+$product_version_id = 56; // int | Product version identifier.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
 $take = 56; // int | Defines page length (how many consequent items of sorted result list should be taken).
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
@@ -540,7 +540,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **int**| Product identifier. | |
-| **product_version_id** | **int**|  | [optional] |
+| **product_version_id** | **int**| Product version identifier. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
 | **take** | **int**| Defines page length (how many consequent items of sorted result list should be taken). | [optional] |
 | **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |

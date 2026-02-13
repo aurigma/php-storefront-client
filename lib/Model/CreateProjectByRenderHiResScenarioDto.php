@@ -61,7 +61,7 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
         'owner_id' => 'string',
         'name' => 'string',
         'description' => 'string',
-        'order_details' => '\Aurigma\Storefront\Model\OrderDetailsDto',
+        'order_details' => '\Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDtoOrderDetails',
         'order_line_item_index' => 'int',
         'order_line_item_id' => 'string',
         'scenario' => '\Aurigma\Storefront\Model\RenderHiResScenarioDto'
@@ -93,7 +93,7 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
         'owner_id' => false,
         'name' => true,
         'description' => true,
-        'order_details' => false,
+        'order_details' => true,
         'order_line_item_index' => true,
         'order_line_item_id' => true,
         'scenario' => false
@@ -436,7 +436,7 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
     /**
      * Gets order_details
      *
-     * @return \Aurigma\Storefront\Model\OrderDetailsDto|null
+     * @return \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDtoOrderDetails|null
      */
     public function getOrderDetails()
     {
@@ -446,14 +446,21 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
     /**
      * Sets order_details
      *
-     * @param \Aurigma\Storefront\Model\OrderDetailsDto|null $order_details order_details
+     * @param \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDtoOrderDetails|null $order_details order_details
      *
      * @return self
      */
     public function setOrderDetails($order_details)
     {
         if (is_null($order_details)) {
-            throw new \InvalidArgumentException('non-nullable order_details cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'order_details');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_details', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['order_details'] = $order_details;
 
@@ -541,7 +548,7 @@ class CreateProjectByRenderHiResScenarioDto implements ModelInterface, ArrayAcce
     /**
      * Sets scenario
      *
-     * @param \Aurigma\Storefront\Model\RenderHiResScenarioDto $scenario scenario
+     * @param \Aurigma\Storefront\Model\RenderHiResScenarioDto $scenario List of project items.
      *
      * @return self
      */

@@ -96,18 +96,6 @@ class ProductSpecificationsApiTest extends TestCase
     }
 
     /**
-     * Test case for productSpecificationsGetConfiguration
-     *
-     * Returns a product personalization workflow configuration by product specification identifier..
-     *
-     */
-    public function testProductSpecificationsGetConfiguration()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for productSpecificationsGetPersonalizationWorkflow
      *
      * Returns a product personalization workflow description by product specification identifier..

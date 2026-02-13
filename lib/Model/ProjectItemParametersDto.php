@@ -59,6 +59,7 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPITypes = [
         'name' => 'string',
+        'group_id' => 'string',
         'quantity' => 'int',
         'order_line_item_index' => 'int',
         'order_line_item_id' => 'string',
@@ -67,7 +68,8 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
         'hidden' => 'mixed',
         'design_ids' => 'string[]',
         'sku' => 'string',
-        'resources' => '\Aurigma\Storefront\Model\ProjectItemResourceParametersDto[]'
+        'resources' => '\Aurigma\Storefront\Model\ProjectItemResourceParametersDto[]',
+        'product_specifier' => '\Aurigma\Storefront\Model\ProjectItemParametersDtoProductSpecifier'
     ];
 
     /**
@@ -79,6 +81,7 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPIFormats = [
         'name' => null,
+        'group_id' => null,
         'quantity' => 'int32',
         'order_line_item_index' => 'int32',
         'order_line_item_id' => null,
@@ -87,7 +90,8 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
         'hidden' => null,
         'design_ids' => null,
         'sku' => null,
-        'resources' => null
+        'resources' => null,
+        'product_specifier' => null
     ];
 
     /**
@@ -97,6 +101,7 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static array $openAPINullables = [
         'name' => true,
+        'group_id' => true,
         'quantity' => true,
         'order_line_item_index' => true,
         'order_line_item_id' => true,
@@ -105,7 +110,8 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
         'hidden' => true,
         'design_ids' => true,
         'sku' => true,
-        'resources' => true
+        'resources' => true,
+        'product_specifier' => true
     ];
 
     /**
@@ -195,6 +201,7 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $attributeMap = [
         'name' => 'name',
+        'group_id' => 'groupId',
         'quantity' => 'quantity',
         'order_line_item_index' => 'orderLineItemIndex',
         'order_line_item_id' => 'orderLineItemId',
@@ -203,7 +210,8 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
         'hidden' => 'hidden',
         'design_ids' => 'designIds',
         'sku' => 'sku',
-        'resources' => 'resources'
+        'resources' => 'resources',
+        'product_specifier' => 'productSpecifier'
     ];
 
     /**
@@ -213,6 +221,7 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $setters = [
         'name' => 'setName',
+        'group_id' => 'setGroupId',
         'quantity' => 'setQuantity',
         'order_line_item_index' => 'setOrderLineItemIndex',
         'order_line_item_id' => 'setOrderLineItemId',
@@ -221,7 +230,8 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
         'hidden' => 'setHidden',
         'design_ids' => 'setDesignIds',
         'sku' => 'setSku',
-        'resources' => 'setResources'
+        'resources' => 'setResources',
+        'product_specifier' => 'setProductSpecifier'
     ];
 
     /**
@@ -231,6 +241,7 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $getters = [
         'name' => 'getName',
+        'group_id' => 'getGroupId',
         'quantity' => 'getQuantity',
         'order_line_item_index' => 'getOrderLineItemIndex',
         'order_line_item_id' => 'getOrderLineItemId',
@@ -239,7 +250,8 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
         'hidden' => 'getHidden',
         'design_ids' => 'getDesignIds',
         'sku' => 'getSku',
-        'resources' => 'getResources'
+        'resources' => 'getResources',
+        'product_specifier' => 'getProductSpecifier'
     ];
 
     /**
@@ -300,6 +312,7 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
     public function __construct(array $data = null)
     {
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('group_id', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
         $this->setIfExists('order_line_item_index', $data ?? [], null);
         $this->setIfExists('order_line_item_id', $data ?? [], null);
@@ -309,6 +322,7 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('design_ids', $data ?? [], null);
         $this->setIfExists('sku', $data ?? [], null);
         $this->setIfExists('resources', $data ?? [], null);
+        $this->setIfExists('product_specifier', $data ?? [], null);
     }
 
     /**
@@ -383,6 +397,40 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
             }
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets group_id
+     *
+     * @return string|null
+     */
+    public function getGroupId()
+    {
+        return $this->container['group_id'];
+    }
+
+    /**
+     * Sets group_id
+     *
+     * @param string|null $group_id Project item group identifier.
+     *
+     * @return self
+     */
+    public function setGroupId($group_id)
+    {
+        if (is_null($group_id)) {
+            array_push($this->openAPINullablesSetToNull, 'group_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('group_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['group_id'] = $group_id;
 
         return $this;
     }
@@ -689,6 +737,40 @@ class ProjectItemParametersDto implements ModelInterface, ArrayAccess, \JsonSeri
             }
         }
         $this->container['resources'] = $resources;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_specifier
+     *
+     * @return \Aurigma\Storefront\Model\ProjectItemParametersDtoProductSpecifier|null
+     */
+    public function getProductSpecifier()
+    {
+        return $this->container['product_specifier'];
+    }
+
+    /**
+     * Sets product_specifier
+     *
+     * @param \Aurigma\Storefront\Model\ProjectItemParametersDtoProductSpecifier|null $product_specifier product_specifier
+     *
+     * @return self
+     */
+    public function setProductSpecifier($product_specifier)
+    {
+        if (is_null($product_specifier)) {
+            array_push($this->openAPINullablesSetToNull, 'product_specifier');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('product_specifier', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['product_specifier'] = $product_specifier;
 
         return $this;
     }

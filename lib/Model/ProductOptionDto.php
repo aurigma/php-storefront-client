@@ -67,13 +67,14 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'string',
         'sort_index' => 'int',
         'tag' => 'string',
+        'uid' => 'string',
         'use_for_design_binding' => 'bool',
         'use_for_mockup_binding' => 'bool',
         'use_for_document_binding' => 'bool',
         'description' => 'string',
         'tooltip' => 'string',
-        'appearance_data' => '\Aurigma\Storefront\Model\AppearanceDataDto',
-        'image' => '\Aurigma\Storefront\Model\ImageInfo',
+        'appearance_data' => '\Aurigma\Storefront\Model\ProductOptionDtoAppearanceData',
+        'image' => '\Aurigma\Storefront\Model\ProductOptionDtoImage',
         'product_option_values' => '\Aurigma\Storefront\Model\ProductOptionValueDto[]'
     ];
 
@@ -94,6 +95,7 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => null,
         'sort_index' => 'int32',
         'tag' => null,
+        'uid' => null,
         'use_for_design_binding' => null,
         'use_for_mockup_binding' => null,
         'use_for_document_binding' => null,
@@ -119,13 +121,14 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => true,
         'sort_index' => false,
         'tag' => true,
+        'uid' => true,
         'use_for_design_binding' => false,
         'use_for_mockup_binding' => false,
         'use_for_document_binding' => false,
         'description' => true,
         'tooltip' => true,
-        'appearance_data' => false,
-        'image' => false,
+        'appearance_data' => true,
+        'image' => true,
         'product_option_values' => true
     ];
 
@@ -224,6 +227,7 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'title',
         'sort_index' => 'sortIndex',
         'tag' => 'tag',
+        'uid' => 'uid',
         'use_for_design_binding' => 'useForDesignBinding',
         'use_for_mockup_binding' => 'useForMockupBinding',
         'use_for_document_binding' => 'useForDocumentBinding',
@@ -249,6 +253,7 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'setTitle',
         'sort_index' => 'setSortIndex',
         'tag' => 'setTag',
+        'uid' => 'setUid',
         'use_for_design_binding' => 'setUseForDesignBinding',
         'use_for_mockup_binding' => 'setUseForMockupBinding',
         'use_for_document_binding' => 'setUseForDocumentBinding',
@@ -274,6 +279,7 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'getTitle',
         'sort_index' => 'getSortIndex',
         'tag' => 'getTag',
+        'uid' => 'getUid',
         'use_for_design_binding' => 'getUseForDesignBinding',
         'use_for_mockup_binding' => 'getUseForMockupBinding',
         'use_for_document_binding' => 'getUseForDocumentBinding',
@@ -350,6 +356,7 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('sort_index', $data ?? [], null);
         $this->setIfExists('tag', $data ?? [], null);
+        $this->setIfExists('uid', $data ?? [], null);
         $this->setIfExists('use_for_design_binding', $data ?? [], null);
         $this->setIfExists('use_for_mockup_binding', $data ?? [], null);
         $this->setIfExists('use_for_document_binding', $data ?? [], null);
@@ -523,7 +530,7 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\OptionType|null $type type
+     * @param \Aurigma\Storefront\Model\OptionType|null $type Option type ('Simple' / 'Size' / 'PageCount').
      *
      * @return self
      */
@@ -662,6 +669,40 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['tag'] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Gets uid
+     *
+     * @return string|null
+     */
+    public function getUid()
+    {
+        return $this->container['uid'];
+    }
+
+    /**
+     * Sets uid
+     *
+     * @param string|null $uid Product option UID.
+     *
+     * @return self
+     */
+    public function setUid($uid)
+    {
+        if (is_null($uid)) {
+            array_push($this->openAPINullablesSetToNull, 'uid');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('uid', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['uid'] = $uid;
 
         return $this;
     }
@@ -818,7 +859,7 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets appearance_data
      *
-     * @return \Aurigma\Storefront\Model\AppearanceDataDto|null
+     * @return \Aurigma\Storefront\Model\ProductOptionDtoAppearanceData|null
      */
     public function getAppearanceData()
     {
@@ -828,14 +869,21 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets appearance_data
      *
-     * @param \Aurigma\Storefront\Model\AppearanceDataDto|null $appearance_data appearance_data
+     * @param \Aurigma\Storefront\Model\ProductOptionDtoAppearanceData|null $appearance_data appearance_data
      *
      * @return self
      */
     public function setAppearanceData($appearance_data)
     {
         if (is_null($appearance_data)) {
-            throw new \InvalidArgumentException('non-nullable appearance_data cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'appearance_data');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('appearance_data', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['appearance_data'] = $appearance_data;
 
@@ -845,7 +893,7 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets image
      *
-     * @return \Aurigma\Storefront\Model\ImageInfo|null
+     * @return \Aurigma\Storefront\Model\ProductOptionDtoImage|null
      */
     public function getImage()
     {
@@ -855,14 +903,21 @@ class ProductOptionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets image
      *
-     * @param \Aurigma\Storefront\Model\ImageInfo|null $image image
+     * @param \Aurigma\Storefront\Model\ProductOptionDtoImage|null $image image
      *
      * @return self
      */
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new \InvalidArgumentException('non-nullable image cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'image');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('image', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['image'] = $image;
 

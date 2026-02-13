@@ -59,6 +59,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPITypes = [
         'product_variant_id' => 'int',
+        'product_variant_uid' => 'string',
         'product_version_id' => 'int',
         'product_id' => 'int',
         'tenant_id' => 'int',
@@ -66,6 +67,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
         'sku' => 'string',
         'mockup_id' => 'string',
         'mockup_name' => 'string',
+        'mockup_validation_type' => 'string',
         'mockup_type' => '\Aurigma\Storefront\Model\ProductVariantMockupType',
         'surface_index' => 'int',
         'surface_usage_type' => '\Aurigma\Storefront\Model\SurfaceUsageType',
@@ -81,6 +83,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'product_variant_id' => 'int32',
+        'product_variant_uid' => null,
         'product_version_id' => 'int32',
         'product_id' => 'int32',
         'tenant_id' => 'int32',
@@ -88,6 +91,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
         'sku' => null,
         'mockup_id' => null,
         'mockup_name' => null,
+        'mockup_validation_type' => null,
         'mockup_type' => null,
         'surface_index' => 'int32',
         'surface_usage_type' => null,
@@ -101,6 +105,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'product_variant_id' => false,
+        'product_variant_uid' => true,
         'product_version_id' => false,
         'product_id' => false,
         'tenant_id' => true,
@@ -108,6 +113,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
         'sku' => true,
         'mockup_id' => true,
         'mockup_name' => true,
+        'mockup_validation_type' => true,
         'mockup_type' => false,
         'surface_index' => true,
         'surface_usage_type' => false,
@@ -201,6 +207,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $attributeMap = [
         'product_variant_id' => 'productVariantId',
+        'product_variant_uid' => 'productVariantUID',
         'product_version_id' => 'productVersionId',
         'product_id' => 'productId',
         'tenant_id' => 'tenantId',
@@ -208,6 +215,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
         'sku' => 'sku',
         'mockup_id' => 'mockupId',
         'mockup_name' => 'mockupName',
+        'mockup_validation_type' => 'mockupValidationType',
         'mockup_type' => 'mockupType',
         'surface_index' => 'surfaceIndex',
         'surface_usage_type' => 'surfaceUsageType',
@@ -221,6 +229,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $setters = [
         'product_variant_id' => 'setProductVariantId',
+        'product_variant_uid' => 'setProductVariantUid',
         'product_version_id' => 'setProductVersionId',
         'product_id' => 'setProductId',
         'tenant_id' => 'setTenantId',
@@ -228,6 +237,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
         'sku' => 'setSku',
         'mockup_id' => 'setMockupId',
         'mockup_name' => 'setMockupName',
+        'mockup_validation_type' => 'setMockupValidationType',
         'mockup_type' => 'setMockupType',
         'surface_index' => 'setSurfaceIndex',
         'surface_usage_type' => 'setSurfaceUsageType',
@@ -241,6 +251,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $getters = [
         'product_variant_id' => 'getProductVariantId',
+        'product_variant_uid' => 'getProductVariantUid',
         'product_version_id' => 'getProductVersionId',
         'product_id' => 'getProductId',
         'tenant_id' => 'getTenantId',
@@ -248,6 +259,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
         'sku' => 'getSku',
         'mockup_id' => 'getMockupId',
         'mockup_name' => 'getMockupName',
+        'mockup_validation_type' => 'getMockupValidationType',
         'mockup_type' => 'getMockupType',
         'surface_index' => 'getSurfaceIndex',
         'surface_usage_type' => 'getSurfaceUsageType',
@@ -312,6 +324,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
     public function __construct(array $data = null)
     {
         $this->setIfExists('product_variant_id', $data ?? [], null);
+        $this->setIfExists('product_variant_uid', $data ?? [], null);
         $this->setIfExists('product_version_id', $data ?? [], null);
         $this->setIfExists('product_id', $data ?? [], null);
         $this->setIfExists('tenant_id', $data ?? [], null);
@@ -319,6 +332,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('sku', $data ?? [], null);
         $this->setIfExists('mockup_id', $data ?? [], null);
         $this->setIfExists('mockup_name', $data ?? [], null);
+        $this->setIfExists('mockup_validation_type', $data ?? [], null);
         $this->setIfExists('mockup_type', $data ?? [], null);
         $this->setIfExists('surface_index', $data ?? [], null);
         $this->setIfExists('surface_usage_type', $data ?? [], null);
@@ -390,6 +404,40 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable product_variant_id cannot be null');
         }
         $this->container['product_variant_id'] = $product_variant_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_variant_uid
+     *
+     * @return string|null
+     */
+    public function getProductVariantUid()
+    {
+        return $this->container['product_variant_uid'];
+    }
+
+    /**
+     * Sets product_variant_uid
+     *
+     * @param string|null $product_variant_uid Product variant unique identifier.
+     *
+     * @return self
+     */
+    public function setProductVariantUid($product_variant_uid)
+    {
+        if (is_null($product_variant_uid)) {
+            array_push($this->openAPINullablesSetToNull, 'product_variant_uid');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('product_variant_uid', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['product_variant_uid'] = $product_variant_uid;
 
         return $this;
     }
@@ -619,6 +667,40 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets mockup_validation_type
+     *
+     * @return string|null
+     */
+    public function getMockupValidationType()
+    {
+        return $this->container['mockup_validation_type'];
+    }
+
+    /**
+     * Sets mockup_validation_type
+     *
+     * @param string|null $mockup_validation_type Mockup validation type.
+     *
+     * @return self
+     */
+    public function setMockupValidationType($mockup_validation_type)
+    {
+        if (is_null($mockup_validation_type)) {
+            array_push($this->openAPINullablesSetToNull, 'mockup_validation_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('mockup_validation_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['mockup_validation_type'] = $mockup_validation_type;
+
+        return $this;
+    }
+
+    /**
      * Gets mockup_type
      *
      * @return \Aurigma\Storefront\Model\ProductVariantMockupType|null
@@ -631,7 +713,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets mockup_type
      *
-     * @param \Aurigma\Storefront\Model\ProductVariantMockupType|null $mockup_type mockup_type
+     * @param \Aurigma\Storefront\Model\ProductVariantMockupType|null $mockup_type Mockup type.
      *
      * @return self
      */
@@ -692,7 +774,7 @@ class ProductVariantMockupDto implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets surface_usage_type
      *
-     * @param \Aurigma\Storefront\Model\SurfaceUsageType|null $surface_usage_type surface_usage_type
+     * @param \Aurigma\Storefront\Model\SurfaceUsageType|null $surface_usage_type Surface usage type defines a scheme for applying mockup to design surfaces.
      *
      * @return self
      */

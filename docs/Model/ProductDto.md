@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **tenant_id** | **int** | Tenant identifier. | [optional]
 **name** | **string** | Product name. | [optional]
 **description** | **string** | Product description. | [optional]
-**image** | [**\Aurigma\Storefront\Model\ImageInfo**](ImageInfo.md) |  | [optional]
+**image** | [**\Aurigma\Storefront\Model\ProductSummaryDtoImage**](ProductSummaryDtoImage.md) |  | [optional]
 **created** | **\DateTime** | Product creation time. | [optional]
 **last_modified** | **\DateTime** | Product modification time. | [optional]
 **tags** | **string[]** | Product tags. | [optional]

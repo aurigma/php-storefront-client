@@ -385,7 +385,7 @@ class ProjectTransitionConflictDto implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param \Aurigma\Storefront\Model\ConflictType|null $type type
+     * @param \Aurigma\Storefront\Model\ConflictType|null $type Coflict type.
      *
      * @return self
      */

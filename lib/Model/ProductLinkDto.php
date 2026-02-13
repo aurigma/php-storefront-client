@@ -66,7 +66,8 @@ class ProductLinkDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'description' => 'string',
         'product_filter_id' => 'int',
-        'image' => '\Aurigma\Storefront\Model\ImageInfo',
+        'image' => '\Aurigma\Storefront\Model\ProductLinkDtoImage',
+        'resources' => '\Aurigma\Storefront\Model\ProductLinkResourceDto[]',
         'created' => '\DateTime',
         'last_modified' => '\DateTime',
         'product_filter_options' => '\Aurigma\Storefront\Model\ProductFilterOptionDto[]',
@@ -94,6 +95,7 @@ class ProductLinkDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'product_filter_id' => 'int32',
         'image' => null,
+        'resources' => null,
         'created' => 'date-time',
         'last_modified' => 'date-time',
         'product_filter_options' => null,
@@ -118,7 +120,8 @@ class ProductLinkDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => true,
         'description' => true,
         'product_filter_id' => false,
-        'image' => false,
+        'image' => true,
+        'resources' => true,
         'created' => false,
         'last_modified' => true,
         'product_filter_options' => true,
@@ -224,6 +227,7 @@ class ProductLinkDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'product_filter_id' => 'productFilterId',
         'image' => 'image',
+        'resources' => 'resources',
         'created' => 'created',
         'last_modified' => 'lastModified',
         'product_filter_options' => 'productFilterOptions',
@@ -249,6 +253,7 @@ class ProductLinkDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'product_filter_id' => 'setProductFilterId',
         'image' => 'setImage',
+        'resources' => 'setResources',
         'created' => 'setCreated',
         'last_modified' => 'setLastModified',
         'product_filter_options' => 'setProductFilterOptions',
@@ -274,6 +279,7 @@ class ProductLinkDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'product_filter_id' => 'getProductFilterId',
         'image' => 'getImage',
+        'resources' => 'getResources',
         'created' => 'getCreated',
         'last_modified' => 'getLastModified',
         'product_filter_options' => 'getProductFilterOptions',
@@ -350,6 +356,7 @@ class ProductLinkDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('product_filter_id', $data ?? [], null);
         $this->setIfExists('image', $data ?? [], null);
+        $this->setIfExists('resources', $data ?? [], null);
         $this->setIfExists('created', $data ?? [], null);
         $this->setIfExists('last_modified', $data ?? [], null);
         $this->setIfExists('product_filter_options', $data ?? [], null);
@@ -635,7 +642,7 @@ class ProductLinkDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets image
      *
-     * @return \Aurigma\Storefront\Model\ImageInfo|null
+     * @return \Aurigma\Storefront\Model\ProductLinkDtoImage|null
      */
     public function getImage()
     {
@@ -645,16 +652,57 @@ class ProductLinkDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets image
      *
-     * @param \Aurigma\Storefront\Model\ImageInfo|null $image image
+     * @param \Aurigma\Storefront\Model\ProductLinkDtoImage|null $image image
      *
      * @return self
      */
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new \InvalidArgumentException('non-nullable image cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'image');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('image', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['image'] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Gets resources
+     *
+     * @return \Aurigma\Storefront\Model\ProductLinkResourceDto[]|null
+     */
+    public function getResources()
+    {
+        return $this->container['resources'];
+    }
+
+    /**
+     * Sets resources
+     *
+     * @param \Aurigma\Storefront\Model\ProductLinkResourceDto[]|null $resources Product link resources.
+     *
+     * @return self
+     */
+    public function setResources($resources)
+    {
+        if (is_null($resources)) {
+            array_push($this->openAPINullablesSetToNull, 'resources');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resources', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['resources'] = $resources;
 
         return $this;
     }

@@ -2131,7 +2131,7 @@ class ProductsApi
      *
      * @param  int $id Product identifier. (required)
      * @param  int $product_link_id Product link identifier. (required)
-     * @param  int $product_version_id product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productsGetProductLink'] to see the possible values for this operation
      *
@@ -2152,7 +2152,7 @@ class ProductsApi
      *
      * @param  int $id Product identifier. (required)
      * @param  int $product_link_id Product link identifier. (required)
-     * @param  int $product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productsGetProductLink'] to see the possible values for this operation
      *
@@ -2349,7 +2349,7 @@ class ProductsApi
      *
      * @param  int $id Product identifier. (required)
      * @param  int $product_link_id Product link identifier. (required)
-     * @param  int $product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productsGetProductLink'] to see the possible values for this operation
      *
@@ -2373,7 +2373,7 @@ class ProductsApi
      *
      * @param  int $id Product identifier. (required)
      * @param  int $product_link_id Product link identifier. (required)
-     * @param  int $product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productsGetProductLink'] to see the possible values for this operation
      *
@@ -2426,7 +2426,7 @@ class ProductsApi
      *
      * @param  int $id Product identifier. (required)
      * @param  int $product_link_id Product link identifier. (required)
-     * @param  int $product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $tenant_id Tenant identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['productsGetProductLink'] to see the possible values for this operation
      *
@@ -2575,7 +2575,7 @@ class ProductsApi
      * Returns a list of product links.
      *
      * @param  int $id Product identifier. (required)
-     * @param  int $product_version_id product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -2599,7 +2599,7 @@ class ProductsApi
      * Returns a list of product links.
      *
      * @param  int $id Product identifier. (required)
-     * @param  int $product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -2799,7 +2799,7 @@ class ProductsApi
      * Returns a list of product links.
      *
      * @param  int $id Product identifier. (required)
-     * @param  int $product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -2826,7 +2826,7 @@ class ProductsApi
      * Returns a list of product links.
      *
      * @param  int $id Product identifier. (required)
-     * @param  int $product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
@@ -2882,7 +2882,7 @@ class ProductsApi
      * Create request for operation 'productsGetProductLinks'
      *
      * @param  int $id Product identifier. (required)
-     * @param  int $product_version_id (optional)
+     * @param  int $product_version_id Product version identifier. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how many consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)

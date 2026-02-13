@@ -105,7 +105,7 @@ void (empty response body)
 ## `projectsBatchDelete()`
 
 ```php
-projectsBatchDelete($tenant_id, $batch_delete_projects_input): \Aurigma\Storefront\Model\PagedOfProjectStatusDto
+projectsBatchDelete($tenant_id, $projects_batch_delete_request): \Aurigma\Storefront\Model\PagedOfProjectStatusDto
 ```
 
 Deletes specified projects.   These projects will be hide from projects list immediately, but complete projects data cleaning will take some additional time.
@@ -141,10 +141,10 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
     $config
 );
 $tenant_id = 56; // int | Tenant identifier.
-$batch_delete_projects_input = new \Aurigma\Storefront\Model\BatchDeleteProjectsInput(); // \Aurigma\Storefront\Model\BatchDeleteProjectsInput | Operation parameters.
+$projects_batch_delete_request = new \Aurigma\Storefront\Model\ProjectsBatchDeleteRequest(); // \Aurigma\Storefront\Model\ProjectsBatchDeleteRequest | Operation parameters.
 
 try {
-    $result = $apiInstance->projectsBatchDelete($tenant_id, $batch_delete_projects_input);
+    $result = $apiInstance->projectsBatchDelete($tenant_id, $projects_batch_delete_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsBatchDelete: ', $e->getMessage(), PHP_EOL;
@@ -156,7 +156,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **batch_delete_projects_input** | [**\Aurigma\Storefront\Model\BatchDeleteProjectsInput**](../Model/BatchDeleteProjectsInput.md)| Operation parameters. | [optional] |
+| **projects_batch_delete_request** | [**\Aurigma\Storefront\Model\ProjectsBatchDeleteRequest**](../Model/ProjectsBatchDeleteRequest.md)| Operation parameters. | [optional] |
 
 ### Return type
 
@@ -253,7 +253,7 @@ try {
 ## `projectsCreateByRenderHiResScenario()`
 
 ```php
-projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto): \Aurigma\Storefront\Model\ProjectDto
+projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $projects_create_by_render_hi_res_scenario_request): \Aurigma\Storefront\Model\ProjectDto
 ```
 
 Creates a new project by 'Render HiRes' scenario.
@@ -290,10 +290,10 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$create_project_by_render_hi_res_scenario_dto = new \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto(); // \Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto | Create operation parameters.
+$projects_create_by_render_hi_res_scenario_request = new \Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest(); // \Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest | Create operation parameters.
 
 try {
-    $result = $apiInstance->projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $create_project_by_render_hi_res_scenario_dto);
+    $result = $apiInstance->projectsCreateByRenderHiResScenario($storefront_id, $tenant_id, $projects_create_by_render_hi_res_scenario_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsCreateByRenderHiResScenario: ', $e->getMessage(), PHP_EOL;
@@ -306,7 +306,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **create_project_by_render_hi_res_scenario_dto** | [**\Aurigma\Storefront\Model\CreateProjectByRenderHiResScenarioDto**](../Model/CreateProjectByRenderHiResScenarioDto.md)| Create operation parameters. | [optional] |
+| **projects_create_by_render_hi_res_scenario_request** | [**\Aurigma\Storefront\Model\ProjectsCreateByRenderHiResScenarioRequest**](../Model/ProjectsCreateByRenderHiResScenarioRequest.md)| Create operation parameters. | [optional] |
 
 ### Return type
 
@@ -328,7 +328,7 @@ try {
 ## `projectsCreateBySpecificPipelineScenario()`
 
 ```php
-projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id, $create_project_by_specific_pipeline_scenario_dto): \Aurigma\Storefront\Model\ProjectDto
+projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id, $projects_create_by_specific_pipeline_scenario_request): \Aurigma\Storefront\Model\ProjectDto
 ```
 
 Creates a new project by 'Specific Pipeline' scenario.
@@ -365,10 +365,10 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$create_project_by_specific_pipeline_scenario_dto = new \Aurigma\Storefront\Model\CreateProjectBySpecificPipelineScenarioDto(); // \Aurigma\Storefront\Model\CreateProjectBySpecificPipelineScenarioDto | Create operation parameters.
+$projects_create_by_specific_pipeline_scenario_request = new \Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest(); // \Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest | Create operation parameters.
 
 try {
-    $result = $apiInstance->projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id, $create_project_by_specific_pipeline_scenario_dto);
+    $result = $apiInstance->projectsCreateBySpecificPipelineScenario($storefront_id, $tenant_id, $projects_create_by_specific_pipeline_scenario_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsCreateBySpecificPipelineScenario: ', $e->getMessage(), PHP_EOL;
@@ -381,7 +381,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **create_project_by_specific_pipeline_scenario_dto** | [**\Aurigma\Storefront\Model\CreateProjectBySpecificPipelineScenarioDto**](../Model/CreateProjectBySpecificPipelineScenarioDto.md)| Create operation parameters. | [optional] |
+| **projects_create_by_specific_pipeline_scenario_request** | [**\Aurigma\Storefront\Model\ProjectsCreateBySpecificPipelineScenarioRequest**](../Model/ProjectsCreateBySpecificPipelineScenarioRequest.md)| Create operation parameters. | [optional] |
 
 ### Return type
 
@@ -403,7 +403,7 @@ try {
 ## `projectsCreateWithMultipleItems()`
 
 ```php
-projectsCreateWithMultipleItems($storefront_id, $tenant_id, $create_multi_item_project_dto): \Aurigma\Storefront\Model\ProjectDto
+projectsCreateWithMultipleItems($storefront_id, $tenant_id, $projects_create_with_multiple_items_request): \Aurigma\Storefront\Model\ProjectDto
 ```
 
 Creates a new project with multiple items.
@@ -440,10 +440,10 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$create_multi_item_project_dto = new \Aurigma\Storefront\Model\CreateMultiItemProjectDto(); // \Aurigma\Storefront\Model\CreateMultiItemProjectDto | Create operation parameters.
+$projects_create_with_multiple_items_request = new \Aurigma\Storefront\Model\ProjectsCreateWithMultipleItemsRequest(); // \Aurigma\Storefront\Model\ProjectsCreateWithMultipleItemsRequest | Create operation parameters.
 
 try {
-    $result = $apiInstance->projectsCreateWithMultipleItems($storefront_id, $tenant_id, $create_multi_item_project_dto);
+    $result = $apiInstance->projectsCreateWithMultipleItems($storefront_id, $tenant_id, $projects_create_with_multiple_items_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsCreateWithMultipleItems: ', $e->getMessage(), PHP_EOL;
@@ -456,7 +456,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **create_multi_item_project_dto** | [**\Aurigma\Storefront\Model\CreateMultiItemProjectDto**](../Model/CreateMultiItemProjectDto.md)| Create operation parameters. | [optional] |
+| **projects_create_with_multiple_items_request** | [**\Aurigma\Storefront\Model\ProjectsCreateWithMultipleItemsRequest**](../Model/ProjectsCreateWithMultipleItemsRequest.md)| Create operation parameters. | [optional] |
 
 ### Return type
 
@@ -478,7 +478,7 @@ try {
 ## `projectsCreateWithSingleItem()`
 
 ```php
-projectsCreateWithSingleItem($storefront_id, $tenant_id, $create_single_item_project_dto): \Aurigma\Storefront\Model\ProjectDto
+projectsCreateWithSingleItem($storefront_id, $tenant_id, $projects_create_with_single_item_request): \Aurigma\Storefront\Model\ProjectDto
 ```
 
 Creates a new project with single item.
@@ -515,10 +515,10 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
 );
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
-$create_single_item_project_dto = new \Aurigma\Storefront\Model\CreateSingleItemProjectDto(); // \Aurigma\Storefront\Model\CreateSingleItemProjectDto | Create operation parameters.
+$projects_create_with_single_item_request = new \Aurigma\Storefront\Model\ProjectsCreateWithSingleItemRequest(); // \Aurigma\Storefront\Model\ProjectsCreateWithSingleItemRequest | Create operation parameters.
 
 try {
-    $result = $apiInstance->projectsCreateWithSingleItem($storefront_id, $tenant_id, $create_single_item_project_dto);
+    $result = $apiInstance->projectsCreateWithSingleItem($storefront_id, $tenant_id, $projects_create_with_single_item_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectsApi->projectsCreateWithSingleItem: ', $e->getMessage(), PHP_EOL;
@@ -531,7 +531,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **storefront_id** | **int**| Storefront identifier. | |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
-| **create_single_item_project_dto** | [**\Aurigma\Storefront\Model\CreateSingleItemProjectDto**](../Model/CreateSingleItemProjectDto.md)| Create operation parameters. | [optional] |
+| **projects_create_with_single_item_request** | [**\Aurigma\Storefront\Model\ProjectsCreateWithSingleItemRequest**](../Model/ProjectsCreateWithSingleItemRequest.md)| Create operation parameters. | [optional] |
 
 ### Return type
 
@@ -811,13 +811,13 @@ $apiInstance = new Aurigma\Storefront\Api\ProjectsApi(
 $owner_id = 'owner_id_example'; // string | Project owner (storefront user id) filter.
 $product_reference = 'product_reference_example'; // string | Product reference filter.
 $status = 56; // int | Project status filter.
-$date_period = new \Aurigma\Storefront\Model\DatePeriod(); // DatePeriod | Project date period filter.
+$date_period = new \Aurigma\Storefront\Model\\Aurigma\Storefront\Model\DatePeriod(); // \Aurigma\Storefront\Model\DatePeriod | Project date period filter.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
 $take = 56; // int | Defines page length (how many consequent items of sorted result list should be taken).
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
 $search = 'search_example'; // string | Search string for partial match.
 $order_id = 'order_id_example'; // string | Identifier of corresponding order.
-$processing_status = new \Aurigma\Storefront\Model\ProjectProcessingStatus(); // ProjectProcessingStatus | Project processing status filter.
+$processing_status = new \Aurigma\Storefront\Model\\Aurigma\Storefront\Model\ProjectProcessingStatus(); // \Aurigma\Storefront\Model\ProjectProcessingStatus | Project processing status filter.
 $include_obsolete = True; // bool | Indicates if obsolete projects prepared to be removed should be included to result.
 $storefront_id = 56; // int | Storefront identifier.
 $tenant_id = 56; // int | Tenant identifier.
@@ -837,13 +837,13 @@ try {
 | **owner_id** | **string**| Project owner (storefront user id) filter. | [optional] |
 | **product_reference** | **string**| Product reference filter. | [optional] |
 | **status** | **int**| Project status filter. | [optional] |
-| **date_period** | [**DatePeriod**](../Model/.md)| Project date period filter. | [optional] |
+| **date_period** | [**\Aurigma\Storefront\Model\DatePeriod**](../Model/.md)| Project date period filter. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
 | **take** | **int**| Defines page length (how many consequent items of sorted result list should be taken). | [optional] |
 | **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
 | **search** | **string**| Search string for partial match. | [optional] |
 | **order_id** | **string**| Identifier of corresponding order. | [optional] |
-| **processing_status** | [**ProjectProcessingStatus**](../Model/.md)| Project processing status filter. | [optional] |
+| **processing_status** | [**\Aurigma\Storefront\Model\ProjectProcessingStatus**](../Model/.md)| Project processing status filter. | [optional] |
 | **include_obsolete** | **bool**| Indicates if obsolete projects prepared to be removed should be included to result. | [optional] |
 | **storefront_id** | **int**| Storefront identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier. | [optional] |
